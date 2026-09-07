@@ -203,7 +203,7 @@ function Detail({ selected, week, close }) {
     <Drawer title={`${country.name} · ${model.name}`} close={close}>
       <div ref={ref} className="drawer-body">
         <div className="detail-meta">
-          <span>示例历史记录</span>
+          <span>{rows.length ? "已验证价格记录" : "暂无已验证价格"}</span>
           <span>截至 {week}</span>
         </div>
         <div className="detail-controls">
@@ -363,18 +363,12 @@ function Detail({ selected, week, close }) {
             </div>
           ))}
         </div>
-        <p className="note">
-          价格与事件均为演示数据，尚未连接实时采集服务。来源变化事件同样为模拟记录。
-        </p>
-        <a
-          className="source-link"
-          href={country.url}
-          target="_blank"
-          rel="noreferrer"
-        >
-          品牌网站（参考，非价格证据）
-          <ExternalLink size={14} />
-        </a>
+        {rows.at(-1)?.sourceUrl ? <>
+          <p className="note">来源：{rows.at(-1).sourceId} · 采集于 {rows.at(-1).collectedAt}</p>
+          <a className="source-link" href={rows.at(-1).sourceUrl} target="_blank" rel="noreferrer">
+            打开商品来源页 <ExternalLink size={14} />
+          </a>
+        </> : <p className="note">当前组合没有通过真实来源验证的价格，矩阵保持空白。</p>}
       </div>
     </Drawer>
   );
@@ -524,7 +518,7 @@ function App() {
         </div>
         <span className={`demo-badge ${dataInfo.mode === "live" ? "live-badge" : ""}`}>
           <i />
-          {dataInfo.mode === "live" ? "实时数据" : "采集待配置"}
+          {dataInfo.mode === "live" ? "已验证来源" : "暂无已验证数据"}
         </span>
       </header>
       <main>
@@ -534,7 +528,7 @@ function App() {
               价格监测 <span>/</span> 中东市场
             </div>
             <h1>国家 × 型号价格矩阵</h1>
-            <p>Galaxy A 系列 · 周度市场零售价 · {dataInfo.mode === "live" && dataInfo.collectedAt ? `最近采集 ${new Date(dataInfo.collectedAt).toLocaleString("zh-CN")}` : "尚未连接有效商品来源"}</p>
+            <p>Galaxy A 系列 · 仅展示可访问商品页验证过的价格 · {dataInfo.collectedAt ? `最近采集 ${new Date(dataInfo.collectedAt).toLocaleString("zh-CN")}` : "尚未连接有效商品来源"}</p>
           </div>
           <div className="actions">
             <button onClick={() => setSources(true)}>
@@ -733,7 +727,7 @@ function App() {
           <span>
             本地货币 · {variant} · {channels.find((c) => c.id === channel).name}
           </span>
-          <span>示例周期 {week}</span>
+          <span>采集周期 {week}</span>
         </div>
         <section className="signals">
           <div className="section-head">
@@ -773,7 +767,7 @@ function App() {
         </section>
         <footer className="page-footer">
           <span>Market Lens</span>
-          <span>{dataInfo.mode === "live" ? "自动采集 · GitHub Actions" : "当前显示保留记录 · 等待有效来源"}</span>
+          <span>{dataInfo.mode === "live" ? "自动采集 · GitHub Actions" : "没有已验证来源 · 当前矩阵为空白"}</span>
         </footer>
       </main>
       {selected && (
@@ -786,10 +780,10 @@ function App() {
       {sources && (
         <Drawer title="数据来源" close={() => setSources(false)}>
           <div className="drawer-body">
-            <span className="demo-badge">采集待配置</span>
+            <span className="demo-badge">来源状态</span>
             <h3>当前数据状态</h3>
             <p className="note">
-              {dataInfo.mode === "live" ? `已连接 ${dataInfo.sourceCount} 个数据源${dataInfo.failedSources?.length ? `，${dataInfo.failedSources.length} 个来源最近失败` : ""}。` : "当前没有启用有效商品来源，矩阵显示的是内置保留记录。配置真实商品 URL 后，采集任务才会写入实时价格。"}
+              {dataInfo.mode === "live" ? `已配置 ${dataInfo.sourceCount} 个数据源${dataInfo.failedSources?.length ? `，${dataInfo.failedSources.length} 个来源最近失败` : ""}。只有带来源 URL 和采集时间的记录才会进入矩阵。` : "当前没有载入已验证商品价格；没有通过验证的国家、型号或容量保持空白。"}
             </p>
             <div className="source-row">
               <span>记录维度</span>

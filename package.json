@@ -8,6 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "playwright test"
+    ,"discover": "node scripts/discover.mjs"
+    ,"collect": "node scripts/collect.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

@@ -1,25 +1,18 @@
 import { test, expect } from "@playwright/test";
 import { cell, history, weeks, records } from "../src/data.js";
 
-test("prices preserve missing observations and correct comparisons", () => {
-  expect(
-    new Set(
-      records.map((r) =>
-        [r.country, r.model, r.channel, r.variant, r.week].join("|"),
-      ),
-    ).size,
-  ).toBe(records.length);
+test("API records are real-source-only and unavailable cells stay blank", () => {
+  expect(new Set(records.map((r) => [r.sourceId, r.week].join("|"))).size).toBe(records.length);
+  for (const record of records) {
+    expect(record.sourceId).toBeTruthy();
+    expect(record.sourceUrl).toMatch(/^https?:/);
+    expect(record.collectedAt).toBeTruthy();
+    expect(record.rawEvidence).toBeTruthy();
+  }
   const missing = cell("kw", "A25", "official", "128GB", weeks.at(-1));
-  expect(missing.price).toBeNull();
-  expect(missing.carried).toBe(true);
-  expect(missing.value).toBe(missing.previous);
-  expect(missing.delta).toBe(0);
-  expect(cell("sa", "A06", "official", "128GB", weeks[0]).percent).toBeNull();
-  const normal = cell("sa", "A35", "retail", "256GB", weeks.at(-1));
-  expect(normal.percent).toBeCloseTo(
-    ((normal.value - normal.previous) / normal.previous) * 100,
-  );
-  expect(history("sa", "A35", "retail", "256GB").length).toBe(12);
+  expect(missing.state).toBe("unavailable");
+  expect(missing.value).toBeNull();
+  expect(history("kw", "A25", "official", "128GB")).toEqual([]);
 });
 test("matrix filters, detail, exports and keyboard", async ({ page }) => {
   const errors = [];
@@ -69,7 +62,7 @@ test("matrix filters, detail, exports and keyboard", async ({ page }) => {
   await page.getByRole("button", { name: "导出 CSV" }).click();
   expect((await download).suggestedFilename()).toContain(weeks.at(-1));
   await page.getByRole("button", { name: "数据来源", exact: true }).click();
-  await expect(page.getByRole("dialog")).toContainText("已连接 5 个数据源");
+  await expect(page.getByRole("dialog")).toContainText("已配置 5 个数据源");
   await page.getByLabel("关闭详情").click();
   await page.getByLabel("搜索型号").fill("not found");
   await expect(page.getByText("没有匹配的型号")).toBeVisible();
