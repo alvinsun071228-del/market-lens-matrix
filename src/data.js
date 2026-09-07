@@ -33,6 +33,11 @@ export const channels = [
   { id: "official", name: "官方商城", color: "#16756a" },
   { id: "retail", name: "零售渠道", color: "#b16629" },
 ];
+export const retailers = [
+  { id: "amazon", name: "Amazon", url: "https://www.amazon.sa/" },
+  { id: "jarir", name: "Jarir", url: "https://www.jarir.com/" },
+  { id: "extra", name: "Extra", url: "https://www.extra.com/" },
+];
 export const weeks = Array.from({ length: 12 }, (_, i) =>
   new Date(Date.UTC(2026, 5, 22 + i * 7)).toISOString().slice(0, 10),
 );

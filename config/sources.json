@@ -1,5 +1,13 @@
 {
   "sources": [
+    {"id":"jarir-sa-discovery","name":"Jarir Saudi discovery","country":"sa","channel":"retail","enabled":false,"url":"https://www.jarir.com/sa-en/","parser":{"type":"retailer-discovery","currency":"SAR","retailer":"jarir"}},
+    {"id":"extra-sa-discovery","name":"Extra Saudi discovery","country":"sa","channel":"retail","enabled":false,"url":"https://www.extra.com/sa-en/","parser":{"type":"retailer-discovery","currency":"SAR","retailer":"extra"}},
+    {"id":"jarir-ae-discovery","name":"Jarir UAE discovery","country":"ae","channel":"retail","enabled":false,"url":"https://www.jarir.com/ae-en/","parser":{"type":"retailer-discovery","currency":"AED","retailer":"jarir"}},
+    {"id":"extra-ae-discovery","name":"Extra UAE discovery","country":"ae","channel":"retail","enabled":false,"url":"https://www.extra.com/ae-en/","parser":{"type":"retailer-discovery","currency":"AED","retailer":"extra"}},
+    {"id":"jarir-kw-discovery","name":"Jarir Kuwait discovery","country":"kw","channel":"retail","enabled":false,"url":"https://www.jarir.com/kw-en/","parser":{"type":"retailer-discovery","currency":"KWD","retailer":"jarir"}},
+    {"id":"extra-kw-discovery","name":"Extra Kuwait discovery","country":"kw","channel":"retail","enabled":false,"url":"https://www.extra.com/kw-en/","parser":{"type":"retailer-discovery","currency":"KWD","retailer":"extra"}},
+    {"id":"jarir-qa-discovery","name":"Jarir Qatar discovery","country":"qa","channel":"retail","enabled":false,"url":"https://www.jarir.com/qa-en/","parser":{"type":"retailer-discovery","currency":"QAR","retailer":"jarir"}},
+    {"id":"extra-qa-discovery","name":"Extra Qatar discovery","country":"qa","channel":"retail","enabled":false,"url":"https://www.extra.com/qa-en/","parser":{"type":"retailer-discovery","currency":"QAR","retailer":"extra"}},
     {"id":"jarir-sa-a57-256","name":"Jarir Saudi · Galaxy A57 256GB","country":"sa","channel":"retail","model":"A57","variant":"256GB","enabled":true,"url":"https://www.jarir.com/sa-en/samsung-galaxy-a57-5g-smartphones-679663.html","parser":{"type":"browser-text","currency":"SAR"}},
     {"id":"samsung-sa","name":"Samsung Saudi official","country":"sa","channel":"official","enabled":false,"url":"https://www.samsung.com/sa_en/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"SAR","requiresProductUrl":true}},
     {"id":"samsung-ae","name":"Samsung UAE official","country":"ae","channel":"official","enabled":false,"url":"https://www.samsung.com/ae/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"AED","requiresProductUrl":true}},

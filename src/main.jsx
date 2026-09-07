@@ -29,6 +29,7 @@ import {
   countries,
   models,
   channels,
+  retailers,
   weeks,
   labels,
   anomaly,
@@ -808,6 +809,12 @@ function App() {
                 <span>
                   Samsung <ExternalLink size={14} />
                 </span>
+              </a>
+            ))}
+            <h3>零售来源</h3>
+            {retailers.map((retailer) => (
+              <a className="source-row" key={retailer.id} href={retailer.url} target="_blank" rel="noreferrer">
+                <span>{retailer.name}</span><span>公开商城 <ExternalLink size={14} /></span>
               </a>
             ))}
             <p className="note">
