@@ -37,6 +37,8 @@ import {
   money,
   percentage,
   csv,
+  dataInfo,
+  loadRemoteRecords,
 } from "./data";
 import "./styles.css";
 gsap.registerPlugin(useGSAP);
@@ -392,6 +394,7 @@ function App() {
     [sources, setSources] = useState(false),
     [showAll, setShowAll] = useState(false),
     [toast, setToast] = useState("");
+  const [, setDataVersion] = useState(0);
   const visibleCountries = countries.filter(
       (c) => country === "all" || country === c.id,
     ),
@@ -433,6 +436,7 @@ function App() {
   };
   const open = (item) => setSelected({ ...item, variant, channel });
   useEffect(() => {
+    loadRemoteRecords().finally(() => setDataVersion((v) => v + 1));
     if (!toast) return;
     const timer = setTimeout(() => setToast(""), 3000);
     return () => clearTimeout(timer);
@@ -518,9 +522,9 @@ function App() {
           <span className="slash">/</span>
           <span>市场研究</span>
         </div>
-        <span className="demo-badge">
+        <span className={`demo-badge ${dataInfo.mode === "live" ? "live-badge" : ""}`}>
           <i />
-          示例数据
+          {dataInfo.mode === "live" ? "实时数据" : "示例数据"}
         </span>
       </header>
       <main>
@@ -530,7 +534,7 @@ function App() {
               价格监测 <span>/</span> 中东市场
             </div>
             <h1>国家 × 型号价格矩阵</h1>
-            <p>Galaxy A 系列 · 周度市场零售价</p>
+            <p>Galaxy A 系列 · 周度市场零售价 · {dataInfo.mode === "live" && dataInfo.collectedAt ? `最近采集 ${new Date(dataInfo.collectedAt).toLocaleString("zh-CN")}` : "等待首次采集"}</p>
           </div>
           <div className="actions">
             <button onClick={() => setSources(true)}>
@@ -767,7 +771,7 @@ function App() {
         </section>
         <footer className="page-footer">
           <span>Market Lens</span>
-          <span>演示价格 · 未接入实时采集</span>
+          <span>{dataInfo.mode === "live" ? "自动采集 · GitHub Actions" : "演示价格 · 采集任务待启用"}</span>
         </footer>
       </main>
       {selected && (
@@ -783,8 +787,7 @@ function App() {
             <span className="demo-badge">演示数据集</span>
             <h3>当前数据状态</h3>
             <p className="note">
-              本页价格、渠道差异和异常事件均由示例记录生成。尚未连接商城
-              API、爬虫或定时采集任务。
+              {dataInfo.mode === "live" ? `已连接 ${dataInfo.sourceCount} 个数据源${dataInfo.failedSources?.length ? `，${dataInfo.failedSources.length} 个来源最近失败` : ""}。` : "尚未完成首次采集，当前显示内置演示记录。采集任务会按计划生成最新数据。"}
             </p>
             <div className="source-row">
               <span>记录维度</span>

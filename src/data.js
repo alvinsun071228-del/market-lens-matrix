@@ -36,6 +36,18 @@ export const channels = [
 export const weeks = Array.from({ length: 12 }, (_, i) =>
   new Date(Date.UTC(2026, 5, 22 + i * 7)).toISOString().slice(0, 10),
 );
+export const dataInfo = { mode: "demo", collectedAt: null, sourceCount: 0, failedSources: [] };
+export async function loadRemoteRecords(path = `${import.meta.env.BASE_URL}data/latest.json`) {
+  try {
+    const response = await fetch(`${path}?v=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = await response.json();
+    if (!Array.isArray(payload.records) || !payload.records.length) throw new Error("empty records");
+    records.splice(0, records.length, ...payload.records);
+    Object.assign(dataInfo, { mode: payload.mode || "live", collectedAt: payload.collectedAt || null, sourceCount: payload.sourceCount || 0, failedSources: payload.failedSources || [] });
+    return true;
+  } catch { return false; }
+}
 export const labels = {
   normal: "正常",
   promo: "促销",

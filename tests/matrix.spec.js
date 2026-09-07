@@ -69,7 +69,7 @@ test("matrix filters, detail, exports and keyboard", async ({ page }) => {
   await page.getByRole("button", { name: "导出 CSV" }).click();
   expect((await download).suggestedFilename()).toContain(weeks.at(-1));
   await page.getByRole("button", { name: "数据来源", exact: true }).click();
-  await expect(page.getByRole("dialog")).toContainText("尚未连接");
+  await expect(page.getByRole("dialog")).toContainText("尚未完成首次采集");
   await page.getByLabel("关闭详情").click();
   await page.getByRole("button", { name: /查看全部/ }).click();
   expect(await page.locator(".signal").count()).toBeGreaterThan(4);

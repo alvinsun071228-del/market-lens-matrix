@@ -1,0 +1,8 @@
+{
+  "sources": [
+    {"id":"samsung-sa","name":"Samsung Saudi official","country":"sa","channel":"official","enabled":false,"url":"https://www.samsung.com/sa_en/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"SAR"}},
+    {"id":"samsung-ae","name":"Samsung UAE official","country":"ae","channel":"official","enabled":false,"url":"https://www.samsung.com/ae/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"AED"}},
+    {"id":"samsung-kw","name":"Samsung Kuwait official","country":"kw","channel":"official","enabled":false,"url":"https://www.samsung.com/ae/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"KWD"}},
+    {"id":"samsung-qa","name":"Samsung Qatar official","country":"qa","channel":"official","enabled":false,"url":"https://www.samsung.com/ae/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"QAR"}}
+  ]
+}
