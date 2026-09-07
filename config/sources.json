@@ -5,6 +5,9 @@
     {"id":"samsung-ae","name":"Samsung UAE official","country":"ae","channel":"official","enabled":false,"url":"https://www.samsung.com/ae/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"AED","requiresProductUrl":true}},
     {"id":"samsung-kw","name":"Samsung Kuwait official","country":"kw","channel":"official","enabled":false,"url":"https://www.samsung.com/ae/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"KWD","requiresProductUrl":true}},
     {"id":"samsung-qa","name":"Samsung Qatar official","country":"qa","channel":"official","enabled":false,"url":"https://www.samsung.com/ae/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"QAR","requiresProductUrl":true}},
-    {"id":"amazon-sa","name":"Amazon Saudi product/search","country":"sa","channel":"retail","model":"A57","variant":"256GB","enabled":false,"url":"https://www.amazon.sa/s?k=Samsung+Galaxy+A57+5G","parser":{"type":"browser-text","currency":"SAR","requiresProductUrl":true}}
+    {"id":"amazon-sa-a06-64","name":"Amazon Saudi · Galaxy A06 64GB","country":"sa","channel":"retail","model":"A06","variant":"64GB","enabled":true,"url":"https://www.amazon.sa/s?k=Samsung+Galaxy+A06+64GB","parser":{"type":"amazon-search","currency":"SAR"}},
+    {"id":"amazon-sa-a06-128","name":"Amazon Saudi · Galaxy A06 128GB","country":"sa","channel":"retail","model":"A06","variant":"128GB","enabled":true,"url":"https://www.amazon.sa/s?k=Samsung+Galaxy+A06+128GB","parser":{"type":"amazon-search","currency":"SAR"}},
+    {"id":"amazon-sa-a16-128","name":"Amazon Saudi · Galaxy A16 128GB","country":"sa","channel":"retail","model":"A16","variant":"128GB","enabled":true,"url":"https://www.amazon.sa/s?k=Samsung+Galaxy+A16+128GB","parser":{"type":"amazon-search","currency":"SAR"}},
+    {"id":"amazon-sa-a57-256","name":"Amazon Saudi · Galaxy A57 256GB","country":"sa","channel":"retail","model":"A57","variant":"256GB","enabled":true,"url":"https://www.amazon.sa/s?k=Samsung+Galaxy+A57+256GB","parser":{"type":"amazon-search","currency":"SAR"}}
   ]
 }

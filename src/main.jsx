@@ -387,7 +387,7 @@ function App() {
     [brand, setBrand] = useState("all"),
     [series, setSeries] = useState("all"),
     [variant, setVariant] = useState("128GB"),
-    [channel, setChannel] = useState("official"),
+    [channel, setChannel] = useState("retail"),
     [alerts, setAlerts] = useState(false),
     [advanced, setAdvanced] = useState(false),
     [selected, setSelected] = useState(null),
@@ -431,7 +431,7 @@ function App() {
     setBrand("all");
     setSeries("all");
     setVariant("128GB");
-    setChannel("official");
+    setChannel("retail");
     setAlerts(false);
   };
   const open = (item) => setSelected({ ...item, variant, channel });

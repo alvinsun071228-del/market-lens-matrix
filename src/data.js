@@ -46,7 +46,7 @@ export async function loadRemoteRecords(path = `${import.meta.env.BASE_URL}data/
     records.splice(0, records.length, ...payload.records);
     Object.assign(dataInfo, { mode: payload.mode || "live", collectedAt: payload.collectedAt || null, sourceCount: payload.sourceCount || 0, failedSources: payload.failedSources || [] });
     return true;
-  } catch { return false; }
+  } catch { records.splice(0, records.length); Object.assign(dataInfo, { mode: "offline", collectedAt: null, sourceCount: 0, failedSources: [] }); return false; }
 }
 export const labels = {
   normal: "正常",
@@ -111,7 +111,7 @@ export function history(
 ) {
   if (!isAvailable(country, model, channel)) return [];
   let previous = null;
-  return records
+  const matching = records
     .filter(
       (r) =>
         r.country === country &&
@@ -119,14 +119,18 @@ export function history(
         r.channel === channel &&
         r.variant === variant &&
         r.week <= until,
-    )
-    .map((r) => {
-      if (r.price !== null) previous = r;
+    );
+  return [...new Set(matching.map((r) => r.week))]
+    .sort()
+    .map((week) => {
+      const rows = matching.filter((r) => r.week === week && r.price !== null);
+      const r = rows.sort((a, b) => a.price - b.price)[0] || matching.find((row) => row.week === week);
+      if (r?.price !== null) previous = r;
       return {
         ...r,
-        value: r.price ?? previous?.price ?? null,
+        value: r?.price ?? previous?.price ?? null,
         effectiveDate: previous?.week ?? null,
-        carried: r.price === null && previous !== null,
+        carried: r?.price === null && previous !== null,
       };
     });
 }
