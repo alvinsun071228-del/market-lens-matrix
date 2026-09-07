@@ -1,61 +1,827 @@
-import React, { useMemo, useRef, useState } from 'react';
-import { createRoot } from 'react-dom/client';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { Activity, ArrowDownRight, ArrowUpRight, Bell, CalendarDays, ChevronDown, CircleHelp, Database, Download, ExternalLink, Filter, Globe2, Menu, Search, SlidersHorizontal, X } from 'lucide-react';
-import './styles.css';
-
+import React, { useEffect, useRef, useState } from "react";
+import { createRoot } from "react-dom/client";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import {
+  Activity,
+  ArrowDownRight,
+  ArrowUpRight,
+  ArrowRight,
+  Download,
+  X,
+  Search,
+  Database,
+  RotateCcw,
+  SlidersHorizontal,
+  ExternalLink,
+  Minus,
+} from "lucide-react";
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+} from "recharts";
+import {
+  countries,
+  models,
+  channels,
+  weeks,
+  labels,
+  anomaly,
+  history,
+  cell,
+  money,
+  percentage,
+  csv,
+} from "./data";
+import "./styles.css";
 gsap.registerPlugin(useGSAP);
-
-const countries = [
-  { id: 'sa', name: '沙特阿拉伯', code: 'SA', currency: 'SAR', symbol: 'ر.س', flag: 'SA' },
-  { id: 'ae', name: '阿联酋', code: 'AE', currency: 'AED', symbol: 'د.إ', flag: 'AE' },
-  { id: 'kw', name: '科威特', code: 'KW', currency: 'KWD', symbol: 'د.ك', flag: 'KW' },
-  { id: 'qa', name: '卡塔尔', code: 'QA', currency: 'QAR', symbol: 'ر.ق', flag: 'QA' },
-];
-const models = [
-  { id: 'a06', name: 'Galaxy A06', short: 'A06', storage: '128GB' },
-  { id: 'a16', name: 'Galaxy A16', short: 'A16', storage: '128GB' },
-  { id: 'a25', name: 'Galaxy A25', short: 'A25', storage: '256GB' },
-  { id: 'a35', name: 'Galaxy A35', short: 'A35', storage: '256GB' },
-  { id: 'a55', name: 'Galaxy A55', short: 'A55', storage: '256GB' },
-];
-const base = { a06: [449, 499, 54.9, 499], a16: [699, 799, 69.9, 699], a25: [999, 1099, 89.9, 999], a35: [1399, 1499, 119.9, 1399], a55: [1799, 1999, 159.9, 1799] };
-const deltas = { a06: [-50, 0, -5, -25], a16: [0, -50, 0, -50], a25: [50, 0, -10, 0], a35: [-100, -100, 0, -100], a55: [0, -100, -10, 0] };
-const states = { 'sa-a06': 'promo', 'ae-a16': 'stale', 'kw-a25': 'missing', 'qa-a35': 'promo', 'sa-a35': 'promo', 'ae-a55': 'promo', 'kw-a06': 'new' };
-
-function getCell(country, model) {
-  const ci = countries.findIndex(c => c.id === country.id); const mi = models.findIndex(m => m.id === model.id);
-  const current = base[model.id][ci]; const delta = deltas[model.id][ci];
-  const previous = current - delta; const state = states[`${country.id}-${model.id}`] || 'normal';
-  return { current, previous, delta, percent: previous ? (delta / previous) * 100 : 0, state };
+function Select({ label, value, onChange, options }) {
+  return (
+    <label className="select">
+      <span>{label}</span>
+      <select
+        aria-label={label}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      >
+        {options.map((o) => (
+          <option key={o.value ?? o} value={o.value ?? o}>
+            {o.label ?? o}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
 }
-function formatPrice(n, currency) { return currency === 'KWD' ? n.toFixed(1) : Math.round(n).toLocaleString('en-US'); }
-function stateLabel(state) { return ({ promo: '促销', stale: '沿用上期', missing: '缺价', new: '首次采集', normal: '' })[state]; }
-
-function MiniChart({ color = '#0f766e', muted = false }) {
-  return <svg className="mini-chart" viewBox="0 0 100 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 L10 18 L20 21 L30 15 L40 17 L50 12 L60 14 L70 8 L80 11 L90 6 L100 4" fill="none" stroke={muted ? '#b9c4c1' : color} strokeWidth="2" vectorEffect="non-scaling-stroke" /></svg>;
+function Change({ data, currency }) {
+  const Icon =
+    data.delta > 0 ? ArrowUpRight : data.delta < 0 ? ArrowDownRight : Minus;
+  return (
+    <span
+      className={`change ${data.delta > 0 ? "up" : data.delta < 0 ? "down" : ""}`}
+    >
+      <Icon size={14} />
+      {data.delta == null
+        ? "暂无环比"
+        : `${data.delta > 0 ? "+" : data.delta < 0 ? "−" : ""}${money(Math.abs(data.delta), currency)}`}
+      <span>{percentage(data.percent)}</span>
+    </span>
+  );
 }
-
+function NumberValue({ value, currency }) {
+  const ref = useRef(null),
+    old = useRef(value);
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const n = { value: old.current ?? value ?? 0 };
+        if (value != null)
+          gsap.to(n, {
+            value,
+            duration: 0.2,
+            ease: "power2.out",
+            onUpdate: () => {
+              if (ref.current)
+                ref.current.textContent = money(n.value, currency);
+            },
+          });
+      });
+      old.current = value;
+      return () => mm.revert();
+    },
+    { scope: ref, dependencies: [value, currency], revertOnUpdate: true },
+  );
+  return <span ref={ref}>{money(value, currency)}</span>;
+}
+function Drawer({ title, close, children }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const trigger = document.activeElement;
+    ref.current.showModal();
+    const old = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = old;
+      trigger?.focus();
+    };
+  }, []);
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () =>
+        gsap.fromTo(
+          ref.current,
+          { x: 24, opacity: 0.5 },
+          { x: 0, opacity: 1, duration: 0.22, ease: "power3.out" },
+        ),
+      );
+      return () => mm.revert();
+    },
+    { scope: ref },
+  );
+  return (
+    <dialog
+      ref={ref}
+      aria-label={title}
+      onCancel={close}
+      onClick={(e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right) close();
+      }}
+    >
+      <header className="drawer-head">
+        <h2>{title}</h2>
+        <button
+          autoFocus
+          className="icon"
+          aria-label="关闭详情"
+          title="关闭详情"
+          onClick={close}
+        >
+          <X size={20} />
+        </button>
+      </header>
+      {children}
+    </dialog>
+  );
+}
+function Detail({ selected, week, close }) {
+  const { country, model } = selected;
+  const [variant, setVariant] = useState(selected.variant),
+    [channel, setChannel] = useState(selected.channel),
+    [range, setRange] = useState("12"),
+    [compare, setCompare] = useState(true);
+  const ref = useRef(null);
+  const rows = history(country.id, model.id, channel, variant, week),
+    data = cell(country.id, model.id, channel, variant, week),
+    displayed = rows.slice(-Number(range));
+  const chart = displayed.map((row) => ({
+    week: row.week.slice(5),
+    ...Object.fromEntries(
+      channels.map((ch) => [
+        ch.id,
+        history(country.id, model.id, ch.id, variant, row.week).at(-1)?.value,
+      ]),
+    ),
+    events: Object.fromEntries(
+      channels.map((ch) => [
+        ch.id,
+        history(country.id, model.id, ch.id, variant, row.week).at(-1)?.state,
+      ]),
+    ),
+  }));
+  const values = rows.filter((r) => r.price !== null).map((r) => r.price),
+    fourAgo = rows.at(-5)?.value,
+    fourChange = fourAgo > 0 ? ((data.value - fourAgo) / fourAgo) * 100 : null;
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () =>
+        gsap.fromTo(
+          ".chart",
+          { opacity: 0.4, y: 3 },
+          { opacity: 1, y: 0, duration: 0.2 },
+        ),
+      );
+      return () => mm.revert();
+    },
+    {
+      scope: ref,
+      dependencies: [range, channel, variant, compare],
+      revertOnUpdate: true,
+    },
+  );
+  return (
+    <Drawer title={`${country.name} · ${model.name}`} close={close}>
+      <div ref={ref} className="drawer-body">
+        <div className="detail-meta">
+          <span>示例历史记录</span>
+          <span>截至 {week}</span>
+        </div>
+        <div className="detail-controls">
+          <Select
+            label="容量"
+            value={variant}
+            onChange={setVariant}
+            options={model.variants}
+          />
+          <Select
+            label="渠道"
+            value={channel}
+            onChange={setChannel}
+            options={channels.map((c) => ({ value: c.id, label: c.name }))}
+          />
+          <Select
+            label="时间范围"
+            value={range}
+            onChange={setRange}
+            options={["4", "8", "12"].map((n) => ({
+              value: n,
+              label: `近 ${n} 周`,
+            }))}
+          />
+        </div>
+        <div className="detail-price">
+          <span>当前价格 · {country.currency}</span>
+          <strong>
+            <NumberValue value={data.value} currency={country.currency} />
+          </strong>
+          <Change data={data} currency={country.currency} />
+        </div>
+        <div className="metrics">
+          <div>
+            <span>历史最低</span>
+            <b>
+              {money(
+                values.length ? Math.min(...values) : null,
+                country.currency,
+              )}
+            </b>
+          </div>
+          <div>
+            <span>历史最高</span>
+            <b>
+              {money(
+                values.length ? Math.max(...values) : null,
+                country.currency,
+              )}
+            </b>
+          </div>
+          <div>
+            <span>近 4 周</span>
+            <b>{percentage(fourChange)}</b>
+          </div>
+        </div>
+        <div className="chart-heading">
+          <h3>周度趋势</h3>
+          <label className="check">
+            <input
+              type="checkbox"
+              checked={compare}
+              onChange={(e) => setCompare(e.target.checked)}
+            />
+            对比渠道
+          </label>
+        </div>
+        <div className="chart">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart
+              data={chart}
+              margin={{ top: 20, right: 14, left: 0, bottom: 8 }}
+            >
+              <CartesianGrid vertical={false} stroke="#e7e9ec" />
+              <XAxis
+                dataKey="week"
+                tick={{ fontSize: 12, fill: "#69707b" }}
+                tickLine={false}
+                axisLine={false}
+                minTickGap={28}
+              />
+              <YAxis
+                width={64}
+                domain={["auto", "auto"]}
+                tick={{ fontSize: 12, fill: "#69707b" }}
+                tickFormatter={(v) => money(v, country.currency)}
+                tickLine={false}
+                axisLine={false}
+              />
+              <Tooltip
+                formatter={(v, name, p) => [
+                  `${money(v, country.currency)} ${country.currency} · ${labels[p.payload.events[name]]}`,
+                  channels.find((c) => c.id === name)?.name,
+                ]}
+              />
+              {channels
+                .filter((c) => compare || c.id === channel)
+                .map((c) => (
+                  <Line
+                    key={c.id}
+                    type="linear"
+                    dataKey={c.id}
+                    stroke={c.color}
+                    strokeWidth={2}
+                    isAnimationActive={false}
+                    connectNulls={false}
+                    dot={(p) => (
+                      <circle
+                        key={`${c.id}-${p.index}`}
+                        cx={p.cx}
+                        cy={p.cy}
+                        r={p.payload.events[c.id] === "normal" ? 2 : 4}
+                        fill={
+                          anomaly(p.payload.events[c.id]) ? "#fff" : c.color
+                        }
+                        stroke={c.color}
+                        strokeWidth={1.5}
+                      />
+                    )}
+                  />
+                ))}
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="chart-legend">
+          {channels
+            .filter((c) => compare || c.id === channel)
+            .map((c) => (
+              <span key={c.id}>
+                <i style={{ background: c.color }} />
+                {c.name}
+              </span>
+            ))}
+          <span>空心点：沿用上期</span>
+        </div>
+        <h3 className="records-title">
+          价格记录 <small>{displayed.length} 周</small>
+        </h3>
+        <div className="record-list">
+          {displayed.toReversed().map((row) => (
+            <div className="record" key={row.week}>
+              <div>
+                <b>{row.week}</b>
+                <span>
+                  08:00 UTC · {channels.find((c) => c.id === channel).name}
+                </span>
+              </div>
+              <div>
+                <b>
+                  {money(row.value, country.currency)} {country.currency}
+                </b>
+                <span className={anomaly(row.state) ? "warning" : ""}>
+                  {labels[row.state]}
+                  {row.carried ? ` · 原记录 ${row.effectiveDate}` : ""}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="note">
+          价格与事件均为演示数据，尚未连接实时采集服务。来源变化事件同样为模拟记录。
+        </p>
+        <a
+          className="source-link"
+          href={country.url}
+          target="_blank"
+          rel="noreferrer"
+        >
+          品牌网站（参考，非价格证据）
+          <ExternalLink size={14} />
+        </a>
+      </div>
+    </Drawer>
+  );
+}
 function App() {
-  const rootRef = useRef(null); const matrixRef = useRef(null); const detailRef = useRef(null);
-  const [selected, setSelected] = useState(null); const [range, setRange] = useState('12 周'); const [channel, setChannel] = useState('全部渠道');
-  const [query, setQuery] = useState(''); const [onlyAlerts, setOnlyAlerts] = useState(false);
-  const visibleModels = useMemo(() => models.filter(m => !query || m.name.toLowerCase().includes(query.toLowerCase())), [query]);
-  useGSAP(() => { gsap.from('.app-shell', { autoAlpha: 0, y: 12, duration: .5, ease: 'power2.out' }); gsap.from('.matrix-row', { opacity: 0, y: 8, stagger: .06, delay: .2, duration: .4, ease: 'power2.out' }); }, { scope: rootRef });
-  useGSAP(() => { if (!selected) return; const prefers = window.matchMedia('(prefers-reduced-motion: reduce)').matches; if (prefers) return; gsap.fromTo(detailRef.current, { x: 32, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: .38, ease: 'power3.out' }); }, { dependencies: [selected], scope: rootRef });
-  const openCell = (country, model) => setSelected({ country, model, data: getCell(country, model) });
-  const totalAlerts = countries.flatMap(c => models.map(m => getCell(c, m))).filter(d => d.state !== 'normal').length;
-  return <div ref={rootRef} className="app-shell">
-    <header className="topbar"><div className="brand"><div className="brand-mark"><Activity size={17}/></div><div><strong>MARKET LENS</strong><span>REGIONAL PRICE INTELLIGENCE</span></div></div><div className="top-meta"><span className="live-dot"></span><span>数据已更新 · 09:42 GST</span><span className="top-divider"></span><span>周次 2025-W18</span><button className="icon-btn" title="通知"><Bell size={17}/><i></i></button><div className="avatar">RD</div></div><button className="mobile-menu"><Menu size={20}/></button></header>
-    <main className="workspace">
-      <section className="page-intro"><div><div className="eyebrow"><span className="eyebrow-line"></span>REGIONAL PRICE MATRIX / 01</div><h1>国家 × 型号价格矩阵</h1><p>监测 Galaxy A 系列在中东主要市场的周度零售价变化。</p></div><div className="intro-actions"><button className="secondary-btn"><Download size={15}/> 导出数据</button><button className="primary-btn"><Database size={15}/> 数据源管理</button></div></section>
-      <section className="control-bar"><div className="control-group"><span className="control-label">数据周期</span><button className="select-btn">本周价格 <ChevronDown size={14}/></button><button className="week-btn"><CalendarDays size={14}/> 2025-W18 <ChevronDown size={14}/></button></div><div className="control-group filters"><span className="control-label">筛选</span><div className="search-box"><Search size={15}/><input value={query} onChange={e => setQuery(e.target.value)} placeholder="搜索型号" /></div><button className="select-btn"><Globe2 size={14}/> 全部国家 <ChevronDown size={14}/></button><button className="select-btn">Galaxy A 系列 <ChevronDown size={14}/></button><button className={`filter-btn ${onlyAlerts ? 'active' : ''}`} onClick={() => setOnlyAlerts(!onlyAlerts)}><SlidersHorizontal size={15}/> 异常 <span>{totalAlerts}</span></button></div></section>
-      <section className="summary-strip"><div className="summary-item"><span className="summary-label">覆盖市场</span><strong>4 <small>/ 4</small></strong><span className="summary-note good">全部正常</span></div><div className="summary-item"><span className="summary-label">覆盖型号</span><strong>5 <small>/ 5</small></strong><span className="summary-note">Galaxy A 系列</span></div><div className="summary-item"><span className="summary-label">本周变动</span><strong className="teal">9 <small>处</small></strong><span className="summary-note teal-note">较上周</span></div><div className="summary-item"><span className="summary-label">数据完整度</span><strong>92.4<small>%</small></strong><span className="summary-note">↑ 1.8% <em>vs 上周</em></span></div><div className="summary-source"><span className="source-pulse"></span><span>来源：官方商城 & 电商零售</span><span className="source-time">采集于 05-01 08:00—09:30</span></div></section>
-      <section className="matrix-section"><div className="section-heading"><div><h2>周度市场价格</h2><span>本地货币 · 含税零售价 · 统一存储版本</span></div><div className="legend"><span><i className="legend-dot up"></i>上涨</span><span><i className="legend-dot down"></i>下降</span><span><i className="legend-dot flat"></i>持平</span><span><i className="legend-dot alert"></i>异常状态</span></div></div><div className="matrix-wrap" ref={matrixRef}><table className="price-matrix"><thead><tr><th className="country-head"><span>市场 / COUNTRY</span><small>货币</small></th>{visibleModels.map(m => <th key={m.id}><div className="model-head"><strong>{m.name}</strong><span>{m.storage} · Samsung</span></div></th>)}</tr></thead><tbody>{countries.map(country => <tr className="matrix-row" key={country.id}><th className="country-cell"><div className={`flag flag-${country.code.toLowerCase()}`}>{country.code}</div><div><strong>{country.name}</strong><span>{country.currency} · {country.symbol}</span></div></th>{visibleModels.map(model => { const d = getCell(country, model); const isHidden = onlyAlerts && d.state === 'normal'; return <td key={model.id} className={`price-cell ${d.state} ${isHidden ? 'dimmed' : ''}`}><button onClick={() => openCell(country, model)} aria-label={`${country.name} ${model.name} 价格详情`}><div className="price-main"><span>{country.symbol}</span>{formatPrice(d.current, country.currency)}</div><div className={`delta ${d.delta > 0 ? 'up' : d.delta < 0 ? 'down' : 'flat'}`}>{d.delta > 0 ? <ArrowUpRight size={13}/> : d.delta < 0 ? <ArrowDownRight size={13}/> : <span className="dash">—</span>}<span>{d.delta === 0 ? '持平' : `${d.delta > 0 ? '+' : ''}${formatPrice(Math.abs(d.delta), country.currency)} ${country.currency}`}</span><b>{d.delta === 0 ? '0.0%' : `${d.percent > 0 ? '+' : ''}${d.percent.toFixed(1)}%`}</b></div><div className="cell-footer">{d.state !== 'normal' ? <span className={`state-tag ${d.state}`}>{stateLabel(d.state)}</span> : <span className="channel-tag">官方商城</span>}<span className="cell-arrow">↗</span></div></button></td>})}</tr>)}</tbody></table></div><div className="matrix-foot"><span><CircleHelp size={14}/> 点击单元格查看周度趋势、渠道记录与来源</span><span>显示 {countries.length} 个市场 · {visibleModels.length} 个型号</span></div></section>
-      <section className="bottom-grid"><div className="insight-panel"><div className="panel-title"><div><span className="eyebrow compact">WEEKLY SIGNAL</span><h3>本周市场信号</h3></div><button className="more-btn">查看全部 <ExternalLink size={13}/></button></div><div className="signal-list"><div className="signal"><span className="signal-icon green"><ArrowDownRight size={15}/></span><div><strong>Galaxy A35 在 3 个市场降价</strong><span>最高降幅出现在沙特阿拉伯 · −100 SAR</span></div><time>今天</time></div><div className="signal"><span className="signal-icon amber"><Bell size={15}/></span><div><strong>科威特 Galaxy A25 缺价</strong><span>已沿用上周价格，建议核验来源</span></div><time>昨天</time></div></div></div><div className="coverage-panel"><div className="panel-title"><div><span className="eyebrow compact">SOURCE COVERAGE</span><h3>数据源健康度</h3></div><span className="health-score">92.4%</span></div><div className="coverage-bars"><div><span>Samsung 官方商城</span><b>100%</b><i><em style={{width:'100%'}}></em></i></div><div><span>Amazon 本地站点</span><b>94%</b><i><em style={{width:'94%'}}></em></i></div><div><span>Jarir / eXtra</span><b>83%</b><i><em style={{width:'83%'}}></em></i></div></div></div></section>
-    </main>
-    {selected && <aside className="detail-overlay" onClick={() => setSelected(null)}><div ref={detailRef} className="detail-drawer" onClick={e => e.stopPropagation()}><div className="drawer-header"><div><span className="eyebrow compact">PRICE DETAIL / {selected.country.code}</span><h2>{selected.model.name}</h2><span>{selected.country.name} · {selected.country.currency} · {selected.model.storage}</span></div><button className="close-btn" onClick={() => setSelected(null)}><X size={20}/></button></div><div className="drawer-controls"><button className="drawer-select">{range}<ChevronDown size={13}/></button><button className="drawer-select">{channel}<ChevronDown size={13}/></button></div><div className="current-price"><div><span>当前市场价</span><strong>{selected.country.symbol} {formatPrice(selected.data.current, selected.country.currency)}</strong><small className={selected.data.delta < 0 ? 'down-text' : selected.data.delta > 0 ? 'up-text' : ''}>{selected.data.delta > 0 ? '↑' : selected.data.delta < 0 ? '↓' : '—'} {Math.abs(selected.data.percent).toFixed(1)}% <em>较上周</em></small></div><span className={`state-tag ${selected.data.state}`}>{stateLabel(selected.data.state) || '正常'}</span></div><div className="chart-card"><div className="chart-top"><span>周度价格趋势</span><span className="chart-legend"><i></i> 官方商城 <i className="orange"></i> 电商渠道</span></div><div className="chart"><div className="y-labels"><span>{selected.country.symbol} 2,000</span><span>{selected.country.symbol} 1,500</span><span>{selected.country.symbol} 1,000</span><span>{selected.country.symbol} 500</span></div><svg viewBox="0 0 460 190" preserveAspectRatio="none"><defs><linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#0f766e" stopOpacity=".18"/><stop offset="1" stopColor="#0f766e" stopOpacity="0"/></linearGradient></defs><path d="M0 144 C35 138 42 125 74 132 S115 122 145 117 S185 134 214 107 S260 112 284 91 S324 102 350 78 S395 84 460 44 L460 190 L0 190Z" fill="url(#chartFill)"/><path d="M0 144 C35 138 42 125 74 132 S115 122 145 117 S185 134 214 107 S260 112 284 91 S324 102 350 78 S395 84 460 44" fill="none" stroke="#0f766e" strokeWidth="3"/><path d="M0 156 C38 152 50 145 74 147 S112 140 145 143 S186 151 214 126 S260 130 284 114 S330 118 350 103 S400 111 460 70" fill="none" stroke="#df8b3b" strokeWidth="2" strokeDasharray="5 5"/><line x1="0" y1="165" x2="460" y2="165" stroke="#dbe4e1"/><circle cx="350" cy="78" r="5" fill="#fff" stroke="#0f766e" strokeWidth="3"/></svg><div className="x-labels"><span>02-10</span><span>02-24</span><span>03-10</span><span>03-24</span><span>04-07</span><span>04-21</span></div></div></div><div className="metric-grid"><div><span>历史最低价</span><strong>{selected.country.symbol} {formatPrice(selected.data.current - 140, selected.country.currency)}</strong><small>2025-03-10</small></div><div><span>历史最高价</span><strong>{selected.country.symbol} {formatPrice(selected.data.current + 220, selected.country.currency)}</strong><small>2025-02-10</small></div><div><span>近 4 周变化</span><strong className={selected.data.delta < 0 ? 'down-text' : 'up-text'}>{selected.data.delta < 0 ? '−' : '+'}{Math.abs(selected.data.percent * 1.4).toFixed(1)}%</strong><small>vs 4 weeks ago</small></div></div><div className="records"><div className="records-head"><h3>最新价格记录</h3><span>3 条</span></div><div className="record-row"><div><strong>Samsung 官方商城</strong><span>采集于 05-01 08:12</span></div><b>{selected.country.symbol} {formatPrice(selected.data.current, selected.country.currency)}</b><ExternalLink size={14}/></div><div className="record-row"><div><strong>Amazon {selected.country.code}</strong><span>采集于 05-01 08:26</span></div><b>{selected.country.symbol} {formatPrice(selected.data.current + 15, selected.country.currency)}</b><ExternalLink size={14}/></div><div className="record-row warning"><div><strong>状态说明</strong><span>{selected.data.state === 'missing' ? '本周来源未返回有效价格，沿用上期记录' : '未发现异常，价格来源可用'}</span></div><CircleHelp size={15}/></div></div></div></aside>}
-  </div>;
+  const ref = useRef(null);
+  const [week, setWeek] = useState(weeks.at(-1)),
+    [country, setCountry] = useState("all"),
+    [query, setQuery] = useState(""),
+    [brand, setBrand] = useState("all"),
+    [series, setSeries] = useState("all"),
+    [variant, setVariant] = useState("128GB"),
+    [channel, setChannel] = useState("official"),
+    [alerts, setAlerts] = useState(false),
+    [advanced, setAdvanced] = useState(false),
+    [selected, setSelected] = useState(null),
+    [sources, setSources] = useState(false),
+    [showAll, setShowAll] = useState(false),
+    [toast, setToast] = useState("");
+  const visibleCountries = countries.filter(
+      (c) => country === "all" || country === c.id,
+    ),
+    visibleModels = models.filter(
+      (m) =>
+        m.name.toLowerCase().includes(query.trim().toLowerCase()) &&
+        m.variants.includes(variant) &&
+        (brand === "all" || brand === "Samsung") &&
+        (series === "all" || series === "Galaxy A"),
+    );
+  const cells = visibleCountries.flatMap((c) =>
+      visibleModels.map((m) => ({
+        country: c,
+        model: m,
+        data: cell(c.id, m.id, channel, variant, week),
+      })),
+    ),
+    anomalies = cells.filter((c) => anomaly(c.data.state)),
+    changes = cells.filter((c) => c.data.delta != null && c.data.delta !== 0);
+  const signals = cells
+    .filter(
+      (c) =>
+        c.data.state !== "normal" ||
+        (c.data.delta !== 0 && c.data.delta != null),
+    )
+    .sort(
+      (a, b) =>
+        Number(anomaly(b.data.state)) - Number(anomaly(a.data.state)) ||
+        Math.abs(b.data.percent ?? 0) - Math.abs(a.data.percent ?? 0),
+    );
+  const reset = () => {
+    setQuery("");
+    setCountry("all");
+    setBrand("all");
+    setSeries("all");
+    setVariant("128GB");
+    setChannel("official");
+    setAlerts(false);
+  };
+  const open = (item) => setSelected({ ...item, variant, channel });
+  useEffect(() => {
+    if (!toast) return;
+    const timer = setTimeout(() => setToast(""), 3000);
+    return () => clearTimeout(timer);
+  }, [toast]);
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () =>
+        gsap.fromTo(
+          ".cell-button",
+          { opacity: 0.65, y: 2 },
+          { opacity: 1, y: 0, duration: 0.18, stagger: { amount: 0.06 } },
+        ),
+      );
+      return () => mm.revert();
+    },
+    {
+      scope: ref,
+      dependencies: [
+        week,
+        country,
+        query,
+        variant,
+        channel,
+        alerts,
+        brand,
+        series,
+      ],
+      revertOnUpdate: true,
+    },
+  );
+  function download() {
+    const rows = [
+      [
+        "数据类型",
+        "国家",
+        "型号",
+        "容量",
+        "渠道",
+        "周次",
+        "货币",
+        "本周价格",
+        "上周价格",
+        "变动金额",
+        "变动比例",
+        "状态",
+        "原始价格日期",
+      ],
+      ...cells
+        .filter((c) => !alerts || anomaly(c.data.state))
+        .map((c) => [
+          "示例数据",
+          c.country.name,
+          c.model.name,
+          variant,
+          channel,
+          week,
+          c.country.currency,
+          c.data.value,
+          c.data.previous,
+          c.data.delta,
+          percentage(c.data.percent),
+          labels[c.data.state],
+          c.data.effectiveDate,
+        ]),
+    ];
+    const url = URL.createObjectURL(
+      new Blob([csv(rows)], { type: "text/csv;charset=utf-8" }),
+    );
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `market-lens-${week}.csv`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setToast("CSV 已导出");
+  }
+  return (
+    <div ref={ref}>
+      <header className="topbar">
+        <div className="brand">
+          <Activity size={22} />
+          <strong>Market Lens</strong>
+          <span className="slash">/</span>
+          <span>市场研究</span>
+        </div>
+        <span className="demo-badge">
+          <i />
+          示例数据
+        </span>
+      </header>
+      <main>
+        <header className="page-heading">
+          <div>
+            <div className="breadcrumb">
+              价格监测 <span>/</span> 中东市场
+            </div>
+            <h1>国家 × 型号价格矩阵</h1>
+            <p>Galaxy A 系列 · 周度市场零售价</p>
+          </div>
+          <div className="actions">
+            <button onClick={() => setSources(true)}>
+              <Database size={16} />
+              数据来源
+            </button>
+            <button
+              className="primary"
+              onClick={download}
+              disabled={!cells.length || (alerts && !anomalies.length)}
+            >
+              <Download size={16} />
+              导出 CSV
+            </button>
+          </div>
+        </header>
+        <div className="tabs">
+          <span className="active-tab">价格矩阵</span>
+          <div className="week-picker">
+            <Select
+              label="周次"
+              value={week}
+              onChange={setWeek}
+              options={weeks
+                .toReversed()
+                .map((w) => ({
+                  value: w,
+                  label: `${w}${w === weeks.at(-1) ? " · 最新" : ""}`,
+                }))}
+            />
+          </div>
+        </div>
+        <section className="filters" aria-label="矩阵筛选">
+          <label className="search">
+            <Search size={16} />
+            <input
+              aria-label="搜索型号"
+              placeholder="搜索型号…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+          </label>
+          <Select
+            label="市场"
+            value={country}
+            onChange={setCountry}
+            options={[
+              { value: "all", label: "全部市场" },
+              ...countries.map((c) => ({ value: c.id, label: c.name })),
+            ]}
+          />
+          <Select
+            label="渠道"
+            value={channel}
+            onChange={setChannel}
+            options={channels.map((c) => ({ value: c.id, label: c.name }))}
+          />
+          <Select
+            label="容量"
+            value={variant}
+            onChange={setVariant}
+            options={["64GB", "128GB", "256GB"]}
+          />
+          <button
+            className={advanced ? "pressed" : ""}
+            aria-expanded={advanced}
+            onClick={() => setAdvanced(!advanced)}
+          >
+            <SlidersHorizontal size={16} />
+            更多筛选
+          </button>
+          <button
+            className="icon reset"
+            title="重置筛选"
+            aria-label="重置筛选"
+            onClick={reset}
+          >
+            <RotateCcw size={16} />
+          </button>
+          {advanced && (
+            <div className="advanced">
+              <Select
+                label="品牌"
+                value={brand}
+                onChange={setBrand}
+                options={[{ value: "all", label: "全部品牌" }, "Samsung"]}
+              />
+              <Select
+                label="系列"
+                value={series}
+                onChange={setSeries}
+                options={[{ value: "all", label: "全部系列" }, "Galaxy A"]}
+              />
+            </div>
+          )}
+        </section>
+        <section className="matrix-summary">
+          <span>
+            <b>{visibleCountries.length}</b> 个市场{" "}
+            <span className="dot">·</span> <b>{visibleModels.length}</b> 个型号{" "}
+            <span className="dot">·</span> <b>{changes.length}</b> 项价格变动
+          </span>
+          <label className="check">
+            <input
+              type="checkbox"
+              checked={alerts}
+              onChange={(e) => setAlerts(e.target.checked)}
+            />
+            仅异常 <span className="count">{anomalies.length}</span>
+          </label>
+        </section>
+        {visibleModels.length === 0 ? (
+          <div className="empty">
+            <Search size={24} />
+            <h3>没有匹配的型号</h3>
+            <p>当前搜索或容量没有对应记录。</p>
+            <button onClick={reset}>重置筛选</button>
+          </div>
+        ) : (
+          <div className="matrix-scroll">
+            <table className="matrix">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    市场 <small>当地货币</small>
+                  </th>
+                  {visibleModels.map((m) => (
+                    <th key={m.id} scope="col">
+                      <strong>{m.name}</strong>
+                      <small>{variant} · Samsung</small>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {visibleCountries.map((c) => (
+                  <tr key={c.id}>
+                    <th scope="row">
+                      <div className="country-name">
+                        <img
+                          src={`${import.meta.env.BASE_URL}flags/${c.id}.png`}
+                          width="24"
+                          height="16"
+                          alt=""
+                        />
+                        <strong>{c.name}</strong>
+                      </div>
+                      <small>{c.currency}</small>
+                    </th>
+                    {visibleModels.map((m) => {
+                      const d = cell(c.id, m.id, channel, variant, week);
+                      return (
+                        <td key={m.id}>
+                          {alerts && !anomaly(d.state) ? (
+                            <div className="excluded">无异常</div>
+                          ) : (
+                            <button
+                              className={`cell-button ${anomaly(d.state) ? "attention" : ""}`}
+                              aria-label={`${c.name} ${m.name} 价格详情`}
+                              onClick={() => open({ country: c, model: m })}
+                            >
+                              <div className="price">
+                                <NumberValue
+                                  value={d.value}
+                                  currency={c.currency}
+                                />
+                                <ArrowRight className="cell-arrow" size={15} />
+                              </div>
+                              <Change data={d} currency={c.currency} />
+                              <div className="previous">
+                                上周 {money(d.previous, c.currency)}
+                              </div>
+                              <div className="cell-status">
+                                {d.state !== "normal" && (
+                                  <span
+                                    className={`badge ${anomaly(d.state) ? "warning" : d.state === "promo" ? "promo" : ""}`}
+                                  >
+                                    {labels[d.state]}
+                                  </span>
+                                )}
+                              </div>
+                            </button>
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        <div className="matrix-footer">
+          <span>
+            本地货币 · {variant} · {channels.find((c) => c.id === channel).name}
+          </span>
+          <span>示例周期 {week}</span>
+        </div>
+        <section className="signals">
+          <div className="section-head">
+            <h2>本周变动</h2>
+            {signals.length > 4 && (
+              <button
+                className="text-button"
+                onClick={() => setShowAll(!showAll)}
+              >
+                {showAll ? "收起" : "查看全部"}
+                <span>{signals.length}</span>
+              </button>
+            )}
+          </div>
+          {signals.length === 0 ? (
+            <p className="note">当前筛选下没有价格变动或异常。</p>
+          ) : (
+            signals.slice(0, showAll ? signals.length : 4).map((item) => (
+              <button
+                className="signal"
+                key={`${item.country.id}-${item.model.id}`}
+                onClick={() => open(item)}
+              >
+                <span
+                  className={`signal-dot ${anomaly(item.data.state) ? "amber" : ""}`}
+                />
+                <span className="signal-name">
+                  {item.model.name}
+                  <small>{item.country.name}</small>
+                </span>
+                <span className="signal-state">{labels[item.data.state]}</span>
+                <Change data={item.data} currency={item.country.currency} />
+                <ArrowRight size={16} />
+              </button>
+            ))
+          )}
+        </section>
+        <footer className="page-footer">
+          <span>Market Lens</span>
+          <span>演示价格 · 未接入实时采集</span>
+        </footer>
+      </main>
+      {selected && (
+        <Detail
+          selected={selected}
+          week={week}
+          close={() => setSelected(null)}
+        />
+      )}{" "}
+      {sources && (
+        <Drawer title="数据来源" close={() => setSources(false)}>
+          <div className="drawer-body">
+            <span className="demo-badge">演示数据集</span>
+            <h3>当前数据状态</h3>
+            <p className="note">
+              本页价格、渠道差异和异常事件均由示例记录生成。尚未连接商城
+              API、爬虫或定时采集任务。
+            </p>
+            <div className="source-row">
+              <span>记录维度</span>
+              <b>国家 × 型号 × 渠道 × 容量 × 周次</b>
+            </div>
+            <div className="source-row">
+              <span>历史范围</span>
+              <b>
+                {weeks[0]} — {weeks.at(-1)}
+              </b>
+            </div>
+            <h3>品牌网站参考</h3>
+            {countries.map((c) => (
+              <a
+                className="source-row"
+                key={c.id}
+                href={c.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>{c.name}</span>
+                <span>
+                  Samsung <ExternalLink size={14} />
+                </span>
+              </a>
+            ))}
+            <p className="note">
+              参考链接不作为价格凭证。正式采集需要逐市场配置产品
+              URL、容量、渠道及采集时间，并保存原始来源记录。
+            </p>
+          </div>
+        </Drawer>
+      )}
+      <div role="status" className={`toast ${toast ? "visible" : ""}`}>
+        {toast}
+      </div>
+    </div>
+  );
 }
-createRoot(document.getElementById('root')).render(<App />);
+createRoot(document.getElementById("root")).render(<App />);
