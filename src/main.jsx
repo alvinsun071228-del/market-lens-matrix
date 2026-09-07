@@ -488,7 +488,7 @@ function App() {
       ...cells
         .filter((c) => !alerts || anomaly(c.data.state))
         .map((c) => [
-          "示例数据",
+          dataInfo.mode === "live" ? "实时采集" : "待配置采集",
           c.country.name,
           c.model.name,
           variant,
@@ -524,7 +524,7 @@ function App() {
         </div>
         <span className={`demo-badge ${dataInfo.mode === "live" ? "live-badge" : ""}`}>
           <i />
-          {dataInfo.mode === "live" ? "实时数据" : "示例数据"}
+          {dataInfo.mode === "live" ? "实时数据" : "采集待配置"}
         </span>
       </header>
       <main>
@@ -534,7 +534,7 @@ function App() {
               价格监测 <span>/</span> 中东市场
             </div>
             <h1>国家 × 型号价格矩阵</h1>
-            <p>Galaxy A 系列 · 周度市场零售价 · {dataInfo.mode === "live" && dataInfo.collectedAt ? `最近采集 ${new Date(dataInfo.collectedAt).toLocaleString("zh-CN")}` : "等待首次采集"}</p>
+            <p>Galaxy A 系列 · 周度市场零售价 · {dataInfo.mode === "live" && dataInfo.collectedAt ? `最近采集 ${new Date(dataInfo.collectedAt).toLocaleString("zh-CN")}` : "尚未连接有效商品来源"}</p>
           </div>
           <div className="actions">
             <button onClick={() => setSources(true)}>
@@ -771,7 +771,7 @@ function App() {
         </section>
         <footer className="page-footer">
           <span>Market Lens</span>
-          <span>{dataInfo.mode === "live" ? "自动采集 · GitHub Actions" : "演示价格 · 采集任务待启用"}</span>
+          <span>{dataInfo.mode === "live" ? "自动采集 · GitHub Actions" : "当前显示保留记录 · 等待有效来源"}</span>
         </footer>
       </main>
       {selected && (
@@ -784,10 +784,10 @@ function App() {
       {sources && (
         <Drawer title="数据来源" close={() => setSources(false)}>
           <div className="drawer-body">
-            <span className="demo-badge">演示数据集</span>
+            <span className="demo-badge">采集待配置</span>
             <h3>当前数据状态</h3>
             <p className="note">
-              {dataInfo.mode === "live" ? `已连接 ${dataInfo.sourceCount} 个数据源${dataInfo.failedSources?.length ? `，${dataInfo.failedSources.length} 个来源最近失败` : ""}。` : "尚未完成首次采集，当前显示内置演示记录。采集任务会按计划生成最新数据。"}
+              {dataInfo.mode === "live" ? `已连接 ${dataInfo.sourceCount} 个数据源${dataInfo.failedSources?.length ? `，${dataInfo.failedSources.length} 个来源最近失败` : ""}。` : "当前没有启用有效商品来源，矩阵显示的是内置保留记录。配置真实商品 URL 后，采集任务才会写入实时价格。"}
             </p>
             <div className="source-row">
               <span>记录维度</span>

@@ -5,6 +5,7 @@ import { records as demoRecords, weeks } from "../src/data.js";
 const root = resolve(new URL("..", import.meta.url).pathname);
 const config = JSON.parse(await readFile(resolve(root, "config/sources.json"), "utf8"));
 const outputPath = resolve(root, "public/data/latest.json");
+const apiPath = resolve(root, "public/api/prices.json");
 let previous = null;
 try { previous = JSON.parse(await readFile(outputPath, "utf8")); } catch {}
 const collectedAt = new Date().toISOString();
@@ -40,7 +41,9 @@ for (const source of active) {
     if (match) { match.price = result.price; match.week = week; match.state = 'normal'; match.collectedAt = collectedAt; match.sourceUrl = source.url; }
   } catch (error) { failedSources.push({ id: source.id, name: source.name, error: error.message }); }
 }
-const output = { mode: active.length && !failedSources.length ? 'live' : 'demo', collectedAt, week, sourceCount: active.length, failedSources, records };
+const output = { apiVersion: "1.0", mode: active.length && !failedSources.length ? 'live' : 'demo', collectedAt, week, sourceCount: active.length, failedSources, records };
 await mkdir(resolve(root, 'public/data'), { recursive: true });
+await mkdir(resolve(root, 'public/api'), { recursive: true });
 await writeFile(outputPath, JSON.stringify(output, null, 2));
+await writeFile(apiPath, JSON.stringify(output, null, 2));
 console.log(JSON.stringify({ week, activeSources: active.length, failedSources: failedSources.length, retainedRecords: records.length }));
