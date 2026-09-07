@@ -26,11 +26,11 @@ test("matrix filters, detail, exports and keyboard", async ({ page }) => {
   page.on("pageerror", (e) => errors.push(e.message));
   await page.setViewportSize({ width: 1440, height: 1100 });
   await page.goto("http://localhost:5173");
-  await expect(page.locator(".cell-button")).toHaveCount(20);
+  await expect(page.locator(".cell-button")).toHaveCount(24);
   await expect.poll(()=>page.locator('.country-name img').evaluateAll(images=>images.every(i=>i.complete&&i.naturalWidth>0))).toBe(true);
   await page.screenshot({ path: "work/desktop.png", fullPage: true });
   await page.getByLabel("市场", { exact: true }).selectOption("sa");
-  await expect(page.locator(".cell-button")).toHaveCount(5);
+  await expect(page.locator(".cell-button")).toHaveCount(6);
   await page.getByLabel("搜索型号").fill("A35");
   await expect(page.locator(".cell-button")).toHaveCount(1);
   await page.getByLabel("重置筛选", { exact: true }).click();
@@ -38,7 +38,7 @@ test("matrix filters, detail, exports and keyboard", async ({ page }) => {
   await expect(page.locator(".cell-button")).toHaveCount(2);
   await page.getByLabel("仅异常").uncheck();
   await page.getByLabel("容量", { exact: true }).selectOption("256GB");
-  await expect(page.locator(".cell-button")).toHaveCount(16);
+  await expect(page.locator(".cell-button")).toHaveCount(20);
   await page.getByLabel("重置筛选", { exact: true }).click();
   await page.getByRole("button", { name: "更多筛选" }).click();
   await page.getByLabel("品牌", { exact: true }).selectOption("Samsung");
@@ -69,7 +69,7 @@ test("matrix filters, detail, exports and keyboard", async ({ page }) => {
   await page.getByRole("button", { name: "导出 CSV" }).click();
   expect((await download).suggestedFilename()).toContain(weeks.at(-1));
   await page.getByRole("button", { name: "数据来源", exact: true }).click();
-  await expect(page.getByRole("dialog")).toContainText("当前没有启用有效商品来源");
+  await expect(page.getByRole("dialog")).toContainText("已连接 1 个数据源");
   await page.getByLabel("关闭详情").click();
   await page.getByRole("button", { name: /查看全部/ }).click();
   expect(await page.locator(".signal").count()).toBeGreaterThan(4);

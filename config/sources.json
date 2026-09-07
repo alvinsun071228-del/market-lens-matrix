@@ -1,8 +1,10 @@
 {
   "sources": [
+    {"id":"jarir-sa-a57-256","name":"Jarir Saudi · Galaxy A57 256GB","country":"sa","channel":"retail","model":"A57","variant":"256GB","enabled":true,"url":"https://www.jarir.com/sa-en/samsung-galaxy-a57-5g-smartphones-679663.html","parser":{"type":"browser-text","currency":"SAR"}},
     {"id":"samsung-sa","name":"Samsung Saudi official","country":"sa","channel":"official","enabled":false,"url":"https://www.samsung.com/sa_en/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"SAR","requiresProductUrl":true}},
     {"id":"samsung-ae","name":"Samsung UAE official","country":"ae","channel":"official","enabled":false,"url":"https://www.samsung.com/ae/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"AED","requiresProductUrl":true}},
     {"id":"samsung-kw","name":"Samsung Kuwait official","country":"kw","channel":"official","enabled":false,"url":"https://www.samsung.com/ae/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"KWD","requiresProductUrl":true}},
-    {"id":"samsung-qa","name":"Samsung Qatar official","country":"qa","channel":"official","enabled":false,"url":"https://www.samsung.com/ae/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"QAR","requiresProductUrl":true}}
+    {"id":"samsung-qa","name":"Samsung Qatar official","country":"qa","channel":"official","enabled":false,"url":"https://www.samsung.com/ae/smartphones/galaxy-a/","parser":{"type":"jsonld","currency":"QAR","requiresProductUrl":true}},
+    {"id":"amazon-sa","name":"Amazon Saudi product/search","country":"sa","channel":"retail","model":"A57","variant":"256GB","enabled":false,"url":"https://www.amazon.sa/s?k=Samsung+Galaxy+A57+5G","parser":{"type":"browser-text","currency":"SAR","requiresProductUrl":true}}
   ]
 }

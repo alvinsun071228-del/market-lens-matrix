@@ -24,7 +24,7 @@ export const countries = [
     url: "https://www.samsung.com/ae/",
   },
 ];
-export const models = ["A06", "A16", "A25", "A35", "A55"].map((id, i) => ({
+export const models = ["A06", "A16", "A25", "A35", "A55", "A57"].map((id, i) => ({
   id,
   name: `Galaxy ${id}`,
   variants: i === 0 ? ["64GB", "128GB"] : ["128GB", "256GB"],
@@ -75,7 +75,7 @@ export const records = countries.flatMap((c, ci) =>
           const scale = c.currency === "KWD" ? 0.085 : 1;
           const amount =
             scale *
-            ([449, 699, 999, 1399, 1799][mi] +
+            ([449, 699, 999, 1399, 1799, 1899][mi] +
               (11 - wi) * 10 +
               ((wi + mi + ci) % 3) * 15 -
               hi * 35 +
