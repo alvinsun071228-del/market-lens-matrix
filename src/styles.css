@@ -470,6 +470,8 @@ p {
   font-size: 12px;
   height: 128px;
 }
+.empty-cell{height:128px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;color:#b0b4bb;font-size:20px}
+.empty-cell small{font-size:11px;color:#9298a2}
 .matrix-footer {
   display: flex;
   justify-content: space-between;

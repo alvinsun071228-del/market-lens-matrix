@@ -417,7 +417,7 @@ function App() {
   const signals = cells
     .filter(
       (c) =>
-        c.data.state !== "normal" ||
+        c.data.state !== "normal" && c.data.state !== "unavailable" ||
         (c.data.delta !== 0 && c.data.delta != null),
     )
     .sort(
@@ -482,11 +482,11 @@ function App() {
         "上周价格",
         "变动金额",
         "变动比例",
-        "状态",
+          "状态",
         "原始价格日期",
       ],
       ...cells
-        .filter((c) => !alerts || anomaly(c.data.state))
+        .filter((c) => c.data.state !== "unavailable" && (!alerts || anomaly(c.data.state)))
         .map((c) => [
           dataInfo.mode === "live" ? "实时采集" : "待配置采集",
           c.country.name,
@@ -661,7 +661,7 @@ function App() {
                   <th scope="col">
                     市场 <small>当地货币</small>
                   </th>
-                  {visibleModels.map((m) => (
+              {visibleModels.map((m) => (
                     <th key={m.id} scope="col">
                       <strong>{m.name}</strong>
                       <small>{variant} · Samsung</small>
@@ -686,9 +686,11 @@ function App() {
                     </th>
                     {visibleModels.map((m) => {
                       const d = cell(c.id, m.id, channel, variant, week);
-                      return (
-                        <td key={m.id}>
-                          {alerts && !anomaly(d.state) ? (
+                  return (
+                    <td key={m.id}>
+                      {d.state === "unavailable" ? (
+                        <div className="empty-cell"><span>—</span><small>暂无该型号</small></div>
+                      ) : alerts && !anomaly(d.state) ? (
                             <div className="excluded">无异常</div>
                           ) : (
                             <button

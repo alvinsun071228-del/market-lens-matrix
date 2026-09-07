@@ -55,8 +55,13 @@ export const labels = {
   invalid: "来源失效 · 沿用",
   new: "首次采集",
   source: "来源变化",
+  unavailable: "暂无该型号",
 };
 export const anomaly = (s) => s === "missing" || s === "invalid";
+export function isAvailable(country, model, channel) {
+  if (model === "A57") return channel === "retail" && country === "sa";
+  return true;
+}
 // Deterministic demo observations, not collected market prices.
 export const records = countries.flatMap((c, ci) =>
   models.flatMap((m, mi) =>
@@ -104,6 +109,7 @@ export function history(
   variant,
   until = weeks.at(-1),
 ) {
+  if (!isAvailable(country, model, channel)) return [];
   let previous = null;
   return records
     .filter(
@@ -128,6 +134,7 @@ export function cell(...args) {
   const rows = history(...args),
     current = rows.at(-1),
     previous = rows.at(-2)?.value ?? null;
+  if (!current) return { state: "unavailable", value: null, price: null, previous: null, delta: null, percent: null };
   const delta =
     current?.value != null && previous !== null
       ? Math.round((current.value - previous) * 1000) / 1000
