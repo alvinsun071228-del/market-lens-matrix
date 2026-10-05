@@ -1,10 +1,10 @@
 {
   "apiVersion": "1.0",
   "mode": "live",
-  "collectedAt": "2026-10-04T21:24:06.862Z",
-  "week": "2026-10-04",
+  "collectedAt": "2026-10-05T05:38:25.529Z",
+  "week": "2026-10-05",
   "sourceCount": 5,
-  "verifiedProductCount": 350,
+  "verifiedProductCount": 355,
   "failedSources": [
     {
       "id": "amazon-sa-a06-64",
@@ -14,11 +14,6 @@
     {
       "id": "amazon-sa-a06-128",
       "name": "Amazon Saudi · Galaxy A06 128GB",
-      "error": "No matching product price found"
-    },
-    {
-      "id": "amazon-sa-a57-256",
-      "name": "Amazon Saudi · Galaxy A57 256GB",
       "error": "No matching product price found"
     }
   ],
@@ -6884,6 +6879,110 @@
         "price": 1500,
         "failure": "No matching product price found",
         "carried": true
+      }
+    },
+    {
+      "country": "sa",
+      "brand": "Samsung",
+      "series": "Galaxy A",
+      "model": "A57",
+      "variant": "256GB",
+      "channel": "retail",
+      "sourceId": "jarir-sa-a57-256",
+      "sourceUrl": "https://www.jarir.com/sa-en/samsung-galaxy-a57-5g-smartphones-679663.html",
+      "productId": null,
+      "title": "Jarir Saudi · Galaxy A57 256GB",
+      "price": 1549,
+      "currency": "SAR",
+      "availability": "in_stock",
+      "state": "live",
+      "week": "2026-10-05",
+      "collectedAt": "2026-10-05T05:38:25.529Z",
+      "effectiveDate": "2026-10-05",
+      "rawEvidence": {
+        "method": "browser-text"
+      }
+    },
+    {
+      "sourceId": "amazon-sa-a06-64",
+      "country": "sa",
+      "model": "A06",
+      "channel": "retail",
+      "variant": "64GB",
+      "week": "2026-09-07",
+      "price": 499,
+      "state": "missing",
+      "collectedAt": "2026-10-05T05:38:25.529Z",
+      "sourceUrl": "https://www.amazon.sa/%D8%B3%D8%A7%D9%85%D8%B3%D9%88%D9%86%D8%AC-%D8%A7%D9%84%D8%A7%D8%AA%D8%B5%D8%A7%D9%84-%D8%AC%D9%8A%D8%AC%D8%A7%D8%A8%D8%A7%D9%8A%D8%AA-%D8%AC%D9%8A%D8%AC%D8%A7%D8%A8%D8%A7%D9%8A%D8%AA%D8%8C-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9/dp/B0DDKLRFVV/ref=sr_1_1?dib=eyJ2IjoiMSJ9.m1LgjEga6LpzXQ_1IGnfOW7ZSaUHe6J19RVksmU7XEasECknUiqq3H7lJGUUmWZlYbQOJ6Aa-yOYP1s-lCkYkSOGZe_TeQr2WjX5qdCHzCuwP9EZDjJp1ZNQlCMz_lYqm2S07Xy0gLvzADIJBLUln8TLfUeHRNCIWXWbUrFOr1erCR4hcmC_NSeP8fONfU7fevmyzYEblkCTrvctDYGUhW2cqnQWJgsx4XHg6pngdgsbc4iGx0MbU5EDv0fltKFfJKdVDRvC34Op7KYzG8DGNknXmRU-WC3a3GBlCdOCSc8.tsu2Mi-zOAPz2dsJD9q4jBOCwutERIhEDsR7L7VBpec&dib_tag=se&keywords=Samsung+Galaxy+A06+64GB&qid=1788773307&sr=8-1",
+      "effectiveDate": "2026-09-07",
+      "rawEvidence": {
+        "failure": "No matching product price found",
+        "carried": true
+      }
+    },
+    {
+      "sourceId": "amazon-sa-a06-128",
+      "country": "sa",
+      "model": "A06",
+      "channel": "retail",
+      "variant": "128GB",
+      "week": "2026-09-07",
+      "price": 522.04,
+      "state": "missing",
+      "collectedAt": "2026-10-05T05:38:25.529Z",
+      "sourceUrl": "https://www.amazon.sa/%D8%B3%D8%A7%D9%85%D8%B3%D9%88%D9%86%D8%AC-%D8%A7%D9%84%D8%AE%D8%A7%D9%85%D8%B3%D8%8C-%D8%A7%D9%84%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%8C-%D8%A7%D9%84%D9%85%D9%85%D9%84%D9%83%D8%A9-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9/dp/B0F4RD9G72/ref=sr_1_1?dib=eyJ2IjoiMSJ9.37roEwwbvkAYW5KTse0ptrIyCNqMXIBtfMKmN9u7dDwkg3yEK5h5u20YeIHA8CVAEEGboJ57ubwdNwBjpWeqH5z2JqHFjAbNYW8J8sNYVNCqm56eO49BjiRjMTIL8hktZig2o6PZB1FLpNVF5nSTStf0AxROu8VLmLwOFDfgZBKrJT5uRBpcN4oKgbFxw3LadwOCOycc-AbOlHdiqQp98IZTwbS51hsIKB2Z28pLoWLM2TcOLljv2S-h09ZB_BzRnX8pCXXnVXu7mPPP90dvPdGLYlBV761D4AVbgIc26IY.s38HmVE55BKMWXXQZAHULCw7PG1S0rh31k-ZAl-AGIw&dib_tag=se&keywords=Samsung+Galaxy+A06+128GB&qid=1788773312&sr=8-1",
+      "effectiveDate": "2026-09-07",
+      "rawEvidence": {
+        "failure": "No matching product price found",
+        "carried": true
+      }
+    },
+    {
+      "country": "sa",
+      "brand": "Samsung",
+      "series": "Galaxy A",
+      "model": "A16",
+      "variant": "128GB",
+      "channel": "retail",
+      "sourceId": "amazon-sa-a16-128",
+      "sourceUrl": "https://www.amazon.sa/%D8%B3%D8%A7%D9%85%D8%B3%D9%88%D9%86%D8%AC-%D8%A7%D9%86%D8%AF%D8%B1%D9%88%D9%8A%D8%AF%D8%8C-%D8%A7%D9%84%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%8C-%D8%AC%D9%8A%D8%AC%D8%A7%D8%A8%D8%A7%D9%8A%D8%AA%D8%8C-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9/dp/B0DK1MFJZF/ref=sr_1_29?dib=eyJ2IjoiMSJ9.K1i_aa3-3TkUOhhdyKgW7Ylyioxlv4ck9nzSbwKuWL1bvkmX0NiZC6WPzzCmuim-7yzRl4z3FjZBc76AUg15qzV36mJuYR1mzNz-tx88jW73m5RIwrPC9X7ctYlQ6bTBAuF61ote1Qrpfbu7mVsWr1fQ4YN8J72jFyJEVCAhCj60onaFnwc-mFLvROZSX4ZBSI5pRsc_XxIvudT2ccjqPtKwb9TW5vVB98l2KWYE4DY78GNvlZjVfUB2W9NjPYQW-xT1cCgqKtSy7EG1c0lwqS3qJoR9XEplB6Bgr7LEKuA.jTgVFteshPZKfZwe98HAq4i6GXxel1DZHKFoY6v6E_Q&dib_tag=se&keywords=Samsung+Galaxy+A16+128GB&qid=1791178711&sr=8-29",
+      "productId": "B0DK1MFJZF",
+      "title": "تخطى إلى المحتوى الرئيسي عن هذه السلعة خيارات الشراء اختصارات لوحة المفاتيح بحث alt + / عربة التسوق shift + alt + C الصفحة الرئيسية shift + alt + H اطلبات shift + alt + O إظهار/إخفاء الاختصارات shift + alt + Z للتنقل بين العناصر، استخدم السهمين لأعلى أو لأسفل في لوحة المفاتيح لديك. جارٍ التوصيل إلى Riyadh تحديث الموقع الكل جميع الأقسام آلات موسيقية أجهزة Amazon أدوات وتحسينات المنزل أزياء Amazon ألعاب الفيديو أمازون بازار اشترك ووفّر الأجهزة المنزلية الألعاب والدمى الإلكترونيات البقالة والطعام الفاخر الجمال والعناية الشخصية الرياضة واللياقة البدنية الصناعة والعلم الفنون والحرف والخياطة المطبخ والطعام المنزل والحديقة برايم فيديو بطاقات الهدايا طفل عروض مستودع أمازون قطع وإكسسوارات السيارات كتب متجر أمازون العالمي مستلزمات الحيوانات الأليفة مستلزمات الرعاية الصحية والأسرة والطفل منتجات المكت",
+      "price": 1715,
+      "currency": "SAR",
+      "availability": "in_stock",
+      "state": "live",
+      "week": "2026-10-05",
+      "collectedAt": "2026-10-05T05:38:25.529Z",
+      "effectiveDate": "2026-10-05",
+      "rawEvidence": {
+        "method": "amazon-detail-text",
+        "title": "تخطى إلى المحتوى الرئيسي عن هذه السلعة خيارات الشراء اختصارات لوحة المفاتيح بحث alt + / عربة التسوق shift + alt + C الصفحة الرئيسية shift + alt + H اطلبات shift + alt + O إظهار/إخفاء الاختصارات shift + alt + Z للتنقل بين العناصر، استخدم السهمين لأعلى أو لأسفل في لوحة المفاتيح لديك. جارٍ التوصيل إلى Riyadh تحديث الموقع الكل جميع الأقسام آلات موسيقية أجهزة Amazon أدوات وتحسينات المنزل أزياء Amazon ألعاب الفيديو أمازون بازار اشترك ووفّر الأجهزة المنزلية الألعاب والدمى الإلكترونيات البقالة والطعام الفاخر الجمال والعناية الشخصية الرياضة واللياقة البدنية الصناعة والعلم الفنون والحرف والخياطة المطبخ والطعام المنزل والحديقة برايم فيديو بطاقات الهدايا طفل عروض مستودع أمازون قطع وإكسسوارات السيارات كتب متجر أمازون العالمي مستلزمات الحيوانات الأليفة مستلزمات الرعاية الصحية والأسرة والطفل منتجات المكتب منتجات المنزل AR مرحباً. تسجيل الدخول الحساب والقوائم مشترياتك 0 عربة التسوق الكل بازار عروض اليوم الكوبونات السوبر ماركت الجوالات الإلكترونيات ألعاب الفيديو الأجهزة المنزلية خاصية الاشتراك والتوفير مستلزمات المنزل تسليم 2 ساعة برايم برايم فيديو العطور الأزياء بطاقات الهدايا الكتب الدمى والألعاب ابدأ البيع أمازون الخاص بك المساعدة إلكترونيات › الجوالات والموبايلات وأجهزة الاتصال › الجوالات والمو",
+        "price": 1715
+      }
+    },
+    {
+      "country": "sa",
+      "brand": "Samsung",
+      "series": "Galaxy A",
+      "model": "A57",
+      "variant": "256GB",
+      "channel": "retail",
+      "sourceId": "amazon-sa-a57-256",
+      "sourceUrl": "https://www.amazon.sa/%D8%B3%D8%A7%D9%85%D8%B3%D9%88%D9%86%D8%AC-%D8%A7%D9%86%D8%AF%D8%B1%D9%88%D9%8A%D8%AF-%D8%A7%D9%84%D8%AA%D8%B4%D8%BA%D9%8A%D9%84-%D9%85%D9%8A%D8%AC%D8%A7%D8%A8%D9%83%D8%B3%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9/dp/B0GSVQMB9P/ref=sr_1_1?dib=eyJ2IjoiMSJ9.GtUqz1DU1zKKePOJhsOb5nXRAhc03JAgyvEcR64pY2yo5Js77lz1vqjJ5cN7KG87BOrHW01df1D7cYxEuleN-66Afk4_fTByR0whO2cqjPIVx3yqLRvCrhPWiWV6KwFMCmjyTESembjji6ixsnaWI6VHGZhAiiViQR0GMyaAzuQ4rq6hw0wKvT_LMqPcGrVW5zvp-uAHefF7mPNKGGi524zXDBsV4wVocpkuppBBqnrfIpa23oXBCSd6a9wYPDhumWAmJehmiSdATE2SewdLZb4qpLYqCaH-SVxUAy8yBrY.UQrHX55jBGv8oxBpF_cWOKU-DykuyzIZF-VkedO9Iro&dib_tag=se&keywords=Samsung+Galaxy+A57+256GB&qid=1791178722&sr=8-1",
+      "productId": "B0GSVQMB9P",
+      "title": "تخطى إلى المحتوى الرئيسي عن هذه السلعة خيارات الشراء اختصارات لوحة المفاتيح بحث alt + / عربة التسوق shift + alt + C الصفحة الرئيسية shift + alt + H اطلبات shift + alt + O إضافة إلى عربة التسوق shift + alt + K إظهار/إخفاء الاختصارات shift + alt + Z للتنقل بين العناصر، استخدم السهمين لأعلى أو لأسفل في لوحة المفاتيح لديك. جارٍ التوصيل إلى Riyadh تحديث الموقع الكل جميع الأقسام آلات موسيقية أجهزة Amazon أدوات وتحسينات المنزل أزياء Amazon ألعاب الفيديو أمازون بازار اشترك ووفّر الأجهزة المنزلية الألعاب والدمى الإلكترونيات البقالة والطعام الفاخر الجمال والعناية الشخصية الرياضة واللياقة البدنية الصناعة والعلم الفنون والحرف والخياطة المطبخ والطعام المنزل والحديقة برايم فيديو بطاقات الهدايا طفل عروض مستودع أمازون قطع وإكسسوارات السيارات كتب متجر أمازون العالمي متجر توصيل في نفس اليوم مستلزمات الحيوان",
+      "price": 1000,
+      "currency": "SAR",
+      "availability": "in_stock",
+      "state": "live",
+      "week": "2026-10-05",
+      "collectedAt": "2026-10-05T05:38:25.529Z",
+      "effectiveDate": "2026-10-05",
+      "rawEvidence": {
+        "method": "amazon-detail-text",
+        "title": "تخطى إلى المحتوى الرئيسي عن هذه السلعة خيارات الشراء اختصارات لوحة المفاتيح بحث alt + / عربة التسوق shift + alt + C الصفحة الرئيسية shift + alt + H اطلبات shift + alt + O إضافة إلى عربة التسوق shift + alt + K إظهار/إخفاء الاختصارات shift + alt + Z للتنقل بين العناصر، استخدم السهمين لأعلى أو لأسفل في لوحة المفاتيح لديك. جارٍ التوصيل إلى Riyadh تحديث الموقع الكل جميع الأقسام آلات موسيقية أجهزة Amazon أدوات وتحسينات المنزل أزياء Amazon ألعاب الفيديو أمازون بازار اشترك ووفّر الأجهزة المنزلية الألعاب والدمى الإلكترونيات البقالة والطعام الفاخر الجمال والعناية الشخصية الرياضة واللياقة البدنية الصناعة والعلم الفنون والحرف والخياطة المطبخ والطعام المنزل والحديقة برايم فيديو بطاقات الهدايا طفل عروض مستودع أمازون قطع وإكسسوارات السيارات كتب متجر أمازون العالمي متجر توصيل في نفس اليوم مستلزمات الحيوانات الأليفة مستلزمات الرعاية الصحية والأسرة والطفل منتجات المكتب منتجات المنزل AR مرحباً. تسجيل الدخول الحساب والقوائم مشترياتك 0 عربة التسوق الكل عروض اليوم الكوبونات بازار السوبر ماركت الجوالات الإلكترونيات ألعاب الفيديو الأجهزة المنزلية خاصية الاشتراك والتوفير مستلزمات المنزل تسليم 2 ساعة برايم برايم فيديو العطور الأزياء بطاقات الهدايا الكتب الدمى والألعاب ابدأ البيع أمازون الخاص بك المساعدة الإ",
+        "price": 1000
       }
     }
   ]
