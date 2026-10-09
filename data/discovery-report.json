@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T15:53:25.351Z",
+  "generatedAt": "2026-10-09T17:11:11.078Z",
   "brands": [
     {
       "id": "samsung",
@@ -15,15 +15,20 @@
   "countries": {
     "tr": {
       "modelIds": [
-        "A07",
+        "A07 5G",
         "A08",
         "A16",
         "A17",
-        "A27",
-        "A37",
-        "A57",
-        "S25",
-        "S26"
+        "A17 5G",
+        "A27 5G",
+        "A37 5G",
+        "A57 5G",
+        "S25 FE",
+        "S25 ULTRA",
+        "S25+",
+        "S26 FE",
+        "S26 ULTRA",
+        "S26+"
       ],
       "sourceIds": [
         "samsung-tr-a-official",
@@ -38,12 +43,19 @@
         "A07",
         "A16",
         "A17",
-        "A27",
-        "A36",
-        "A37",
-        "A57",
+        "A17 5G",
+        "A27 5G",
+        "A36 5G",
+        "A37 5G",
+        "A57 5G",
         "S25",
-        "S26"
+        "S25 EDGE",
+        "S25 FE",
+        "S25 ULTRA",
+        "S26",
+        "S26 FE",
+        "S26 ULTRA",
+        "S26+"
       ],
       "sourceIds": [
         "samsung-sa-a-official",
@@ -62,13 +74,15 @@
         "A08",
         "A16",
         "A17",
-        "A26",
-        "A27",
-        "A36",
-        "A37",
-        "A57",
-        "S25",
-        "S26"
+        "A17 5G",
+        "A27 5G",
+        "A37 5G",
+        "A57 5G",
+        "S25 ULTRA",
+        "S26",
+        "S26 FE",
+        "S26 ULTRA",
+        "S26+"
       ],
       "sourceIds": [
         "samsung-ae-a-official",
@@ -81,9 +95,12 @@
     },
     "qa": {
       "modelIds": [
-        "A57",
-        "S25",
-        "S26"
+        "A57 5G",
+        "S25 EDGE",
+        "S25 FE",
+        "S25 ULTRA",
+        "S26 ULTRA",
+        "S26+"
       ],
       "sourceIds": [
         "jarir-qa-catalog",
@@ -93,16 +110,23 @@
       "unavailableReason": null
     },
     "om": {
-      "modelIds": [],
-      "sourceIds": [],
-      "reachableSources": 0,
-      "unavailableReason": "eXtra Oman answers automated clients with 'Server Error' and its prices load client-side from Unbxd; no OMR price is exposed to the collector. Lulu/Sharaf DG Oman return Cloudflare 403 and Samsung has no Oman storefront. Left disabled so Oman reports unavailable instead of a fabricated value."
+      "modelIds": [
+        "A16",
+        "A57 5G"
+      ],
+      "sourceIds": [
+        "extra-om-a16-128",
+        "extra-om-a57-128",
+        "extra-om-a57-256"
+      ],
+      "reachableSources": 3,
+      "unavailableReason": null
     },
     "jo": {
       "modelIds": [
         "A07",
         "A17",
-        "A27"
+        "A27 5G"
       ],
       "sourceIds": [
         "samsung-levant-a-official"
@@ -129,7 +153,16 @@
       "countries": [
         "ae",
         "jo",
-        "sa",
+        "sa"
+      ]
+    },
+    {
+      "id": "A07 5G",
+      "series": "Galaxy A",
+      "variants": [
+        "128GB"
+      ],
+      "countries": [
         "tr"
       ]
     },
@@ -163,6 +196,7 @@
       ],
       "countries": [
         "ae",
+        "om",
         "sa",
         "tr"
       ]
@@ -182,17 +216,20 @@
       ]
     },
     {
-      "id": "A26",
+      "id": "A17 5G",
       "series": "Galaxy A",
       "variants": [
-        "N/A"
+        "128GB",
+        "256GB"
       ],
       "countries": [
-        "ae"
+        "ae",
+        "sa",
+        "tr"
       ]
     },
     {
-      "id": "A27",
+      "id": "A27 5G",
       "series": "Galaxy A",
       "variants": [
         "128GB",
@@ -206,19 +243,17 @@
       ]
     },
     {
-      "id": "A36",
+      "id": "A36 5G",
       "series": "Galaxy A",
       "variants": [
-        "128GB",
-        "N/A"
+        "128GB"
       ],
       "countries": [
-        "ae",
         "sa"
       ]
     },
     {
-      "id": "A37",
+      "id": "A37 5G",
       "series": "Galaxy A",
       "variants": [
         "128GB",
@@ -231,7 +266,7 @@
       ]
     },
     {
-      "id": "A57",
+      "id": "A57 5G",
       "series": "Galaxy A",
       "variants": [
         "128GB",
@@ -241,6 +276,7 @@
       ],
       "countries": [
         "ae",
+        "om",
         "qa",
         "sa",
         "tr"
@@ -250,7 +286,40 @@
       "id": "S25",
       "series": "Galaxy S",
       "variants": [
+        "N/A"
+      ],
+      "countries": [
+        "sa"
+      ]
+    },
+    {
+      "id": "S25 EDGE",
+      "series": "Galaxy S",
+      "variants": [
+        "N/A"
+      ],
+      "countries": [
+        "qa",
+        "sa"
+      ]
+    },
+    {
+      "id": "S25 FE",
+      "series": "Galaxy S",
+      "variants": [
         "256GB",
+        "N/A"
+      ],
+      "countries": [
+        "qa",
+        "sa",
+        "tr"
+      ]
+    },
+    {
+      "id": "S25 ULTRA",
+      "series": "Galaxy S",
+      "variants": [
         "N/A"
       ],
       "countries": [
@@ -261,11 +330,56 @@
       ]
     },
     {
+      "id": "S25+",
+      "series": "Galaxy S",
+      "variants": [
+        "N/A"
+      ],
+      "countries": [
+        "tr"
+      ]
+    },
+    {
       "id": "S26",
       "series": "Galaxy S",
       "variants": [
+        "N/A"
+      ],
+      "countries": [
+        "ae",
+        "sa"
+      ]
+    },
+    {
+      "id": "S26 FE",
+      "series": "Galaxy S",
+      "variants": [
         "128GB",
-        "256GB",
+        "256GB"
+      ],
+      "countries": [
+        "ae",
+        "sa",
+        "tr"
+      ]
+    },
+    {
+      "id": "S26 ULTRA",
+      "series": "Galaxy S",
+      "variants": [
+        "N/A"
+      ],
+      "countries": [
+        "ae",
+        "qa",
+        "sa",
+        "tr"
+      ]
+    },
+    {
+      "id": "S26+",
+      "series": "Galaxy S",
+      "variants": [
         "N/A"
       ],
       "countries": [

@@ -2,8 +2,8 @@ name: Collect Market Prices
 
 on:
   schedule:
-    # Every six hours; weekly trend points are aggregated from these snapshots.
-    - cron: "17 */6 * * *"
+    # Hourly; budget collect ~2-4 min + commit + Pages rebuild ~1-3 min.
+    - cron: "23 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -36,6 +36,26 @@ jobs:
 
       - name: Validate the data contract before committing
         run: node scripts/validate.mjs
+
+      - name: Fail on unusable or overdue feed
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const latest = JSON.parse(fs.readFileSync('public/data/latest.json', 'utf8'));
+          const fxAsOf = Date.parse(`${latest.fx?.asOf ?? ''}T00:00:00Z`);
+          const collectedAt = Date.parse(latest.collectedAt ?? '');
+          const now = Date.now();
+          const problems = [];
+          if (latest.mode !== 'live') problems.push(`mode is ${JSON.stringify(latest.mode)}, expected "live"`);
+          if (latest.verifiedProductCount === 0) problems.push('verifiedProductCount is 0');
+          if (!Number.isFinite(collectedAt) || now - collectedAt > 6 * 60 * 60 * 1000) problems.push('collectedAt is older than 6 hours');
+          if (!Number.isFinite(fxAsOf) || now - fxAsOf > 7 * 24 * 60 * 60 * 1000) problems.push('fx.asOf is older than 7 days');
+          if (problems.length) {
+            console.error(`Unusable feed: ${problems.join('; ')}`);
+            process.exit(1);
+          }
+          console.log('Feed freshness alarm passed; blocked individual markets remain non-fatal.');
+          NODE
 
       - name: Commit collected data
         run: |

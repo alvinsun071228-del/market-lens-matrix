@@ -8,6 +8,7 @@ import {
   ArrowUpRight,
   ArrowRight,
   Download,
+  RefreshCw,
   X,
   Search,
   Database,
@@ -41,6 +42,7 @@ import {
   flagEmoji,
   fxLabel,
   freshness,
+  localTime,
   percentage,
   csv,
   dataInfo,
@@ -415,7 +417,9 @@ function App() {
     [sources, setSources] = useState(false),
     [showAll, setShowAll] = useState(false),
     [toast, setToast] = useState(""),
-    [brokenFlags, setBrokenFlags] = useState({});
+    [brokenFlags, setBrokenFlags] = useState({}),
+    [refreshing, setRefreshing] = useState(true),
+    [lastChecked, setLastChecked] = useState(null);
   const [, setDataVersion] = useState(0);
   const visibleCountries = countries.filter(
       (c) => country === "all" || country === c.id,
@@ -459,8 +463,25 @@ function App() {
     setAlerts(false);
   };
   const open = (item) => setSelected({ ...item, variant, channel });
+  const refreshData = async () => {
+    setRefreshing(true);
+    try {
+      await loadRemoteRecords();
+    } catch (error) {
+      // loadRemoteRecords already records per-file failures; this guards the
+      // hydrate step so a malformed payload never becomes an uncaught error.
+      console.warn("refresh failed", error);
+    } finally {
+      setDataVersion((v) => v + 1);
+      setLastChecked(new Date());
+      setRefreshing(false);
+    }
+  };
   useEffect(() => {
-    loadRemoteRecords().finally(() => setDataVersion((v) => v + 1));
+    refreshData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
     if (!toast) return;
     const timer = setTimeout(() => setToast(""), 3000);
     return () => clearTimeout(timer);
@@ -556,8 +577,42 @@ function App() {
         </span>
       </header>
       <main>
-        <div className={`freshness ${freshness().level}`}>
-          <i /> {freshness().text} · 汇率 {fxLabel()}
+        <div className={`freshness ${freshness().level}`} aria-live="polite">
+          <i />
+          <div className="freshness-body">
+            <span className="freshness-main">{freshness().text}</span>
+            <span className="freshness-meta">
+              {dataInfo.collectedAt
+                ? `采集于 ${freshness().collectedAtLocal}`
+                : "尚无采集时间"}
+              {" · "}
+              {freshness().cadence}
+              {" · "}
+              <span className="next-refresh">{freshness().next.text}</span>
+              {" · "}
+              <span className="fx-line">汇率 {fxLabel()}</span>
+            </span>
+          </div>
+          <div className="freshness-side">
+            <button
+              className="refresh-button"
+              onClick={() => {
+                refreshData().then(() => setToast("数据已刷新"));
+              }}
+              disabled={refreshing}
+              aria-busy={refreshing}
+            >
+              <RefreshCw size={14} className={refreshing ? "spin" : ""} />
+              {refreshing ? "刷新中…" : "刷新数据"}
+            </button>
+            <time
+              className="last-checked"
+              dateTime={lastChecked ? lastChecked.toISOString() : undefined}
+              data-ts={lastChecked ? lastChecked.toISOString() : ""}
+            >
+              最近检查 {lastChecked ? localTime(lastChecked) : "—"}
+            </time>
+          </div>
         </div>
         <header className="page-heading">
           <div>

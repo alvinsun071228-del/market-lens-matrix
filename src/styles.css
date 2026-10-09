@@ -912,7 +912,7 @@ dialog::backdrop {
 .freshness {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   margin: 0 0 1rem;
   padding: 0.55rem 0.85rem;
   border-radius: 0.6rem;
@@ -921,17 +921,77 @@ dialog::backdrop {
   background: #f7f8f9;
   color: #4b5563;
 }
-.freshness i {
+.freshness > i {
   flex: none;
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
   background: #9aa1ab;
 }
+.freshness-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.freshness-main {
+  font-weight: 550;
+}
+.freshness-meta {
+  color: #69707b;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+.freshness-meta .next-refresh {
+  font-variant-numeric: tabular-nums;
+}
 .freshness.fresh { border-color: #bfe0d6; background: #f1f8f5; color: #146b5f; }
-.freshness.fresh i { background: #16756a; }
+.freshness.fresh > i { background: #16756a; }
 .freshness.stale { border-color: #f0d5b0; background: #fdf6ec; color: #8a5a15; }
-.freshness.stale i { background: #b16629; }
+.freshness.stale > i { background: #b16629; }
+.freshness.degraded { border-color: #f0d5b0; background: #fdf6ec; color: #8a5a15; }
+.freshness.degraded > i { background: #c98a2e; }
+.freshness-side {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  flex: none;
+}
+.refresh-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  min-height: 28px;
+  padding: 0 0.6rem;
+}
+.refresh-button .spin {
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.last-checked {
+  font-size: 0.72rem;
+  color: #69707b;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .freshness {
+    flex-wrap: wrap;
+  }
+  .freshness-side {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.6rem;
+  }
+}
 .usd-cell { margin-top: 0.1rem; font-size: 0.72rem; color: #69707b; font-variant-numeric: tabular-nums; }
 .usd-price { margin-left: 0.45rem; font-size: 0.8rem; color: #69707b; }
 .usd-note { margin-left: 0.45rem; font-size: 0.75rem; color: #69707b; }

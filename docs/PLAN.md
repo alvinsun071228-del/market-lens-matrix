@@ -79,7 +79,7 @@ FX key = the ISO currency code that multiplies a local price into USD (`priceUsd
 
 ## 5. Update Design
 
-- **Cadence.** Keep `collect.yml` cron `17 */6 * * *` (+ `workflow_dispatch`). Each run: `fx.mjs` →
+- **Cadence.** Keep `collect.yml` cron `23 * * * *` (hourly — tightened from 6-hourly for timeliness; see docs/INTEGRATION.md §5) (+ `workflow_dispatch`). Each run: `fx.mjs` →
   `collect.mjs` → commit `public/data`, `public/api`, `data/history`. Weekly is a *view* over daily
   snapshots; no separate weekly job is required.
 - **Week key.** Use the ISO-8601 week-start date (Monday, `YYYY-MM-DD`, UTC) as `week`. `latest.json.week`

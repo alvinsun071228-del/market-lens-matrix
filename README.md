@@ -14,7 +14,7 @@ Live site (GitHub Pages): `https://alvinsun071228-del.github.io/market-lens-matr
 | 沙特阿拉伯 Saudi Arabia (`sa`) | SAR SR | Samsung Saudi official store, Jarir, Amazon.sa |
 | 阿联酋 UAE (`ae`) | AED د.إ | Samsung UAE official store, Amazon.ae, Jumbo Electronics |
 | 卡塔尔 Qatar (`qa`) | QAR ر.ق | Jarir Qatar (smartphones catalog + product pages) |
-| 阿曼 Oman (`om`) | OMR ر.ع | *no reachable source yet — shown as unavailable* |
+| 阿曼 Oman (`om`) | OMR ر.ع | eXtra Oman (Unbxd search API + product-page JSON-LD) |
 | 约旦 Jordan (`jo`) | JOD د.ا | Samsung Levant (Jordan) official store |
 | 科威特 Kuwait (`kw`) | KWD د.ك | *not yet verified* |
 
@@ -54,12 +54,21 @@ effectiveDate, rawEvidence`. `state ∈ {live, missing, invalid, unavailable}`.
 (country, model, channel, variant) is one point per ISO week taken from real records;
 weeks with no real record stay gaps (`connectNulls: false`) and are never interpolated.
 
-## Update cadence
+## 更新频率与时效性
 
-`Collect Market Prices` runs every six hours (`17 */6 * * *`) and on demand:
-refresh FX → collect retailers → discover models → validate → commit. `Deploy to GitHub
-Pages` rebuilds the site on every push to `main`, so the published site reflects the
-latest collection without manual steps.
+这里提供的是 **timely（尽量及时）**，不是实时行情。价格来自公开零售商页面，采集需要
+Playwright，随后还要提交静态 JSON 并等待 GitHub Pages 重建，因此无法承诺交易式实时更新。
+
+- `Collect Market Prices` 每小时在第 23 分运行（`23 * * * *`），也支持
+  `workflow_dispatch` 手动触发；并发运行会被串行化。
+- 单次采集通常需要约 2–4 分钟（包含 Playwright），提交约 1 分钟，Pages 重建约 1–3 分钟。
+- GitHub Actions cron 是 best-effort，在 GitHub 负载高时可能延迟。因此“每小时”应理解为
+  **最多约 1 小时等待 + 几分钟处理时间**，不是实时。
+- CI 会在提交前检查新写入的 `latest.json`：必须是 `mode: "live"`、至少有一个已验证产品，
+  `collectedAt` 不得超过 6 小时，FX 的 `asOf` 不得超过 7 天。失败会让工作流失败并通知维护者。
+- 单个市场被拦截或没有可达零售商不会使工作流失败；它会进入 `failedSources`，页面显示该市场
+  不可用或沿用旧值。只有整批为空或整体过期才触发 CI 告警。页面本身也显示采集时间、FX 日期、
+  失败源和过期提示。
 
 ## Local development
 

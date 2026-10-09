@@ -11,11 +11,25 @@
  * sourceId + sourceUrl + collectedAt + rawEvidence. When a source fails we
  * carry its previous record forward marked `missing` (original effectiveDate
  * preserved) or omit it entirely. We never invent a number.
+ *
+ * CLI:
+ *   node scripts/collect.mjs                      normal run (writes files)
+ *   node scripts/collect.mjs --only=id1,id2       collect only the listed sourceIds
+ *   node scripts/collect.mjs --dry-run            fetch + build, write nothing
  */
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
 import { chromium } from "playwright";
-import { refreshFx, fxBlock, toUsd } from "./fx.mjs";
+import { refreshFx, readFx, fetchFx, fxBlock, toUsd } from "./fx.mjs";
+
+const args = process.argv.slice(2);
+const flags = {};
+for (const arg of args) {
+  const match = arg.match(/^--([^=]+)(?:=([\s\S]*))?$/);
+  if (match) flags[match[1]] = match[2] ?? true;
+}
+const onlyIds = typeof flags.only === "string" ? new Set(flags.only.split(",").map((s) => s.trim()).filter(Boolean)) : null;
+const dryRun = flags["dry-run"] === true;
 
 const root = resolve(new URL("..", import.meta.url).pathname);
 const config = JSON.parse(await readFile(resolve(root, "config/sources.json"), "utf8"));
@@ -40,17 +54,39 @@ try {
 } catch {}
 
 // Always refresh; refreshFx() falls back to the last file (stale:true) on failure.
-const fx = await refreshFx();
+// --dry-run must not touch disk, so it reuses the cached rates (or fetches them
+// in memory only).
+const fx = dryRun ? (await readFx()) ?? (await fetchFx()) : await refreshFx();
 const collectedAt = new Date().toISOString();
 const week = weekStart();
-const activeSources = config.sources.filter((s) => s.enabled);
+const activeSources = config.sources.filter((s) => s.enabled && (!onlyIds || onlyIds.has(s.id)));
+const activeIds = new Set(activeSources.map((s) => s.id));
 const knownIds = new Set(config.sources.map((s) => s.id));
 const failedSources = [];
 
-// Seed with prior records (all weeks) so trends keep their history. USD is
-// backfilled with the current dated rate; a missing rate still yields null.
+/**
+ * Legacy model-identity migrations (sourceId -> { oldId: currentId }).
+ *
+ * A single-product source *is* one product: its `sourceId` and product `sourceUrl`
+ * are fixed. When the model taxonomy changes (e.g. connectivity like "5G" becomes
+ * part of the identity), that product's earlier rows must not stay under the old
+ * id, or one price history becomes two unrelated series. Only the label is
+ * normalized here — price, currency, dates and evidence are untouched — and the
+ * previous label is preserved in `rawEvidence.modelMigratedFrom`.
+ */
+const LEGACY_MODEL_IDS = {
+  // Same product page (.../samsung-galaxy-a57-5g-smartphones-679663.html).
+  "jarir-sa-a57-256": { A57: "A57 5G" },
+};
+
+// Seed with prior records (all weeks) so trends keep their history. Records for
+// the current week are dropped and re-collected for every active source; with
+// --only, current-week records of sources we are NOT re-collecting are kept so
+// a debug run still produces a complete payload.
+// USD is backfilled with the current dated rate; a missing rate still yields null.
 const records = (previous?.records ?? [])
-  .filter((r) => r?.sourceId && knownIds.has(r.sourceId) && r.week !== week)
+  .filter((r) => r?.sourceId && knownIds.has(r.sourceId))
+  .filter((r) => r.week !== week || !activeIds.has(r.sourceId))
   .map((r) => {
     const copy = structuredClone(r);
     const source = config.sources.find((s) => s.id === copy.sourceId);
@@ -59,6 +95,11 @@ const records = (previous?.records ?? [])
     if (!copy.brand) copy.brand = config.brand;
     if (!copy.series && copy.model) copy.series = `Galaxy ${String(copy.model)[0]}`;
     if (!copy.channel) copy.channel = source?.channel ?? "retail";
+    const migratedModel = LEGACY_MODEL_IDS[copy.sourceId]?.[copy.model];
+    if (migratedModel && migratedModel !== copy.model) {
+      copy.rawEvidence = { ...(copy.rawEvidence ?? {}), modelMigratedFrom: copy.model };
+      copy.model = migratedModel;
+    }
     if (copy.price != null && copy.currency) copy.priceUsd = toUsd(copy.price, copy.currency, fx);
     return copy;
   })
@@ -78,10 +119,33 @@ function normalizeName(title) {
     .trim();
 }
 
+const MODEL_SUFFIXES = /^(5G|Ultra|Plus|FE|Edge|Lite)$/i;
+
+/**
+ * Derive the tracked model identity from a listing/product title.
+ *
+ * The identity keeps connectivity and the S-series sub-model, because those are
+ * different products: "Galaxy A17" vs "Galaxy A17 5G", "Galaxy S26" vs
+ * "Galaxy S26+" vs "Galaxy S26 Ultra" vs "Galaxy S26 FE". Collapsing them into
+ * one id previously let the lowest price of a different phone win the cell.
+ * "Plus" normalizes to "+" so "S26 Plus" and "S26+" resolve to one identity.
+ */
 function deriveModel(title) {
-  const m = String(title).match(/Galaxy\s+([ASZMF]\d{2}[A-Za-z]?)/i);
-  if (!m) return null;
-  return m[1].toUpperCase();
+  const match = String(title).match(/Galaxy\s+([ASZMF]\d{2}[A-Za-z]?)(\+)?(?:[,\s]+(5G|Ultra|Plus|FE|Edge|Lite))?/i);
+  if (!match) return null;
+  const base = match[1].toUpperCase();
+  if (match[2] === "+") return `${base}+`;
+  if (!match[3]) return base;
+  const suffix = match[3].toUpperCase() === "PLUS" ? "+" : match[3].toUpperCase();
+  return `${base} ${suffix}`;
+}
+
+/** True when an observed model belongs to the configured (family-level) model. */
+function modelMatches(derived, configured) {
+  if (!derived || !configured) return false;
+  const d = String(derived).toUpperCase().trim();
+  const c = String(configured).toUpperCase().trim();
+  return d === c || d.startsWith(`${c} `) || d.startsWith(`${c}+`);
 }
 
 function deriveVariant(title, url) {
@@ -123,6 +187,10 @@ const USD_FLOOR = 30;
 const LOCAL_FLOOR = { TRY: 1000, SAR: 100, AED: 100, QAR: 100, OMR: 10, JOD: 10, KWD: 10 };
 const ACCESSORY = /case|cover|protector|charger|cable|accessor|holder|strap|screen guard|tempered|kılıf|ekran koruyucu|şarj|حافظة|غطاء|شاحن|كابل|واقي|جراب|كيبل/i;
 const NOT_NEW = /renewed|refurbished|used|pre-?owned|open box|مجدّد|مجدد|معاد تجديده/i;
+// A "bundle"/"combo" price is not the phone's price: it includes Buds/SmartTag/
+// adapter. Recording it would overstate the phone (and let an accessory decide
+// the cell). Reject those listings.
+const BUNDLE = /\b(?:bundle|combo)\b|with\s+buds|\+\s*buds/i;
 
 function isPlausiblePhonePrice(price, currency, fxRates) {
   if (!Number.isFinite(price)) return false;
@@ -132,7 +200,7 @@ function isPlausiblePhonePrice(price, currency, fxRates) {
   return floor == null ? true : price >= floor;
 }
 
-function makeRecord({ source, price, currency, title, sourceUrl, model, variant, rawEvidence }) {
+function makeRecord({ source, price, currency, title, sourceUrl, model, variant, availability, productId, rawEvidence }) {
   const resolvedModel = model ?? deriveModel(title);
   if (!resolvedModel || !Number.isFinite(price)) return null;
   const resolvedCurrency = currency || source.currency;
@@ -148,13 +216,13 @@ function makeRecord({ source, price, currency, title, sourceUrl, model, variant,
     retailer: source.id.split("-").slice(0, 2).join("-"),
     sourceId: source.id,
     sourceUrl,
-    productId: null,
+    productId: productId ?? null,
     title: normalizeName(title),
     price,
     currency: resolvedCurrency,
     priceUsd: toUsd(price, resolvedCurrency, fx),
     collectorVersion: "1.1",
-    availability: "in_stock",
+    availability: availability ?? "in_stock",
     state: "live",
     week,
     collectedAt,
@@ -212,6 +280,7 @@ async function parseSamsungOfficialList(source) {
   // One record per (model, variant): keep the lowest listed price.
   const byKey = new Map();
   for (const product of products) {
+    if (BUNDLE.test(product.title) || ACCESSORY.test(product.title) || NOT_NEW.test(product.title)) continue;
     const model = deriveModel(product.title);
     if (!model) continue;
     const variant = deriveVariant(product.title, product.url);
@@ -220,16 +289,20 @@ async function parseSamsungOfficialList(source) {
     if (!existing || product.price < existing.price) byKey.set(key, { ...product, model, variant });
   }
   if (!byKey.size) throw new Error("ItemList had no Galaxy models");
+  // sourceUrl is the listing page the price was actually parsed from; the deep
+  // product link is kept in rawEvidence. (Some Samsung "/buy/?modelCode=" links
+  // show a different promo price than the listing, so pointing sourceUrl at the
+  // listing is the honest provenance.)
   return [...byKey.values()].map((p) =>
     makeRecord({
       source,
       price: p.price,
       currency: p.currency || source.currency,
       title: p.title,
-      sourceUrl: p.url || source.url,
+      sourceUrl: source.url,
       model: p.model,
       variant: p.variant,
-      rawEvidence: { ...verifiedRef(source), page: source.url, listSize: products.length },
+      rawEvidence: { ...verifiedRef(source), page: source.url, productUrl: p.url, listSize: products.length },
     }),
   );
 }
@@ -263,45 +336,31 @@ function parseTokenPrice(text, source) {
 
 const PRICE_TOKEN = String.raw`(?:SAR|SR|AED|TRY|TL|₺|ريال|د\.إ|درهم|د\.ا|ر\.ق|ر\.ع|OMR|QAR|JOD)`;
 
-function parseAmazonCard(card, source) {
-  const text = card.text.replace(/\s+/g, " ");
-  const modelNumber = String(source.model).replace(/[A-Za-z]/g, "");
-  const modelPattern = `(?:\\b${source.model}\\b|(?:galaxy|جالكسي|ايه|جلاکسى)\\s*${modelNumber}\\b)`;
-  if (!new RegExp(modelPattern, "i").test(text)) return null;
-  if (String(deriveModel(text)).toUpperCase() !== String(source.model).toUpperCase()) return null;
-  if (ACCESSORY.test(text) || NOT_NEW.test(text)) return null;
-  const storage = String(source.variant).replace("GB", "");
-  if (!new RegExp(`${storage}\\s*(?:GB|جيجابايت|جيجا)`, "i").test(text)) return null;
-  const match = text.match(new RegExp(`${PRICE_TOKEN}\\s*([0-9][0-9.,]*)|([0-9][0-9.,]*)\\s*${PRICE_TOKEN}`, "i"));
-  if (!match) return null;
-  const price = parseLocalizedNumber(match[1] || match[2], source.currency);
+const amazonHost = (source) => new URL(source.url).hostname.replace(/^www\./, "");
+const amazonDpUrl = (source, asin) => `https://www.${amazonHost(source)}/dp/${asin}`;
+
+function matchAmazonCard(card, source) {
+  const title = String(card.title || "").replace(/\s+/g, " ").trim();
+  const text = `${title} ${String(card.text || "")}`.replace(/\s+/g, " ").trim();
+  if (!card.asin) return null;
+  const model = deriveModel(title || text);
+  if (!model || !modelMatches(model, source.model)) return null;
+  if (ACCESSORY.test(text) || NOT_NEW.test(text) || BUNDLE.test(text)) return null;
+  const storage = String(source.variant || "").replace("GB", "");
+  if (source.variant && !new RegExp(`${storage}\\s*(?:GB|جيجابايت|جيجا)`, "i").test(text)) return null;
+  let price = parseLocalizedNumber(card.offscreen, source.currency);
+  if (!Number.isFinite(price)) {
+    const match = text.match(new RegExp(`${PRICE_TOKEN}\\s*([0-9][0-9.,]*)|([0-9][0-9.,]*)\\s*${PRICE_TOKEN}`, "i"));
+    price = match ? parseLocalizedNumber(match[1] || match[2], source.currency) : null;
+  }
   if (!Number.isFinite(price) || !isPlausiblePhonePrice(price, source.currency, fx?.rates)) return null;
-  const href = card.links.find((link) => /\/(?:dp|gp\/product)\//.test(link));
   return {
     price,
     currency: source.currency,
-    sourceUrl: href || source.url,
-    title: text,
-    productId: href?.match(/\/(?:dp|gp\/product)\/([^/?]+)/)?.[1] || null,
-    rawEvidence: { ...verifiedRef(source), text: text.slice(0, 1200) },
-  };
-}
-
-function parseAmazonDetail(html, text, source, url) {
-  const json = parseJsonLd(html, source);
-  const compact = text.replace(/\s+/g, " ");
-  const modelNumber = String(source.model).replace(/[A-Za-z]/g, "");
-  if (!new RegExp(`(?:\\b${source.model}\\b|Galaxy\\s*${modelNumber})`, "i").test(compact)) return null;
-  if (String(deriveModel(compact)).toUpperCase() !== String(source.model).toUpperCase()) return null;
-  if (!new RegExp(`${String(source.variant).replace("GB", "")}\\s*(?:GB|GBs|جيجابايت)`, "i").test(compact)) return null;
-  const parsed = json || parseAmazonCard({ text: compact, links: [url] }, source);
-  if (!parsed || !Number.isFinite(parsed.price)) return null;
-  return {
-    ...parsed,
-    sourceUrl: url,
-    title: json?.title || compact.slice(0, 800),
-    productId: url.match(/\/(?:dp|gp\/product)\/([^/?]+)/)?.[1] || null,
-    rawEvidence: { ...verifiedRef(source), method: json ? "amazon-jsonld-detail" : "amazon-detail-text", text: compact.slice(0, 1200) },
+    title: title || text.slice(0, 300),
+    productId: card.asin,
+    model,
+    rawEvidence: { ...verifiedRef(source), productId: card.asin, priceText: card.offscreen || null, title: (title || "").slice(0, 200) },
   };
 }
 
@@ -310,31 +369,68 @@ async function parseAmazonSearch(source, browser) {
   try {
     await page.goto(source.url, { waitUntil: "domcontentloaded", timeout: 45000 });
     await page.waitForTimeout(2500);
-    const cards = await page
-      .locator('[data-component-type="s-search-result"]')
-      .evaluateAll((elements) =>
-        elements.map((element) => ({ text: element.innerText, links: [...element.querySelectorAll("a")].map((a) => a.href) })),
-      );
-    const candidates = cards
-      .map((card) => parseAmazonCard(card, source))
-      .filter((candidate) => candidate?.sourceUrl && /\/(?:dp|gp\/product)\//.test(candidate.sourceUrl));
-    // Prefer the product page, but Amazon rate-limits detail navigation hard;
-    // the search card itself carries the retailer's listed price, so it is a
-    // valid fallback once model + variant match and the price is plausible.
+    const cards = await page.locator('[data-component-type="s-search-result"]').evaluateAll((elements) =>
+      elements.map((element) => ({
+        asin: element.getAttribute("data-asin"),
+        title: element.querySelector('[data-cy="title-recipe"]')?.innerText ?? element.querySelector("h2")?.innerText ?? "",
+        offscreen: element.querySelector("span.a-price span.a-offscreen")?.textContent ?? "",
+        text: element.innerText,
+      })),
+    );
+    const candidates = cards.map((card) => matchAmazonCard(card, source)).filter(Boolean);
+    // Deterministic order: lowest card price, then ASIN. The search grid order
+    // is not stable run-to-run, so it must not decide which product we record.
+    candidates.sort((a, b) => a.price - b.price || String(a.productId).localeCompare(String(b.productId)));
+    // Verify up to two candidates on their canonical product page and use the
+    // product page's own listed price, so sourceUrl actually carries the price.
     for (const candidate of candidates.slice(0, 2)) {
+      const dpUrl = amazonDpUrl(source, candidate.productId);
       const detail = await browser.newPage({ userAgent: UA, locale: "en-US" });
       try {
-        await detail.goto(candidate.sourceUrl, { waitUntil: "domcontentloaded", timeout: 45000 });
-        await detail.waitForTimeout(1200);
-        const parsed = parseAmazonDetail(await detail.content(), await detail.locator("body").innerText(), source, candidate.sourceUrl);
-        if (parsed) return [parsed];
+        await detail.goto(dpUrl, { waitUntil: "domcontentloaded", timeout: 45000 });
+        await detail.waitForTimeout(1500);
+        const title = (
+          (await detail.locator("#productTitle").first().textContent().catch(() => null)) || candidate.title
+        )
+          .replace(/\s+/g, " ")
+          .trim();
+        const off = await detail.locator("span.a-price span.a-offscreen").first().textContent().catch(() => null);
+        const price = parseLocalizedNumber(off, source.currency);
+        const pageModel = deriveModel(title);
+        const storage = String(source.variant || "").replace("GB", "");
+        const variantOk =
+          !source.variant ||
+          new RegExp(`${storage}\\s*(?:GB|جيجابايت|جيجا)`, "i").test(title) ||
+          deriveVariant(title, dpUrl) === source.variant;
+        if (pageModel && modelMatches(pageModel, source.model) && variantOk && isPlausiblePhonePrice(price, source.currency, fx?.rates)) {
+          return [
+            {
+              price,
+              currency: source.currency,
+              title,
+              sourceUrl: dpUrl,
+              productId: candidate.productId,
+              model: pageModel,
+              rawEvidence: { ...verifiedRef(source), method: "amazon-detail", productId: candidate.productId, priceText: off, title },
+            },
+          ];
+        }
       } catch {}
       finally {
         await detail.close();
       }
     }
-    const best = candidates.filter((c) => Number.isFinite(c.price)).sort((a, b) => a.price - b.price)[0];
-    if (best) return [{ ...best, rawEvidence: { ...best.rawEvidence, method: "amazon-search-card", detailPageBlocked: true } }];
+    const best = candidates[0];
+    if (best) {
+      const dpUrl = amazonDpUrl(source, best.productId);
+      return [
+        {
+          ...best,
+          sourceUrl: dpUrl,
+          rawEvidence: { ...best.rawEvidence, method: "amazon-search-card", sourceUrl: dpUrl, detailPageBlocked: true },
+        },
+      ];
+    }
     return [];
   } finally {
     await page.close();
@@ -350,6 +446,14 @@ async function parseBrowserText(source, browser) {
     const html = await page.content();
     const text = await page.locator("body").innerText();
     const json = parseJsonLd(html, source);
+    // A product-page parser must not price a different phone: require the
+    // configured model to appear in the page title/text when one is set.
+    if (source.model) {
+      const pageModel = deriveModel(json?.title || text);
+      if (!pageModel || !modelMatches(pageModel, source.model)) {
+        throw new Error(`model mismatch: page=${pageModel ?? "unknown"} config=${source.model}`);
+      }
+    }
     const parsed = json ?? parseTokenPrice(text, source);
     if (!parsed || !Number.isFinite(parsed.price)) return [];
     return [
@@ -367,6 +471,98 @@ async function parseBrowserText(source, browser) {
   }
 }
 
+/**
+ * eXtra (extra.com) search parser. eXtra's storefront prices live in Unbxd;
+ * the search page embeds its public apiKey/siteKey, so we read those, query the
+ * public search API, then confirm the chosen product's price on its own product
+ * page JSON-LD. Used for the OMR-denominated Oman market.
+ */
+let extraKeyCache = null;
+async function extraKeys(source) {
+  if (extraKeyCache) return extraKeyCache;
+  const res = await fetch(source.url, {
+    headers: { "user-agent": UA, "accept-language": "en-OM,en;q=0.9,ar;q=0.8" },
+    signal: AbortSignal.timeout(30000),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const html = await res.text();
+  const apiKey = html.match(/"apiKey"\s*:\s*"([^"]+)"/)?.[1];
+  const siteKey = html.match(/"siteKey"\s*:\s*"([^"]+)"/)?.[1];
+  if (!apiKey || !siteKey) throw new Error("Unbxd apiKey/siteKey not found in search page");
+  extraKeyCache = { apiKey, siteKey };
+  return extraKeyCache;
+}
+
+async function parseExtraSearch(source) {
+  const { apiKey, siteKey } = await extraKeys(source);
+  const query = source.query || [source.model, String(source.variant || "").replace("GB", "")].filter(Boolean).join(" ");
+  const api = `https://search.unbxd.io/${apiKey}/${siteKey}/search?q=${encodeURIComponent(query)}&rows=60`;
+  const res = await fetch(api, { headers: { "user-agent": UA, accept: "application/json" }, signal: AbortSignal.timeout(30000) });
+  if (!res.ok) throw new Error(`Unbxd HTTP ${res.status}`);
+  const json = await res.json();
+  const products = (json.response?.products ?? []).filter((p) => (p.categoryPath ?? []).some((c) => /Smartphone/i.test(c)));
+  const candidates = [];
+  for (const product of products) {
+    const title = String(product.nameEn || "");
+    const model = deriveModel(title);
+    if (!model || !modelMatches(model, source.model)) continue;
+    if (ACCESSORY.test(title) || NOT_NEW.test(title) || BUNDLE.test(title)) continue;
+    const titleVariant = deriveVariant(title, null);
+    const mem = String(product.featureEnMemoryInternal || "").replace(/\s+/g, "").toUpperCase();
+    const variant = titleVariant !== "N/A" ? titleVariant : mem || null;
+    if (source.variant && variant && variant.toUpperCase() !== String(source.variant).toUpperCase()) continue;
+    const price = Number(product.price);
+    if (!product.productUrl || !isPlausiblePhonePrice(price, "OMR", fx?.rates)) continue;
+    candidates.push({
+      model,
+      variant: variant ?? source.variant,
+      title,
+      price,
+      productUrl: product.productUrl,
+      modelNumber: product.modelNumber,
+      inStock: product.inStockFlag === "true",
+    });
+  }
+  // Deterministic pick: in-stock first, then lowest price, then modelNumber.
+  candidates.sort(
+    (a, b) =>
+      Number(b.inStock) - Number(a.inStock) || a.price - b.price || String(a.modelNumber).localeCompare(String(b.modelNumber)),
+  );
+  const chosen = candidates[0];
+  if (!chosen) return [];
+  const pageRes = await fetch(chosen.productUrl, {
+    headers: { "user-agent": UA, "accept-language": "en-OM,en;q=0.9,ar;q=0.8" },
+    signal: AbortSignal.timeout(30000),
+  });
+  if (!pageRes.ok) throw new Error(`product page HTTP ${pageRes.status}`);
+  const one = parseJsonLd(await pageRes.text(), source);
+  if (!one || !Number.isFinite(one.price)) throw new Error("product page had no JSON-LD offer");
+  const pageModel = deriveModel(one.title);
+  if (source.model && pageModel && !modelMatches(pageModel, source.model)) throw new Error(`model mismatch on page: ${pageModel}`);
+  const pageVariant = deriveVariant(one.title, chosen.productUrl);
+  return [
+    {
+      price: one.price,
+      currency: one.currency || source.currency,
+      title: one.title,
+      sourceUrl: chosen.productUrl,
+      productId: chosen.modelNumber,
+      model: pageModel ?? chosen.model,
+      variant: pageVariant !== "N/A" ? pageVariant : chosen.variant ?? source.variant,
+      availability: chosen.inStock ? "in_stock" : "out_of_stock",
+      rawEvidence: {
+        ...verifiedRef(source),
+        method: "extra-unbxd+jsonld",
+        query,
+        modelNumber: chosen.modelNumber,
+        inStockFlag: chosen.inStock,
+        unbxdPrice: chosen.price,
+        title: one.title,
+      },
+    },
+  ];
+}
+
 /* --------------------------------- run ---------------------------------- */
 
 let browser;
@@ -381,6 +577,8 @@ for (const source of activeSources) {
     } else if (source.parser === "browser-text") {
       browser ||= await chromium.launch({ headless: true });
       parsed = await parseBrowserText(source, browser);
+    } else if (source.parser === "extra-search") {
+      parsed = await parseExtraSearch(source);
     } else if (source.parser === "jsonld") {
       const res = await fetch(source.url, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(20000) });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -389,7 +587,7 @@ for (const source of activeSources) {
         const model = deriveModel(one.title) ?? source.model;
         const variant = deriveVariant(one.title, source.url) ?? source.variant;
         // Never relabel a product page as a different model than it actually is.
-        if (source.model && model && model.toUpperCase() !== String(source.model).toUpperCase()) {
+        if (source.model && model && !modelMatches(model, source.model)) {
           throw new Error("model mismatch: page=" + model + " config=" + source.model);
         }
         parsed = [{ ...one, model, variant, sourceUrl: source.url, rawEvidence: { ...verifiedRef(source), method: "jsonld", title: one.title } }];
@@ -401,7 +599,12 @@ for (const source of activeSources) {
     }
 
     const built = parsed
-      .map((p) => makeRecord({ source, ...p, model: p.model ?? source.model, variant: p.variant ?? source.variant }))
+      .map((p) => {
+        const derivedVariant = p.variant ?? deriveVariant(p.title, p.sourceUrl ?? source.url);
+        const variant = derivedVariant && derivedVariant !== "N/A" ? derivedVariant : source.variant ?? "N/A";
+        const model = p.model ?? deriveModel(p.title) ?? source.model;
+        return makeRecord({ source, ...p, model, variant });
+      })
       .filter(Boolean);
 
     if (!built.length) throw new Error("no matching product price found");
@@ -440,12 +643,15 @@ const deduped = records.filter((r) => {
   seen.add(key);
   return true;
 });
+// Fully explicit order => two runs over the same input serialize identically.
 deduped.sort(
   (a, b) =>
     String(b.week).localeCompare(String(a.week)) ||
     String(a.country).localeCompare(String(b.country)) ||
     String(a.model).localeCompare(String(b.model)) ||
-    String(a.channel).localeCompare(String(b.channel)),
+    String(a.channel).localeCompare(String(b.channel)) ||
+    String(a.variant).localeCompare(String(b.variant)) ||
+    String(a.sourceId).localeCompare(String(b.sourceId)),
 );
 
 const live = deduped.filter((r) => r.week === week && r.state === "live");
@@ -462,14 +668,17 @@ const payload = {
   records: deduped,
 };
 
-await mkdir(historyDir, { recursive: true });
-await mkdir(resolve(root, "public/api"), { recursive: true });
 const serialized = `${JSON.stringify(payload, null, 2)}\n`;
-await writeFile(latestPath, serialized);
-await writeFile(apiPath, serialized);
-await writeFile(resolve(historyDir, `${collectedAt.slice(0, 10)}.json`), serialized);
-
-console.log(`week=${week} activeSources=${activeSources.length} live=${live.length} totalRecords=${deduped.length}`);
+if (dryRun) {
+  console.log(`[dry-run] week=${week} activeSources=${activeSources.length} live=${live.length} totalRecords=${deduped.length} (no files written)`);
+} else {
+  await mkdir(historyDir, { recursive: true });
+  await mkdir(resolve(root, "public/api"), { recursive: true });
+  await writeFile(latestPath, serialized);
+  await writeFile(apiPath, serialized);
+  await writeFile(resolve(historyDir, `${collectedAt.slice(0, 10)}.json`), serialized);
+  console.log(`week=${week} activeSources=${activeSources.length} live=${live.length} totalRecords=${deduped.length}`);
+}
 console.log(`fx asOf=${payload.fx.asOf ?? "n/a"} stale=${payload.fx.stale}`);
 if (failedSources.length) {
   console.log(`failed sources (${failedSources.length}):`);

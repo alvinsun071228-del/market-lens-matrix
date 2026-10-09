@@ -16,6 +16,15 @@ const check = (ok, message) => {
 
 const STATES = new Set(["live", "missing", "invalid", "unavailable"]);
 const round2 = (n) => Math.round(n * 100) / 100;
+const isoWeekStart = (value) => {
+  const date = new Date(value);
+  if (!Number.isFinite(date.getTime())) return null;
+  const monday = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  const day = monday.getUTCDay() || 7;
+  monday.setUTCDate(monday.getUTCDate() - day + 1);
+  return monday.toISOString().slice(0, 10);
+};
+const sameJson = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 let latest;
 let markets;
@@ -43,6 +52,10 @@ check(Array.isArray(latest.failedSources), "latest.failedSources must be an arra
 check(Array.isArray(latest.records), "latest.records must be an array");
 check(latest.fx && typeof latest.fx === "object", "latest.fx missing");
 check(latest.fx?.asOf == null || /^\d{4}-\d{2}-\d{2}$/.test(latest.fx.asOf), "latest.fx.asOf must be YYYY-MM-DD or null");
+check(latest.week === isoWeekStart(latest.collectedAt), `latest.week ${latest.week} is not the ISO week start of latest.collectedAt`);
+check(sameJson(latest.fx?.rates ?? {}, fx.rates ?? {}), "latest.fx.rates must match public/data/fx.json rates");
+check(latest.fx?.base === fx.base, "latest.fx.base must match public/data/fx.json base");
+check(latest.fx?.asOf === fx.asOf, "latest.fx.asOf must match public/data/fx.json asOf");
 
 const countryIds = new Set((markets.countries ?? []).map((c) => c.id));
 const seenKeys = new Set();
@@ -58,8 +71,13 @@ for (const [i, r] of (latest.records ?? []).entries()) {
   check(STATES.has(r.state), `${at}: state "${r.state}" is not in ${[...STATES].join("|")}`);
   check(Boolean(r.sourceId), `${at}: sourceId missing`);
   check(/^https?:/.test(String(r.sourceUrl ?? "")), `${at}: sourceUrl must be http(s)`);
+  const currentRun = r.collectedAt === latest.collectedAt;
   check(Boolean(r.collectedAt), `${at}: collectedAt missing`);
+  // Retained pre-v1.1 history rows use their daily snapshot date; enforce the
+  // current collector's ISO-week contract on rows written in this run.
+  if (currentRun) check(isoWeekStart(r.collectedAt) === r.week, `${at}: week ${r.week} is not the ISO week start of collectedAt ${r.collectedAt}`);
   check(Boolean(r.rawEvidence), `${at}: rawEvidence missing (no evidence, no price)`);
+  if (currentRun && r.state === "live") check(r.collectorVersion === "1.1", `${at}: live record collectorVersion must be "1.1"`);
   check(/^\d{4}-\d{2}-\d{2}$/.test(r.week ?? ""), `${at}: week must be YYYY-MM-DD`);
 
   if (r.state === "unavailable") {
@@ -71,6 +89,7 @@ for (const [i, r] of (latest.records ?? []).entries()) {
     const rate = fx.rates?.[r.currency];
     check(Number.isFinite(rate), `${at}: no FX rate for currency "${r.currency}"`);
     if (Number.isFinite(rate)) {
+      check(Number.isFinite(r.priceUsd) && r.priceUsd > 0, `${at}: priceUsd must be strictly positive when an FX rate exists`);
       check(r.priceUsd === round2(r.price * rate), `${at}: priceUsd ${r.priceUsd} != round(price*rate,2) = ${round2(r.price * rate)}`);
     }
   }
@@ -104,9 +123,18 @@ for (const code of usedCurrencies) {
 
 /* ---------------------------- models.json ------------------------------ */
 check(Array.isArray(models.models), "models.models must be an array");
+const observedModelIds = new Set();
+const sourcePageModelIds = new Set();
+for (const r of latest.records ?? []) {
+  if (r.model) observedModelIds.add(r.model);
+  const pageText = [r.sourceUrl, r.title, r.modelName, r.rawEvidence?.page, r.rawEvidence?.text].filter(Boolean).join(" ");
+  const modelId = String(r.model ?? "").match(/^[ASZ]?\d+[A-Z]?$/)?.[0];
+  if (modelId && pageText.includes(modelId)) sourcePageModelIds.add(modelId);
+}
 for (const m of models.models ?? []) {
   check(Boolean(m.id && m.name), `models entry ${JSON.stringify(m).slice(0, 60)} needs id + name`);
   check(Array.isArray(m.variants) && m.variants.length > 0, `model ${m.id}: variants must be a non-empty array`);
+  check(observedModelIds.has(m.id) || sourcePageModelIds.has(m.id), `model ${m.id}: no record or real source-page evidence`);
 }
 
 /* ------------------------- api mirror identity ------------------------- */

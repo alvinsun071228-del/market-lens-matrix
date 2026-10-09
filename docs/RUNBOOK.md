@@ -53,17 +53,20 @@ model-equality check so a search card for another model is rejected.
 4. Confirm `public/data/latest.json` gained records for the expected
    `(country, model, variant)` with a `sourceUrl` you can open.
 
-## 4. Blocked or unavailable markets (currently QA, OM, KW)
+## 4. Blocked or unavailable markets (currently KW)
 
 - `unavailable` = source loaded, but no listing matched the exact model+variant →
   `state:"unavailable"`, `price:null`, and CI stays green.
 - `blocked` = fetch error / 4xx / captcha / JS wall → the source lands in
   `failedSources`, its previous value (if any) is carried as `missing`, and the UI shows
   the reason. **Do not** enable a source that has never returned a live price.
-- Qatar (`qa`) and Oman (`om`) currently have no reachable source: Jarir Qatar renders an
-  empty shell, Extra Oman returns a server error, Lulu/noon/Sharaf DG answer 403
-  (Cloudflare). They stay disabled with a `disabledReason`; the matrix renders blank
-  cells. To fix: repeat §3 against a source you can reach from CI, or accept the blank.
+- Kuwait (`kw`) currently has no reachable source and stays disabled with a
+  `disabledReason`; the matrix renders blank cells. To fix: repeat §3 against a source you
+  can reach from CI, or accept the blank.
+- Qatar (`qa`) is live through Jarir Qatar (catalog + product pages). Oman (`om`) is live
+  through eXtra Oman's Unbxd search API + product-page JSON-LD; its earlier predecessors
+  (the Extra search page, Lulu/noon/Sharaf DG, khimji) failed or returned no OMR Galaxy
+  price.
 
 ## 5. FX staleness
 
@@ -73,7 +76,34 @@ model-equality check so a search card for another model is rejected.
 feed URL in `scripts/fx.mjs` (`FEEDS` array) or accept `priceUsd: null` — never hardcode
 a rate.
 
-## 6. Weekly semantics
+## 6. Timeliness and late-feed response
+
+The scheduled collector runs hourly at `23 * * * *`. GitHub cron is best-effort, so the
+real freshness budget is up to roughly one hour of scheduling delay plus 2–4 minutes for
+Playwright collection, about 1 minute for commit, and 1–3 minutes for the Pages rebuild.
+This is timely static publishing, not real-time data.
+
+The collect workflow fails its freshness alarm when the newly written feed is not live,
+has zero verified products, has `collectedAt` older than 6 hours, or has FX `asOf` older
+than 7 days. A single blocked market is expected and does not fail the job; inspect
+`failedSources` and the UI's unavailable/carry state for that market.
+
+When the feed is late or the alarm fails:
+
+1. Open the failed `Collect Market Prices` run and read the first failing step. A
+   `Fail on unusable or overdue feed` failure means the output was empty or outside the
+   freshness budget; it is not evidence that every retailer is blocked.
+2. Inspect `public/data/latest.json` in the run artifacts or repository. Check `mode`,
+   `verifiedProductCount`, `collectedAt`, `fx.asOf`, and `failedSources`.
+3. Use **Run workflow** on GitHub Actions for `Collect Market Prices` to trigger a manual
+   refresh. The workflow still refreshes FX, collects prices, discovers models, validates,
+   and commits only when the contract and freshness alarm pass.
+4. If the manual run also fails, check whether GitHub Actions is delayed or whether the
+   collection/FX step failed. Fix the source or FX issue and rerun; do not hand-edit prices.
+5. If collection succeeds but the site is still old, check the subsequent `Deploy to GitHub
+   Pages` run, which is triggered by the collector's push to `main`.
+
+## 7. Weekly semantics
 
 `latest.json.week` is the ISO week start (Monday, UTC). Every collect run rewrites the
 current week's rows; older weeks are immutable history. The trend chart takes one point
@@ -82,17 +112,21 @@ per ISO week from real records and leaves missing weeks as gaps
 original `effectiveDate`; they are never presented as a fresh price and never seed a new
 trend point.
 
-## 7. Troubleshooting
+## 8. Troubleshooting
 
 | Symptom | Likely cause | Action |
 |---|---|---|
 | `validate.mjs` fails on `priceUsd` | FX rate missing for that currency | check `public/data/fx.json`, re-run `node scripts/fx.mjs` |
+| `validate.mjs` fails on `latest.fx.rates` | embedded FX differs from `public/data/fx.json` | rerun FX and collection; do not hand-edit either file |
 | `api mirror is not byte-identical` | `latest.json` edited by hand | re-run `node scripts/collect.mjs` |
+| `Fail on unusable or overdue feed` | empty/non-live output or collection/FX exceeds the freshness budget | inspect the fields in §6, then use **Run workflow** for a manual refresh |
+| GitHub Actions run has not started | best-effort cron delay or Actions load | wait for the scheduled run, or trigger the manual refresh in §6 |
+| `Deploy to GitHub Pages` is late | collector did not push, or Pages build/deploy failed | inspect the collector commit and the dependent Pages workflow |
 | A market suddenly blank | retailer changed markup / bot wall | check `failedSources` in `latest.json`, re-verify §3 |
 | Turkish prices look 1000× too small | locale separator regression | see `parseLocalizedNumber` in `scripts/collect.mjs` |
 | `cell-button` shows a stale value | source failed; value carried | expected; badge `缺价 · 沿用` + original date |
 
-## 8. File ownership
+## 9. File ownership
 
 `config/sources.json`, `scripts/{collect,discover,fx}.mjs`, `data/**`, `public/data/**`,
 `public/api/**` → collection. `src/**`, `index.html`, `tests/**` → frontend.

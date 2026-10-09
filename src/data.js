@@ -20,6 +20,48 @@ const BASE = (() => {
   }
 })();
 
+/**
+ * Documented automatic collection cadence, in minutes.
+ *
+ * SINGLE SOURCE OF TRUTH for the client promise: the banner prints it, the
+ * next-refresh estimate is derived from it, and the staleness threshold is a
+ * multiple of it. It MUST match the cron in `.github/workflows/collect.yml`
+ * (the scheduled collection moved to hourly, i.e. `23 * * * *`).
+ */
+export const COLLECT_CADENCE_MINUTES = 60;
+/** Warn once the feed is older than 3× the documented cadence (~3h when hourly). */
+export const STALE_AFTER_MINUTES = COLLECT_CADENCE_MINUTES * 3;
+/** FX older than a week is treated as degraded, never silently reused as current. */
+export const FX_STALE_AFTER_DAYS = 7;
+
+/** Human cadence, e.g. "1 小时" / "6 小时" / "45 分钟". */
+export function cadenceShort() {
+  return COLLECT_CADENCE_MINUTES % 60 === 0
+    ? `${COLLECT_CADENCE_MINUTES / 60} 小时`
+    : `${COLLECT_CADENCE_MINUTES} 分钟`;
+}
+
+/** Banner copy for the documented cadence, e.g. "每 1 小时自动采集". */
+export function cadenceLabel() {
+  return `每 ${cadenceShort()}自动采集`;
+}
+
+/** Local-time rendering used by the freshness banner (zh-CN, 24h). */
+export function localTime(value) {
+  if (value == null) return null;
+  const d = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toLocaleString("zh-CN", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+}
+
 export const labels = {
   live: "正常",
   normal: "正常",
@@ -155,7 +197,7 @@ export function hydrate({ markets = null, models: modelCfg = null, latest = null
     sourceCount: latest?.sourceCount ?? 0,
     verifiedProductCount: latest?.verifiedProductCount ?? 0,
     failedSources: latest?.failedSources ?? [],
-    fx: { base: "USD", asOf: null, source: null, stale: true, rates: {}, ...(fx ?? {}) },
+    fx: { base: "USD", asOf: null, source: null, stale: false, rates: {}, ...(fx ?? {}) },
     loaded: true,
     errors,
   });
@@ -310,19 +352,90 @@ export function csv(rows) {
     .join("\n");
 }
 
-export function fxLabel() {
-  const { asOf, source, stale } = dataInfo.fx ?? {};
-  if (!asOf) return "汇率不可用";
-  return `${asOf} · ${stale ? "已过期" : "有效"}${source ? ` · ${String(source).replace(/^https?:\/\//, "").split("/")[0]}` : ""}`;
+function fxIsStale(fx) {
+  if (fx?.stale === true) return true;
+  if (!fx?.asOf) return true;
+  const ageDays = (Date.now() - new Date(fx.asOf).getTime()) / 86400000;
+  return ageDays > FX_STALE_AFTER_DAYS;
 }
 
-export function freshness() {
-  if (!dataInfo.loaded) return { level: "pending", text: "正在加载数据…" };
-  if (!dataInfo.collectedAt) return { level: "stale", text: "尚未连接到已验证来源" };
-  const ageHours = (Date.now() - new Date(dataInfo.collectedAt).getTime()) / 3600000;
-  const fxAgeDays = dataInfo.fx?.asOf ? (Date.now() - new Date(dataInfo.fx.asOf).getTime()) / 86400000 : Infinity;
-  if (ageHours > 24 || fxAgeDays > 7 || dataInfo.fx?.stale) {
-    return { level: "stale", text: `数据可能过期（采集于 ${new Date(dataInfo.collectedAt).toLocaleString("zh-CN")}）` };
+export function fxLabel() {
+  const { asOf, source } = dataInfo.fx ?? {};
+  if (!asOf) return "汇率不可用";
+  return `${asOf} · ${fxIsStale(dataInfo.fx) ? "已过期" : "有效"}${source ? ` · ${String(source).replace(/^https?:\/\//, "").split("/")[0]}` : ""}`;
+}
+
+/**
+ * Next expected refresh, derived from `collectedAt + cadence` and clamped
+ * honestly: once the feed is already late we say so instead of projecting a
+ * future time that the schedule has already missed.
+ */
+export function nextRefresh() {
+  if (!dataInfo.collectedAt) {
+    return { at: null, late: false, text: "采集时间未知，无法计算下次刷新" };
   }
-  return { level: "fresh", text: `数据有效 · ${dataInfo.sourceCount} 个来源 · ${dataInfo.verifiedProductCount} 条本周价格` };
+  const collected = new Date(dataInfo.collectedAt);
+  if (Number.isNaN(collected.getTime())) {
+    return { at: null, late: false, text: "采集时间无效" };
+  }
+  const at = new Date(collected.getTime() + COLLECT_CADENCE_MINUTES * 60000);
+  const late = Date.now() >= at.getTime();
+  return {
+    at: at.toISOString(),
+    late,
+    text: late
+      ? `刷新已延迟 · 距上次采集已超过 ${cadenceShort()}`
+      : `预计下次刷新 ${localTime(at)}`,
+  };
+}
+
+/**
+ * Freshness verdict shown in the banner.
+ *
+ * Level rules (contract v1.1, client side):
+ *   stale    — `collectedAt` older than 3× the documented cadence
+ *   degraded — `mode !== "live"`, any `failedSources`, or FX older than 7 days
+ *   fresh    — none of the above
+ */
+export function freshness() {
+  const collectedAtLocal = localTime(dataInfo.collectedAt);
+  const next = nextRefresh();
+  const base = {
+    cadence: cadenceLabel(),
+    collectedAtLocal,
+    next,
+    fx: fxLabel(),
+  };
+  if (!dataInfo.loaded) return { ...base, level: "pending", text: "正在加载数据…" };
+  if (!dataInfo.collectedAt)
+    return { ...base, level: "stale", text: "尚未连接到已验证来源" };
+
+  const collected = new Date(dataInfo.collectedAt).getTime();
+  const ageMinutes = Number.isNaN(collected)
+    ? Infinity
+    : (Date.now() - collected) / 60000;
+  const staleFx = fxIsStale(dataInfo.fx);
+
+  if (ageMinutes > STALE_AFTER_MINUTES) {
+    return {
+      ...base,
+      level: "stale",
+      text: `数据可能过期 · 最近采集 ${collectedAtLocal}（已超过 ${cadenceShort()}）`,
+    };
+  }
+
+  const reasons = [];
+  if (dataInfo.mode !== "live") reasons.push("采集模式非实时");
+  if (dataInfo.failedSources?.length)
+    reasons.push(`${dataInfo.failedSources.length} 个来源失败`);
+  if (staleFx) reasons.push("汇率过期");
+  if (reasons.length) {
+    return { ...base, level: "degraded", text: `数据降级 · ${reasons.join(" · ")}` };
+  }
+
+  return {
+    ...base,
+    level: "fresh",
+    text: `数据有效 · ${dataInfo.sourceCount} 个来源 · ${dataInfo.verifiedProductCount} 条本周价格`,
+  };
 }

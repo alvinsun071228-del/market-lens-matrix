@@ -5,6 +5,8 @@
     "Only sources that have returned a real price in a live run are enabled=true.",
     "parser=jsonld-itemlist reads a schema.org ItemList (brand listing page or retailer category page) and emits one record per model+variant, keeping the lowest listed price. This is what keeps the model list in sync with each market.",
     "parser=jsonld reads a single product page's schema.org Product/Offer. The model/variant are derived from the page title and must agree with the configured model, otherwise the source fails instead of mislabelling a price.",
+    "parser=extra-search discovers the current product URL through eXtra's public Unbxd search API (apiKey/siteKey are read from the storefront search page) and then confirms the price on the product page's own JSON-LD. Used for the OMR-denominated Oman market, whose search page is JS/Unbxd-driven but whose product pages expose static JSON-LD.",
+    "Model identity keeps connectivity and S-series sub-model (A17 vs A17 5G, S26 vs S26+ vs S26 Ultra vs S26 FE); collapsing them previously let a different phone's lowest price win the cell. Bundle/combo listings are rejected because their price includes accessories.",
     "parser=amazon-search renders the local Amazon storefront with Playwright, matches model + storage in a result card, verifies the product page when reachable, otherwise uses the card price (amazon-search-card).",
     "parser=browser-text renders a product page with Playwright and extracts a localized price token.",
     "Countries without a reachable source (om) keep enabled=false and a reason; they show as unavailable instead of a guessed price."
@@ -183,19 +185,46 @@
       "variant": "128GB"
     },
     {
-      "id": "extra-om-search",
-      "name": "eXtra Oman · Galaxy search",
+      "id": "extra-om-a16-128",
+      "name": "eXtra Oman · Galaxy A16 128GB",
       "country": "om",
       "channel": "retail",
       "currency": "OMR",
-      "enabled": false,
+      "enabled": true,
       "url": "https://www.extra.com/en-om/search?text=galaxy+a16",
-      "parser": "browser-text",
+      "parser": "extra-search",
+      "query": "galaxy a16",
       "model": "A16",
       "series": "Galaxy A",
-      "variant": "128GB",
-      "tokens": ["OMR", "ر.ع"],
-      "disabledReason": "eXtra Oman answers automated clients with 'Server Error' and its prices load client-side from Unbxd; no OMR price is exposed to the collector. Lulu/Sharaf DG Oman return Cloudflare 403 and Samsung has no Oman storefront. Left disabled so Oman reports unavailable instead of a fabricated value."
+      "variant": "128GB"
+    },
+    {
+      "id": "extra-om-a57-128",
+      "name": "eXtra Oman · Galaxy A57 5G 128GB",
+      "country": "om",
+      "channel": "retail",
+      "currency": "OMR",
+      "enabled": true,
+      "url": "https://www.extra.com/en-om/search?text=galaxy+a57",
+      "parser": "extra-search",
+      "query": "galaxy a57",
+      "model": "A57",
+      "series": "Galaxy A",
+      "variant": "128GB"
+    },
+    {
+      "id": "extra-om-a57-256",
+      "name": "eXtra Oman · Galaxy A57 5G 256GB",
+      "country": "om",
+      "channel": "retail",
+      "currency": "OMR",
+      "enabled": true,
+      "url": "https://www.extra.com/en-om/search?text=galaxy+a57",
+      "parser": "extra-search",
+      "query": "galaxy a57",
+      "model": "A57",
+      "series": "Galaxy A",
+      "variant": "256GB"
     }
   ]
 }
