@@ -36,6 +36,11 @@ import {
   history,
   cell,
   money,
+  usd,
+  brands,
+  flagEmoji,
+  fxLabel,
+  freshness,
   percentage,
   csv,
   dataInfo,
@@ -159,7 +164,8 @@ function Detail({ selected, week, close }) {
   const [variant, setVariant] = useState(selected.variant),
     [channel, setChannel] = useState(selected.channel),
     [range, setRange] = useState("12"),
-    [compare, setCompare] = useState(true);
+    [compare, setCompare] = useState(true),
+    [usdMode, setUsdMode] = useState(false);
   const ref = useRef(null);
   const rows = history(country.id, model.id, channel, variant, week),
     data = cell(country.id, model.id, channel, variant, week),
@@ -167,10 +173,10 @@ function Detail({ selected, week, close }) {
   const chart = displayed.map((row) => ({
     week: row.week.slice(5),
     ...Object.fromEntries(
-      channels.map((ch) => [
-        ch.id,
-        history(country.id, model.id, ch.id, variant, row.week).at(-1)?.value,
-      ]),
+      channels.map((ch) => {
+        const point = history(country.id, model.id, ch.id, variant, row.week).at(-1);
+        return [ch.id, point ? (usdMode ? point.priceUsd : point.value) : null];
+      }),
     ),
     events: Object.fromEntries(
       channels.map((ch) => [
@@ -179,7 +185,7 @@ function Detail({ selected, week, close }) {
       ]),
     ),
   }));
-  const values = rows.filter((r) => r.price !== null).map((r) => r.price),
+  const values = rows.filter((r) => r.value !== null).map((r) => r.value),
     fourAgo = rows.at(-5)?.value,
     fourChange = fourAgo > 0 ? ((data.value - fourAgo) / fourAgo) * 100 : null;
   useGSAP(
@@ -231,10 +237,19 @@ function Detail({ selected, week, close }) {
           />
         </div>
         <div className="detail-price">
-          <span>当前价格 · {country.currency}</span>
+          <span>
+            当前价格 · {usdMode ? "USD" : country.currency}
+          </span>
           <strong>
-            <NumberValue value={data.value} currency={country.currency} />
+            {usdMode ? (
+              <span>{usd(data.priceUsd)}</span>
+            ) : (
+              <NumberValue value={data.value} currency={country.currency} />
+            )}
           </strong>
+          <span className="usd-price">
+            {usdMode ? `${money(data.value, country.currency)}` : usd(data.priceUsd)}
+          </span>
           <Change data={data} currency={country.currency} />
         </div>
         <div className="metrics">
@@ -263,6 +278,15 @@ function Detail({ selected, week, close }) {
         </div>
         <div className="chart-heading">
           <h3>周度趋势</h3>
+          <span className="chart-toggles">
+          <label className="check">
+            <input
+              type="checkbox"
+              checked={usdMode}
+              onChange={(e) => setUsdMode(e.target.checked)}
+            />
+            显示美元
+          </label>
           <label className="check">
             <input
               type="checkbox"
@@ -271,6 +295,7 @@ function Detail({ selected, week, close }) {
             />
             对比渠道
           </label>
+          </span>
         </div>
         <div className="chart">
           <ResponsiveContainer width="100%" height="100%">
@@ -290,13 +315,13 @@ function Detail({ selected, week, close }) {
                 width={64}
                 domain={["auto", "auto"]}
                 tick={{ fontSize: 12, fill: "#69707b" }}
-                tickFormatter={(v) => money(v, country.currency)}
+                tickFormatter={(v) => (usdMode ? usd(v) : money(v, country.currency))}
                 tickLine={false}
                 axisLine={false}
               />
               <Tooltip
                 formatter={(v, name, p) => [
-                  `${money(v, country.currency)} ${country.currency} · ${labels[p.payload.events[name]]}`,
+                  `${usdMode ? usd(v) : `${money(v, country.currency)} ${country.currency}`} · ${labels[p.payload.events[name]]}`,
                   channels.find((c) => c.id === name)?.name,
                 ]}
               />
@@ -356,6 +381,7 @@ function Detail({ selected, week, close }) {
                 <b>
                   {money(row.value, country.currency)} {country.currency}
                 </b>
+                <span className="usd-note">{row.priceUsd != null ? usd(row.priceUsd) : "FX 不可用"}</span>
                 <span className={anomaly(row.state) ? "warning" : ""}>
                   {labels[row.state]}
                   {row.carried ? ` · 原记录 ${row.effectiveDate}` : ""}
@@ -379,7 +405,7 @@ function App() {
   const [week, setWeek] = useState(weeks.at(-1)),
     [country, setCountry] = useState("all"),
     [query, setQuery] = useState(""),
-    [brand, setBrand] = useState("all"),
+    [brand, setBrand] = useState(brands[0]?.id ?? "samsung"),
     [series, setSeries] = useState("all"),
     [variant, setVariant] = useState("128GB"),
     [channel, setChannel] = useState("retail"),
@@ -388,7 +414,8 @@ function App() {
     [selected, setSelected] = useState(null),
     [sources, setSources] = useState(false),
     [showAll, setShowAll] = useState(false),
-    [toast, setToast] = useState("");
+    [toast, setToast] = useState(""),
+    [brokenFlags, setBrokenFlags] = useState({});
   const [, setDataVersion] = useState(0);
   const visibleCountries = countries.filter(
       (c) => country === "all" || country === c.id,
@@ -397,9 +424,11 @@ function App() {
       (m) =>
         m.name.toLowerCase().includes(query.trim().toLowerCase()) &&
         m.variants.includes(variant) &&
-        (brand === "all" || brand === "Samsung") &&
-        (series === "all" || series === "Galaxy A"),
-    );
+        (brand === "all" || m.brandId === brand || (m.brandId == null && brand === "samsung")) &&
+        (series === "all" || m.series === series),
+    ),
+    variantOptions = [...new Set(models.flatMap((m) => m.variants))].sort(),
+    seriesOptions = [...new Set(models.map((m) => m.series).filter(Boolean))].sort();
   const cells = visibleCountries.flatMap((c) =>
       visibleModels.map((m) => ({
         country: c,
@@ -423,7 +452,7 @@ function App() {
   const reset = () => {
     setQuery("");
     setCountry("all");
-    setBrand("all");
+    setBrand(brands[0]?.id ?? "samsung");
     setSeries("all");
     setVariant("128GB");
     setChannel("retail");
@@ -474,6 +503,8 @@ function App() {
         "周次",
         "货币",
         "本周价格",
+        "美元价格",
+        "汇率日期",
         "上周价格",
         "变动金额",
         "变动比例",
@@ -491,6 +522,8 @@ function App() {
           week,
           c.country.currency,
           c.data.value,
+          c.data.priceUsd,
+          dataInfo.fx?.asOf ?? "",
           c.data.previous,
           c.data.delta,
           percentage(c.data.percent),
@@ -523,13 +556,16 @@ function App() {
         </span>
       </header>
       <main>
+        <div className={`freshness ${freshness().level}`}>
+          <i /> {freshness().text} · 汇率 {fxLabel()}
+        </div>
         <header className="page-heading">
           <div>
             <div className="breadcrumb">
               价格监测 <span>/</span> 中东市场
             </div>
             <h1>国家 × 型号价格矩阵</h1>
-            <p>Galaxy A 系列 · 仅展示可访问商品页验证过的价格 · {dataInfo.collectedAt ? `最近采集 ${new Date(dataInfo.collectedAt).toLocaleString("zh-CN")}` : "尚未连接有效商品来源"}</p>
+            <p>{brands.find((b) => b.id === brand)?.name ?? "Samsung"} 在售型号 · 本地货币与美元双显示 · 仅展示可访问商品页验证过的价格 · {dataInfo.collectedAt ? `最近采集 ${new Date(dataInfo.collectedAt).toLocaleString("zh-CN")}` : "尚未连接有效商品来源"}</p>
           </div>
           <div className="actions">
             <button onClick={() => setSources(true)}>
@@ -591,7 +627,7 @@ function App() {
             label="容量"
             value={variant}
             onChange={setVariant}
-            options={["64GB", "128GB", "256GB"]}
+            options={variantOptions}
           />
           <button
             className={advanced ? "pressed" : ""}
@@ -615,13 +651,13 @@ function App() {
                 label="品牌"
                 value={brand}
                 onChange={setBrand}
-                options={[{ value: "all", label: "全部品牌" }, "Samsung"]}
+                options={[{ value: "all", label: "全部品牌" }, ...brands.map((b) => ({ value: b.id || b, label: b.name || b }))]}
               />
               <Select
                 label="系列"
                 value={series}
                 onChange={setSeries}
-                options={[{ value: "all", label: "全部系列" }, "Galaxy A"]}
+                options={[{ value: "all", label: "全部系列" }, ...seriesOptions]}
               />
             </div>
           )}
@@ -669,12 +705,19 @@ function App() {
                   <tr key={c.id}>
                     <th scope="row">
                       <div className="country-name">
-                        <img
-                          src={`${import.meta.env.BASE_URL}flags/${c.id}.png`}
-                          width="24"
-                          height="16"
-                          alt=""
-                        />
+                        {brokenFlags[c.id] ? (
+                          <span className="flag-emoji" aria-hidden="true">
+                            {flagEmoji(c.id)}
+                          </span>
+                        ) : (
+                          <img
+                            src={`${import.meta.env.BASE_URL}flags/${c.id}.png`}
+                            width="24"
+                            height="16"
+                            alt=""
+                            onError={() => setBrokenFlags((f) => ({ ...f, [c.id]: true }))}
+                          />
+                        )}
                         <strong>{c.name}</strong>
                       </div>
                       <small>{c.currency}</small>
@@ -699,6 +742,9 @@ function App() {
                                   currency={c.currency}
                                 />
                                 <ArrowRight className="cell-arrow" size={15} />
+                              </div>
+                              <div className="usd-cell">
+                                {d.priceUsd == null ? "FX 不可用" : usd(d.priceUsd)}
                               </div>
                               <Change data={d} currency={c.currency} />
                               <div className="previous">
@@ -726,7 +772,7 @@ function App() {
         )}
         <div className="matrix-footer">
           <span>
-            本地货币 · {variant} · {channels.find((c) => c.id === channel).name}
+            本地货币 + USD · {variant} · {channels.find((c) => c.id === channel).name} · 同周最低价
           </span>
           <span>采集周期 {week}</span>
         </div>

@@ -2,11 +2,16 @@ name: Collect Market Prices
 
 on:
   schedule:
+    # Every six hours; weekly trend points are aggregated from these snapshots.
     - cron: "17 */6 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: collect-market-prices
+  cancel-in-progress: false
 
 jobs:
   collect:
@@ -19,11 +24,27 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: node scripts/collect.mjs
+
+      - name: Refresh FX rates (USD per local unit)
+        run: node scripts/fx.mjs
+
+      - name: Collect retailer and brand prices
+        run: node scripts/collect.mjs
+
+      - name: Discover models actually on sale per market
+        run: node scripts/discover.mjs
+
+      - name: Validate the data contract before committing
+        run: node scripts/validate.mjs
+
       - name: Commit collected data
         run: |
           git config user.name "market-lens-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/latest.json public/api/prices.json data/history
-          git diff --cached --quiet || git commit -m "chore: update collected market prices"
-          git push
+          git add public/data public/api data/history data/discovery-report.json
+          if git diff --cached --quiet; then
+            echo "No price changes this run."
+          else
+            git commit -m "chore: update collected market prices"
+            git push
+          fi

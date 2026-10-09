@@ -1,0 +1,107 @@
+{
+  "generatedAt": "2026-10-09T00:00:00.000Z",
+  "contractVersion": "1.1",
+  "brands": [
+    {
+      "id": "samsung",
+      "name": "Samsung",
+      "series": ["Galaxy A", "Galaxy S", "Galaxy Z", "Galaxy M"]
+    }
+  ],
+  "channels": [
+    { "id": "official", "name": "官方商城", "nameEn": "Official store" },
+    { "id": "retail", "name": "零售渠道", "nameEn": "Retail channel" }
+  ],
+  "countries": [
+    {
+      "id": "tr",
+      "name": "土耳其",
+      "nameEn": "Türkiye",
+      "currency": "TRY",
+      "symbol": "₺",
+      "priority": 1,
+      "retailers": [
+        { "id": "samsung-tr", "name": "Samsung Türkiye", "url": "https://www.samsung.com/tr/smartphones/galaxy-a/", "verified": true },
+        { "id": "amazon-tr", "name": "Amazon.com.tr", "url": "https://www.amazon.com.tr/", "verified": true }
+      ]
+    },
+    {
+      "id": "sa",
+      "name": "沙特阿拉伯",
+      "nameEn": "Saudi Arabia",
+      "currency": "SAR",
+      "symbol": "SR",
+      "priority": 1,
+      "retailers": [
+        { "id": "samsung-sa", "name": "Samsung Saudi Arabia", "url": "https://www.samsung.com/sa_en/smartphones/galaxy-a/", "verified": true },
+        { "id": "jarir", "name": "Jarir Bookstore", "url": "https://www.jarir.com/sa-en/", "verified": true },
+        { "id": "amazon-sa", "name": "Amazon.sa", "url": "https://www.amazon.sa/", "verified": true },
+        { "id": "extra", "name": "eXtra", "url": "https://www.extra.com/en-sa/", "verified": false, "note": "Product pages are JS-rendered and currently return a server error to automated clients." }
+      ]
+    },
+    {
+      "id": "ae",
+      "name": "阿联酋",
+      "nameEn": "United Arab Emirates",
+      "currency": "AED",
+      "symbol": "د.إ",
+      "priority": 1,
+      "retailers": [
+        { "id": "samsung-ae", "name": "Samsung UAE", "url": "https://www.samsung.com/ae/smartphones/galaxy-a/", "verified": true },
+        { "id": "amazon-ae", "name": "Amazon.ae", "url": "https://www.amazon.ae/", "verified": true },
+        { "id": "jumbo", "name": "Jumbo Electronics", "url": "https://www.jumbo.ae/", "verified": false, "note": "Reachable but price is not exposed in machine-readable form." },
+        { "id": "sharafdg", "name": "Sharaf DG", "url": "https://www.sharafdg.com/", "verified": false, "note": "Blocks automated clients (HTTP 403)." }
+      ]
+    },
+    {
+      "id": "qa",
+      "name": "卡塔尔",
+      "nameEn": "Qatar",
+      "currency": "QAR",
+      "symbol": "ر.ق",
+      "priority": 1,
+      "retailers": [
+        { "id": "jarir-qa", "name": "Jarir Qatar", "url": "https://www.jarir.com/qa-en/", "verified": false, "note": "Storefront shell loads but product prices never render for automated clients." },
+        { "id": "lulu-qa", "name": "Lulu Hypermarket Qatar", "url": "https://www.luluhypermarket.com/en-qa/", "verified": false, "note": "Cloudflare challenge (HTTP 403)." },
+        { "id": "noon-qa", "name": "noon Qatar", "url": "https://www.noon.com/qatar-en/", "verified": false, "note": "Access denied (HTTP 403)." }
+      ]
+    },
+    {
+      "id": "om",
+      "name": "阿曼",
+      "nameEn": "Oman",
+      "currency": "OMR",
+      "symbol": "ر.ع",
+      "priority": 1,
+      "retailers": [
+        { "id": "extra-om", "name": "eXtra Oman", "url": "https://www.extra.com/en-om/", "verified": false, "note": "Server error for automated clients." },
+        { "id": "lulu-om", "name": "Lulu Hypermarket Oman", "url": "https://www.luluhypermarket.com/en-om/", "verified": false, "note": "Cloudflare challenge (HTTP 403)." },
+        { "id": "sharafdg-om", "name": "Sharaf DG Oman", "url": "https://www.sharafdg.com/", "verified": false, "note": "Blocks automated clients (HTTP 403)." }
+      ]
+    },
+    {
+      "id": "jo",
+      "name": "约旦",
+      "nameEn": "Jordan",
+      "currency": "JOD",
+      "symbol": "د.ا",
+      "priority": 1,
+      "retailers": [
+        { "id": "samsung-levant", "name": "Samsung Levant (Jordan)", "url": "https://www.samsung.com/levant/smartphones/galaxy-a/", "verified": true },
+        { "id": "smartbuy", "name": "Smart Buy Jordan", "url": "https://smartbuy.jo/", "verified": false, "note": "Rate limited (HTTP 429)." }
+      ]
+    },
+    {
+      "id": "kw",
+      "name": "科威特",
+      "nameEn": "Kuwait",
+      "currency": "KWD",
+      "symbol": "د.ك",
+      "priority": 2,
+      "retailers": [
+        { "id": "xcite-kw", "name": "X-cite by Alghanim", "url": "https://www.xcite.com/", "verified": false, "note": "Reachable, parser not yet verified." },
+        { "id": "jarir-kw", "name": "Jarir Kuwait", "url": "https://www.jarir.com/kw-en/", "verified": false, "note": "Not yet verified." }
+      ]
+    }
+  ]
+}
