@@ -3,10 +3,11 @@
   "contractVersion": "1.1",
   "notes": [
     "Only sources that have returned a real price in a live run are enabled=true.",
-    "parser=samsung-official-list emits one record per product found on the brand's regional Galaxy listing (JSON-LD ItemList) and is what keeps the model list in sync with each market.",
-    "parser=amazon-search renders the local Amazon storefront with Playwright, then verifies the candidate product page.",
+    "parser=jsonld-itemlist reads a schema.org ItemList (brand listing page or retailer category page) and emits one record per model+variant, keeping the lowest listed price. This is what keeps the model list in sync with each market.",
+    "parser=jsonld reads a single product page's schema.org Product/Offer. The model/variant are derived from the page title and must agree with the configured model, otherwise the source fails instead of mislabelling a price.",
+    "parser=amazon-search renders the local Amazon storefront with Playwright, matches model + storage in a result card, verifies the product page when reachable, otherwise uses the card price (amazon-search-card).",
     "parser=browser-text renders a product page with Playwright and extracts a localized price token.",
-    "Countries without a reachable source (qa, om) keep enabled=false and a reason; they show as unavailable instead of a guessed price."
+    "Countries without a reachable source (om) keep enabled=false and a reason; they show as unavailable instead of a guessed price."
   ],
   "sources": [
     {
@@ -17,7 +18,7 @@
       "currency": "SAR",
       "enabled": true,
       "url": "https://www.samsung.com/sa_en/smartphones/galaxy-a/",
-      "parser": "samsung-official-list"
+      "parser": "jsonld-itemlist"
     },
     {
       "id": "samsung-sa-s-official",
@@ -27,7 +28,7 @@
       "currency": "SAR",
       "enabled": true,
       "url": "https://www.samsung.com/sa_en/smartphones/galaxy-s/",
-      "parser": "samsung-official-list"
+      "parser": "jsonld-itemlist"
     },
     {
       "id": "samsung-tr-a-official",
@@ -37,7 +38,7 @@
       "currency": "TRY",
       "enabled": true,
       "url": "https://www.samsung.com/tr/smartphones/galaxy-a/",
-      "parser": "samsung-official-list"
+      "parser": "jsonld-itemlist"
     },
     {
       "id": "samsung-tr-s-official",
@@ -47,7 +48,7 @@
       "currency": "TRY",
       "enabled": true,
       "url": "https://www.samsung.com/tr/smartphones/galaxy-s/",
-      "parser": "samsung-official-list"
+      "parser": "jsonld-itemlist"
     },
     {
       "id": "samsung-ae-a-official",
@@ -57,7 +58,7 @@
       "currency": "AED",
       "enabled": true,
       "url": "https://www.samsung.com/ae/smartphones/galaxy-a/",
-      "parser": "samsung-official-list"
+      "parser": "jsonld-itemlist"
     },
     {
       "id": "samsung-ae-s-official",
@@ -67,7 +68,7 @@
       "currency": "AED",
       "enabled": true,
       "url": "https://www.samsung.com/ae/smartphones/galaxy-s/",
-      "parser": "samsung-official-list"
+      "parser": "jsonld-itemlist"
     },
     {
       "id": "samsung-levant-a-official",
@@ -77,7 +78,43 @@
       "currency": "JOD",
       "enabled": true,
       "url": "https://www.samsung.com/levant/smartphones/galaxy-a/",
-      "parser": "samsung-official-list"
+      "parser": "jsonld-itemlist"
+    },
+    {
+      "id": "jarir-qa-catalog",
+      "name": "Jarir Qatar · Smartphones catalog",
+      "country": "qa",
+      "channel": "retail",
+      "currency": "QAR",
+      "enabled": true,
+      "url": "https://www.jarir.com/qa-en/smartphones-x.html",
+      "parser": "jsonld-itemlist"
+    },
+    {
+      "id": "jarir-qa-a57-128",
+      "name": "Jarir Qatar · Galaxy A57 5G 128GB",
+      "country": "qa",
+      "channel": "retail",
+      "currency": "QAR",
+      "enabled": true,
+      "url": "https://www.jarir.com/qa-en/samsung-galaxy-a57-5g-smartphones-jpm1850.html",
+      "parser": "jsonld",
+      "model": "A57",
+      "series": "Galaxy A",
+      "variant": "128GB"
+    },
+    {
+      "id": "jumbo-ae-a07-128",
+      "name": "Jumbo UAE · Galaxy A07 128GB",
+      "country": "ae",
+      "channel": "retail",
+      "currency": "AED",
+      "enabled": true,
+      "url": "https://www.jumbo.ae/samsung-galaxy-a07-4gb-5g-smartphone-black-128-gb.html",
+      "parser": "jsonld",
+      "model": "A07",
+      "series": "Galaxy A",
+      "variant": "128GB"
     },
     {
       "id": "jarir-sa-a57-256",
@@ -146,34 +183,19 @@
       "variant": "128GB"
     },
     {
-      "id": "jarir-qa-search",
-      "name": "Jarir Qatar · Galaxy search",
-      "country": "qa",
-      "channel": "retail",
-      "currency": "QAR",
-      "enabled": false,
-      "url": "https://www.jarir.com/qa-en/catalogsearch/result/?q=Samsung+Galaxy+A16",
-      "parser": "browser-text",
-      "model": "A16",
-      "series": "Galaxy A",
-      "variant": "128GB",
-      "tokens": ["QR", "QAR", "ر.ق"],
-      "disabledReason": "Storefront returns an empty product shell to automated clients; no QAR price is ever rendered. Left disabled so the cell reports unavailable instead of a fabricated value."
-    },
-    {
       "id": "extra-om-search",
       "name": "eXtra Oman · Galaxy search",
       "country": "om",
       "channel": "retail",
       "currency": "OMR",
       "enabled": false,
-      "url": "https://www.extra.com/en-om/search?q=galaxy+a16",
+      "url": "https://www.extra.com/en-om/search?text=galaxy+a16",
       "parser": "browser-text",
       "model": "A16",
       "series": "Galaxy A",
       "variant": "128GB",
       "tokens": ["OMR", "ر.ع"],
-      "disabledReason": "Site answers automated clients with 'Server Error - eXtra Oman'. Left disabled so the cell reports unavailable instead of a fabricated value."
+      "disabledReason": "eXtra Oman answers automated clients with 'Server Error' and its prices load client-side from Unbxd; no OMR price is exposed to the collector. Lulu/Sharaf DG Oman return Cloudflare 403 and Samsung has no Oman storefront. Left disabled so Oman reports unavailable instead of a fabricated value."
     }
   ]
 }

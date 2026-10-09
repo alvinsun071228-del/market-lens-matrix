@@ -26,7 +26,7 @@ rather than wrong.
 
 | `parser` | Works on | Notes |
 |---|---|---|
-| `samsung-official-list` | Brand regional Galaxy listing pages | Reads the JSON-LD `ItemList`; emits **one record per model+variant** (lowest listed price). This is what keeps the model list in sync with each market. |
+| `jsonld-itemlist` | Brand listing pages and retailer category pages | Reads the JSON-LD `ItemList`; emits **one record per model+variant** (lowest listed price). This is what keeps the model list in sync with each market. |
 | `amazon-search` | Local Amazon storefronts | Renders the search page with Playwright, matches model + storage in a result card, verifies with the product page when reachable, otherwise falls back to the card price (`amazon-search-card`). |
 | `browser-text` | A single retailer product page | Renders with Playwright and extracts a localized price token. |
 | `jsonld` | Any page exposing a schema.org Product/Offer | Plain fetch, no browser. |
@@ -44,7 +44,7 @@ model-equality check so a search card for another model is rejected.
 
 1. Verify the price is reachable **from a runner**, not just your browser:
    `curl -sL -A "<desktop UA>" "<url>" | grep -o '<currency token>'`.
-   A 200 with the price in HTML/JSON-LD → use `jsonld`/`samsung-official-list`.
+   A 200 with the price in HTML/JSON-LD → use `jsonld`/`jsonld-itemlist`.
    A 403/Cloudflare page or a JS-only price → it needs Playwright (`browser-text`/
    `amazon-search`) and may still fail on CI.
 2. Add an entry to `config/sources.json` with a unique `id`, `country`, `channel`,

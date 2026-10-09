@@ -373,7 +373,7 @@ let browser;
 for (const source of activeSources) {
   try {
     let parsed;
-    if (source.parser === "samsung-official-list") {
+    if (source.parser === "jsonld-itemlist") {
       parsed = await parseSamsungOfficialList(source);
     } else if (source.parser === "amazon-search") {
       browser ||= await chromium.launch({ headless: true });
@@ -385,7 +385,17 @@ for (const source of activeSources) {
       const res = await fetch(source.url, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(20000) });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const one = parseJsonLd(await res.text(), source);
-      parsed = one ? [{ ...one, sourceUrl: source.url, rawEvidence: { ...verifiedRef(source), method: "jsonld" } }] : [];
+      if (one) {
+        const model = deriveModel(one.title) ?? source.model;
+        const variant = deriveVariant(one.title, source.url) ?? source.variant;
+        // Never relabel a product page as a different model than it actually is.
+        if (source.model && model && model.toUpperCase() !== String(source.model).toUpperCase()) {
+          throw new Error("model mismatch: page=" + model + " config=" + source.model);
+        }
+        parsed = [{ ...one, model, variant, sourceUrl: source.url, rawEvidence: { ...verifiedRef(source), method: "jsonld", title: one.title } }];
+      } else {
+        parsed = [];
+      }
     } else {
       throw new Error(`unknown parser: ${source.parser}`);
     }

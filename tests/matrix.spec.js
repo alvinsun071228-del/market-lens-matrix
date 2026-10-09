@@ -108,7 +108,7 @@ test("dashboard renders config-driven markets, USD prices and freshness", async 
   expect(rows).toBe(1);
 
   // A market without a reachable source renders blank cells, not zeros.
-  await market.selectOption("qa");
+  await market.selectOption("om");
   await expect(page.locator(".empty-cell").first()).toBeVisible();
   await expect(page.locator(".cell-button")).toHaveCount(0);
 

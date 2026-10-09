@@ -12,8 +12,8 @@ Live site (GitHub Pages): `https://alvinsun071228-del.github.io/market-lens-matr
 |---|---|---|
 | 土耳其 Türkiye (`tr`) | TRY ₺ | Samsung Türkiye official store, Amazon.com.tr |
 | 沙特阿拉伯 Saudi Arabia (`sa`) | SAR SR | Samsung Saudi official store, Jarir, Amazon.sa |
-| 阿联酋 UAE (`ae`) | AED د.إ | Samsung UAE official store, Amazon.ae |
-| 卡塔尔 Qatar (`qa`) | QAR ر.ق | *no reachable source yet — shown as unavailable* |
+| 阿联酋 UAE (`ae`) | AED د.إ | Samsung UAE official store, Amazon.ae, Jumbo Electronics |
+| 卡塔尔 Qatar (`qa`) | QAR ر.ق | Jarir Qatar (smartphones catalog + product pages) |
 | 阿曼 Oman (`om`) | OMR ر.ع | *no reachable source yet — shown as unavailable* |
 | 约旦 Jordan (`jo`) | JOD د.ا | Samsung Levant (Jordan) official store |
 | 科威特 Kuwait (`kw`) | KWD د.ك | *not yet verified* |

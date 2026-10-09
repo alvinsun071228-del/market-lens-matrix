@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T15:46:18.068Z",
+  "generatedAt": "2026-10-09T15:53:25.351Z",
   "brands": [
     {
       "id": "samsung",
@@ -57,6 +57,7 @@
     },
     "ae": {
       "modelIds": [
+        "A07",
         "A07S",
         "A08",
         "A16",
@@ -72,22 +73,30 @@
       "sourceIds": [
         "samsung-ae-a-official",
         "samsung-ae-s-official",
+        "jumbo-ae-a07-128",
         "amazon-ae-a16-128"
       ],
-      "reachableSources": 3,
+      "reachableSources": 4,
       "unavailableReason": null
     },
     "qa": {
-      "modelIds": [],
-      "sourceIds": [],
-      "reachableSources": 0,
-      "unavailableReason": "Storefront returns an empty product shell to automated clients; no QAR price is ever rendered. Left disabled so the cell reports unavailable instead of a fabricated value."
+      "modelIds": [
+        "A57",
+        "S25",
+        "S26"
+      ],
+      "sourceIds": [
+        "jarir-qa-catalog",
+        "jarir-qa-a57-128"
+      ],
+      "reachableSources": 2,
+      "unavailableReason": null
     },
     "om": {
       "modelIds": [],
       "sourceIds": [],
       "reachableSources": 0,
-      "unavailableReason": "Site answers automated clients with 'Server Error - eXtra Oman'. Left disabled so the cell reports unavailable instead of a fabricated value."
+      "unavailableReason": "eXtra Oman answers automated clients with 'Server Error' and its prices load client-side from Unbxd; no OMR price is exposed to the collector. Lulu/Sharaf DG Oman return Cloudflare 403 and Samsung has no Oman storefront. Left disabled so Oman reports unavailable instead of a fabricated value."
     },
     "jo": {
       "modelIds": [
@@ -118,6 +127,7 @@
         "64GB"
       ],
       "countries": [
+        "ae",
         "jo",
         "sa",
         "tr"
@@ -226,10 +236,12 @@
       "variants": [
         "128GB",
         "256GB",
-        "512GB"
+        "512GB",
+        "N/A"
       ],
       "countries": [
         "ae",
+        "qa",
         "sa",
         "tr"
       ]
@@ -243,6 +255,7 @@
       ],
       "countries": [
         "ae",
+        "qa",
         "sa",
         "tr"
       ]
@@ -257,6 +270,7 @@
       ],
       "countries": [
         "ae",
+        "qa",
         "sa",
         "tr"
       ]
