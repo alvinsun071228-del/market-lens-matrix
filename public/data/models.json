@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T02:46:08.423Z",
+  "generatedAt": "2026-10-10T05:47:08.017Z",
   "contractVersion": "1.1",
   "brandId": "samsung",
   "totalModels": 22,
@@ -737,7 +737,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 2524.52
+          "priceUsd": 2260.91
         }
       }
     },
