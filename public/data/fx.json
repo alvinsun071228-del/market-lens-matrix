@@ -1,7 +1,7 @@
 {
   "base": "USD",
   "asOf": "2026-10-10",
-  "fetchedAt": "2026-10-10T08:45:32.872Z",
+  "fetchedAt": "2026-10-10T08:54:22.627Z",
   "source": "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json",
   "sourceId": "fawazahmed0/currency-api",
   "unit": "USD per 1 unit of local currency",
