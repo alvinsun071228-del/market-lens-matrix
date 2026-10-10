@@ -142,6 +142,20 @@ current week. `cell()` deltas must come from two real adjacent ISO weeks, otherw
 (never a carried row, never an interpolation). All existing `cell`/`history` semantics otherwise
 stay as they are.
 
+**Lead addendum — displayed USD is derived from the PUBLISHED rate (found on the merged upstream
+data).** `priceUsd` is a *function*, documented as `round(price × fx.rates[currency], 2)` with the
+rates in the published `fx.json`; `validate.mjs` enforces exactly that for `latest.json`. Points in
+`history.json` are historical evidence and keep the `priceUsd` computed at their own collection
+time, so after an FX refresh they can disagree with the current rate (real case: three TRY points
+from the 2026-10-09 snapshot rendered `$270.25` where the published rate gives `$269.69`, failing
+`tests/matrix.spec.js`'s displayed-USD invariant). Therefore, at the end of `hydrate()`, the client
+must normalise `priceUsd` for both `records` and `historyPoints` from the published rates: when a
+finite rate exists for the row's currency and the row has a finite `price`, set
+`priceUsd = round(price × rate, 2)`; when no rate exists, leave the stored value untouched (real
+published data is already `null` there, and fixture data must not be nulled). Do not rewrite
+`history.json` on disk and do not change `weeklyTrend`, which compares local prices within a
+currency.
+
 ### 3.2 `weeklyTrend(scope)` — the frozen aggregation
 `scope = { country, brand, series, channel, variant, screenInches, batteryMah, storage, until, limit }`
 (absent/`ALL` means unrestricted; `until` defaults to the latest week; `limit` defaults to 12).

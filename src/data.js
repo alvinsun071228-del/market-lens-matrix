@@ -318,6 +318,21 @@ function applySpecs(payload) {
   return out;
 }
 
+/**
+ * Recompute `priceUsd` from the published rates (WC §3.1 addendum, `priceUsd` is
+ * documented as `round(price × fx.rates[currency], 2)`). A missing or non-finite
+ * rate leaves the stored value untouched: real published data is already `null`
+ * there and fixture values must not be nulled.
+ */
+function normalizePriceUsd(rows) {
+  const rates = dataInfo.fx?.rates ?? {};
+  for (const row of rows) {
+    const rate = rates?.[row.currency];
+    if (!Number.isFinite(rate) || !Number.isFinite(row.price)) continue;
+    row.priceUsd = Math.round(row.price * rate * 100) / 100;
+  }
+}
+
 /** Apply already-parsed payloads. Exported so tests can hydrate from disk. */
 export function hydrate({
   markets = null,
@@ -388,6 +403,13 @@ export function hydrate({
     loaded: true,
     errors,
   });
+
+  // WC §3.1 addendum: displayed USD is a function of the PUBLISHED rates, so a
+  // stored priceUsd computed under an older rate (history.json points) must not
+  // win at display time. Rows whose currency has no published rate keep their
+  // stored value untouched — never forced to null.
+  normalizePriceUsd(records);
+  normalizePriceUsd(historyPoints);
 
   setWeeks();
   return errors;

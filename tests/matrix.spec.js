@@ -552,6 +552,35 @@ test("spec accessors and spec-filter exclusions", () => {
   expect(specValues("screenInches")).toEqual([]);
 });
 
+test("USD display: the published fx rate wins over a stale stored priceUsd", () => {
+  // Both a history.json point and a latest.json record carry a priceUsd computed
+  // under an older rate; after hydrate they must follow the published rate
+  // (WC §3.1 addendum): round(price × fx.rates[currency], 2).
+  const stalePoint = historyPoint("M1", WEEK[1], 100, { currency: "SAR", priceUsd: 999 });
+  const staleRecord = { ...historyPoint("M2", WEEK[1], 200, { currency: "SAR", priceUsd: 1 }), sourceId: "rec-M2" };
+  hydrate({
+    latest: feed([staleRecord]),
+    history: { apiVersion: "1.1", weeks: WEEK, points: [stalePoint] },
+  });
+
+  expect(history("sa", "M1", "retail", "128GB", WEEK[1]).at(-1).priceUsd).toBe(27); // 100 × 0.27
+  expect(cell("sa", "M1", "retail", "128GB", WEEK[1]).priceUsd).toBe(27);
+  expect(cell("sa", "M2", "retail", "128GB", WEEK[1]).priceUsd).toBe(54); // 200 × 0.27
+});
+
+test("USD display: a currency without a published rate keeps its stored priceUsd", () => {
+  // Fixtures (and real rows) must not be nulled when no rate exists.
+  const record = { ...historyPoint("M3", WEEK[1], 300, { currency: "XYZ", priceUsd: 42 }), sourceId: "rec-M3" };
+  const point = historyPoint("M4", WEEK[1], 400, { currency: "XYZ", priceUsd: 7 });
+  hydrate({
+    latest: feed([record]),
+    history: { apiVersion: "1.1", weeks: WEEK, points: [point] },
+  });
+
+  expect(cell("sa", "M3", "retail", "128GB", WEEK[1]).priceUsd).toBe(42);
+  expect(history("sa", "M4", "retail", "128GB", WEEK[1]).at(-1).priceUsd).toBe(7);
+});
+
 test("dashboard renders config-driven markets, USD prices and freshness", async ({ page }) => {
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
