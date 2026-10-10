@@ -15,6 +15,9 @@ const check = (ok, message) => {
 };
 
 const STATES = new Set(["live", "missing", "invalid", "unavailable"]);
+const HISTORY_STATES = new Set(["live", "promo"]);
+const SPEC_FIELDS = ["display", "screenInches", "batteryMah", "storage", "ramGb", "chipset", "releaseYear"];
+const SPEC_CONFIDENCE = new Set(["official", "retailer", "unverified"]);
 const round2 = (n) => Math.round(n * 100) / 100;
 const isoWeekStart = (value) => {
   const date = new Date(value);
@@ -137,6 +140,104 @@ for (const m of models.models ?? []) {
   check(observedModelIds.has(m.id) || sourcePageModelIds.has(m.id), `model ${m.id}: no record or real source-page evidence`);
 }
 
+/* ---------------------------- history.json ----------------------------- */
+/* WC C2: the published weekly history must contain only real, sourced observations.
+   Rule 7: `brand`/`series` are verbatim copies of the source record — the keys must be
+   present on every point, but a legacy row with no brand legitimately carries null. */
+let history;
+try {
+  history = read("public/data/history.json");
+} catch (error) {
+  console.error(`FAIL: could not read public/data/history.json: ${error.message}`);
+  process.exit(1);
+}
+check(history.apiVersion === "1.1", `history.apiVersion is "${history.apiVersion}", expected "1.1"`);
+check(Number.isFinite(Date.parse(history.generatedAt ?? "")), "history.generatedAt must be an ISO timestamp");
+check(Array.isArray(history.weeks), "history.weeks must be an array");
+check(Array.isArray(history.points), "history.points must be an array");
+
+const historyWeeks = Array.isArray(history.weeks) ? history.weeks : [];
+const historyWeekSet = new Set();
+for (const [i, week] of historyWeeks.entries()) {
+  check(/^\d{4}-\d{2}-\d{2}$/.test(week ?? ""), `history.weeks[${i}] "${week}" must be YYYY-MM-DD`);
+  check(isoWeekStart(week) === week, `history.weeks[${i}] "${week}" is not an ISO week start (Monday)`);
+  check(!historyWeekSet.has(week), `history.weeks[${i}] "${week}" is duplicated`);
+  if (i > 0) check(String(historyWeeks[i - 1]) < String(week), `history.weeks is not sorted ascending at index ${i} ("${historyWeeks[i - 1]}" -> "${week}")`);
+  historyWeekSet.add(week);
+}
+
+const historyKeys = new Set();
+const historyPoints = Array.isArray(history.points) ? history.points : [];
+for (const [i, p] of historyPoints.entries()) {
+  const at = `history.points[${i}] (${p?.country ?? "?"}/${p?.model ?? "?"}/${p?.week ?? "?"})`;
+  check(Boolean(p) && typeof p === "object" && !Array.isArray(p), `${at}: point must be an object`);
+  if (!p || typeof p !== "object" || Array.isArray(p)) continue;
+  for (const field of ["country", "model", "channel", "variant"]) check(Boolean(p[field]), `${at}: ${field} missing`);
+  check("brand" in p, `${at}: brand key missing (null allowed, key required)`);
+  check("series" in p, `${at}: series key missing (null allowed, key required)`);
+  check(p.brand == null || typeof p.brand === "string", `${at}: brand must be a string or null (copied verbatim, never inferred)`);
+  check(p.series == null || typeof p.series === "string", `${at}: series must be a string or null (copied verbatim, never inferred)`);
+  check(/^\d{4}-\d{2}-\d{2}$/.test(p.week ?? ""), `${at}: week must be YYYY-MM-DD`);
+  check(isoWeekStart(p.week) === p.week, `${at}: week ${p.week} is not the ISO week start of its own week value`);
+  check(historyWeekSet.has(p.week), `${at}: week ${p.week} is not listed in history.weeks`);
+  check(typeof p.price === "number" && Number.isFinite(p.price) && p.price > 0, `${at}: price must be a finite positive number`);
+  check(HISTORY_STATES.has(p.state), `${at}: state "${p.state}" must be live|promo (a carried row is not an observation)`);
+  check(Boolean(p.sourceId), `${at}: sourceId missing`);
+  check(/^https?:/.test(String(p.sourceUrl ?? "")), `${at}: sourceUrl must be http(s)`);
+  check(Number.isFinite(Date.parse(p.collectedAt ?? "")), `${at}: collectedAt must be an ISO timestamp`);
+  const key = [p.country, p.model, p.channel, p.variant, p.week].join("|");
+  check(!historyKeys.has(key), `${at}: duplicate point for key ${key} (one real point per key)`);
+  historyKeys.add(key);
+}
+
+/* ----------------------------- specs.json ------------------------------ */
+/* WC C4. Absent is not a failure (the spec view degrades to 暂无数据); present
+   but malformed, unsourced or keyed to an unknown model is. Partial coverage is
+   an acceptable documented outcome and is warned about, not failed. */
+let specs = null;
+let specsPresent = true;
+try {
+  specs = read("public/data/specs.json");
+} catch (error) {
+  if (error?.code === "ENOENT") {
+    specsPresent = false;
+    console.warn("WARN: public/data/specs.json is absent — the spec drawer and spec filters will show 暂无数据.");
+  } else {
+    problems.push(`public/data/specs.json is present but unreadable/invalid JSON: ${error.message}`);
+  }
+}
+let specsChecked = false;
+if (specsPresent) {
+  if (!specs || typeof specs !== "object" || Array.isArray(specs)) {
+    problems.push("specs.json must be a JSON object");
+  } else {
+    specsChecked = true;
+    check(specs.generatedAt == null || Number.isFinite(Date.parse(specs.generatedAt ?? "")), "specs.generatedAt must be an ISO timestamp");
+    check(specs.notes == null || typeof specs.notes === "string", "specs.notes must be a string");
+    check(specs.models && typeof specs.models === "object" && !Array.isArray(specs.models), "specs.models must be an object keyed by model id");
+    const specEntries = specs.models && typeof specs.models === "object" && !Array.isArray(specs.models) ? Object.entries(specs.models) : [];
+    const modelIds = new Set((models.models ?? []).map((m) => m.id));
+    for (const id of Object.keys(specs.models ?? {})) check(modelIds.has(id), `specs.models["${id}"] is not a model id in public/data/models.json`);
+    for (const [id, spec] of specEntries) {
+      const at = `specs.models["${id}"]`;
+      check(Boolean(spec) && typeof spec === "object" && !Array.isArray(spec), `${at} must be an object`);
+      if (!spec || typeof spec !== "object" || Array.isArray(spec)) continue;
+      for (const field of ["display", "chipset"]) check(spec[field] == null || typeof spec[field] === "string", `${at}.${field} must be a string or null`);
+      for (const field of ["screenInches", "batteryMah", "ramGb"]) check(spec[field] == null || (typeof spec[field] === "number" && Number.isFinite(spec[field]) && spec[field] > 0), `${at}.${field} must be a positive number or null`);
+      check(spec.releaseYear == null || (Number.isInteger(spec.releaseYear) && spec.releaseYear > 2000 && spec.releaseYear < 2100), `${at}.releaseYear must be a plausible year or null`);
+      check(spec.storage == null || (Array.isArray(spec.storage) && spec.storage.every((v) => typeof v === "string" && v.length > 0)), `${at}.storage must be an array of non-empty strings or null`);
+      check(SPEC_CONFIDENCE.has(spec.confidence), `${at}.confidence must be official|retailer|unverified`);
+      check(Array.isArray(spec.sources) && spec.sources.every((u) => /^https?:/.test(String(u))), `${at}.sources must be an array of http(s) URLs`);
+      check(spec.missing == null || (Array.isArray(spec.missing) && spec.missing.every((f) => typeof f === "string")), `${at}.missing must be an array of field names`);
+      for (const field of spec.missing ?? []) check(SPEC_FIELDS.includes(field), `${at}.missing lists unknown field "${field}"`);
+      const stated = SPEC_FIELDS.filter((field) => spec[field] != null);
+      check(stated.length === 0 || (spec.sources ?? []).length > 0, `${at}: a non-null spec value requires at least one source URL`);
+    }
+    const uncovered = [...modelIds].filter((id) => !Object.prototype.hasOwnProperty.call(specs.models ?? {}, id));
+    if (uncovered.length) console.warn(`WARN: specs.json has no entry for ${uncovered.length}/${modelIds.size} model id(s): ${uncovered.join(", ")} — those models must render 暂无数据.`);
+  }
+}
+
 /* ------------------------- api mirror identity ------------------------- */
 const mirror = readFileSync(resolve(root, "public/api/prices.json"), "utf8");
 const source = readFileSync(resolve(root, "public/data/latest.json"), "utf8");
@@ -149,5 +250,5 @@ if (problems.length) {
   process.exit(1);
 }
 console.log(
-  `OK: contract v1.1 valid · ${latest.records.length} records · ${liveThisWeek.length} live this week · ${markets.countries.length} markets · ${models.models.length} models · fx ${fx.asOf}`,
+  `OK: contract v1.1 valid · ${latest.records.length} records · ${liveThisWeek.length} live this week · ${markets.countries.length} markets · ${models.models.length} models · fx ${fx.asOf} · history ${historyWeeks.length} weeks / ${historyPoints.length} points${specsChecked ? " · specs present" : ""}`,
 );

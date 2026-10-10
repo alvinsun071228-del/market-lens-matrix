@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -13,14 +13,15 @@ import {
   Search,
   Database,
   RotateCcw,
-  SlidersHorizontal,
   ExternalLink,
   Minus,
 } from "lucide-react";
 import {
   ResponsiveContainer,
   LineChart,
+  ComposedChart,
   Line,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -52,6 +53,11 @@ import {
   dataInfo,
   records,
   loadRemoteRecords,
+  currencyOf,
+  cadenceLabel,
+  specOf,
+  specValues,
+  weeklyTrend,
 } from "./data";
 import "./styles.css";
 gsap.registerPlugin(useGSAP);
@@ -166,6 +172,360 @@ function Drawer({ title, close, children }) {
     </dialog>
   );
 }
+/* ------------------------ product specs (R2 / WC §5) --------------------- */
+
+const CONFIDENCE_LABEL = { official: "官方", retailer: "零售商", unverified: "未核实" };
+
+const SPEC_FIELDS = [
+  {
+    key: "screenInches",
+    label: "屏幕尺寸",
+    value: (spec) => (spec.screenInches == null || spec.screenInches === "" ? null : `${spec.screenInches}"`),
+    // The researched `display` string already opens with the size (every published
+    // entry does, e.g. `6.7" PLS LCD HD+`), so strip that leading token only:
+    // the value column owns the number and the note keeps the panel detail.
+    note: (spec) => {
+      if (!spec.display) return null;
+      const display = String(spec.display).trim();
+      if (!display) return null;
+      return display.replace(/^\d+(?:\.\d+)?\s*["″]?\s*/, "") || null;
+    },
+  },
+  {
+    key: "batteryMah",
+    label: "电池容量",
+    value: (spec) => (spec.batteryMah == null || spec.batteryMah === "" ? null : `${spec.batteryMah} mAh`),
+  },
+  {
+    key: "storage",
+    label: "容量（存储）",
+    value: (spec) => {
+      const list = Array.isArray(spec.storage) ? spec.storage.filter((v) => v != null && v !== "") : [];
+      return list.length ? list.join(" / ") : null;
+    },
+  },
+  {
+    key: "ramGb",
+    label: "运行内存",
+    value: (spec) => (spec.ramGb == null || spec.ramGb === "" ? null : `${spec.ramGb} GB`),
+  },
+  {
+    key: "chipset",
+    label: "芯片",
+    value: (spec) => (spec.chipset == null || spec.chipset === "" ? null : String(spec.chipset)),
+  },
+  {
+    key: "releaseYear",
+    label: "发布时间",
+    value: (spec) => (spec.releaseYear == null || spec.releaseYear === "" ? null : `${spec.releaseYear} 年`),
+  },
+];
+
+/** Only URLs actually published in `sources` are rendered (anti-fabrication, WC §7). */
+function specSources(spec) {
+  return Array.isArray(spec?.sources)
+    ? spec.sources.filter((url) => typeof url === "string" && /^https?:/.test(url))
+    : [];
+}
+
+/** R2 — the researched product specs behind a model name in the matrix header. */
+function SpecDetail({ model, close }) {
+  const spec = specOf(model.id);
+  const sources = specSources(spec);
+  return (
+    <Drawer title={`${model.name} · 产品规格`} close={close}>
+      <div className="drawer-body spec-body">
+        {!spec ? (
+          <p className="spec-empty">
+            {model.name} 暂无已核实的规格数据（specs.json 中没有该型号的条目）。为避免编造，本页不显示任何推测值。
+          </p>
+        ) : (
+          <>
+            <p className="note spec-meta">
+              型号 {model.id} · Samsung · 数据置信度：
+              {CONFIDENCE_LABEL[spec.confidence] ?? spec.confidence ?? "未标注"} · 未核实字段显示「暂无数据」。
+            </p>
+            <dl className="spec-grid">
+              {SPEC_FIELDS.map((field) => {
+                const value = field.value(spec);
+                const note = field.note ? field.note(spec) : null;
+                return (
+                  <div className="spec-row" key={field.key}>
+                    <dt>{field.label}</dt>
+                    <dd className={value == null ? "unknown" : ""}>
+                      <span>{value ?? "暂无数据"}</span>
+                      {value != null && note ? <small>{note}</small> : null}
+                    </dd>
+                  </div>
+                );
+              })}
+            </dl>
+            <h3 className="spec-heading">来源链接</h3>
+            {sources.length ? (
+              <ul className="spec-sources">
+                {sources.map((url) => (
+                  <li key={url}>
+                    <a href={url} target="_blank" rel="noreferrer">
+                      <span>{url.replace(/^https?:\/\//, "")}</span>
+                      <ExternalLink size={13} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="spec-sources-empty">暂无数据</p>
+            )}
+          </>
+        )}
+      </div>
+    </Drawer>
+  );
+}
+
+/* ---------------------- weekly trend (R4 / WC §3.2, §5) ------------------ */
+
+/** `pct` values from `weeklyTrend()` are FRACTIONS (0.0123 = +1.23%). */
+const trendPct = (fraction) => (fraction == null ? null : fraction * 100);
+
+const trendSeriesName = (item) =>
+  `${item.model}${item.variant && item.variant !== ALL ? ` ${item.variant}` : ""}`;
+
+const trendMove = (item) =>
+  `${trendSeriesName(item)}（${money(item.from, currencyOf(item.country))} → ${money(item.to, currencyOf(item.country))}，${percentage(trendPct(item.pct))}）`;
+
+const trendWeekLabel = (item) =>
+  `${trendSeriesName(item)}（${money(item.from, currencyOf(item.country))} → ${money(item.to, currencyOf(item.country))}，${percentage(trendPct(item.pct))}，${item.week}）`;
+
+/**
+ * R4 — `本周价格变化趋势`. Every sentence below is derived from the returned
+ * `weeklyTrend()` payload only: no interpolation, no narrative the sample cannot
+ * support (WC §5, §7, A2, A3).
+ */
+function TrendSection({ trend, week, scopeText }) {
+  const { points = [], summary, excluded } = trend ?? {};
+  const chart = points.map((point) => ({
+    week: point.week.slice(5),
+    fullWeek: point.week,
+    index: point.index,
+    up: point.changedUp,
+    down: point.changedDown,
+    sample: point.sample,
+  }));
+  const latest = points.at(-1) ?? null;
+  const sample = summary?.sample ?? 0;
+  const thin = Boolean(summary?.insufficient) || (latest?.sample ?? 0) < 3;
+
+  const latestMarkets = summary?.markets ?? [];
+  const latestChannels = summary?.channels ?? [];
+  const onlyMarket =
+    sample > 0 && latestMarkets.length === 1 && latestMarkets[0].sample === sample
+      ? countries.find((c) => c.id === latestMarkets[0].id)?.name ?? latestMarkets[0].id
+      : null;
+  const onlyChannel =
+    sample > 0 && latestChannels.length === 1 && latestChannels[0].sample === sample
+      ? channelName(latestChannels[0].id)
+      : null;
+  const concentration =
+    onlyMarket && onlyChannel
+      ? `${onlyMarket} · ${onlyChannel}`
+      : onlyMarket ?? onlyChannel ?? null;
+
+  const medianText =
+    summary?.medianPct == null ? "不可计算（可比样本不足）" : percentage(trendPct(summary.medianPct));
+  // A move that is listed in the weekly movers AND is a suspect must not read as
+  // an unlabelled trend (A2, R-4).
+  const flaggedMovers = [...(summary?.topGainers ?? []), ...(summary?.topLosers ?? [])].filter((item) =>
+    (summary?.suspects ?? []).some(
+      (suspect) =>
+        suspect.country === item.country &&
+        suspect.model === item.model &&
+        suspect.variant === item.variant &&
+        suspect.pct === item.pct,
+    ),
+  );
+
+  return (
+    <section className="trend" aria-label="本周价格变化趋势">
+      <div className="section-head">
+        <h2>本周价格变化趋势</h2>
+        <span className="trend-week-badge">截至 {week}</span>
+      </div>
+      <p className="trend-scope">
+        范围：{scopeText} · 数据为每周快照（{cadenceLabel()}）· 非实时行情 · 缺口不插值
+      </p>
+
+      {points.length > 0 ? (
+        <>
+          <div className="trend-chart">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={chart} margin={{ top: 18, right: 12, left: 0, bottom: 6 }}>
+                <CartesianGrid vertical={false} stroke="#e7e9ec" />
+                <XAxis
+                  dataKey="week"
+                  tick={{ fontSize: 12, fill: "#69707b" }}
+                  tickLine={false}
+                  axisLine={false}
+                  minTickGap={28}
+                />
+                <YAxis
+                  yAxisId="index"
+                  width={56}
+                  domain={["auto", "auto"]}
+                  tick={{ fontSize: 12, fill: "#69707b" }}
+                  tickLine={false}
+                  axisLine={false}
+                  tickFormatter={(v) => Number(v).toFixed(0)}
+                />
+                <YAxis
+                  yAxisId="count"
+                  orientation="right"
+                  width={38}
+                  allowDecimals={false}
+                  tick={{ fontSize: 12, fill: "#69707b" }}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <Tooltip
+                  formatter={(value, name, item) => {
+                    if (name === "index") {
+                      return [item?.payload?.index == null ? "缺口（无可比样本）" : Number(value).toFixed(2), "价格指数（基准 100）"];
+                    }
+                    return [`${value} 个型号`, name === "up" ? "上涨" : "下跌"];
+                  }}
+                  labelFormatter={(label, payload) => {
+                    const row = payload?.[0]?.payload;
+                    return row ? `${row.fullWeek} · 可比样本 ${row.sample}` : label;
+                  }}
+                />
+                <Bar yAxisId="count" dataKey="up" fill="#16756a" barSize={9} isAnimationActive={false} />
+                <Bar yAxisId="count" dataKey="down" fill="#b16629" barSize={9} isAnimationActive={false} />
+                <Line
+                  yAxisId="index"
+                  type="linear"
+                  dataKey="index"
+                  stroke="#24272e"
+                  strokeWidth={2}
+                  connectNulls={false}
+                  isAnimationActive={false}
+                  dot={{ r: 3, fill: "#24272e" }}
+                />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="trend-legend">
+            <span>
+              <i className="legend-line" />
+              价格指数（左轴，基准 100）
+            </span>
+            <span>
+              <i className="legend-bar up" />
+              上涨家数（右轴）
+            </span>
+            <span>
+              <i className="legend-bar down" />
+              下跌家数（右轴）
+            </span>
+            <span>指数缺口表示该周可比样本不足，均不连线、不插值</span>
+          </div>
+          <div className="trend-weeks">
+            {points.map((point) => (
+              <div className="trend-week" key={point.week}>
+                <b>{point.week}</b>
+                <span>指数 {point.index == null ? "缺口" : point.index.toFixed(2)}</span>
+                <span>
+                  上涨 {point.changedUp} · 下跌 {point.changedDown}
+                </span>
+                <span>可比样本 {point.sample}</span>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : (
+        <p className="trend-empty">
+          当前筛选范围内没有可比的两周真实记录，因此不显示价格指数（不插值、不推测）。
+        </p>
+      )}
+
+      <div className="trend-summary">
+        <h3>趋势分析总结</h3>
+        <p>
+          范围：{scopeText}，截至 {week}。统计对象是每个「市场 × 型号 × 渠道 × 容量」系列的真实周度观测，
+          数据为每周快照（{cadenceLabel()}），不是实时行情。
+        </p>
+        {thin ? (
+          <p className="trend-thin">
+            本周可比样本不足，暂不判断趋势。
+            {points.length === 0
+              ? "当前范围内没有任何一周达到 3 个可比系列，中位数与价格指数均为缺口（不插值、不推测）。"
+              : `最近一周（${latest.week}）可比样本 ${latest.sample} 项，少于计算中位数所需的 3 项${
+                  summary?.medianPct != null ? `；该周中位周变动 ${medianText}，仅供参考` : ""
+                }。`}
+          </p>
+        ) : (
+          <p>
+            最近一周（{latest.week}）可比样本 {sample} 项：上涨 {summary.up} · 下跌 {summary.down} · 持平{" "}
+            {summary.flat}，中位周变动 {medianText}。
+          </p>
+        )}
+        {!thin && latest?.index != null ? (
+          <p>
+            价格指数以 {points.find((point) => point.index != null)?.week} 的 100 为基准链式累计，最近一周为{" "}
+            {latest.index.toFixed(2)}。
+          </p>
+        ) : null}
+        {concentration ? (
+          <p className="trend-concentration">
+            样本仅来自{concentration}。可比样本越集中，结论越不具代表性。
+          </p>
+        ) : latestMarkets.length > 1 ? (
+          <p>
+            可比样本分布于 {latestMarkets.length} 个市场（
+            {latestMarkets.map((m) => `${countries.find((c) => c.id === m.id)?.name ?? m.id} ${m.sample} 项`).join("、")}
+            ）。
+          </p>
+        ) : null}
+        {summary?.topGainers?.length ? (
+          <p>
+            最近一周涨幅前三：{summary.topGainers.map(trendMove).join("；")}。
+          </p>
+        ) : null}
+        {summary?.topLosers?.length ? (
+          <p>
+            最近一周跌幅前三：{summary.topLosers.map(trendMove).join("；")}。
+          </p>
+        ) : null}
+        {flaggedMovers.length > 0 ? (
+          <p className="trend-flag-note">
+            涨跌榜中有 {flaggedMovers.length} 项属于疑似异常（见下），请先核对来源再解读。
+          </p>
+        ) : null}
+        {summary?.suspects?.length ? (
+          <div className="trend-suspects">
+            <p>
+              疑似异常，需核对来源（{summary.suspects.length} 项，仍计入中位数，未删除也未平滑）：
+            </p>
+            <ul>
+              {summary.suspects.map((item) => (
+                <li key={`${item.country}-${item.model}-${item.variant}-${item.week}`}>{trendWeekLabel(item)}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {(excluded?.missingSpec > 0 || excluded?.noSpec > 0) && (
+          <p className="trend-excluded">
+            规格筛选排除了 {excluded.missingSpec} 个缺少规格数据的型号
+            {excluded.noSpec > 0 ? `，另有 ${excluded.noSpec} 个型号尚无规格条目` : ""}。
+          </p>
+        )}
+        <p className="trend-method">
+          说明：指数由各系列「同币种」的周环比中位数链式生成，不跨币种换算；可比样本少于 3 项时中位数与指数为缺口。
+          指数只描述这些周已经观测到的真实记录，不代表未来价格。
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function Detail({ selected, week, close }) {
   const { country, model } = selected;
   const [variant, setVariant] = useState(selected.variant),
@@ -407,44 +767,158 @@ function Detail({ selected, week, close }) {
     </Drawer>
   );
 }
+/* ----------------- spec-filter matching (R3 / WC §5, OQ-6) --------------- */
+
+const keepNumber = (value) => {
+  const parsed = Number.parseFloat(String(value ?? "").replace(/[^\d.-]/g, ""));
+  return Number.isFinite(parsed) ? parsed : null;
+};
+
+/** Mirrors the frozen data-layer number matching so both sides agree. */
+const specNumberMatches = (actual, wanted) => {
+  const a = keepNumber(actual);
+  if (a == null) return false;
+  const w = keepNumber(wanted);
+  if (w == null) {
+    return String(actual ?? "").trim().toLowerCase() === String(wanted ?? "").trim().toLowerCase();
+  }
+  return Math.abs(a - w) < 1e-6;
+};
+
+/** A model's published storage options, or `[]` when it has none. */
+const specStorage = (modelId) => {
+  const raw = specOf(modelId)?.storage;
+  return Array.isArray(raw) ? raw.filter((v) => v != null && v !== "").map(String) : [];
+};
+
+/**
+ * `ok` | `noSpec` | `missingSpec` (entry without the field) | `mismatch`,
+ * mirroring the data layer's verdict so an active spec filter hides a model for
+ * the same reason in the matrix and in `weeklyTrend()` (WC §3.2, OQ-6).
+ */
+function specVerdictFor(modelId, { screenInches, batteryMah, storage }) {
+  if (screenInches === ALL && batteryMah === ALL && storage === ALL) return "ok";
+  const spec = specOf(modelId);
+  if (!spec) return "noSpec";
+  if (screenInches !== ALL) {
+    if (spec.screenInches == null || spec.screenInches === "") return "missingSpec";
+    if (!specNumberMatches(spec.screenInches, screenInches)) return "mismatch";
+  }
+  if (batteryMah !== ALL) {
+    if (spec.batteryMah == null || spec.batteryMah === "") return "missingSpec";
+    if (!specNumberMatches(spec.batteryMah, batteryMah)) return "mismatch";
+  }
+  if (storage !== ALL) {
+    const list = specStorage(modelId);
+    if (!list.length) return "missingSpec";
+    if (
+      !list.some(
+        (v) =>
+          v.trim().toLowerCase() === String(storage).trim().toLowerCase() ||
+          specNumberMatches(v, storage),
+      )
+    ) {
+      return "mismatch";
+    }
+  }
+  return "ok";
+}
+
 function App() {
   const ref = useRef(null);
   const [week, setWeek] = useState(weeks.at(-1)),
     [country, setCountry] = useState("all"),
     [query, setQuery] = useState(""),
+    // Pre-existing default (the first configured brand). Safe again now that
+    // history.json carries `brand`/`series` verbatim, so a brand scope keeps the
+    // retired ids (A06/A57) in scope and the trend stays computable (WC §2 rule 7).
     [brand, setBrand] = useState(brands[0]?.id ?? "samsung"),
     [series, setSeries] = useState("all"),
     [variant, setVariant] = useState(ALL),
     [channel, setChannel] = useState(ALL),
+    [screenInches, setScreenInches] = useState(ALL),
+    [batteryMah, setBatteryMah] = useState(ALL),
     [alerts, setAlerts] = useState(false),
-    [advanced, setAdvanced] = useState(false),
     [selected, setSelected] = useState(null),
+    [specModel, setSpecModel] = useState(null),
     [sources, setSources] = useState(false),
     [showAll, setShowAll] = useState(false),
     [toast, setToast] = useState(""),
     [brokenFlags, setBrokenFlags] = useState({}),
     [refreshing, setRefreshing] = useState(true),
     [lastChecked, setLastChecked] = useState(null);
-  const [, setDataVersion] = useState(0);
-  const visibleCountries = countries.filter(
-      (c) => country === "all" || country === c.id,
+  const [dataVersion, setDataVersion] = useState(0);
+  const variantOptions = [...new Set(models.flatMap((m) => m.variants))].sort((a, b) =>
+      a === "N/A" ? 1 : b === "N/A" ? -1 : a.localeCompare(b),
     ),
+    seriesOptions = [...new Set(models.map((m) => m.series).filter(Boolean))].sort(),
+    screenBuckets = specValues("screenInches"),
+    batteryBuckets = specValues("batteryMah"),
+    // 容量 offers the model variants plus every researched `specs.storage`
+    // value (WC §5: 容量 matches the model's variants OR specs.storage).
+    capacityValues = [
+      ...variantOptions,
+      ...specValues("storage").map(String).filter((value) => !variantOptions.includes(value)),
+    ],
+    capacityIsVariant = variant === ALL || variantOptions.includes(variant),
+    // OQ-6: `variant` filters records, `storage` only narrows spec coverage.
+    storageScope = variant !== ALL && !capacityIsVariant ? variant : ALL,
+    cellVariant = capacityIsVariant ? variant : ALL,
+    specFilterOn = screenInches !== ALL || batteryMah !== ALL || storageScope !== ALL,
+    specBucketsIncomplete = dataInfo.loaded && (screenBuckets.length === 0 || batteryBuckets.length === 0),
+    visibleCountries = countries.filter((c) => country === "all" || country === c.id),
     visibleModels = models.filter(
       (m) =>
         m.name.toLowerCase().includes(query.trim().toLowerCase()) &&
-        (variant === ALL || m.variants.includes(variant)) &&
+        (variant === ALL ||
+          m.variants.some((v) => String(v) === String(variant)) ||
+          specStorage(m.id).some((v) => v.trim().toLowerCase() === String(variant).trim().toLowerCase())) &&
         (brand === "all" || m.brandId === brand || (m.brandId == null && brand === "samsung")) &&
-        (series === "all" || m.series === series),
+        (series === "all" || m.series === series) &&
+        specVerdictFor(m.id, { screenInches, batteryMah, storage: storageScope }) === "ok",
     ),
-    variantOptions = [...new Set(models.flatMap((m) => m.variants))].sort((a, b) =>
-      a === "N/A" ? 1 : b === "N/A" ? -1 : a.localeCompare(b),
+    screenFilterOptions = [
+      { value: ALL, label: "全部屏幕尺寸" },
+      ...screenBuckets.map((value) => ({ value, label: `${value}"` })),
+    ],
+    batteryFilterOptions = [
+      { value: ALL, label: "全部电池容量" },
+      ...batteryBuckets.map((value) => ({ value, label: `${value} mAh` })),
+    ],
+    capacityFilterOptions = [
+      { value: ALL, label: variantLabel(ALL) },
+      ...capacityValues.map((value) => ({ value, label: variantLabel(value) })),
+    ];
+  const trendScope = {
+      country,
+      brand,
+      series,
+      channel,
+      variant: cellVariant,
+      screenInches,
+      batteryMah,
+      storage: storageScope,
+      until: week,
+    },
+    trend = useMemo(
+      () => weeklyTrend(trendScope),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [dataVersion, country, brand, series, channel, variant, screenInches, batteryMah, week, cellVariant, storageScope],
     ),
-    seriesOptions = [...new Set(models.map((m) => m.series).filter(Boolean))].sort();
+    trendScopeText = [
+      country === "all" ? "全部市场" : `市场：${countries.find((c) => c.id === country)?.name ?? country}`,
+      channel === ALL ? "全部渠道" : `渠道：${channelName(channel)}`,
+      brand === "all" ? "全部品牌" : `品牌：${brands.find((b) => b.id === brand)?.name ?? brand}`,
+      series === "all" ? "全部系列" : `系列：${series}`,
+      variant === ALL ? "全部容量" : `容量：${variantLabel(variant)}`,
+      screenInches === ALL ? "全部屏幕尺寸" : `屏幕尺寸：${screenInches}"`,
+      batteryMah === ALL ? "全部电池容量" : `电池：${batteryMah} mAh`,
+    ].join(" · ");
   const cells = visibleCountries.flatMap((c) =>
       visibleModels.map((m) => ({
         country: c,
         model: m,
-        data: cell(c.id, m.id, channel, variant, week),
+        data: cell(c.id, m.id, channel, cellVariant, week),
       })),
     ),
     anomalies = cells.filter((c) => anomaly(c.data.state)),
@@ -477,9 +951,11 @@ function App() {
     setSeries("all");
     setVariant(ALL);
     setChannel(ALL);
+    setScreenInches(ALL);
+    setBatteryMah(ALL);
     setAlerts(false);
   };
-  const open = (item) => setSelected({ ...item, variant, channel });
+  const open = (item) => setSelected({ ...item, variant: cellVariant, channel });
   const refreshData = async () => {
     setRefreshing(true);
     try {
@@ -555,7 +1031,7 @@ function App() {
           dataInfo.mode === "live" ? "实时采集" : "待配置采集",
           c.country.name,
           c.model.name,
-          variantLabel(variant),
+          variantLabel(cellVariant),
           channelName(channel),
           week,
           c.country.currency,
@@ -696,22 +1172,35 @@ function App() {
             options={[{ value: ALL, label: channelName(ALL) }, ...channels.map((c) => ({ value: c.id, label: c.name }))]}
           />
           <Select
+            label="品牌"
+            value={brand}
+            onChange={setBrand}
+            options={[{ value: "all", label: "全部品牌" }, ...brands.map((b) => ({ value: b.id || b, label: b.name || b }))]}
+          />
+          <Select
+            label="系列"
+            value={series}
+            onChange={setSeries}
+            options={[{ value: "all", label: "全部系列" }, ...seriesOptions]}
+          />
+          <Select
+            label="屏幕尺寸"
+            value={screenInches}
+            onChange={setScreenInches}
+            options={screenFilterOptions}
+          />
+          <Select
             label="容量"
             value={variant}
             onChange={setVariant}
-            options={[
-              { value: ALL, label: variantLabel(ALL) },
-              ...variantOptions.map((value) => ({ value, label: variantLabel(value) })),
-            ]}
+            options={capacityFilterOptions}
           />
-          <button
-            className={advanced ? "pressed" : ""}
-            aria-expanded={advanced}
-            onClick={() => setAdvanced(!advanced)}
-          >
-            <SlidersHorizontal size={16} />
-            更多筛选
-          </button>
+          <Select
+            label="电池"
+            value={batteryMah}
+            onChange={setBatteryMah}
+            options={batteryFilterOptions}
+          />
           <button
             className="icon reset"
             title="重置筛选"
@@ -720,23 +1209,23 @@ function App() {
           >
             <RotateCcw size={16} />
           </button>
-          {advanced && (
-            <div className="advanced">
-              <Select
-                label="品牌"
-                value={brand}
-                onChange={setBrand}
-                options={[{ value: "all", label: "全部品牌" }, ...brands.map((b) => ({ value: b.id || b, label: b.name || b }))]}
-              />
-              <Select
-                label="系列"
-                value={series}
-                onChange={setSeries}
-                options={[{ value: "all", label: "全部系列" }, ...seriesOptions]}
-              />
-            </div>
+          {specBucketsIncomplete && (
+            <p className="filter-note">
+              规格数据未载入或缺失：
+              {screenBuckets.length === 0 ? "屏幕尺寸" : ""}
+              {screenBuckets.length === 0 && batteryBuckets.length === 0 ? " / " : ""}
+              {batteryBuckets.length === 0 ? "电池" : ""}
+              筛选没有可选取值，不提供推测选项。
+            </p>
           )}
         </section>
+        {specFilterOn && (
+          <p className="spec-exclusion">
+            {trend.excluded.missingSpec} 个型号因缺少规格数据被排除
+            {trend.excluded.noSpec > 0 ? `，另有 ${trend.excluded.noSpec} 个型号尚无规格条目` : ""}
+            （按当前筛选范围统计）。其余未显示的型号是规格值与筛选不符，不是缺数据。
+          </p>
+        )}
         <section className="matrix-summary">
           <span>
             <b>{visibleCountries.length}</b> 个市场{" "}
@@ -759,7 +1248,7 @@ function App() {
           <div className="empty">
             <Search size={24} />
             <h3>没有匹配的型号</h3>
-            <p>当前搜索或容量没有对应记录。</p>
+            <p>当前搜索或筛选条件没有对应型号。</p>
             <button onClick={reset}>重置筛选</button>
           </div>
         ) : (
@@ -772,7 +1261,15 @@ function App() {
                   </th>
               {visibleModels.map((m) => (
                     <th key={m.id} scope="col">
-                      <strong>{m.name}</strong>
+                      <button
+                        type="button"
+                        className="model-button"
+                        aria-label={`${m.name} 产品规格`}
+                        title={`查看 ${m.name} 产品规格`}
+                        onClick={() => setSpecModel(m)}
+                      >
+                        <strong>{m.name}</strong>
+                      </button>
                       <small>{variantLabel(variant)} · Samsung</small>
                     </th>
                   ))}
@@ -901,6 +1398,7 @@ function App() {
             ))
           )}
         </section>
+        <TrendSection trend={trend} week={week} scopeText={trendScopeText} />
         <footer className="page-footer">
           <span>Market Lens</span>
           <span>{dataInfo.mode === "live" ? "自动采集 · GitHub Actions" : "没有已验证来源 · 当前矩阵为空白"}</span>
@@ -912,6 +1410,9 @@ function App() {
           week={week}
           close={() => setSelected(null)}
         />
+      )}{" "}
+      {specModel && (
+        <SpecDetail model={specModel} close={() => setSpecModel(null)} />
       )}{" "}
       {sources && (
         <Drawer title="数据来源" close={() => setSources(false)}>

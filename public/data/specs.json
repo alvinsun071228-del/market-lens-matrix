@@ -1,0 +1,442 @@
+{
+  "generatedAt": "2026-10-10T17:02:57.000Z",
+  "notes": "Researched hardware specs for the 22 model ids in public/data/models.json (Galaxy A and Galaxy S lines tracked in the weekly ME price collector). Every non-null value traces to a URL in `sources` that was fetched during this task: official Samsung regional product/spec pages (samsung.com), official Samsung newsroom announcements (news.samsung.com), or - for one field only (chipset of the A07 5G model, sourced from the collected Amazon TR product title in public/data/latest.json) - a real collected record title. Unverifiable fields are null and named in `missing`. `confidence` is the weakest source class used for a non-null value (official | retailer | unverified). `releaseYear` is the year of Samsung's official announcement for that model (see docs/SPECS.md for the definition, the per-field evidence table, coverage numbers and the explicit unverified list). `storage` lists every storage option actually seen on a fetched official page. `ramGb` is null where fetched SKUs disagree (RAM varies by storage SKU) - the observed values are listed in docs/SPECS.md.",
+  "models": {
+    "A07": {
+      "display": "6.7\" PLS LCD HD+",
+      "screenInches": 6.7,
+      "batteryMah": 5000,
+      "storage": [
+        "64GB",
+        "128GB"
+      ],
+      "ramGb": 4,
+      "chipset": "MediaTek G99",
+      "releaseYear": null,
+      "sources": [
+        "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a07-black-64gb-sm-a075fzkdmea/",
+        "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a07-black-128gb-sm-a075fzkgmea/",
+        "https://www.samsung.com/levant/smartphones/galaxy-a/galaxy-a07-black-128gb-sm-a075fzkcmea/"
+      ],
+      "confidence": "official",
+      "missing": [
+        "releaseYear"
+      ]
+    },
+    "A07 5G": {
+      "display": "6.7\" PLS LCD HD+ 120Hz",
+      "screenInches": 6.7,
+      "batteryMah": 6000,
+      "storage": [
+        "128GB"
+      ],
+      "ramGb": 4,
+      "chipset": "MediaTek Dimensity 6300",
+      "releaseYear": 2026,
+      "sources": [
+        "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076ezkbmea/",
+        "https://news.samsung.com/global/samsung-launches-galaxy-a07-5g-bringing-intelligence-and-reliable-performance-to-more-galaxy-a-series-devices",
+        "https://www.amazon.com.tr/dp/B0H31J9RCG"
+      ],
+      "confidence": "retailer",
+      "missing": []
+    },
+    "A07S": {
+      "display": "6.7\" PLS LCD HD+",
+      "screenInches": 6.7,
+      "batteryMah": 5000,
+      "storage": [
+        "64GB"
+      ],
+      "ramGb": 4,
+      "chipset": "MediaTek G99+",
+      "releaseYear": null,
+      "sources": [
+        "https://www.samsung.com/ae/smartphones/galaxy-a/galaxy-a07s-black-64gb-sm-a077fzkdmea/"
+      ],
+      "confidence": "official",
+      "missing": [
+        "releaseYear"
+      ]
+    },
+    "A08": {
+      "display": "6.7\" PLS LCD HD+",
+      "screenInches": 6.7,
+      "batteryMah": 6000,
+      "storage": [
+        "64GB",
+        "128GB"
+      ],
+      "ramGb": 4,
+      "chipset": null,
+      "releaseYear": null,
+      "sources": [
+        "https://www.samsung.com/ae/smartphones/galaxy-a/galaxy-a08-dark-blue-64gb-sm-a085fdbdmea/",
+        "https://www.samsung.com/ae/smartphones/galaxy-a/galaxy-a08-dark-blue-128gb-sm-a085fdbgmea/"
+      ],
+      "confidence": "official",
+      "missing": [
+        "chipset",
+        "releaseYear"
+      ]
+    },
+    "A16": {
+      "display": "6.7\" Super AMOLED FHD+",
+      "screenInches": 6.7,
+      "batteryMah": 5000,
+      "storage": [
+        "128GB"
+      ],
+      "ramGb": 4,
+      "chipset": null,
+      "releaseYear": null,
+      "sources": [
+        "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a16-black-128gb-sm-a165fzkdmea/",
+        "https://www.samsung.com/ae/smartphones/galaxy-a/galaxy-a16-black-128gb-sm-a165fzkdmea/"
+      ],
+      "confidence": "official",
+      "missing": [
+        "chipset",
+        "releaseYear"
+      ]
+    },
+    "A17": {
+      "display": "6.7\" Super AMOLED FHD+ 90Hz",
+      "screenInches": 6.7,
+      "batteryMah": 5000,
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "ramGb": null,
+      "chipset": null,
+      "releaseYear": null,
+      "sources": [
+        "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a17-black-128gb-sm-a175fzkcmea/",
+        "https://www.samsung.com/ae/smartphones/galaxy-a/galaxy-a17-black-256gb-sm-a175fzkomea/"
+      ],
+      "confidence": "official",
+      "missing": [
+        "ramGb",
+        "chipset",
+        "releaseYear"
+      ]
+    },
+    "A17 5G": {
+      "display": "6.7\" Super AMOLED FHD+ 90Hz",
+      "screenInches": 6.7,
+      "batteryMah": 5000,
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "ramGb": null,
+      "chipset": null,
+      "releaseYear": null,
+      "sources": [
+        "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a17-5g-black-128gb-sm-a176bzkemea/",
+        "https://www.samsung.com/ae/smartphones/galaxy-a/galaxy-a17-5g-black-256gb-sm-a176bzkgmea/"
+      ],
+      "confidence": "official",
+      "missing": [
+        "ramGb",
+        "chipset",
+        "releaseYear"
+      ]
+    },
+    "A27 5G": {
+      "display": "6.7\" Super AMOLED FHD+ 120Hz",
+      "screenInches": 6.7,
+      "batteryMah": 5000,
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "ramGb": null,
+      "chipset": "Snapdragon 6 Gen 3",
+      "releaseYear": 2026,
+      "sources": [
+        "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkimea/",
+        "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a27-5g-black-256gb-sm-a276bzkjmea/",
+        "https://news.samsung.com/global/samsung-galaxy-a27-5g-brings-an-immersive-display-and-awesome-intelligence-to-more-users"
+      ],
+      "confidence": "official",
+      "missing": [
+        "ramGb"
+      ]
+    },
+    "A36 5G": {
+      "display": "6.7\" Super AMOLED FHD+ 120Hz",
+      "screenInches": 6.7,
+      "batteryMah": 5000,
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "ramGb": null,
+      "chipset": "Snapdragon 6 Gen 3",
+      "releaseYear": 2025,
+      "sources": [
+        "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a36-5g-awesome-black-128gb-sm-a366bzkmmea/",
+        "https://www.samsung.com/ae/smartphones/galaxy-a/galaxy-a36-5g-awesome-black-256gb-sm-a366bzkvmea/",
+        "https://news.samsung.com/global/samsung-marks-a-step-forward-with-ai-for-everyone-by-introducing-new-galaxy-a56-5g-galaxy-a36-5g-and-galaxy-a26-5g"
+      ],
+      "confidence": "official",
+      "missing": [
+        "ramGb"
+      ]
+    },
+    "A37 5G": {
+      "display": "6.7\" Super AMOLED FHD+ 120Hz",
+      "screenInches": 6.7,
+      "batteryMah": 5000,
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "ramGb": null,
+      "chipset": null,
+      "releaseYear": 2026,
+      "sources": [
+        "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-128gb-sm-a376bzammea/",
+        "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzavmea/",
+        "https://news.samsung.com/global/samsung-unveils-galaxy-a57-5g-and-galaxy-a37-5g-packing-pro-level-features-at-awesome-price"
+      ],
+      "confidence": "official",
+      "missing": [
+        "ramGb",
+        "chipset"
+      ]
+    },
+    "A56 5G": {
+      "display": "6.7\" Super AMOLED FHD+ 120Hz",
+      "screenInches": 6.7,
+      "batteryMah": 5000,
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "ramGb": 8,
+      "chipset": "Exynos 1580",
+      "releaseYear": 2025,
+      "sources": [
+        "https://www.samsung.com/levant/smartphones/galaxy-a/galaxy-a56-5g-awesome-graphite-256gb-sm-a566bzkwmea/",
+        "https://www.samsung.com/ae/smartphones/galaxy-a/galaxy-a56-5g-awesome-graphite-128gb-sm-a566bzkvmea/",
+        "https://news.samsung.com/global/mwc-2025-powered-by-awesome-intelligence-introducing-the-galaxy-a56-5g-and-a36-5g"
+      ],
+      "confidence": "official",
+      "missing": []
+    },
+    "A57 5G": {
+      "display": "6.7\" Super AMOLED Plus FHD+ 120Hz",
+      "screenInches": 6.7,
+      "batteryMah": 5000,
+      "storage": [
+        "128GB",
+        "256GB",
+        "512GB"
+      ],
+      "ramGb": null,
+      "chipset": null,
+      "releaseYear": 2026,
+      "sources": [
+        "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a57-5g-awesome-gray-128gb-sm-a576bzammea/",
+        "https://www.samsung.com/ae/smartphones/galaxy-a/galaxy-a57-5g-awesome-gray-256gb-sm-a576bzapmea/",
+        "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a57-5g-awesome-lilac-512gb-sm-a576bzvwmea/",
+        "https://news.samsung.com/global/samsung-unveils-galaxy-a57-5g-and-galaxy-a37-5g-packing-pro-level-features-at-awesome-price"
+      ],
+      "confidence": "official",
+      "missing": [
+        "ramGb",
+        "chipset"
+      ]
+    },
+    "S25": {
+      "display": "6.2\" Dynamic AMOLED 2X FHD+ 120Hz",
+      "screenInches": 6.2,
+      "batteryMah": 4000,
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "ramGb": 12,
+      "chipset": "Snapdragon 8 Elite for Galaxy",
+      "releaseYear": 2025,
+      "sources": [
+        "https://www.samsung.com/in/smartphones/galaxy-s/galaxy-s25-icyblue-128gb-sm-s931blbbins/",
+        "https://www.samsung.com/us/smartphones/galaxy-s25/",
+        "https://news.samsung.com/global/samsung-galaxy-s25-series-sets-the-standard-of-ai-phone-as-a-true-ai-companion"
+      ],
+      "confidence": "official",
+      "missing": []
+    },
+    "S25 EDGE": {
+      "display": "6.7\" Dynamic AMOLED 2X QHD+ 120Hz",
+      "screenInches": 6.7,
+      "batteryMah": 3900,
+      "storage": [
+        "256GB",
+        "512GB"
+      ],
+      "ramGb": 12,
+      "chipset": "Snapdragon 8 Elite for Galaxy",
+      "releaseYear": 2025,
+      "sources": [
+        "https://news.samsung.com/global/meet-the-samsung-galaxy-s25-edge-an-engineering-marvel-of-new-slim-hardware-innovation",
+        "https://www.samsung.com/us/smartphones/galaxy-s25-edge/"
+      ],
+      "confidence": "official",
+      "missing": []
+    },
+    "S25 FE": {
+      "display": "6.7\" Dynamic AMOLED 2X FHD+ 120Hz",
+      "screenInches": 6.7,
+      "batteryMah": 4900,
+      "storage": [
+        "128GB",
+        "256GB",
+        "512GB"
+      ],
+      "ramGb": 8,
+      "chipset": "Exynos 2400",
+      "releaseYear": 2025,
+      "sources": [
+        "https://www.samsung.com/sa_en/smartphones/galaxy-s/galaxy-s25-fe-awesome-white-256gb-sm-s731bzwvmea/",
+        "https://news.samsung.com/global/meet-samsung-galaxy-s25-fe-the-gateway-to-the-galaxy-ai-and-flagship-essentials"
+      ],
+      "confidence": "official",
+      "missing": []
+    },
+    "S25 ULTRA": {
+      "display": "6.9\" Dynamic AMOLED 2X QHD+ 120Hz",
+      "screenInches": 6.9,
+      "batteryMah": 5000,
+      "storage": [
+        "256GB",
+        "512GB",
+        "1TB"
+      ],
+      "ramGb": 12,
+      "chipset": "Snapdragon 8 Elite for Galaxy",
+      "releaseYear": 2025,
+      "sources": [
+        "https://www.samsung.com/de/smartphones/galaxy-s/galaxy-s25-ultra-titanium-jetblack-256gb-sm5s938bakdeub/",
+        "https://www.samsung.com/us/smartphones/galaxy-s25-ultra/"
+      ],
+      "confidence": "official",
+      "missing": []
+    },
+    "S25+": {
+      "display": "6.7\" Dynamic AMOLED 2X QHD+ 120Hz",
+      "screenInches": 6.7,
+      "batteryMah": 4900,
+      "storage": [
+        "256GB",
+        "512GB"
+      ],
+      "ramGb": 12,
+      "chipset": "Snapdragon 8 Elite for Galaxy",
+      "releaseYear": 2025,
+      "sources": [
+        "https://www.samsung.com/de/smartphones/galaxy-s/galaxy-s25-plus-navy-256gb-sm5s936bdbdeub/",
+        "https://www.samsung.com/us/smartphones/galaxy-s25/",
+        "https://www.samsung.com/uk/smartphones/galaxy-s/galaxy-s25-plus-blueblack-256gb-certified-re-newed-sm5s936bzkdeub/"
+      ],
+      "confidence": "official",
+      "missing": []
+    },
+    "S26": {
+      "display": "6.3\" Dynamic AMOLED 2X FHD+ 120Hz",
+      "screenInches": 6.3,
+      "batteryMah": 4300,
+      "storage": [
+        "256GB",
+        "512GB"
+      ],
+      "ramGb": 12,
+      "chipset": "Exynos 2600",
+      "releaseYear": 2026,
+      "sources": [
+        "https://www.samsung.com/africa_en/smartphones/galaxy-s/galaxy-s26-black-256gb-sm-s942bzkoafb/",
+        "https://www.samsung.com/nl/smartphones/galaxy-s/galaxy-s26-black-512gb-sm-s942bzkheub/",
+        "https://news.samsung.com/global/galaxy-unpacked-2026-a-first-look-at-the-galaxy-s26-series-samsungs-most-intuitive-ai-phone-yet"
+      ],
+      "confidence": "official",
+      "missing": []
+    },
+    "S26 5G": {
+      "display": "6.3\" Dynamic AMOLED 2X FHD+ 120Hz",
+      "screenInches": 6.3,
+      "batteryMah": 4300,
+      "storage": [
+        "256GB",
+        "512GB"
+      ],
+      "ramGb": 12,
+      "chipset": "Exynos 2600",
+      "releaseYear": 2026,
+      "sources": [
+        "https://www.samsung.com/africa_en/smartphones/galaxy-s/galaxy-s26-black-256gb-sm-s942bzkoafb/",
+        "https://www.samsung.com/nl/smartphones/galaxy-s/galaxy-s26-black-512gb-sm-s942bzkheub/",
+        "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-s26-5g-256-gb-sky-blue/p/100501233"
+      ],
+      "confidence": "official",
+      "missing": []
+    },
+    "S26 FE": {
+      "display": "6.7\" Dynamic AMOLED 2X FHD+ 120Hz",
+      "screenInches": 6.7,
+      "batteryMah": 4900,
+      "storage": [
+        "128GB",
+        "256GB"
+      ],
+      "ramGb": 8,
+      "chipset": "Exynos 2500",
+      "releaseYear": 2026,
+      "sources": [
+        "https://www.samsung.com/sa_en/smartphones/galaxy-s/galaxy-s26-fe-blueberry-128gb-sm-s741bzvumea/",
+        "https://www.samsung.com/ae/smartphones/galaxy-s/galaxy-s26-fe-blueberry-256gb-sm-s741bzvvmea/",
+        "https://news.samsung.com/global/samsung-galaxy-s26-fe-delivering-the-latest-flagship-experience-focused-on-what-matters-most"
+      ],
+      "confidence": "official",
+      "missing": []
+    },
+    "S26 ULTRA": {
+      "display": "6.9\" Dynamic AMOLED 2X QHD+ 120Hz",
+      "screenInches": 6.9,
+      "batteryMah": 5000,
+      "storage": [
+        "256GB",
+        "512GB"
+      ],
+      "ramGb": 12,
+      "chipset": "Snapdragon 8 Elite Gen 5",
+      "releaseYear": 2026,
+      "sources": [
+        "https://www.samsung.com/ae/smartphones/galaxy-s/galaxy-s26-ultra-black-256gb-sm-s948bzkimda/",
+        "https://www.samsung.com/de/smartphones/galaxy-s/galaxy-s26-ultra-black-512gb-sm5s948bzkgeub/"
+      ],
+      "confidence": "official",
+      "missing": []
+    },
+    "S26+": {
+      "display": "6.7\" Dynamic AMOLED 2X QHD+ 120Hz",
+      "screenInches": 6.7,
+      "batteryMah": 4900,
+      "storage": [
+        "256GB",
+        "512GB"
+      ],
+      "ramGb": 12,
+      "chipset": "Exynos 2600",
+      "releaseYear": 2026,
+      "sources": [
+        "https://www.samsung.com/ae/smartphones/galaxy-s/galaxy-s26-plus-black-256gb-sm-s947bzkimda/",
+        "https://www.samsung.com/africa_en/smartphones/galaxy-s/galaxy-s26-plus-black-512gb-sm-s947bzkoafb/"
+      ],
+      "confidence": "official",
+      "missing": []
+    }
+  }
+}
