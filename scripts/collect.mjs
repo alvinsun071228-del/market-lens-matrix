@@ -131,16 +131,21 @@ const MODEL_SUFFIXES = /^(5G|Ultra|Plus|FE|Edge|Lite)$/i;
  * "Plus" normalizes to "+" so "S26 Plus" and "S26+" resolve to one identity.
  */
 function deriveModel(title) {
-  const match = String(title).match(/Galaxy\s+([ASZMF]\d{2}[A-Za-z]?)(\+)?(?:[,\s]+(5G|Ultra|Plus|FE|Edge|Lite))?/i);
+  const match = String(title).match(/(?:Samsung\s+)?(?:Galaxy\s+)?([ASZMF]\d{2}[A-Za-z]?)(\+)?(?:[,\s]+(5G|Ultra|Plus|FE|Edge|Lite))?/i);
   if (!match) return null;
   const base = match[1].toUpperCase();
   if (match[2] === "+") return `${base}+`;
   if (!match[3]) return base;
-  const suffix = match[3].toUpperCase() === "PLUS" ? "+" : match[3].toUpperCase();
+  const suffix = match[3].toUpperCase();
+  if (suffix === "PLUS") return `${base}+`;
   return `${base} ${suffix}`;
 }
 
-/** True when an observed model belongs to the configured (family-level) model. */
+function sourceModelMatches(derived, sourceModel, exact = false) {
+  if (!derived || !sourceModel) return false;
+  if (exact) return String(derived).toUpperCase().trim() === String(sourceModel).toUpperCase().trim();
+  return modelMatches(derived, sourceModel);
+}
 function modelMatches(derived, configured) {
   if (!derived || !configured) return false;
   const d = String(derived).toUpperCase().trim();
@@ -151,8 +156,8 @@ function modelMatches(derived, configured) {
 function deriveVariant(title, url) {
   const fromUrl = String(url || "").match(/-(\d{2,4})\s?gb(?![a-z])/i);
   if (fromUrl) return `${fromUrl[1]}GB`;
-  const fromTitle = String(title || "").match(/(\d{2,4})\s?GB/i);
-  if (fromTitle) return `${fromTitle[1]}GB`;
+  const fromTitle = [...String(title || "").matchAll(/(\d{2,4})\s?GB/gi)].map((match) => Number(match[1])).filter(Number.isFinite);
+  if (fromTitle.length) return `${Math.max(...fromTitle)}GB`;
   return "N/A";
 }
 
@@ -344,7 +349,7 @@ function matchAmazonCard(card, source) {
   const text = `${title} ${String(card.text || "")}`.replace(/\s+/g, " ").trim();
   if (!card.asin) return null;
   const model = deriveModel(title || text);
-  if (!model || !modelMatches(model, source.model)) return null;
+  if (!sourceModelMatches(model, source.model, source.exactModel)) return null;
   if (ACCESSORY.test(text) || NOT_NEW.test(text) || BUNDLE.test(text)) return null;
   const storage = String(source.variant || "").replace("GB", "");
   if (source.variant && !new RegExp(`${storage}\\s*(?:GB|جيجابايت|جيجا)`, "i").test(text)) return null;
@@ -402,7 +407,7 @@ async function parseAmazonSearch(source, browser) {
           !source.variant ||
           new RegExp(`${storage}\\s*(?:GB|جيجابايت|جيجا)`, "i").test(title) ||
           deriveVariant(title, dpUrl) === source.variant;
-        if (pageModel && modelMatches(pageModel, source.model) && variantOk && isPlausiblePhonePrice(price, source.currency, fx?.rates)) {
+        if (pageModel && sourceModelMatches(pageModel, source.model, source.exactModel) && variantOk && isPlausiblePhonePrice(price, source.currency, fx?.rates)) {
           return [
             {
               price,
@@ -450,7 +455,7 @@ async function parseBrowserText(source, browser) {
     // configured model to appear in the page title/text when one is set.
     if (source.model) {
       const pageModel = deriveModel(json?.title || text);
-      if (!pageModel || !modelMatches(pageModel, source.model)) {
+      if (!pageModel || !sourceModelMatches(pageModel, source.model, source.exactModel)) {
         throw new Error(`model mismatch: page=${pageModel ?? "unknown"} config=${source.model}`);
       }
     }
@@ -505,7 +510,7 @@ async function parseExtraSearch(source) {
   for (const product of products) {
     const title = String(product.nameEn || "");
     const model = deriveModel(title);
-    if (!model || !modelMatches(model, source.model)) continue;
+    if (!model || !sourceModelMatches(model, source.model, source.exactModel)) continue;
     if (ACCESSORY.test(title) || NOT_NEW.test(title) || BUNDLE.test(title)) continue;
     const titleVariant = deriveVariant(title, null);
     const mem = String(product.featureEnMemoryInternal || "").replace(/\s+/g, "").toUpperCase();
@@ -538,7 +543,7 @@ async function parseExtraSearch(source) {
   const one = parseJsonLd(await pageRes.text(), source);
   if (!one || !Number.isFinite(one.price)) throw new Error("product page had no JSON-LD offer");
   const pageModel = deriveModel(one.title);
-  if (source.model && pageModel && !modelMatches(pageModel, source.model)) throw new Error(`model mismatch on page: ${pageModel}`);
+  if (source.model && pageModel && !sourceModelMatches(pageModel, source.model, source.exactModel)) throw new Error(`model mismatch on page: ${pageModel}`);
   const pageVariant = deriveVariant(one.title, chosen.productUrl);
   return [
     {
@@ -563,6 +568,141 @@ async function parseExtraSearch(source) {
   ];
 }
 
+async function parseShopifySearch(source, browser) {
+  const page = await browser.newPage({ userAgent: UA, locale: "en-US" });
+  try {
+    const response = await page.goto(source.url, { waitUntil: "domcontentloaded", timeout: 45000 });
+    if (response && response.status() >= 400) throw new Error(`HTTP ${response.status()}`);
+    await page.waitForTimeout(2500);
+    const text = await page.locator("body").innerText();
+    const lines = text.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+    const candidates = [];
+    for (let i = 0; i < lines.length - 2; i += 1) {
+      const priceMatch = lines[i + 1]?.match(/^([0-9][0-9,]*\.?[0-9]*)\s+JOD$/i);
+      if (!priceMatch || !/^(?:Sale price|Regular price)$/i.test(lines[i])) continue;
+      const title = lines[i + 2];
+      const model = deriveModel(title);
+      const variant = deriveVariant(title, null);
+      const price = parseLocalizedNumber(priceMatch[1], source.currency);
+      if (!title || !sourceModelMatches(model, source.model, source.exactModel)) continue;
+      if (source.variant && variant !== source.variant) continue;
+      if (ACCESSORY.test(title) || NOT_NEW.test(title) || BUNDLE.test(title)) continue;
+      if (!isPlausiblePhonePrice(price, source.currency, fx?.rates)) continue;
+      candidates.push({ price, title, model, variant, line: lines.slice(i, i + 3).join(" | ") });
+    }
+    candidates.sort((a, b) => a.price - b.price || a.title.localeCompare(b.title));
+    const chosen = candidates[0];
+    if (!chosen) return [];
+    return [{
+      price: chosen.price,
+      currency: source.currency,
+      title: chosen.title,
+      model: chosen.model,
+      variant: chosen.variant,
+      sourceUrl: source.url,
+      productId: null,
+      rawEvidence: { ...verifiedRef(source), method: "shopify-search", query: source.query, matched: chosen.line, text: text.slice(0, 1500) },
+    }];
+  } finally {
+    await page.close();
+  }
+}
+
+async function parseOrangeJson(source) {
+  const query = source.query || [source.model, source.variant].filter(Boolean).join(" ");
+  const response = await fetch(source.url, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "x-algolia-application-id": source.appId,
+      "x-algolia-api-key": source.apiKey,
+      "user-agent": UA,
+    },
+    body: JSON.stringify({ params: new URLSearchParams({ query, hitsPerPage: "100" }).toString() }),
+    signal: AbortSignal.timeout(30000),
+  });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const payload = await response.json();
+  const hits = (payload.hits || []).filter((hit) => {
+    const model = deriveModel(hit.name);
+    const variant = deriveVariant(hit.name, hit.productUrl);
+    return sourceModelMatches(model, source.model, source.exactModel) && (!source.variant || variant === source.variant);
+  });
+  const hit = hits.sort((a, b) => Number(a.priceWithAttr) - Number(b.priceWithAttr) || String(a.objectID).localeCompare(String(b.objectID)))[0];
+  if (!hit || !Number.isFinite(Number(hit.priceWithAttr)) || !hit.productUrl) return [];
+  const productResponse = await fetch(hit.productUrl, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(30000) });
+  if (!productResponse.ok) throw new Error(`product page HTTP ${productResponse.status}`);
+  const product = parseJsonLd(await productResponse.text(), source);
+  if (!product || !Number.isFinite(product.price)) throw new Error("product page had no JSON-LD offer");
+  const model = deriveModel(product.title || hit.name);
+  const variant = deriveVariant(product.title || hit.name, hit.productUrl);
+  if (!sourceModelMatches(model, source.model, source.exactModel) || (source.variant && variant !== source.variant)) {
+    throw new Error(`product mismatch: ${model ?? "unknown"}/${variant}`);
+  }
+  if (Math.abs(product.price - Number(hit.priceWithAttr)) > 0.01) throw new Error(`Algolia/product price mismatch: ${hit.priceWithAttr} vs ${product.price}`);
+  return [{
+    price: product.price,
+    currency: product.currency || source.currency,
+    title: product.title || hit.name,
+    model,
+    variant,
+    sourceUrl: hit.productUrl,
+    productId: hit.objectID,
+    rawEvidence: { ...verifiedRef(source), method: "algolia+jsonld", apiUrl: source.url, query, objectID: hit.objectID, priceField: "priceWithAttr", apiPrice: Number(hit.priceWithAttr), productPrice: product.price },
+  }];
+}
+
+function parseXciteProduct(html, source) {
+  const price = Number(html.match(/<meta[^>]+itemProp=["']price["'][^>]+content=["']([^"']+)/i)?.[1]);
+  const title = html.match(/<meta[^>]+itemProp=["']name["'][^>]+content=["']([^"']+)/i)?.[1]
+    || html.match(/<title[^>]*>([^<]+)/i)?.[1]?.replace(/\s*\|.*$/, "");
+  const currency = html.match(/<meta[^>]+itemProp=["']priceCurrency["'][^>]+content=["']([^"']+)/i)?.[1] || source.currency;
+  if (!Number.isFinite(price) || !title) return null;
+  return { price, currency, title };
+}
+
+async function parseXciteSearch(source) {
+  const query = source.query || [source.model, source.variant].filter(Boolean).join(" ");
+  const response = await fetch(source.apiUrl, {
+    method: "POST",
+    headers: { "content-type": "application/json", "user-agent": UA },
+    body: JSON.stringify({ requests: [{ indexName: source.indexName, params: { query, hitsPerPage: 100 } }], operation: "search" }),
+    signal: AbortSignal.timeout(30000),
+  });
+  if (!response.ok) throw new Error(`Algolia proxy HTTP ${response.status}`);
+  const payload = await response.json();
+  const hits = (payload.results?.[0]?.hits || []).filter((hit) => {
+    const model = deriveModel(hit.name);
+    const variant = deriveVariant(hit.name, null);
+    return hit.objectType === "product" && hit.inStock === true && sourceModelMatches(model, source.model, source.exactModel)
+      && (!source.variant || variant === source.variant) && !ACCESSORY.test(hit.name) && !NOT_NEW.test(hit.name) && !BUNDLE.test(hit.name);
+  });
+  hits.sort((a, b) => Number(a.price) - Number(b.price) || String(a.objectID).localeCompare(String(b.objectID)));
+  const hit = hits[0];
+  if (!hit || !Number.isFinite(Number(hit.price)) || !hit.slug) return [];
+  const sourceUrl = `https://www.xcite.com/${hit.slug}/p`;
+  const productResponse = await fetch(sourceUrl, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(30000) });
+  if (!productResponse.ok) throw new Error(`product page HTTP ${productResponse.status}`);
+  const product = parseXciteProduct(await productResponse.text(), source);
+  if (!product) throw new Error("product page had no schema.org offer");
+  const model = deriveModel(product.title);
+  const variant = deriveVariant(product.title, sourceUrl);
+  if (!sourceModelMatches(model, source.model, source.exactModel) || (source.variant && variant !== source.variant)) {
+    throw new Error(`product mismatch: ${model ?? "unknown"}/${variant}`);
+  }
+  if (Math.abs(product.price - Number(hit.price)) > 0.01) throw new Error(`Algolia/product price mismatch: ${hit.price} vs ${product.price}`);
+  return [{
+    price: product.price,
+    currency: product.currency || source.currency,
+    title: product.title,
+    model,
+    variant,
+    sourceUrl,
+    productId: hit.objectID,
+    rawEvidence: { ...verifiedRef(source), method: "xcite-algolia+schema", apiUrl: source.apiUrl, indexName: source.indexName, query, objectID: hit.objectID, apiPrice: Number(hit.price), productPrice: product.price, inStock: hit.inStock },
+  }];
+}
+
 /* --------------------------------- run ---------------------------------- */
 
 let browser;
@@ -579,6 +719,13 @@ for (const source of activeSources) {
       parsed = await parseBrowserText(source, browser);
     } else if (source.parser === "extra-search") {
       parsed = await parseExtraSearch(source);
+    } else if (source.parser === "shopify-search") {
+      browser ||= await chromium.launch({ headless: true });
+      parsed = await parseShopifySearch(source, browser);
+    } else if (source.parser === "orange-json") {
+      parsed = await parseOrangeJson(source);
+    } else if (source.parser === "xcite-search") {
+      parsed = await parseXciteSearch(source);
     } else if (source.parser === "jsonld") {
       const res = await fetch(source.url, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(20000) });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);

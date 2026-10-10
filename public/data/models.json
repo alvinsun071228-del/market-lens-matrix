@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-09T17:11:11.078Z",
+  "generatedAt": "2026-10-10T02:46:08.423Z",
   "contractVersion": "1.1",
   "brandId": "samsung",
-  "totalModels": 20,
+  "totalModels": 22,
   "models": [
     {
       "id": "A07",
@@ -21,12 +21,13 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
-          "priceUsd": 157.66
+          "priceUsd": 134.51
         },
         "jo": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "JOD",
@@ -35,11 +36,21 @@
         "sa": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "SAR",
           "priceUsd": 159.73
+        },
+        "tr": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "TRY",
+          "priceUsd": 247.77
         }
       }
     },
@@ -55,11 +66,12 @@
         "tr": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 314.93
+          "priceUsd": 314.28
         }
       }
     },
@@ -80,6 +92,24 @@
           "lastSeen": "2026-10-05",
           "currency": "AED",
           "priceUsd": 160.38
+        },
+        "kw": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "KWD",
+          "priceUsd": 138.01
+        },
+        "om": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "OMR",
+          "priceUsd": 150.43
         }
       }
     },
@@ -102,6 +132,15 @@
           "currency": "AED",
           "priceUsd": 179.44
         },
+        "om": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "OMR",
+          "priceUsd": 171.22
+        },
         "tr": {
           "available": true,
           "channels": [
@@ -109,7 +148,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 264.13
+          "priceUsd": 263.59
         }
       }
     },
@@ -138,7 +177,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 148.11
+          "priceUsd": 148.1
         },
         "sa": {
           "available": true,
@@ -157,7 +196,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 270.25
+          "priceUsd": 269.69
         }
       }
     },
@@ -174,7 +213,8 @@
         "ae": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
@@ -189,10 +229,29 @@
           "currency": "JOD",
           "priceUsd": 267.98
         },
+        "kw": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "KWD",
+          "priceUsd": 173.4
+        },
+        "om": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "OMR",
+          "priceUsd": 227.34
+        },
         "sa": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "SAR",
@@ -205,7 +264,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 345.41
+          "priceUsd": 344.7
         }
       }
     },
@@ -222,7 +281,8 @@
         "ae": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
@@ -231,7 +291,8 @@
         "sa": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "SAR",
@@ -240,11 +301,12 @@
         "tr": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 416.52
+          "priceUsd": 415.67
         }
       }
     },
@@ -261,7 +323,8 @@
         "ae": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
@@ -270,16 +333,36 @@
         "jo": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "JOD",
           "priceUsd": 337.09
         },
+        "kw": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "KWD",
+          "priceUsd": 314.95
+        },
+        "om": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "OMR",
+          "priceUsd": 263.97
+        },
         "sa": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "SAR",
@@ -292,7 +375,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 416.52
+          "priceUsd": 415.67
         }
       }
     },
@@ -302,13 +385,24 @@
       "series": "Galaxy A",
       "brandId": "samsung",
       "variants": [
-        "128GB"
+        "128GB",
+        "256GB"
       ],
       "countries": {
+        "om": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "OMR",
+          "priceUsd": 259.56
+        },
         "sa": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "SAR",
@@ -329,16 +423,45 @@
         "ae": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
-          "priceUsd": 424.51
+          "priceUsd": 566.1
+        },
+        "jo": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "JOD",
+          "priceUsd": 444.29
+        },
+        "kw": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "KWD",
+          "priceUsd": 273.13
+        },
+        "om": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "OMR",
+          "priceUsd": 308.92
         },
         "sa": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "SAR",
@@ -347,11 +470,41 @@
         "tr": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 619.72
+          "priceUsd": 618.44
+        }
+      }
+    },
+    {
+      "id": "A56 5G",
+      "name": "Galaxy A56 5G",
+      "series": "Galaxy A",
+      "brandId": "samsung",
+      "variants": [
+        "256GB"
+      ],
+      "countries": {
+        "jo": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "JOD",
+          "priceUsd": 423.13
+        },
+        "om": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "OMR",
+          "priceUsd": 389.46
         }
       }
     },
@@ -370,11 +523,30 @@
         "ae": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
           "priceUsd": 871.07
+        },
+        "jo": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "JOD",
+          "priceUsd": 576.87
+        },
+        "kw": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "KWD",
+          "priceUsd": 337.47
         },
         "om": {
           "available": true,
@@ -383,7 +555,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 363.52
+          "priceUsd": 363.48
         },
         "qa": {
           "available": true,
@@ -407,11 +579,11 @@
         "tr": {
           "available": true,
           "channels": [
-            "official"
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 680.68
+          "priceUsd": 560.55
         }
       }
     },
@@ -474,6 +646,15 @@
         "N/A"
       ],
       "countries": {
+        "om": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "OMR",
+          "priceUsd": 571.34
+        },
         "qa": {
           "available": true,
           "channels": [
@@ -499,7 +680,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 954.99
+          "priceUsd": 953.02
         }
       }
     },
@@ -509,6 +690,7 @@
       "series": "Galaxy S",
       "brandId": "samsung",
       "variants": [
+        "256GB",
         "N/A"
       ],
       "countries": {
@@ -520,6 +702,15 @@
           "lastSeen": "2026-10-05",
           "currency": "AED",
           "priceUsd": 1497.35
+        },
+        "om": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "OMR",
+          "priceUsd": 828.81
         },
         "qa": {
           "available": true,
@@ -546,7 +737,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 2529.73
+          "priceUsd": 2524.52
         }
       }
     },
@@ -566,7 +757,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 1493.45
+          "priceUsd": 1490.37
         }
       }
     },
@@ -596,6 +787,26 @@
           "lastSeen": "2026-10-05",
           "currency": "SAR",
           "priceUsd": 1413.07
+        }
+      }
+    },
+    {
+      "id": "S26 5G",
+      "name": "Galaxy S26 5G",
+      "series": "Galaxy S",
+      "brandId": "samsung",
+      "variants": [
+        "256GB"
+      ],
+      "countries": {
+        "om": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "OMR",
+          "priceUsd": 846.74
         }
       }
     },
@@ -634,7 +845,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 1117.54
+          "priceUsd": 1115.24
         }
       }
     },
@@ -644,6 +855,8 @@
       "series": "Galaxy S",
       "brandId": "samsung",
       "variants": [
+        "256GB",
+        "512GB",
         "N/A"
       ],
       "countries": {
@@ -655,6 +868,15 @@
           "lastSeen": "2026-10-05",
           "currency": "AED",
           "priceUsd": 1715.18
+        },
+        "om": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "OMR",
+          "priceUsd": 1010.69
         },
         "qa": {
           "available": true,
@@ -681,7 +903,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 3738.73
+          "priceUsd": 3731.03
         }
       }
     },
@@ -691,6 +913,8 @@
       "series": "Galaxy S",
       "brandId": "samsung",
       "variants": [
+        "256GB",
+        "512GB",
         "N/A"
       ],
       "countries": {
@@ -702,6 +926,15 @@
           "lastSeen": "2026-10-05",
           "currency": "AED",
           "priceUsd": 1497.35
+        },
+        "om": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "OMR",
+          "priceUsd": 953.01
         },
         "qa": {
           "available": true,
@@ -728,7 +961,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 2113.18
+          "priceUsd": 2108.83
         }
       }
     }
@@ -736,6 +969,7 @@
   "byCountry": {
     "tr": {
       "modelIds": [
+        "A07",
         "A07 5G",
         "A08",
         "A16",
@@ -754,9 +988,17 @@
       "sourceIds": [
         "samsung-tr-a-official",
         "samsung-tr-s-official",
-        "amazon-tr-a16-128"
+        "amazon-tr-a16-128",
+        "amazon-tr-a07-128",
+        "amazon-tr-a07-5g-128",
+        "amazon-tr-a17-5g-128",
+        "amazon-tr-a17-5g-256",
+        "amazon-tr-a37-128",
+        "amazon-tr-a37-256",
+        "amazon-tr-a57-128",
+        "amazon-tr-a57-256"
       ],
-      "reachableSources": 3,
+      "reachableSources": 11,
       "unavailableReason": null
     },
     "sa": {
@@ -783,9 +1025,17 @@
         "samsung-sa-s-official",
         "jarir-sa-a57-256",
         "amazon-sa-a16-128",
-        "amazon-sa-a57-256"
+        "amazon-sa-a57-256",
+        "amazon-sa-a07-128",
+        "amazon-sa-a17-128",
+        "amazon-sa-a17-5g-128",
+        "amazon-sa-a27-128",
+        "amazon-sa-a27-256",
+        "amazon-sa-a36-256",
+        "amazon-sa-a37-256",
+        "amazon-sa-a57-128"
       ],
-      "reachableSources": 5,
+      "reachableSources": 13,
       "unavailableReason": null
     },
     "ae": {
@@ -809,9 +1059,18 @@
         "samsung-ae-a-official",
         "samsung-ae-s-official",
         "jumbo-ae-a07-128",
-        "amazon-ae-a16-128"
+        "amazon-ae-a16-128",
+        "amazon-ae-a07-128",
+        "amazon-ae-a17-128",
+        "amazon-ae-a17-5g-256",
+        "amazon-ae-a27-128",
+        "amazon-ae-a27-256",
+        "amazon-ae-a37-128",
+        "amazon-ae-a37-256",
+        "amazon-ae-a57-128",
+        "amazon-ae-a57-256"
       ],
-      "reachableSources": 4,
+      "reachableSources": 13,
       "unavailableReason": null
     },
     "qa": {
@@ -832,34 +1091,92 @@
     },
     "om": {
       "modelIds": [
+        "A07S",
+        "A08",
         "A16",
-        "A57 5G"
+        "A17",
+        "A27 5G",
+        "A36 5G",
+        "A37 5G",
+        "A56 5G",
+        "A57 5G",
+        "S25 FE",
+        "S25 ULTRA",
+        "S26 5G",
+        "S26 ULTRA",
+        "S26+"
       ],
       "sourceIds": [
         "extra-om-a16-128",
         "extra-om-a57-128",
-        "extra-om-a57-256"
+        "extra-om-a57-256",
+        "extra-om-a27-128",
+        "extra-om-a27-256",
+        "extra-om-a36-128",
+        "extra-om-a36-256",
+        "extra-om-a37-128",
+        "extra-om-a37-256",
+        "extra-om-a56-256",
+        "extra-om-a17-256",
+        "extra-om-a07s-64",
+        "extra-om-a08-64",
+        "extra-om-s25-fe-256",
+        "extra-om-s25-ultra-256",
+        "extra-om-s26-256",
+        "extra-om-s26-plus-256",
+        "extra-om-s26-plus-512",
+        "extra-om-s26-ultra-256",
+        "extra-om-s26-ultra-512",
+        "extra-om-a57-512"
       ],
-      "reachableSources": 3,
+      "reachableSources": 21,
       "unavailableReason": null
     },
     "jo": {
       "modelIds": [
         "A07",
         "A17",
-        "A27 5G"
+        "A27 5G",
+        "A37 5G",
+        "A56 5G",
+        "A57 5G"
       ],
       "sourceIds": [
-        "samsung-levant-a-official"
+        "samsung-levant-a-official",
+        "orange-jo-a07-64",
+        "orange-jo-a07-128",
+        "smartbuy-jo-a27-128",
+        "smartbuy-jo-a27-256",
+        "smartbuy-jo-a37-128",
+        "smartbuy-jo-a37-256",
+        "smartbuy-jo-a56-256",
+        "smartbuy-jo-a57-256",
+        "smartbuy-jo-a57-512"
       ],
-      "reachableSources": 1,
+      "reachableSources": 10,
       "unavailableReason": null
     },
     "kw": {
-      "modelIds": [],
-      "sourceIds": [],
-      "reachableSources": 0,
-      "unavailableReason": "No reachable price source for this market yet."
+      "modelIds": [
+        "A07S",
+        "A17",
+        "A27 5G",
+        "A37 5G",
+        "A57 5G"
+      ],
+      "sourceIds": [
+        "xcite-kw-a07s-64",
+        "xcite-kw-a17-128",
+        "xcite-kw-a17-256",
+        "xcite-kw-a27-256",
+        "xcite-kw-a37-128",
+        "xcite-kw-a37-256",
+        "xcite-kw-a57-128",
+        "xcite-kw-a57-256",
+        "xcite-kw-a57-512"
+      ],
+      "reachableSources": 9,
+      "unavailableReason": null
     }
   }
 }

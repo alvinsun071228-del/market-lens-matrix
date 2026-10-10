@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T17:11:11.078Z",
+  "generatedAt": "2026-10-10T02:46:08.423Z",
   "brands": [
     {
       "id": "samsung",
@@ -15,6 +15,7 @@
   "countries": {
     "tr": {
       "modelIds": [
+        "A07",
         "A07 5G",
         "A08",
         "A16",
@@ -33,9 +34,17 @@
       "sourceIds": [
         "samsung-tr-a-official",
         "samsung-tr-s-official",
-        "amazon-tr-a16-128"
+        "amazon-tr-a16-128",
+        "amazon-tr-a07-128",
+        "amazon-tr-a07-5g-128",
+        "amazon-tr-a17-5g-128",
+        "amazon-tr-a17-5g-256",
+        "amazon-tr-a37-128",
+        "amazon-tr-a37-256",
+        "amazon-tr-a57-128",
+        "amazon-tr-a57-256"
       ],
-      "reachableSources": 3,
+      "reachableSources": 11,
       "unavailableReason": null
     },
     "sa": {
@@ -62,9 +71,17 @@
         "samsung-sa-s-official",
         "jarir-sa-a57-256",
         "amazon-sa-a16-128",
-        "amazon-sa-a57-256"
+        "amazon-sa-a57-256",
+        "amazon-sa-a07-128",
+        "amazon-sa-a17-128",
+        "amazon-sa-a17-5g-128",
+        "amazon-sa-a27-128",
+        "amazon-sa-a27-256",
+        "amazon-sa-a36-256",
+        "amazon-sa-a37-256",
+        "amazon-sa-a57-128"
       ],
-      "reachableSources": 5,
+      "reachableSources": 13,
       "unavailableReason": null
     },
     "ae": {
@@ -88,9 +105,18 @@
         "samsung-ae-a-official",
         "samsung-ae-s-official",
         "jumbo-ae-a07-128",
-        "amazon-ae-a16-128"
+        "amazon-ae-a16-128",
+        "amazon-ae-a07-128",
+        "amazon-ae-a17-128",
+        "amazon-ae-a17-5g-256",
+        "amazon-ae-a27-128",
+        "amazon-ae-a27-256",
+        "amazon-ae-a37-128",
+        "amazon-ae-a37-256",
+        "amazon-ae-a57-128",
+        "amazon-ae-a57-256"
       ],
-      "reachableSources": 4,
+      "reachableSources": 13,
       "unavailableReason": null
     },
     "qa": {
@@ -111,34 +137,92 @@
     },
     "om": {
       "modelIds": [
+        "A07S",
+        "A08",
         "A16",
-        "A57 5G"
+        "A17",
+        "A27 5G",
+        "A36 5G",
+        "A37 5G",
+        "A56 5G",
+        "A57 5G",
+        "S25 FE",
+        "S25 ULTRA",
+        "S26 5G",
+        "S26 ULTRA",
+        "S26+"
       ],
       "sourceIds": [
         "extra-om-a16-128",
         "extra-om-a57-128",
-        "extra-om-a57-256"
+        "extra-om-a57-256",
+        "extra-om-a27-128",
+        "extra-om-a27-256",
+        "extra-om-a36-128",
+        "extra-om-a36-256",
+        "extra-om-a37-128",
+        "extra-om-a37-256",
+        "extra-om-a56-256",
+        "extra-om-a17-256",
+        "extra-om-a07s-64",
+        "extra-om-a08-64",
+        "extra-om-s25-fe-256",
+        "extra-om-s25-ultra-256",
+        "extra-om-s26-256",
+        "extra-om-s26-plus-256",
+        "extra-om-s26-plus-512",
+        "extra-om-s26-ultra-256",
+        "extra-om-s26-ultra-512",
+        "extra-om-a57-512"
       ],
-      "reachableSources": 3,
+      "reachableSources": 21,
       "unavailableReason": null
     },
     "jo": {
       "modelIds": [
         "A07",
         "A17",
-        "A27 5G"
+        "A27 5G",
+        "A37 5G",
+        "A56 5G",
+        "A57 5G"
       ],
       "sourceIds": [
-        "samsung-levant-a-official"
+        "samsung-levant-a-official",
+        "orange-jo-a07-64",
+        "orange-jo-a07-128",
+        "smartbuy-jo-a27-128",
+        "smartbuy-jo-a27-256",
+        "smartbuy-jo-a37-128",
+        "smartbuy-jo-a37-256",
+        "smartbuy-jo-a56-256",
+        "smartbuy-jo-a57-256",
+        "smartbuy-jo-a57-512"
       ],
-      "reachableSources": 1,
+      "reachableSources": 10,
       "unavailableReason": null
     },
     "kw": {
-      "modelIds": [],
-      "sourceIds": [],
-      "reachableSources": 0,
-      "unavailableReason": "No reachable price source for this market yet."
+      "modelIds": [
+        "A07S",
+        "A17",
+        "A27 5G",
+        "A37 5G",
+        "A57 5G"
+      ],
+      "sourceIds": [
+        "xcite-kw-a07s-64",
+        "xcite-kw-a17-128",
+        "xcite-kw-a17-256",
+        "xcite-kw-a27-256",
+        "xcite-kw-a37-128",
+        "xcite-kw-a37-256",
+        "xcite-kw-a57-128",
+        "xcite-kw-a57-256",
+        "xcite-kw-a57-512"
+      ],
+      "reachableSources": 9,
+      "unavailableReason": null
     }
   },
   "failedSources": [],
@@ -153,7 +237,8 @@
       "countries": [
         "ae",
         "jo",
-        "sa"
+        "sa",
+        "tr"
       ]
     },
     {
@@ -173,7 +258,9 @@
         "64GB"
       ],
       "countries": [
-        "ae"
+        "ae",
+        "kw",
+        "om"
       ]
     },
     {
@@ -185,6 +272,7 @@
       ],
       "countries": [
         "ae",
+        "om",
         "tr"
       ]
     },
@@ -211,6 +299,8 @@
       "countries": [
         "ae",
         "jo",
+        "kw",
+        "om",
         "sa",
         "tr"
       ]
@@ -238,6 +328,8 @@
       "countries": [
         "ae",
         "jo",
+        "kw",
+        "om",
         "sa",
         "tr"
       ]
@@ -246,9 +338,11 @@
       "id": "A36 5G",
       "series": "Galaxy A",
       "variants": [
-        "128GB"
+        "128GB",
+        "256GB"
       ],
       "countries": [
+        "om",
         "sa"
       ]
     },
@@ -261,8 +355,22 @@
       ],
       "countries": [
         "ae",
+        "jo",
+        "kw",
+        "om",
         "sa",
         "tr"
+      ]
+    },
+    {
+      "id": "A56 5G",
+      "series": "Galaxy A",
+      "variants": [
+        "256GB"
+      ],
+      "countries": [
+        "jo",
+        "om"
       ]
     },
     {
@@ -276,6 +384,8 @@
       ],
       "countries": [
         "ae",
+        "jo",
+        "kw",
         "om",
         "qa",
         "sa",
@@ -311,6 +421,7 @@
         "N/A"
       ],
       "countries": [
+        "om",
         "qa",
         "sa",
         "tr"
@@ -320,10 +431,12 @@
       "id": "S25 ULTRA",
       "series": "Galaxy S",
       "variants": [
+        "256GB",
         "N/A"
       ],
       "countries": [
         "ae",
+        "om",
         "qa",
         "sa",
         "tr"
@@ -351,6 +464,16 @@
       ]
     },
     {
+      "id": "S26 5G",
+      "series": "Galaxy S",
+      "variants": [
+        "256GB"
+      ],
+      "countries": [
+        "om"
+      ]
+    },
+    {
       "id": "S26 FE",
       "series": "Galaxy S",
       "variants": [
@@ -367,10 +490,13 @@
       "id": "S26 ULTRA",
       "series": "Galaxy S",
       "variants": [
+        "256GB",
+        "512GB",
         "N/A"
       ],
       "countries": [
         "ae",
+        "om",
         "qa",
         "sa",
         "tr"
@@ -380,10 +506,13 @@
       "id": "S26+",
       "series": "Galaxy S",
       "variants": [
+        "256GB",
+        "512GB",
         "N/A"
       ],
       "countries": [
         "ae",
+        "om",
         "qa",
         "sa",
         "tr"

@@ -282,6 +282,10 @@ p {
   font-size: 13px;
   gap: 12px;
 }
+.coverage-summary {
+  color: var(--muted);
+  white-space: nowrap;
+}
 .matrix-summary b {
   color: #343941;
   font-weight: 550;
@@ -470,8 +474,48 @@ p {
   font-size: 12px;
   height: 128px;
 }
-.empty-cell{height:128px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;color:#b0b4bb;font-size:20px}
-.empty-cell small{font-size:11px;color:#9298a2}
+.empty-cell {
+  height: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  color: #6f7680;
+  font-size: 13px;
+  text-align: center;
+  padding: 12px;
+}
+.empty-cell > span {
+  font-weight: 550;
+}
+.empty-cell small {
+  font-size: 11px;
+  color: #9298a2;
+  line-height: 1.45;
+}
+.empty-cell.has-hint > span {
+  color: #8b6b35;
+}
+.cell-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.channel-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 18px;
+  padding: 1px 5px;
+  border: 1px solid #d9e3df;
+  border-radius: 3px;
+  color: var(--green);
+  background: #f2f8f5;
+  font-size: 11px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
 .matrix-footer {
   display: flex;
   justify-content: space-between;
@@ -831,9 +875,16 @@ dialog::backdrop {
     margin-left: 0;
   }
   .matrix-summary {
+    align-items: flex-start;
+    flex-wrap: wrap;
     font-size: 12px;
   }
-  .dot {
+  .coverage-summary {
+    display: block;
+    width: 100%;
+    white-space: normal;
+  }
+  .matrix-summary {
     margin: 0 2px;
   }
   .matrix th:first-child {

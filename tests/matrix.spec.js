@@ -85,11 +85,11 @@ test("cell/history helpers carry forward honestly and keep gaps as gaps", () => 
   expect(current.value).toBeGreaterThan(0);
   expect(current.state).toBe("live");
 
-  // A market with no source is blank, never zero.
-  const blank = cell("qa", "A16", "retail", "128GB", week);
+  // A market with no source is unavailable, never zero.
+  const blank = cell("kw", "A16", "retail", "128GB", week);
   expect(blank.value).toBeNull();
   expect(blank.state).toBe("unavailable");
-  expect(history("qa", "A16", "retail", "128GB")).toEqual([]);
+  expect(history("kw", "A16", "retail", "128GB")).toEqual([]);
 
   // history never invents a point for a week with no stored record.
   const rows = history(country, model, channel, variant);
@@ -186,6 +186,9 @@ test("dashboard renders config-driven markets, USD prices and freshness", async 
   // Timely-update banner: cadence, next refresh, FX date + source.
   const latest = read("public/data/latest.json");
   const fx = read("public/data/fx.json");
+  const liveRecords = latest.records.filter(
+    (record) => record.week === latest.week && record.state === "live" && Number.isFinite(record.price),
+  );
   await expect(page.locator(".freshness")).toContainText(cadenceLabel());
   await expect(page.locator(".next-refresh")).toBeVisible();
   await expect(page.locator(".next-refresh")).toHaveText(/预计下次刷新|刷新已延迟/);
@@ -203,6 +206,17 @@ test("dashboard renders config-driven markets, USD prices and freshness", async 
 
   await expect(page.locator(".cell-button").first()).toBeVisible();
   await expect(page.locator(".usd-cell").first()).toContainText("$");
+  const channelOptions = await page.getByLabel("渠道", { exact: true }).locator("option").allTextContents();
+  const variantOptions = await page.getByLabel("容量", { exact: true }).locator("option").allTextContents();
+  expect(channelOptions).toContain("全部渠道");
+  expect(variantOptions).toContain("全部容量");
+  expect(variantOptions).toContain("容量未标注");
+  await expect(page.locator(".matrix-footer")).toContainText("同周最低价");
+  await expect(page.locator(".matrix-summary")).toContainText(`${latest.verifiedProductCount} 条已验证价格`);
+  await expect(page.locator(".matrix-summary")).toContainText(`${latest.sourceCount} 个来源`);
+  const pricedCellCount = await page.locator(".matrix .cell-button").count();
+  expect(pricedCellCount).toBeGreaterThanOrEqual(Math.ceil(liveRecords.length * 0.6));
+  await expect(page.locator(".channel-tag").first()).toBeVisible();
   await expect.poll(() =>
     page.locator(".matrix tbody .country-name").evaluateAll((cells) =>
       cells.every((c) => {
@@ -218,10 +232,19 @@ test("dashboard renders config-driven markets, USD prices and freshness", async 
   const rows = await page.locator(".matrix tbody tr").count();
   expect(rows).toBe(1);
 
-  // A market still without a reachable source (Kuwait) renders blank cells, not zeros.
+  // Kuwait is now covered too (X-cite KWD), so it shows real priced cells + USD.
   await market.selectOption("kw");
-  await expect(page.locator(".empty-cell").first()).toBeVisible();
+  await expect(page.locator(".cell-button").first()).toBeVisible();
+  await expect(page.locator(".usd-cell").first()).toContainText("$");
+
+  // Honesty guard: a model genuinely not sold in a market must render an
+  // explicit not-for-sale state, never a zero. Türkiye does not list Galaxy A07S.
+  await page.getByLabel("重置筛选", { exact: true }).click();
+  await market.selectOption("tr");
+  await page.getByLabel("搜索型号").fill("A07S");
   await expect(page.locator(".cell-button")).toHaveCount(0);
+  await expect(page.locator(".empty-cell").first()).toContainText("未在售");
+  await page.getByLabel("重置筛选", { exact: true }).click();
 
   // Oman was enabled with real eXtra OMR prices, so it now shows priced cells + USD.
   await market.selectOption("om");
@@ -239,6 +262,42 @@ test("dashboard renders config-driven markets, USD prices and freshness", async 
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toHaveCount(0);
 
+  expect(errors).toEqual([]);
+});
+
+test("alternate variant or channel availability is explicit", async ({ page }) => {
+  const errors = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  const latest = read("public/data/latest.json");
+  const modelConfig = read("public/data/models.json");
+  const current = latest.records.filter(
+    (record) => record.week === latest.week && record.state === "live" && Number.isFinite(record.price),
+  );
+  const grouped = new Map();
+  for (const record of current) {
+    const key = `${record.country}|${record.model}`;
+    const rows = grouped.get(key) ?? [];
+    rows.push(record);
+    grouped.set(key, rows);
+  }
+  const hintCase = [...grouped.entries()]
+    .map(([key, rows]) => {
+      const [country, model] = key.split("|");
+      const config = modelConfig.models.find((candidate) => candidate.id === model);
+      const present = new Set(rows.map((row) => row.variant));
+      const missingVariant = config?.variants?.find((candidate) => !present.has(candidate));
+      return missingVariant ? { country, model, missingVariant } : null;
+    })
+    .find(Boolean);
+  expect(hintCase).toBeTruthy();
+
+  await page.goto("/");
+  await expect(page.locator(".freshness")).toBeVisible();
+  await page.getByLabel("市场", { exact: true }).selectOption(hintCase.country);
+  await page.getByLabel("容量", { exact: true }).selectOption(hintCase.missingVariant);
+  await expect(page.locator(".empty-cell.has-hint").first()).toBeVisible();
+  await expect(page.locator(".empty-cell.has-hint").first()).toContainText(/仅|可选/);
+  await expect(page.locator(".empty-cell.has-hint").first()).not.toContainText("未在售");
   expect(errors).toEqual([]);
 });
 

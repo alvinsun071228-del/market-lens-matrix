@@ -30,6 +30,10 @@ import {
   countries,
   models,
   channels,
+  ALL,
+  channelName,
+  channelShort,
+  variantLabel,
   retailers,
   weeks,
   labels,
@@ -46,6 +50,7 @@ import {
   percentage,
   csv,
   dataInfo,
+  records,
   loadRemoteRecords,
 } from "./data";
 import "./styles.css";
@@ -220,13 +225,13 @@ function Detail({ selected, week, close }) {
             label="容量"
             value={variant}
             onChange={setVariant}
-            options={model.variants}
+            options={[{ value: ALL, label: variantLabel(ALL) }, ...model.variants.map((value) => ({ value, label: variantLabel(value) }))]}
           />
           <Select
             label="渠道"
             value={channel}
             onChange={setChannel}
-            options={channels.map((c) => ({ value: c.id, label: c.name }))}
+            options={[{ value: ALL, label: channelName(ALL) }, ...channels.map((c) => ({ value: c.id, label: c.name }))]}
           />
           <Select
             label="时间范围"
@@ -376,7 +381,7 @@ function Detail({ selected, week, close }) {
               <div>
                 <b>{row.week}</b>
                 <span>
-                  08:00 UTC · {channels.find((c) => c.id === channel).name}
+                  08:00 UTC · {channelName(row.channel ?? channel)}
                 </span>
               </div>
               <div>
@@ -409,8 +414,8 @@ function App() {
     [query, setQuery] = useState(""),
     [brand, setBrand] = useState(brands[0]?.id ?? "samsung"),
     [series, setSeries] = useState("all"),
-    [variant, setVariant] = useState("128GB"),
-    [channel, setChannel] = useState("retail"),
+    [variant, setVariant] = useState(ALL),
+    [channel, setChannel] = useState(ALL),
     [alerts, setAlerts] = useState(false),
     [advanced, setAdvanced] = useState(false),
     [selected, setSelected] = useState(null),
@@ -427,11 +432,13 @@ function App() {
     visibleModels = models.filter(
       (m) =>
         m.name.toLowerCase().includes(query.trim().toLowerCase()) &&
-        m.variants.includes(variant) &&
+        (variant === ALL || m.variants.includes(variant)) &&
         (brand === "all" || m.brandId === brand || (m.brandId == null && brand === "samsung")) &&
         (series === "all" || m.series === series),
     ),
-    variantOptions = [...new Set(models.flatMap((m) => m.variants))].sort(),
+    variantOptions = [...new Set(models.flatMap((m) => m.variants))].sort((a, b) =>
+      a === "N/A" ? 1 : b === "N/A" ? -1 : a.localeCompare(b),
+    ),
     seriesOptions = [...new Set(models.map((m) => m.series).filter(Boolean))].sort();
   const cells = visibleCountries.flatMap((c) =>
       visibleModels.map((m) => ({
@@ -442,6 +449,16 @@ function App() {
     ),
     anomalies = cells.filter((c) => anomaly(c.data.state)),
     changes = cells.filter((c) => c.data.delta != null && c.data.delta !== 0);
+  const coverageModelCount = new Set(
+    records
+      .filter(
+        (record) =>
+          String(record.week) === String(dataInfo.week) &&
+          Number.isFinite(record.price) &&
+          (record.state === "live" || record.state === "promo"),
+      )
+      .map((record) => record.model),
+  ).size;
   const signals = cells
     .filter(
       (c) =>
@@ -458,8 +475,8 @@ function App() {
     setCountry("all");
     setBrand(brands[0]?.id ?? "samsung");
     setSeries("all");
-    setVariant("128GB");
-    setChannel("retail");
+    setVariant(ALL);
+    setChannel(ALL);
     setAlerts(false);
   };
   const open = (item) => setSelected({ ...item, variant, channel });
@@ -538,8 +555,8 @@ function App() {
           dataInfo.mode === "live" ? "实时采集" : "待配置采集",
           c.country.name,
           c.model.name,
-          variant,
-          channel,
+          variantLabel(variant),
+          channelName(channel),
           week,
           c.country.currency,
           c.data.value,
@@ -676,13 +693,16 @@ function App() {
             label="渠道"
             value={channel}
             onChange={setChannel}
-            options={channels.map((c) => ({ value: c.id, label: c.name }))}
+            options={[{ value: ALL, label: channelName(ALL) }, ...channels.map((c) => ({ value: c.id, label: c.name }))]}
           />
           <Select
             label="容量"
             value={variant}
             onChange={setVariant}
-            options={variantOptions}
+            options={[
+              { value: ALL, label: variantLabel(ALL) },
+              ...variantOptions.map((value) => ({ value, label: variantLabel(value) })),
+            ]}
           />
           <button
             className={advanced ? "pressed" : ""}
@@ -722,6 +742,9 @@ function App() {
             <b>{visibleCountries.length}</b> 个市场{" "}
             <span className="dot">·</span> <b>{visibleModels.length}</b> 个型号{" "}
             <span className="dot">·</span> <b>{changes.length}</b> 项价格变动
+            <span className="coverage-summary">
+              <span className="dot">·</span> {dataInfo.verifiedProductCount} 条已验证价格 · {dataInfo.sourceCount} 个来源 · {coverageModelCount} 个型号
+            </span>
           </span>
           <label className="check">
             <input
@@ -750,7 +773,7 @@ function App() {
               {visibleModels.map((m) => (
                     <th key={m.id} scope="col">
                       <strong>{m.name}</strong>
-                      <small>{variant} · Samsung</small>
+                      <small>{variantLabel(variant)} · Samsung</small>
                     </th>
                   ))}
                 </tr>
@@ -782,7 +805,13 @@ function App() {
                   return (
                     <td key={m.id}>
                       {d.state === "unavailable" ? (
-                        <div className="empty-cell"><span>—</span><small>暂无该型号</small></div>
+                        <div
+                          className={`empty-cell ${d.availabilityHint ? "has-hint" : ""}`}
+                          aria-label={`${c.name} ${m.name} ${d.availabilityHint ?? "未在售"}`}
+                        >
+                          <span>{d.availabilityHint ? "当前筛选无价" : "未在售"}</span>
+                          <small>{d.availabilityHint ?? "该市场没有已验证价格"}</small>
+                        </div>
                       ) : alerts && !anomaly(d.state) ? (
                             <div className="excluded">无异常</div>
                           ) : (
@@ -798,8 +827,13 @@ function App() {
                                 />
                                 <ArrowRight className="cell-arrow" size={15} />
                               </div>
-                              <div className="usd-cell">
-                                {d.priceUsd == null ? "FX 不可用" : usd(d.priceUsd)}
+                              <div className="cell-meta">
+                                <div className="usd-cell">
+                                  {d.priceUsd == null ? "FX 不可用" : usd(d.priceUsd)}
+                                </div>
+                                {channel === ALL && d.channel && (
+                                  <span className="channel-tag">{channelShort(d.channel)}</span>
+                                )}
                               </div>
                               <Change data={d} currency={c.currency} />
                               <div className="previous">
@@ -827,7 +861,7 @@ function App() {
         )}
         <div className="matrix-footer">
           <span>
-            本地货币 + USD · {variant} · {channels.find((c) => c.id === channel).name} · 同周最低价
+            本地货币 + USD · {variantLabel(variant)} · {channelName(channel)} · 同周最低价
           </span>
           <span>采集周期 {week}</span>
         </div>

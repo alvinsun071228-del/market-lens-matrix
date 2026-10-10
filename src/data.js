@@ -70,14 +70,31 @@ export const labels = {
   invalid: "来源失效 · 沿用",
   new: "首次采集",
   source: "来源变化",
-  unavailable: "暂无该型号",
+  unavailable: "未在售",
 };
 export const anomaly = (s) => s === "missing" || s === "invalid" || s === "unavailable";
+export const ALL = "all";
+
+export function variantLabel(value) {
+  if (value === ALL) return "全部容量";
+  return value === "N/A" ? "容量未标注" : value;
+}
 
 export const channels = [
   { id: "official", name: "官方商城", color: "#16756a" },
   { id: "retail", name: "零售渠道", color: "#b16629" },
 ];
+
+export function channelName(value) {
+  if (value === ALL) return "全部渠道";
+  return channels.find((channel) => channel.id === value)?.name ?? value;
+}
+
+export function channelShort(value) {
+  if (value === "official") return "官方";
+  if (value === "retail") return "零售";
+  return channelName(value);
+}
 
 export let brands = [{ id: "samsung", name: "Samsung", series: ["Galaxy A", "Galaxy S"] }];
 export let countries = [];
@@ -238,7 +255,11 @@ export function flagEmoji(countryId) {
  */
 function rowsFor(country, model, channel, variant) {
   const matched = records.filter(
-    (r) => r.country === country && r.model === model && r.channel === channel && (variant == null || r.variant === variant),
+    (r) =>
+      r.country === country &&
+      r.model === model &&
+      (channel === ALL || r.channel === channel) &&
+      (variant === ALL || variant == null || r.variant === variant),
   );
   const rank = (r) => (r.state === "live" ? 0 : r.state === "unavailable" ? 2 : 1);
   const byWeek = new Map();
@@ -262,15 +283,63 @@ export function isAvailable(country, model, channel) {
   return rowsFor(country, model, channel).length > 0;
 }
 
+function hasPrice(record) {
+  return Number.isFinite(record?.price) && record?.state !== "unavailable";
+}
+
+/** Explain which other variant/channel has a verified price for this cell. */
+export function availabilityHint(country, model, channel, variant, week = weeks.at(-1)) {
+  const candidates = records.filter(
+    (record) =>
+      record.country === country &&
+      record.model === model &&
+      String(record.week) <= String(week) &&
+      hasPrice(record),
+  );
+  if (!candidates.length) return null;
+
+  const selected = candidates.some(
+    (record) =>
+      (channel === ALL || record.channel === channel) &&
+      (variant === ALL || record.variant === variant),
+  );
+  if (selected) return null;
+
+  const combinations = [...new Map(
+    candidates.map((record) => [
+      `${record.channel}|${record.variant}`,
+      `${channelShort(record.channel)} · ${variantLabel(record.variant)}`,
+    ]),
+  ).values()];
+  if (!combinations.length) return null;
+  if (combinations.length === 1) return `仅${combinations[0]}`;
+  const visible = combinations.slice(0, 3).join("；");
+  return `可选：${visible}${combinations.length > 3 ? "等" : ""}`;
+}
+
 /** The value shown for a cell at `week`, with carry-forward clearly marked. */
 export function cell(country, model, channel, variant, week = weeks.at(-1)) {
   const rows = rowsFor(country, model, channel, variant);
-  if (!rows.length) return { value: null, priceUsd: null, state: "unavailable", delta: null, percent: null, effectiveDate: null, carried: false, sourceUrl: null, sourceId: null, collectedAt: null, currency: currencyOf(country) };
+  const atOrBefore = rows.filter((r) => String(r.week) <= String(week) && hasPrice(r));
+  const unavailable = () => ({
+    value: null,
+    priceUsd: null,
+    state: "unavailable",
+    delta: null,
+    percent: null,
+    effectiveDate: null,
+    carried: false,
+    sourceUrl: null,
+    sourceId: null,
+    collectedAt: null,
+    currency: currencyOf(country),
+    channel: null,
+    variant: null,
+    availabilityHint: availabilityHint(country, model, channel, variant, week),
+  });
+  if (!atOrBefore.length) return unavailable();
 
-  const atOrBefore = rows.filter((r) => String(r.week) <= String(week));
   const current = atOrBefore.at(-1);
-  if (!current) return { value: null, priceUsd: null, state: "unavailable", delta: null, percent: null, effectiveDate: null, carried: false, sourceUrl: null, sourceId: null, collectedAt: null, currency: currencyOf(country) };
-
   const previous = atOrBefore.at(-2) ?? null;
   const isCurrentWeek = String(current.week) === String(week);
   const state = isCurrentWeek ? current.state ?? "live" : "missing";
@@ -289,6 +358,9 @@ export function cell(country, model, channel, variant, week = weeks.at(-1)) {
     sourceUrl: current.sourceUrl ?? null,
     sourceId: current.sourceId ?? null,
     collectedAt: current.collectedAt ?? null,
+    channel: current.channel ?? null,
+    variant: current.variant ?? null,
+    availabilityHint: null,
   };
 }
 
@@ -307,6 +379,8 @@ export function history(country, model, channel, variant, until = weeks.at(-1)) 
       sourceId: r.sourceId ?? null,
       sourceUrl: r.sourceUrl ?? null,
       collectedAt: r.collectedAt ?? null,
+      channel: r.channel ?? null,
+      variant: r.variant ?? null,
       rawEvidence: r.rawEvidence ?? null,
     }));
 }
