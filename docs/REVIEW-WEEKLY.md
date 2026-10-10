@@ -349,3 +349,176 @@ without a pre-existing server) are all green; the WC §3.5 numbers match my inde
 fabricated price or spec exists; WC §7 holds; both disclosures are honest; single-writer scopes were respected. The
 only substantive issue is F1 — the freeze record is stale with respect to the post-freeze cosmetic fix — which is a
 documentation correction for the Lead, not a product defect, and therefore does not gate delivery.
+
+---
+
+# Delta re-review (post-merge + USD-normalisation fix)
+
+Reviewer: `07-reviewer-openscale-ds-v4-1-flash`. Shared task **task-7 reopened at revision 5**, claimed at 5.
+Thinking level: **medium-high** — this delta verifies a subtle numeric fix whose main failure mode is a
+plausible-but-wrong implementation that still passes its own tests, so every check was designed to falsify the fix
+rather than confirm it.
+Date: 2026-10-11 (Asia/Shanghai). Reviewed revision: commit **`5830a29`** (`fix(usd): derive displayed USD from the
+published fx rate; refresh weekly history`), on top of merge **`1d25294`**. Working tree **clean** (`git status
+--porcelain` → 0 entries) before and after my runs, so all results below describe the committed content.
+Spec: [`docs/WEEKLY-CONTRACT.md`](WEEKLY-CONTRACT.md) §3.1 **Lead addendum** (`:145`) — treated as settled, not
+reviewed for correctness of intent, only for faithful implementation.
+
+---
+
+## D1. What changed since the first-pass PASS
+
+| Change | Evidence |
+|---|---|
+| `origin/main` merged (2 upstream bot commits) | `1d25294` touches only upstream data: `data/discovery-report.json`, `data/history/2026-10-10.json`, `docs/COVERAGE.md`, `public/api/prices.json`, `public/data/{fx,latest,models}.json`. **No overlap** with our `src/`, `tests/`, `docs/*WEEKLY*`, so the clean merge is confirmed, not assumed. |
+| `public/data/history.json` regenerated → **126 points / 5 weeks** (was 138) | `validate.mjs` reports `history 5 weeks / 126 points`. Legitimate: see D4. |
+| `fx.json` now `asOf 2026-10-09`, TRY `0.0202774207` | `public/data/fx.json`; `latest.fx` is byte-identical to it |
+| The reported TRY USD defect + fix | `5830a29`: `docs/WEEKLY-CONTRACT.md` +14, `src/data.js` +22, `tests/matrix.spec.js` +29, `public/data/history.json` regenerated |
+| Retained 21 real carried rows in `latest.json` | merge artifact; makes my first-pass F4 moot (D5) |
+
+**Fix scope is exactly as described.** `git show 5830a29 -- src/data.js` contains **only** `normalizePriceUsd`
+(`src/data.js:327`) plus its two calls (`:411`, `:412`) — no other behaviour changed. That matters: every first-pass
+finding about `cell()`, `history()` and `weeklyTrend` therefore carries over unchanged.
+
+The two new tests are at [`tests/matrix.spec.js:555`](../tests/matrix.spec.js#L555) (published rate wins) and
+[`:571`](../tests/matrix.spec.js#L571) (no-rate currency keeps its stored value). They are **not vacuous**: each puts
+its record and its history point on a *different* model (`M1`/`M2`, `M3`/`M4`), so neither row is masked by the
+same-series collapse, and I reproduced both assertions independently (D2/D3).
+
+## D2. Gates — my own re-run output
+
+**`node scripts/validate.mjs`** → `EXIT=0`:
+
+```
+OK: contract v1.1 valid · 151 records · 105 live this week · 7 markets · 22 models · fx 2026-10-09 · history 5 weeks / 126 points · specs present
+```
+
+**`npm run build`** → `BUILD_EXIT=0`, 2168 modules transformed, built in 16.13s; the only warning is the
+pre-existing >500 kB recharts chunk.
+
+**`npx playwright test`** → **24 passed (24.7s), 0 failed, `PW_EXIT=0`** — the expected 22 → 24 regression count.
+**No dev server was listening on 127.0.0.1:5173** when I started, so I **did not reuse a server**: the log shows
+`[WebServer] …`, i.e. Playwright started its own vite instance. Both new tests passed:
+
+```
+✓ 14 tests/matrix.spec.js:555:1 › USD display: the published fx rate wins over a stale stored priceUsd (7ms)
+✓ 15 tests/matrix.spec.js:571:1 › USD display: a currency without a published rate keeps its stored priceUsd (11ms)
+✓ 23 tests/matrix.spec.js:749:1 › every visible cell's USD equals round(local × fx.rates[currency], 2) (3.2s)
+  24 passed (24.7s)
+```
+
+## D3. Adversarial verification of the fix
+
+All numbers below are mine, from `node` probes importing the shipped `src/data.js` plus a Playwright pass against
+`127.0.0.1:5173` serving the real `public/data`.
+
+**(a) The published rate wins over a stale stored `priceUsd` — CONFIRMED, on real data.** The three affected cells,
+via **both** accessors:
+
+| cell | local | stored in `history.json` (stale) | `round(price × TRY, 2)` | `history()` | `cell()` |
+|---|---|---|---|---|---|
+| `tr/A16/retail/128GB` | 13,300 TRY | 270.25 | **269.69** | 269.69 | 269.69 |
+| `tr/A37 5G/official/256GB` | 30,499 TRY | 619.72 | **618.44** | 618.44 | 618.44 |
+| `tr/A57 5G/official/128GB` | 33,499 TRY | 680.68 | **679.27** | 679.27 | 679.27 |
+
+Synthetic isolation as well: a record with stored `priceUsd: 999` and price 100 SAR under a published
+`SAR: 0.27` → `cell().priceUsd === 27`. *(My first probe reported spurious "bad" rows here because it compared a
+cell against an arbitrary record of the same series; the correct invariant — `cell().priceUsd === round(cell().value
+× rate(cell().currency))`, i.e. what `tests/matrix.spec.js:749` asserts — is what is reported above.)*
+
+**(b) A currency with NO published rate keeps its stored value — CONFIRMED, fixtures are not nulled.**
+`300 XYZ` with stored `priceUsd: 42` → `cell()` 42 (kept); an isolated `400 XYZ` with stored `7` → `history()` 7
+(kept). Also the converse, which the addendum implies: a row with a **finite rate** but a stored **`null`** now
+gains the correct value (`100 SAR`, stored `null` → `27`) — never left null when a rate exists.
+**0** rows were forced from a value to `null` (14 went `null` → value).
+
+**(c) `weeklyTrend` is untouched — CONFIRMED by independent recomputation.** I recomputed the whole trend with my
+own implementation using **local prices only** (no USD anywhere) and compared point-by-point:
+`weeklyTrend({})` points match exactly — weeks, `sample`, `medianPct`, `index`, up/down all identical. The
+`weeklyTrend` payload contains **no `priceUsd` field at all**. Separately, poisoning `priceUsd` on every row whose
+currency has no published rate left `weeklyTrend` bit-identical. So the normalisation cannot leak into the trend.
+
+**(d) Exhaustive invariant on the real published data:** **151/151** `cell()` values and **126/126** `history()`
+rows satisfy `priceUsd === round(value × rate, 2)`; **0** violations.
+
+**(e) Idempotent and rounding-consistent.** `hydrate()` ×3 on the same payload object yields the same
+`priceUsd` every time (recomputed from `price`, never from the previous `priceUsd`). The fix's
+`Math.round(price * rate * 100) / 100` is character-for-character the same rule as `validate.mjs:21`
+(`round2`) and the displayed-USD test, so the client and the validator cannot disagree about what "correct" means.
+
+**(f) Served page — CONFIRMED.** All **15** `tr` cells render `$X` equal to `round(local × TRY, 2)`; forcing the
+trio through the 渠道/容量 filters shows `$269.69 / $618.44 / $679.27` where the stale values would have been
+`$270.25 / $619.72 / $680.68`. `pageerror`, `console.error` and `requestfailed` were all empty.
+
+## D4. The 138 → 126 point change is legitimate
+
+My independent re-implementation of the aggregator (not importing `scripts/history.mjs`) over the **merged**
+snapshots: 34 snapshots, 0 skipped, 6907 records scanned, **126** points — **0** points only in mine, **0** only in
+the published file, **0** price mismatches, same 5 weeks. So the smaller file is the correct output of the frozen
+C2 rules over the new snapshot set, not lost data. The `A06` implausible point survived the merge intact
+(`2026-09-28 = 4.2259 SAR`, `state: live`, `sourceId amazon-sa-a06-128`, `brand`/`series` verbatim), so disclosure
+(b) still holds.
+
+## D5. First-pass findings re-confirmed or resolved
+
+- **Anti-fabrication and scope findings still hold.** `scripts/validate.mjs` remains **purely additive** vs the
+  pre-workstream baseline `4e95129`: **102 insertions / 1 deletion** (the `OK:` summary string). `public/data/specs.json`
+  is untouched since my first pass (only in `5b76e24`), and `src/main.jsx` is untouched by the delta — so all
+  first-pass R2/R3/R4 served findings, `connectNulls={false}` and the spec-source audit carry over unchanged.
+- **F1/F2/F3/F5 — settled by the Lead's §9 addendum** ([`docs/INTEGRATION-WEEKLY.md:343`](INTEGRATION-WEEKLY.md#L343));
+  I verified §9 exists and does correct §7.5 and the arithmetic, and attributes the post-freeze write to thread
+  `05-ui`. Not re-litigated.
+- **F4 (carried-row honesty was fixture-only) — RESOLVED by the merge.** `latest.json` now carries **21 real
+  `missing` rows**, so the rule is exercised by real data: **0** of them surface a non-null `delta`/`percent`, and
+  setting every carried row's price to 1 leaves `weeklyTrend` bit-identical. Where a real row and a carried row cover
+  the same (series, week), `cell()` shows the real row — the WC §3.4 "a real observation always beats a carried row"
+  precedence, pre-existing and unchanged.
+
+## D6. Delta findings (all non-blocking)
+
+### Blocking
+**None.**
+
+### D6.1 — LOW (documentation): WC §3.5's pinned literals are stale after the merge
+
+The §3.5 *rules* all still hold and I re-verified them, but the pinned numbers are data-dependent and the last point
+moved:
+
+| quantity | WC §3.5 (pre-merge) | after the merge (mine) |
+|---|---|---|
+| `sample` | 3 / 4 / 4 / 4 | 3 / 4 / 4 / 4 (unchanged) |
+| `medianPct` | 0 / −1.5635% / 0 / **−7.4923%** | 0 / −1.5635% / 0 / **−2.2285%** |
+| `index` | 100 / 98.4365 / 98.4365 / **91.0614** | 100 / 98.4365 / 98.4365 / **96.2428** |
+| `suspects` / `insufficient` | 4 / false | 4 / false (same four series, same weeks) |
+
+My independent local-price recomputation produces the new values, so this is correct behaviour on changed data, not
+a regression. Per WC §3.4's "Baseline caution" a mismatch is a question for the Lead, not a FAIL. **Requested:** add
+a §3.5 addendum pinning the post-merge values (or marking the table as data-dependent).
+*Repro:* import `src/data.js` in plain Node against the published `public/data` and print `weeklyTrend({})` — the last
+point is `index 96.2428`, `medianPct −0.022285` (`−2.2285%`), where §3.5 pins `91.0614` / `−7.4923%`. On the served
+page the trend section's last week reads `指数 96.24`.
+
+### D6.2 — INFO: the client normalises from `latest.fx.rates`, not literally `fx.json.rates`
+
+`hydrate()` resolves `fx = latest?.fx ?? fxFile`, and `normalizePriceUsd` reads `dataInfo.fx.rates`, while the
+addendum says "the rates in the published `fx.json`". Today these are **byte-identical**, and
+`validate.mjs:60-61` pins `latest.fx.base`/`asOf` to `fx.json` while `:96` cross-checks every record's `priceUsd`
+against `fx.json.rates`, so a divergence cannot pass silently. Recorded as a latent coupling, not a defect.
+
+### D6.3 — INFO (probe note, not a defect): `cell()` vs `history()` for a `price: null` row
+
+For a row with `price: null` and a known currency, `cell()` returns `priceUsd: null` (the pre-existing
+`unavailable()` branch) while `history()` preserves the stored value. The delta touched only `normalizePriceUsd`, so
+this is unchanged pre-existing behaviour — recorded so a future reviewer does not mistake it for the fix nulling
+values.
+
+---
+
+VERDICT: PASS
+
+The merged + fixed revision is verified: all four requirements still hold, the full gate is green on my own runs
+(**24/24 Playwright with no reused server**, `validate.mjs` EXIT 0, `npm run build` EXIT 0), the USD fix is correct
+under adversarial testing (published rate wins for 151/151 cells and 126/126 history rows; a no-rate currency keeps
+its stored value; `weeklyTrend` provably unaffected), the 126-point `history.json` is the legitimate aggregation of
+the merged snapshots, and first-pass F4 is resolved by real carried-row data. The only new item is **D6.1**, a
+non-blocking documentation addendum for WC §3.5. Nothing here blocks a push.
