@@ -110,6 +110,17 @@ const records = (previous?.records ?? [])
   // fake a price crash. Drop it rather than chart it.
   .filter((r) => !(r.sourceId?.startsWith("amazon-") && !r.collectorVersion));
 
+// Current-week rows are dropped above and rebuilt. A source that fails this run
+// may therefore have no history at all, and would silently disappear from the
+// week (the UI then claims "未在售", which is wrong). Keep last run's current-week
+// rows so a blocked source degrades to a clearly-labelled carried value instead.
+const priorCurrentWeek = new Map();
+for (const r of previous?.records ?? []) {
+  if (!r?.sourceId || r.week !== week || !Number.isFinite(r.price)) continue;
+  const prev = priorCurrentWeek.get(r.sourceId);
+  if (!prev || String(r.collectedAt ?? "") > String(prev.collectedAt ?? "")) priorCurrentWeek.set(r.sourceId, r);
+}
+
 const keyOf = (r) => [r.country, r.brand, r.model, r.variant, r.channel, r.sourceId, r.week].join("|");
 
 function normalizeName(title) {
@@ -883,13 +894,25 @@ for (const source of activeSources) {
     upsertMany(built);
   } catch (error) {
     const message = String(error.message || error);
-    failedSources.push({ id: source.id, name: source.name, country: source.country, error: message });
+    failedSources.push({
+      id: source.id,
+      name: source.name,
+      country: source.country,
+      model: source.model ?? null,
+      variant: source.variant ?? null,
+      error: message,
+    });
     // Carry the most recent verified value for this source, clearly marked.
     const priorWeeks = records
       .filter((r) => r.sourceId === source.id && r.week !== week && Number.isFinite(r.price))
       .sort((a, b) => String(b.week).localeCompare(String(a.week)));
-    const newestWeek = priorWeeks[0]?.week;
-    for (const prior of priorWeeks.filter((r) => r.week === newestWeek)) {
+    const fallback = priorCurrentWeek.get(source.id);
+    const carryRows = priorWeeks.length ? priorWeeks : fallback ? [fallback] : [];
+    const newestWeek = carryRows[0]?.week;
+    if (carryRows.length && priorWeeks.length === 0) {
+      console.log(`  carry: ${source.id} keeps its last verified ${fallback.currency} ${fallback.price} (collected ${fallback.collectedAt})`);
+    }
+    for (const prior of carryRows.filter((r) => r.week === newestWeek)) {
       const carried = {
         ...prior,
         week,
@@ -897,7 +920,13 @@ for (const source of activeSources) {
         state: "missing",
         collectedAt,
         priceUsd: toUsd(prior.price, prior.currency, fx),
-        rawEvidence: { ...(prior.rawEvidence || {}), failure: message, carried: true, carriedFromWeek: prior.week },
+        rawEvidence: {
+          ...(prior.rawEvidence || {}),
+          failure: message,
+          carried: true,
+          carriedFromWeek: prior.week,
+          carriedFromCollectedAt: prior.collectedAt ?? null,
+        },
       };
       const idx = records.findIndex((r) => keyOf(r) === keyOf(carried));
       if (idx >= 0) records[idx] = carried;
