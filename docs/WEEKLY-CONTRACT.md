@@ -262,6 +262,16 @@ These amendments relax nothing in §7 (anti-fabrication). They only make the thi
   was already failing before this workstream. The replacement invariant — every live current-week
   `country|model` pair renders a priced cell — is approved as a legitimate bug fix, **not** a
   weakening. Anyone re-running the old assertion at HEAD will reproduce the failure.
+- **Post-merge update (Lead, 2026-10-11 — closes reviewer finding D6.1).** The literals above were derived
+  from the pre-merge tree. After merging `origin/main` and regenerating the artifact, the **rules** are
+  unchanged and the sample is still `3/4/4/4`, `suspects = 4`, `insufficient = false`, but the last point
+  moved: `medianPct` `−2.2285%` (was `−7.4923%`) and `index` `96.2428` (was `91.0614`); the first three
+  points remain `100 / 98.4365 / 98.4365`. **Read every literal in this section as a data-dependent
+  snapshot, never an invariant** — the invariants are the rules in §3.2, and any future regeneration may
+  move the numbers. Confirmed by the reviewer's independent local-price recomputation and by the Lead's gate.
+  Related: the reviewer's finding D6.2 notes `hydrate()` normalises from `latest.fx.rates` rather than
+  literally `fx.json.rates`; today they are byte-identical and `validate.mjs` pins them together, so this is
+  a recorded latent coupling rather than a defect.
 
 ---
 
