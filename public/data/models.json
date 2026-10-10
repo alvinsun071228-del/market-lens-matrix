@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T06:18:34.583Z",
+  "generatedAt": "2026-10-10T09:14:14.617Z",
   "contractVersion": "1.1",
   "brandId": "samsung",
   "totalModels": 22,
@@ -163,11 +163,21 @@
         "sa": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "SAR",
           "priceUsd": 165.07
+        },
+        "tr": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "TRY",
+          "priceUsd": 269.69
         }
       }
     },
@@ -184,7 +194,8 @@
         "ae": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
@@ -250,7 +261,8 @@
         "ae": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
@@ -269,7 +281,8 @@
         "tr": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
@@ -389,7 +402,8 @@
         "ae": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
@@ -425,7 +439,8 @@
         "sa": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "SAR",
@@ -486,7 +501,8 @@
         "ae": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
@@ -537,6 +553,15 @@
           "lastSeen": "2026-10-05",
           "currency": "SAR",
           "priceUsd": 479.73
+        },
+        "tr": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "TRY",
+          "priceUsd": 560.55
         }
       }
     },
@@ -924,10 +949,12 @@
       "modelIds": [
         "A07 5G",
         "A08",
+        "A16",
         "A17",
         "A17 5G",
         "A27 5G",
         "A37 5G",
+        "A57 5G",
         "S25 FE",
         "S25 ULTRA",
         "S25+",
