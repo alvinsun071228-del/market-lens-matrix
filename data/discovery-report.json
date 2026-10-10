@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T10:31:09.993Z",
+  "generatedAt": "2026-10-10T12:51:50.252Z",
   "brands": [
     {
       "id": "samsung",
@@ -234,14 +234,6 @@
   },
   "failedSources": [
     {
-      "id": "amazon-sa-a57-256",
-      "name": "Amazon.sa · Galaxy A57 256GB",
-      "country": "sa",
-      "model": "A57",
-      "variant": "256GB",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"نعتذر\")"
-    },
-    {
       "id": "amazon-tr-a16-128",
       "name": "Amazon.com.tr · Galaxy A16 128GB",
       "country": "tr",
@@ -250,10 +242,26 @@
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
     },
     {
+      "id": "amazon-ae-a16-128",
+      "name": "Amazon.ae · Galaxy A16 128GB",
+      "country": "ae",
+      "model": "A16",
+      "variant": "128GB",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
+    },
+    {
       "id": "amazon-tr-a07-128",
       "name": "Amazon.com.tr · Galaxy A07 128GB",
       "country": "tr",
       "model": "A07",
+      "variant": "128GB",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
+    },
+    {
+      "id": "amazon-tr-a07-5g-128",
+      "name": "Amazon.com.tr · Galaxy A07 5G 128GB",
+      "country": "tr",
+      "model": "A07 5G",
       "variant": "128GB",
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
     },
@@ -298,36 +306,36 @@
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
     },
     {
-      "id": "amazon-sa-a07-128",
-      "name": "Amazon.sa · Galaxy A07 128GB",
+      "id": "amazon-tr-a57-256",
+      "name": "Amazon.com.tr · Galaxy A57 5G 256GB",
+      "country": "tr",
+      "model": "A57 5G",
+      "variant": "256GB",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
+    },
+    {
+      "id": "amazon-sa-a17-5g-128",
+      "name": "Amazon.sa · Galaxy A17 5G 128GB",
       "country": "sa",
-      "model": "A07",
+      "model": "A17 5G",
       "variant": "128GB",
       "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"نعتذر\")"
     },
     {
-      "id": "amazon-sa-a17-128",
-      "name": "Amazon.sa · Galaxy A17 128GB",
+      "id": "amazon-sa-a36-256",
+      "name": "Amazon.sa · Galaxy A36 5G 256GB",
       "country": "sa",
-      "model": "A17",
-      "variant": "128GB",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"نعتذر\")"
-    },
-    {
-      "id": "amazon-sa-a27-128",
-      "name": "Amazon.sa · Galaxy A27 5G 128GB",
-      "country": "sa",
-      "model": "A27 5G",
-      "variant": "128GB",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"نعتذر\")"
-    },
-    {
-      "id": "amazon-sa-a37-256",
-      "name": "Amazon.sa · Galaxy A37 5G 256GB",
-      "country": "sa",
-      "model": "A37 5G",
+      "model": "A36 5G",
       "variant": "256GB",
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"نعتذر\")"
+    },
+    {
+      "id": "amazon-sa-a57-128",
+      "name": "Amazon.sa · Galaxy A57 5G 128GB",
+      "country": "sa",
+      "model": "A57 5G",
+      "variant": "128GB",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"نعتذر\")"
     },
     {
       "id": "amazon-ae-a07-128",
@@ -354,6 +362,14 @@
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
     },
     {
+      "id": "amazon-ae-a27-128",
+      "name": "Amazon.ae · Galaxy A27 5G 128GB",
+      "country": "ae",
+      "model": "A27 5G",
+      "variant": "128GB",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"عذرًا!\")"
+    },
+    {
       "id": "amazon-ae-a27-256",
       "name": "Amazon.ae · Galaxy A27 5G 256GB",
       "country": "ae",
@@ -378,11 +394,11 @@
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
     },
     {
-      "id": "amazon-ae-a57-256",
-      "name": "Amazon.ae · Galaxy A57 5G 256GB",
+      "id": "amazon-ae-a57-128",
+      "name": "Amazon.ae · Galaxy A57 5G 128GB",
       "country": "ae",
       "model": "A57 5G",
-      "variant": "256GB",
+      "variant": "128GB",
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
     }
   ],
