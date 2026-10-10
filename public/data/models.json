@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T10:21:42.373Z",
+  "generatedAt": "2026-10-10T10:31:09.993Z",
   "contractVersion": "1.1",
   "brandId": "samsung",
   "totalModels": 22,
@@ -50,7 +50,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 247.2
+          "priceUsd": 247.77
         }
       }
     },
@@ -71,7 +71,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 313.56
+          "priceUsd": 314.28
         }
       }
     },
@@ -100,7 +100,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "KWD",
-          "priceUsd": 138.02
+          "priceUsd": 138.01
         },
         "om": {
           "available": true,
@@ -109,7 +109,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 150.46
+          "priceUsd": 150.43
         }
       }
     },
@@ -139,7 +139,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 171.25
+          "priceUsd": 171.22
         },
         "tr": {
           "available": true,
@@ -148,7 +148,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 262.98
+          "priceUsd": 263.59
         }
       }
     },
@@ -177,7 +177,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 148.12
+          "priceUsd": 148.1
         },
         "sa": {
           "available": true,
@@ -196,7 +196,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 269.07
+          "priceUsd": 269.69
         }
       }
     },
@@ -236,7 +236,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "KWD",
-          "priceUsd": 173.42
+          "priceUsd": 173.4
         },
         "om": {
           "available": true,
@@ -245,7 +245,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 227.38
+          "priceUsd": 227.34
         },
         "sa": {
           "available": true,
@@ -264,7 +264,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 343.9
+          "priceUsd": 344.7
         }
       }
     },
@@ -306,7 +306,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 414.71
+          "priceUsd": 415.67
         }
       }
     },
@@ -347,7 +347,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "KWD",
-          "priceUsd": 314.98
+          "priceUsd": 314.95
         },
         "om": {
           "available": true,
@@ -356,7 +356,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 264.02
+          "priceUsd": 263.97
         },
         "sa": {
           "available": true,
@@ -375,7 +375,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 414.71
+          "priceUsd": 415.67
         }
       }
     },
@@ -396,7 +396,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 259.6
+          "priceUsd": 259.56
         },
         "sa": {
           "available": true,
@@ -446,7 +446,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "KWD",
-          "priceUsd": 273.15
+          "priceUsd": 273.13
         },
         "om": {
           "available": true,
@@ -455,7 +455,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 308.98
+          "priceUsd": 308.92
         },
         "sa": {
           "available": true,
@@ -475,7 +475,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 617.02
+          "priceUsd": 618.44
         }
       }
     },
@@ -504,7 +504,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 389.53
+          "priceUsd": 389.46
         }
       }
     },
@@ -546,7 +546,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "KWD",
-          "priceUsd": 337.5
+          "priceUsd": 337.47
         },
         "om": {
           "available": true,
@@ -555,7 +555,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 363.55
+          "priceUsd": 363.48
         },
         "qa": {
           "available": true,
@@ -583,7 +583,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 559.26
+          "priceUsd": 560.55
         }
       }
     },
@@ -653,7 +653,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 571.44
+          "priceUsd": 571.34
         },
         "qa": {
           "available": true,
@@ -680,7 +680,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 950.82
+          "priceUsd": 953.02
         }
       }
     },
@@ -710,7 +710,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 828.96
+          "priceUsd": 828.81
         },
         "qa": {
           "available": true,
@@ -737,7 +737,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 2255.7
+          "priceUsd": 2260.91
         }
       }
     },
@@ -757,7 +757,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 1486.94
+          "priceUsd": 1490.37
         }
       }
     },
@@ -806,7 +806,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 846.89
+          "priceUsd": 846.74
         }
       }
     },
@@ -845,7 +845,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 1112.67
+          "priceUsd": 1115.24
         }
       }
     },
@@ -876,7 +876,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 1010.86
+          "priceUsd": 1010.69
         },
         "qa": {
           "available": true,
@@ -903,7 +903,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 3722.43
+          "priceUsd": 3731.03
         }
       }
     },
@@ -934,7 +934,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "OMR",
-          "priceUsd": 953.17
+          "priceUsd": 953.01
         },
         "qa": {
           "available": true,
@@ -961,7 +961,7 @@
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
-          "priceUsd": 2103.97
+          "priceUsd": 2108.83
         }
       }
     }
