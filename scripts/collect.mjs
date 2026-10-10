@@ -344,6 +344,94 @@ const PRICE_TOKEN = String.raw`(?:SAR|SR|AED|TRY|TL|₺|ريال|د\.إ|درهم
 const amazonHost = (source) => new URL(source.url).hostname.replace(/^www\./, "");
 const amazonDpUrl = (source, asin) => `https://www.${amazonHost(source)}/dp/${asin}`;
 
+/* ---------------------- Amazon robustness (v1.1) ----------------------- *
+ * Amazon answers datacenter IPs (GitHub runners) with a captcha / empty
+ * result grid. We therefore (a) present a realistic per-market browser
+ * fingerprint, (b) warm up on the storefront to collect cookies, (c) prefer a
+ * pinned ASIN product page over the heavily protected search page, and
+ * (d) report WHY a source failed so CI logs are actionable. A blocked source
+ * is still recorded as a failure and never becomes a price.
+ */
+const AMAZON_LAUNCH_ARGS = [
+  "--disable-blink-features=AutomationControlled",
+  "--no-sandbox",
+  "--disable-dev-shm-usage",
+];
+const CAPTCHA_RE = /validateCaptcha|api-services-support@amazon|Enter the characters you see|Type the characters you see|Sorry, we just need to make sure|Robot Check|not a robot/i;
+const AMAZON_MARKETS = {
+  "amazon.sa": { locale: "en-SA", lang: "en-SA,en;q=0.9,ar;q=0.8", timezoneId: "Asia/Riyadh", geo: { latitude: 24.7136, longitude: 46.6753 } },
+  "amazon.ae": { locale: "en-AE", lang: "en-AE,en;q=0.9,ar;q=0.8", timezoneId: "Asia/Dubai", geo: { latitude: 25.2048, longitude: 55.2708 } },
+  "amazon.com.tr": { locale: "tr-TR", lang: "tr-TR,tr;q=0.9,en;q=0.8", timezoneId: "Europe/Istanbul", geo: { latitude: 41.0082, longitude: 28.9784 } },
+};
+
+async function newAmazonContext(browser, source) {
+  const market = AMAZON_MARKETS[amazonHost(source)] ?? { locale: "en-US", lang: "en-US,en;q=0.9", timezoneId: "UTC", geo: null };
+  const context = await browser.newContext({
+    locale: market.locale,
+    timezoneId: market.timezoneId,
+    geolocation: market.geo ?? undefined,
+    permissions: market.geo ? ["geolocation"] : [],
+    viewport: { width: 1440, height: 900 },
+    userAgent: UA,
+    extraHTTPHeaders: {
+      "accept-language": market.lang,
+      "sec-ch-ua": '"Chromium";v="126", "Google Chrome";v="126", "Not?A_Brand";v="24"',
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": '"macOS"',
+      "upgrade-insecure-requests": "1",
+    },
+  });
+  await context.addInitScript(() => {
+    Object.defineProperty(navigator, "webdriver", { get: () => undefined });
+    Object.defineProperty(navigator, "languages", { get: () => ["en-US", "en"] });
+    Object.defineProperty(navigator, "plugins", { get: () => [1, 2, 3, 4, 5] });
+    window.chrome = window.chrome || { runtime: {} };
+  });
+  return context;
+}
+
+/** Visit the storefront once so the context carries real cookies. */
+async function warmUpAmazon(context, source) {
+  const page = await context.newPage();
+  try {
+    await page.goto("https://www." + amazonHost(source) + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
+    await page.waitForTimeout(1200 + Math.floor(Math.random() * 900));
+  } catch {}
+  finally {
+    await page.close();
+  }
+}
+
+/** Read one Amazon product page. Returns { captcha: true } when challenged. */
+async function readAmazonDetailPage(page, source, url) {
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 });
+  await page.waitForTimeout(1500);
+  const pageTitle = await page.title();
+  const body = (await page.locator("body").innerText().catch(() => "")).slice(0, 4000);
+  if (CAPTCHA_RE.test(body) || CAPTCHA_RE.test(pageTitle)) return { captcha: true, title: pageTitle };
+  const title = ((await page.locator("#productTitle").first().textContent().catch(() => null)) || pageTitle || "")
+    .replace(/\s+/g, " ")
+    .trim();
+  const offscreen = await page
+    .locator("#corePriceDisplay_desktop_feature_div span.a-offscreen, span.a-price span.a-offscreen, #priceblock_ourprice")
+    .first()
+    .textContent()
+    .catch(() => null);
+  const tokenPrice = parseTokenPrice(body, source);
+  const price = Number.isFinite(parseLocalizedNumber(offscreen, source.currency))
+    ? parseLocalizedNumber(offscreen, source.currency)
+    : (tokenPrice?.price ?? null);
+  return { captcha: false, title, priceText: offscreen, price };
+}
+
+function amazonVariantOk(title, dpUrl, source) {
+  if (!source.variant) return true;
+  if (deriveVariant(title, dpUrl) === source.variant) return true;
+  const storage = String(source.variant).replace("GB", "");
+  return new RegExp(storage + "\\s*GB", "i").test(String(title));
+}
+
+
 function matchAmazonCard(card, source) {
   const title = String(card.title || "").replace(/\s+/g, " ").trim();
   const text = `${title} ${String(card.text || "")}`.replace(/\s+/g, " ").trim();
@@ -370,53 +458,74 @@ function matchAmazonCard(card, source) {
 }
 
 async function parseAmazonSearch(source, browser) {
-  const page = await browser.newPage({ userAgent: UA, locale: "en-US" });
+  const context = await newAmazonContext(browser, source);
   try {
-    await page.goto(source.url, { waitUntil: "domcontentloaded", timeout: 45000 });
-    await page.waitForTimeout(2500);
-    const cards = await page.locator('[data-component-type="s-search-result"]').evaluateAll((elements) =>
-      elements.map((element) => ({
-        asin: element.getAttribute("data-asin"),
-        title: element.querySelector('[data-cy="title-recipe"]')?.innerText ?? element.querySelector("h2")?.innerText ?? "",
-        offscreen: element.querySelector("span.a-price span.a-offscreen")?.textContent ?? "",
-        text: element.innerText,
-      })),
-    );
-    const candidates = cards.map((card) => matchAmazonCard(card, source)).filter(Boolean);
-    // Deterministic order: lowest card price, then ASIN. The search grid order
-    // is not stable run-to-run, so it must not decide which product we record.
-    candidates.sort((a, b) => a.price - b.price || String(a.productId).localeCompare(String(b.productId)));
-    // Verify up to two candidates on their canonical product page and use the
-    // product page's own listed price, so sourceUrl actually carries the price.
-    for (const candidate of candidates.slice(0, 2)) {
-      const dpUrl = amazonDpUrl(source, candidate.productId);
-      const detail = await browser.newPage({ userAgent: UA, locale: "en-US" });
+    await warmUpAmazon(context, source);
+    const page = await context.newPage();
+    let cards = [];
+    let pageTitle = "";
+    try {
+      await page.goto(source.url, { waitUntil: "domcontentloaded", timeout: 45000 });
+      await page.waitForTimeout(2500);
+      pageTitle = await page.title();
+      const body = (await page.locator("body").innerText().catch(() => "")).slice(0, 4000);
+      if (CAPTCHA_RE.test(body) || CAPTCHA_RE.test(pageTitle)) {
+        throw new Error("amazon captcha challenge (title=" + JSON.stringify(pageTitle.slice(0, 80)) + ")");
+      }
+      cards = await page.locator('[data-component-type="s-search-result"]').evaluateAll((elements) =>
+        elements.map((element) => ({
+          asin: element.getAttribute("data-asin"),
+          title: element.querySelector('[data-cy="title-recipe"]')?.innerText ?? element.querySelector("h2")?.innerText ?? "",
+          offscreen: element.querySelector("span.a-price span.a-offscreen")?.textContent ?? "",
+          text: element.innerText,
+        })),
+      );
+    } finally {
+      await page.close();
+    }
+
+    const candidates = cards
+      .map((card) => matchAmazonCard(card, source))
+      .filter(Boolean)
+      .sort((a, b) => a.price - b.price || String(a.productId).localeCompare(String(b.productId)));
+
+    // A pinned ASIN goes straight to the product page: far less protected than
+    // search, and the page lists the price itself.
+    const pinned = source.asin ? [source.asin] : [];
+    const toVerify = [...pinned, ...candidates.map((c) => c.productId)].slice(0, pinned.length + 2);
+    let sawCaptcha = false;
+
+    for (const asin of toVerify) {
+      const dpUrl = amazonDpUrl(source, asin);
+      const detail = await context.newPage();
       try {
-        await detail.goto(dpUrl, { waitUntil: "domcontentloaded", timeout: 45000 });
-        await detail.waitForTimeout(1500);
-        const title = (
-          (await detail.locator("#productTitle").first().textContent().catch(() => null)) || candidate.title
-        )
-          .replace(/\s+/g, " ")
-          .trim();
-        const off = await detail.locator("span.a-price span.a-offscreen").first().textContent().catch(() => null);
-        const price = parseLocalizedNumber(off, source.currency);
-        const pageModel = deriveModel(title);
-        const storage = String(source.variant || "").replace("GB", "");
-        const variantOk =
-          !source.variant ||
-          new RegExp(`${storage}\\s*(?:GB|جيجابايت|جيجا)`, "i").test(title) ||
-          deriveVariant(title, dpUrl) === source.variant;
-        if (pageModel && sourceModelMatches(pageModel, source.model, source.exactModel) && variantOk && isPlausiblePhonePrice(price, source.currency, fx?.rates)) {
+        const read = await readAmazonDetailPage(detail, source, dpUrl);
+        if (read.captcha) {
+          sawCaptcha = true;
+          continue;
+        }
+        const model = deriveModel(read.title) ?? (pinned.includes(asin) ? source.model : null);
+        if (
+          model &&
+          sourceModelMatches(model, source.model, source.exactModel) &&
+          amazonVariantOk(read.title, dpUrl, source) &&
+          isPlausiblePhonePrice(read.price, source.currency, fx?.rates)
+        ) {
           return [
             {
-              price,
+              price: read.price,
               currency: source.currency,
-              title,
+              title: read.title,
               sourceUrl: dpUrl,
-              productId: candidate.productId,
-              model: pageModel,
-              rawEvidence: { ...verifiedRef(source), method: "amazon-detail", productId: candidate.productId, priceText: off, title },
+              productId: asin,
+              model,
+              rawEvidence: {
+                ...verifiedRef(source),
+                method: pinned.includes(asin) ? "amazon-detail-pinned" : "amazon-detail",
+                productId: asin,
+                priceText: read.priceText,
+                title: read.title,
+              },
             },
           ];
         }
@@ -425,8 +534,9 @@ async function parseAmazonSearch(source, browser) {
         await detail.close();
       }
     }
-    const best = candidates[0];
-    if (best) {
+
+    if (candidates.length) {
+      const best = candidates[0];
       const dpUrl = amazonDpUrl(source, best.productId);
       return [
         {
@@ -436,9 +546,19 @@ async function parseAmazonSearch(source, browser) {
         },
       ];
     }
-    return [];
+    throw new Error(
+      "amazon: no usable product (searchCards=" +
+        cards.length +
+        ", verifyTried=" +
+        toVerify.length +
+        ", captcha=" +
+        sawCaptcha +
+        ", title=" +
+        JSON.stringify(String(pageTitle).slice(0, 60)) +
+        ")",
+    );
   } finally {
-    await page.close();
+    await context.close();
   }
 }
 
@@ -712,15 +832,15 @@ for (const source of activeSources) {
     if (source.parser === "jsonld-itemlist") {
       parsed = await parseSamsungOfficialList(source);
     } else if (source.parser === "amazon-search") {
-      browser ||= await chromium.launch({ headless: true });
+      browser ||= await chromium.launch({ headless: true, args: AMAZON_LAUNCH_ARGS });
       parsed = await parseAmazonSearch(source, browser);
     } else if (source.parser === "browser-text") {
-      browser ||= await chromium.launch({ headless: true });
+      browser ||= await chromium.launch({ headless: true, args: AMAZON_LAUNCH_ARGS });
       parsed = await parseBrowserText(source, browser);
     } else if (source.parser === "extra-search") {
       parsed = await parseExtraSearch(source);
     } else if (source.parser === "shopify-search") {
-      browser ||= await chromium.launch({ headless: true });
+      browser ||= await chromium.launch({ headless: true, args: AMAZON_LAUNCH_ARGS });
       parsed = await parseShopifySearch(source, browser);
     } else if (source.parser === "orange-json") {
       parsed = await parseOrangeJson(source);

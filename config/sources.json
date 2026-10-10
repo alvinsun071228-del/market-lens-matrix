@@ -9,7 +9,8 @@
     "Model identity keeps connectivity and S-series sub-model (A17 vs A17 5G, S26 vs S26+ vs S26 Ultra vs S26 FE); collapsing them previously let a different phone's lowest price win the cell. Bundle/combo listings are rejected because their price includes accessories.",
     "parser=amazon-search renders the local Amazon storefront with Playwright, matches model + storage in a result card, verifies the product page when reachable, otherwise uses the card price (amazon-search-card).",
     "parser=browser-text renders a product page with Playwright and extracts a localized price token.",
-    "Countries without a reachable source (om) keep enabled=false and a reason; they show as unavailable instead of a guessed price."
+    "Countries without a reachable source (om) keep enabled=false and a reason; they show as unavailable instead of a guessed price.",
+    "A pinned `asin` lets the Amazon parser go straight to /dp/<asin> (a much smaller request than the search grid) which is the reliable path from datacenter IPs; it was captured from a real product page, not invented."
   ],
   "sources": [
     {
@@ -130,7 +131,11 @@
       "model": "A57",
       "series": "Galaxy A",
       "variant": "256GB",
-      "tokens": ["SR", "SAR", "ريال"]
+      "tokens": [
+        "SR",
+        "SAR",
+        "ريال"
+      ]
     },
     {
       "id": "amazon-sa-a16-128",
@@ -156,7 +161,8 @@
       "parser": "amazon-search",
       "model": "A57",
       "series": "Galaxy A",
-      "variant": "256GB"
+      "variant": "256GB",
+      "asin": "B0GSVQMB9P"
     },
     {
       "id": "amazon-tr-a16-128",
@@ -226,7 +232,6 @@
       "series": "Galaxy A",
       "variant": "256GB"
     },
-
     {
       "id": "amazon-tr-a07-128",
       "name": "Amazon.com.tr · Galaxy A07 128GB",
@@ -351,7 +356,8 @@
       "model": "A07",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0FLDK4MMS"
     },
     {
       "id": "amazon-sa-a17-128",
@@ -379,7 +385,8 @@
       "model": "A17 5G",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0FLDGV2LK"
     },
     {
       "id": "amazon-sa-a27-128",
@@ -393,7 +400,8 @@
       "model": "A27 5G",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0H4LDK36W"
     },
     {
       "id": "amazon-sa-a27-256",
@@ -407,7 +415,8 @@
       "model": "A27 5G",
       "series": "Galaxy A",
       "variant": "256GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0H4LJBMJ8"
     },
     {
       "id": "amazon-sa-a36-256",
@@ -449,7 +458,8 @@
       "model": "A57 5G",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0GSVSN4QC"
     },
     {
       "id": "amazon-ae-a07-128",
@@ -505,7 +515,8 @@
       "model": "A27 5G",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0HCWFH8S8"
     },
     {
       "id": "amazon-ae-a27-256",
@@ -519,7 +530,8 @@
       "model": "A27 5G",
       "series": "Galaxy A",
       "variant": "256GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0HCWVFS7B"
     },
     {
       "id": "amazon-ae-a37-128",

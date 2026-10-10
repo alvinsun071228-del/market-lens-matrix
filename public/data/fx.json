@@ -1,19 +1,19 @@
 {
   "base": "USD",
-  "asOf": "2026-10-09",
-  "fetchedAt": "2026-10-10T06:05:32.289Z",
+  "asOf": "2026-10-10",
+  "fetchedAt": "2026-10-10T08:45:32.872Z",
   "source": "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json",
   "sourceId": "fawazahmed0/currency-api",
   "unit": "USD per 1 unit of local currency",
   "partial": false,
   "stale": false,
   "rates": {
-    "TRY": 0.0202774207,
+    "TRY": 0.0202306885,
     "SAR": 0.2666666667,
     "AED": 0.2722940776,
     "QAR": 0.2747252747,
-    "OMR": 2.5981639607,
+    "OMR": 2.5986154421,
     "JOD": 1.4104372355,
-    "KWD": 3.2170398106
+    "KWD": 3.2173613969
   }
 }
