@@ -122,6 +122,36 @@ if (latest.failedSources?.length) {
   lines.push("");
 }
 
+// Which SKUs still depend on Amazon alone? Amazon refuses datacenter IPs
+// (GitHub runners), so these are the cells that can legitimately be blank in
+// the cloud even though a residential run can read them.
+const nonAmazonLiveKeys = new Set(
+  live.filter((r) => !String(r.sourceId).startsWith("amazon")).map((r) => r.country + "|" + r.model + "|" + r.variant),
+);
+// Compare against the model the collector actually recorded for that source
+// (records derive the model from the page, e.g. "A57 5G"), falling back to the
+// configured model only when the source produced nothing this week.
+const liveBySource = new Map(live.map((r) => [r.sourceId, r]));
+const amazonDependent = (config.sources ?? [])
+  .filter((s) => s.enabled && s.parser === "amazon-search")
+  .filter((s) => {
+    const record = liveBySource.get(s.id);
+    const key = record ? record.country + "|" + record.model + "|" + record.variant : s.country + "|" + s.model + "|" + s.variant;
+    return !nonAmazonLiveKeys.has(key);
+  });
+lines.push("## SKUs that depend on Amazon alone");
+lines.push("");
+if (!amazonDependent.length) {
+  lines.push("None. Every Amazon-tracked SKU also has a non-Amazon source, so an Amazon block cannot blank a cell.");
+} else {
+  lines.push("These SKUs have **no non-Amazon source**. Amazon refuses GitHub runner IPs (it answers with a");
+  lines.push("localised \"sorry\" page, not a captcha, even for a direct /dp/<ASIN> request), so in the cloud");
+  lines.push("these cells fall back to the carried value (缺价 · 沿用) or render blank, never a fabricated price:");
+  lines.push("");
+  for (const s of amazonDependent) lines.push("- " + s.country + " · " + s.model + " " + s.variant + " `" + s.id + "`");
+}
+lines.push("");
+
 lines.push("## Sources of evidence");
 lines.push("");
 lines.push("Every row above is backed by a record carrying `sourceId`, `sourceUrl`, `collectedAt` and");

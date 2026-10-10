@@ -1,11 +1,11 @@
 {
   "apiVersion": "1.1",
   "mode": "live",
-  "collectedAt": "2026-10-10T08:54:22.628Z",
+  "collectedAt": "2026-10-10T09:25:44.970Z",
   "week": "2026-10-05",
   "brand": "samsung",
-  "sourceCount": 79,
-  "verifiedProductCount": 120,
+  "sourceCount": 86,
+  "verifiedProductCount": 127,
   "fx": {
     "base": "USD",
     "asOf": "2026-10-10",
@@ -43,7 +43,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -74,7 +74,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -103,7 +103,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -134,7 +134,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -165,7 +165,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -196,7 +196,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -227,7 +227,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -236,6 +236,35 @@
         "productId": "B0FNCYB5N1",
         "priceText": "AED589.00",
         "title": "Samsung Galaxy A17 LTE, Android Smartphone, 128GB Storage, 4GB RAM, Black, 6x OS Upgrades, Large Display, 50MP OIS Camera (UAE Version)"
+      }
+    },
+    {
+      "country": "ae",
+      "brand": "samsung",
+      "series": "Galaxy A",
+      "model": "A17",
+      "modelName": "Samsung Galaxy A17 4GB 4G Smartphone, Black, 128 GB",
+      "variant": "128GB",
+      "channel": "retail",
+      "retailer": "jumbo-ae",
+      "sourceId": "jumbo-ae-a17-128",
+      "sourceUrl": "https://www.jumbo.ae/samsung-galaxy-a17-4gb-4g-smartphone-black-128-gb.html",
+      "productId": null,
+      "title": "Samsung Galaxy A17 4GB 4G Smartphone, Black, 128 GB",
+      "price": 729,
+      "currency": "AED",
+      "priceUsd": 198.5,
+      "collectorVersion": "1.1",
+      "availability": "in_stock",
+      "state": "live",
+      "week": "2026-10-05",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "effectiveDate": "2026-10-05",
+      "rawEvidence": {
+        "method": "jsonld",
+        "sourceId": "jumbo-ae-a17-128",
+        "sourceName": "Jumbo UAE · Galaxy null 128GB",
+        "title": "Samsung Galaxy A17 4GB 4G Smartphone, Black, 128 GB"
       }
     },
     {
@@ -258,7 +287,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -289,7 +318,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -320,7 +349,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -351,7 +380,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -360,6 +389,35 @@
         "productId": "B0HCWFH8S8",
         "priceText": "AED875.00",
         "title": "Samsung Galaxy A27 5G, Light Pink, 128GB Storage, 6GB RAM, Slim phone, Circle to Search, Object Eraser, Three lenses, IP64 - International Version"
+      }
+    },
+    {
+      "country": "ae",
+      "brand": "samsung",
+      "series": "Galaxy A",
+      "model": "A27 5G",
+      "modelName": "Samsung Galaxy A27 8GB RAM 5G Smartphone, Black, 128 GB",
+      "variant": "128GB",
+      "channel": "retail",
+      "retailer": "jumbo-ae",
+      "sourceId": "jumbo-ae-a27-5g-128",
+      "sourceUrl": "https://www.jumbo.ae/samsung-galaxy-a27-8gb-ram-5g-smartphone-black-128-gb.html",
+      "productId": null,
+      "title": "Samsung Galaxy A27 8GB RAM 5G Smartphone, Black, 128 GB",
+      "price": 1349,
+      "currency": "AED",
+      "priceUsd": 367.32,
+      "collectorVersion": "1.1",
+      "availability": "in_stock",
+      "state": "live",
+      "week": "2026-10-05",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "effectiveDate": "2026-10-05",
+      "rawEvidence": {
+        "method": "jsonld",
+        "sourceId": "jumbo-ae-a27-5g-128",
+        "sourceName": "Jumbo UAE · Galaxy A27 5G 128GB",
+        "title": "Samsung Galaxy A27 8GB RAM 5G Smartphone, Black, 128 GB"
       }
     },
     {
@@ -382,7 +440,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -391,6 +449,35 @@
         "productId": "B0HCWVFS7B",
         "priceText": "AED1,065.00",
         "title": "Samsung Galaxy A27 5G, Light Pink, 256GB Storage, 8GB RAM, Slim phone, Circle to Search, Object Eraser, Three lenses, IP64 - International Version"
+      }
+    },
+    {
+      "country": "ae",
+      "brand": "samsung",
+      "series": "Galaxy A",
+      "model": "A27 5G",
+      "modelName": "Samsung Galaxy A27 8GB RAM 5G Smartphone, Black, 256 GB",
+      "variant": "256GB",
+      "channel": "retail",
+      "retailer": "jumbo-ae",
+      "sourceId": "jumbo-ae-a27-5g-256",
+      "sourceUrl": "https://www.jumbo.ae/samsung-galaxy-a27-8gb-ram-5g-smartphone-black-256-gb.html",
+      "productId": null,
+      "title": "Samsung Galaxy A27 8GB RAM 5G Smartphone, Black, 256 GB",
+      "price": 1499,
+      "currency": "AED",
+      "priceUsd": 408.17,
+      "collectorVersion": "1.1",
+      "availability": "in_stock",
+      "state": "live",
+      "week": "2026-10-05",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "effectiveDate": "2026-10-05",
+      "rawEvidence": {
+        "method": "jsonld",
+        "sourceId": "jumbo-ae-a27-5g-256",
+        "sourceName": "Jumbo UAE · Galaxy A27 5G 256GB",
+        "title": "Samsung Galaxy A27 8GB RAM 5G Smartphone, Black, 256 GB"
       }
     },
     {
@@ -413,7 +500,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -429,30 +516,59 @@
       "brand": "samsung",
       "series": "Galaxy A",
       "model": "A37 5G",
-      "modelName": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 6GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
+      "modelName": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 8GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
       "variant": "128GB",
       "channel": "retail",
       "retailer": "amazon-ae",
       "sourceId": "amazon-ae-a37-128",
-      "sourceUrl": "https://www.amazon.ae/dp/B0GSVR373J",
-      "productId": "B0GSVR373J",
-      "title": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 6GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
-      "price": 1037.69,
+      "sourceUrl": "https://www.amazon.ae/dp/B0GSVY584L",
+      "productId": "B0GSVY584L",
+      "title": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 8GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
+      "price": 1094.83,
       "currency": "AED",
-      "priceUsd": 282.56,
+      "priceUsd": 298.12,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
         "sourceId": "amazon-ae-a37-128",
         "sourceName": "Amazon.ae · Galaxy A37 5G 128GB",
-        "productId": "B0GSVR373J",
-        "priceText": "AED1,037.69",
-        "title": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 6GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)"
+        "productId": "B0GSVY584L",
+        "priceText": "AED1,094.83",
+        "title": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 8GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)"
+      }
+    },
+    {
+      "country": "ae",
+      "brand": "samsung",
+      "series": "Galaxy A",
+      "model": "A37 5G",
+      "modelName": "Samsung Galaxy A37 8GB RAM 5G Smartphone, Awesome Graygreen, 128 GB",
+      "variant": "128GB",
+      "channel": "retail",
+      "retailer": "jumbo-ae",
+      "sourceId": "jumbo-ae-a37-5g-128",
+      "sourceUrl": "https://www.jumbo.ae/samsung-galaxy-a37-8gb-ram-5g-smartphone-awesome-graygreen-128-gb.html",
+      "productId": null,
+      "title": "Samsung Galaxy A37 8GB RAM 5G Smartphone, Awesome Graygreen, 128 GB",
+      "price": 1349,
+      "currency": "AED",
+      "priceUsd": 367.32,
+      "collectorVersion": "1.1",
+      "availability": "in_stock",
+      "state": "live",
+      "week": "2026-10-05",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "effectiveDate": "2026-10-05",
+      "rawEvidence": {
+        "method": "jsonld",
+        "sourceId": "jumbo-ae-a37-5g-128",
+        "sourceName": "Jumbo UAE · Galaxy A37 5G 128GB",
+        "title": "Samsung Galaxy A37 8GB RAM 5G Smartphone,  Awesome Graygreen, 128 GB"
       }
     },
     {
@@ -475,7 +591,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -484,6 +600,35 @@
         "productId": "B0GSVV759C",
         "priceText": "AED1,213.00",
         "title": "Samsung Galaxy A37 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Charcoal, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)"
+      }
+    },
+    {
+      "country": "ae",
+      "brand": "samsung",
+      "series": "Galaxy A",
+      "model": "A37 5G",
+      "modelName": "Samsung Galaxy A37 8GB RAM 5G Smartphone, Awesome Graygreen, 256 GB",
+      "variant": "256GB",
+      "channel": "retail",
+      "retailer": "jumbo-ae",
+      "sourceId": "jumbo-ae-a37-5g-256",
+      "sourceUrl": "https://www.jumbo.ae/samsung-galaxy-a37-8gb-ram-5g-smartphone-awesome-graygreen-256-gb.html",
+      "productId": null,
+      "title": "Samsung Galaxy A37 8GB RAM 5G Smartphone, Awesome Graygreen, 256 GB",
+      "price": 1649,
+      "currency": "AED",
+      "priceUsd": 449.01,
+      "collectorVersion": "1.1",
+      "availability": "in_stock",
+      "state": "live",
+      "week": "2026-10-05",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "effectiveDate": "2026-10-05",
+      "rawEvidence": {
+        "method": "jsonld",
+        "sourceId": "jumbo-ae-a37-5g-256",
+        "sourceName": "Jumbo UAE · Galaxy A37 5G 256GB",
+        "title": "Samsung Galaxy A37 8GB RAM 5G Smartphone,  Awesome Graygreen, 256 GB"
       }
     },
     {
@@ -506,7 +651,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -537,7 +682,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -546,6 +691,35 @@
         "productId": "B0GY66CN7F",
         "priceText": "AED1,199.00",
         "title": "Samsung Galaxy A57 5G Android Smartphone 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (Awesome Gray, 8GB + 128GB) - International Version"
+      }
+    },
+    {
+      "country": "ae",
+      "brand": "samsung",
+      "series": "Galaxy A",
+      "model": "A57 5G",
+      "modelName": "Samsung Galaxy A57 8GB RAM 5G Smartphone, Awesome Gray, 128 GB",
+      "variant": "128GB",
+      "channel": "retail",
+      "retailer": "jumbo-ae",
+      "sourceId": "jumbo-ae-a57-5g-128",
+      "sourceUrl": "https://www.jumbo.ae/samsung-galaxy-a57-8gb-ram-5g-smartphone-awesome-gray-128-gb.html",
+      "productId": null,
+      "title": "Samsung Galaxy A57 8GB RAM 5G Smartphone, Awesome Gray, 128 GB",
+      "price": 1699,
+      "currency": "AED",
+      "priceUsd": 462.63,
+      "collectorVersion": "1.1",
+      "availability": "in_stock",
+      "state": "live",
+      "week": "2026-10-05",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "effectiveDate": "2026-10-05",
+      "rawEvidence": {
+        "method": "jsonld",
+        "sourceId": "jumbo-ae-a57-5g-128",
+        "sourceName": "Jumbo UAE · Galaxy A57 5G 128GB",
+        "title": "Samsung Galaxy A57 8GB RAM 5G Smartphone,  Awesome Gray, 128 GB"
       }
     },
     {
@@ -568,7 +742,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -577,6 +751,35 @@
         "productId": "B0GY5S9D3J",
         "priceText": "AED1,370.00",
         "title": "Samsung Galaxy A57 5G Android Smartphone 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life, Awesome Navy, 8GB RAM + 256GB Storage - International Version"
+      }
+    },
+    {
+      "country": "ae",
+      "brand": "samsung",
+      "series": "Galaxy A",
+      "model": "A57 5G",
+      "modelName": "Samsung Galaxy A57 8GB RAM 5G Smartphone, Awesome Gray, 256 GB",
+      "variant": "256GB",
+      "channel": "retail",
+      "retailer": "jumbo-ae",
+      "sourceId": "jumbo-ae-a57-5g-256",
+      "sourceUrl": "https://www.jumbo.ae/samsung-galaxy-a57-8gb-ram-5g-smartphone-awesome-gray-256-gb.html",
+      "productId": null,
+      "title": "Samsung Galaxy A57 8GB RAM 5G Smartphone, Awesome Gray, 256 GB",
+      "price": 1879,
+      "currency": "AED",
+      "priceUsd": 511.64,
+      "collectorVersion": "1.1",
+      "availability": "in_stock",
+      "state": "live",
+      "week": "2026-10-05",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "effectiveDate": "2026-10-05",
+      "rawEvidence": {
+        "method": "jsonld",
+        "sourceId": "jumbo-ae-a57-5g-256",
+        "sourceName": "Jumbo UAE · Galaxy A57 5G 256GB",
+        "title": "Samsung Galaxy A57 8GB RAM 5G Smartphone,  Awesome Gray, 256 GB"
       }
     },
     {
@@ -599,7 +802,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -630,7 +833,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -661,7 +864,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -692,7 +895,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -723,7 +926,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -754,7 +957,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -785,7 +988,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "algolia+jsonld",
@@ -819,7 +1022,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "algolia+jsonld",
@@ -853,7 +1056,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -884,7 +1087,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -915,7 +1118,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -946,7 +1149,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -977,7 +1180,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1008,7 +1211,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1039,7 +1242,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1070,7 +1273,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1101,7 +1304,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1132,7 +1335,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1167,7 +1370,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1202,7 +1405,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1237,7 +1440,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1272,7 +1475,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1307,7 +1510,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1342,7 +1545,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1377,7 +1580,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1412,7 +1615,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1447,7 +1650,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1480,7 +1683,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1513,7 +1716,7 @@
       "availability": "out_of_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1546,7 +1749,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1579,7 +1782,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1612,7 +1815,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1645,7 +1848,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1678,7 +1881,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1711,7 +1914,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1744,7 +1947,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1777,7 +1980,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1810,7 +2013,7 @@
       "availability": "out_of_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1843,7 +2046,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1876,7 +2079,7 @@
       "availability": "out_of_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1909,7 +2112,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1942,7 +2145,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1975,7 +2178,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2008,7 +2211,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2041,7 +2244,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2074,7 +2277,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2107,7 +2310,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2140,7 +2343,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -2169,7 +2372,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2200,7 +2403,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2231,7 +2434,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2262,7 +2465,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2293,7 +2496,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2324,7 +2527,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2355,7 +2558,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2386,7 +2589,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -2417,7 +2620,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2448,7 +2651,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -2479,7 +2682,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2510,7 +2713,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -2541,7 +2744,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2572,7 +2775,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -2603,7 +2806,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2634,7 +2837,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -2665,7 +2868,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -2696,7 +2899,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2727,7 +2930,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -2758,7 +2961,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2789,7 +2992,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -2820,7 +3023,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2851,7 +3054,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -2875,21 +3078,21 @@
       "sourceUrl": "https://www.amazon.sa/dp/B0GSVQMB9P",
       "productId": "B0GSVQMB9P",
       "title": "Samsung Galaxy A57 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Gray, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (KSA Version)",
-      "price": 1429.96,
+      "price": 1428.98,
       "currency": "SAR",
-      "priceUsd": 381.32,
+      "priceUsd": 381.06,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
         "sourceId": "amazon-sa-a57-256",
         "sourceName": "Amazon.sa · Galaxy A57 256GB",
         "productId": "B0GSVQMB9P",
-        "priceText": "SAR1,429.96",
+        "priceText": "SAR1,428.98",
         "title": "Samsung Galaxy A57 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Gray, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (KSA Version)"
       }
     },
@@ -2913,7 +3116,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -2942,7 +3145,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2973,7 +3176,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3004,7 +3207,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3035,7 +3238,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3066,7 +3269,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3097,7 +3300,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3128,7 +3331,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3159,7 +3362,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3190,7 +3393,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3221,7 +3424,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3252,7 +3455,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3283,7 +3486,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3314,7 +3517,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3345,7 +3548,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3376,7 +3579,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3407,7 +3610,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3438,7 +3641,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3469,7 +3672,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3500,7 +3703,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3531,7 +3734,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3562,7 +3765,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3593,7 +3796,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3624,7 +3827,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3655,7 +3858,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3686,7 +3889,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3717,7 +3920,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3748,7 +3951,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3779,7 +3982,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3810,7 +4013,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T08:54:22.628Z",
+      "collectedAt": "2026-10-10T09:25:44.970Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",

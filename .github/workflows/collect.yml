@@ -34,6 +34,9 @@ jobs:
       - name: Discover models actually on sale per market
         run: node scripts/discover.mjs
 
+      - name: Coverage report (what is on sale where, and what is Amazon-only)
+        run: node scripts/coverage.mjs
+
       - name: Validate the data contract before committing
         run: node scripts/validate.mjs
 
@@ -61,7 +64,7 @@ jobs:
         run: |
           git config user.name "market-lens-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data public/api data/history data/discovery-report.json
+          git add public/data public/api data/history data/discovery-report.json docs/COVERAGE.md
           if git diff --cached --quiet; then
             echo "No price changes this run."
           else

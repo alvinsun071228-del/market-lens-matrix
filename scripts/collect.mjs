@@ -851,10 +851,15 @@ for (const source of activeSources) {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const one = parseJsonLd(await res.text(), source);
       if (one) {
-        const model = deriveModel(one.title) ?? source.model;
+        // Retailer titles often hide the connectivity/sub-model suffix (e.g. Jumbo's
+        // "Galaxy A27 8GB RAM 5G Smartphone" derives to "A27" while the market uses
+        // "A27 5G"). `modelOverride` is an explicit, human-verified model id: it keeps
+        // such a source on the SAME model row instead of splitting the matrix/trend.
+        const model = source.modelOverride ?? deriveModel(one.title) ?? source.model;
         const variant = deriveVariant(one.title, source.url) ?? source.variant;
-        // Never relabel a product page as a different model than it actually is.
-        if (source.model && model && !modelMatches(model, source.model)) {
+        // Never relabel a product page as a different model than it actually is
+        // (skipped only for an explicit, audited override).
+        if (!source.modelOverride && source.model && model && !modelMatches(model, source.model)) {
           throw new Error("model mismatch: page=" + model + " config=" + source.model);
         }
         parsed = [{ ...one, model, variant, sourceUrl: source.url, rawEvidence: { ...verifiedRef(source), method: "jsonld", title: one.title } }];

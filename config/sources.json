@@ -10,7 +10,9 @@
     "parser=amazon-search renders the local Amazon storefront with Playwright, matches model + storage in a result card, verifies the product page when reachable, otherwise uses the card price (amazon-search-card).",
     "parser=browser-text renders a product page with Playwright and extracts a localized price token.",
     "Countries without a reachable source (om) keep enabled=false and a reason; they show as unavailable instead of a guessed price.",
-    "A pinned `asin` lets the Amazon parser go straight to /dp/<asin> (a much smaller request than the search grid) which is the reliable path from datacenter IPs; it was captured from a real product page, not invented."
+    "A pinned `asin` lets the Amazon parser go straight to /dp/<asin> (a much smaller request than the search grid) which is the reliable path from datacenter IPs; it was captured from a real product page, not invented.",
+    "`modelOverride` pins a source to an explicit, human-verified model id when the retailer's title format hides the connectivity suffix (e.g. Jumbo: \"Galaxy A27 8GB RAM 5G Smartphone\" -> \"A27 5G\"). It is the only path that is allowed to skip the page-vs-config model equality guard, and it exists so such a source lands on the SAME model row instead of splitting the matrix and the trend series.",
+    "Jumbo Electronics (jumbo.ae) publishes static schema.org Product JSON-LD and is readable from datacenter IPs, so the UAE retail channel does not depend on Amazon, which refuses GitHub runner IPs."
   ],
   "sources": [
     {
@@ -1244,6 +1246,103 @@
       "url": "https://best.com.kw/search?q=Samsung+Galaxy+A16",
       "parser": "jsonld",
       "disabledReason": "HTTP 200 redirected to https://best.com.kw/, response length 60041 bytes; the fetched response contained no Samsung/Galaxy listing and no KWD price token, so no verified priced record was emitted."
+    },
+    {
+      "id": "jumbo-ae-a17-128",
+      "name": "Jumbo UAE · Galaxy null 128GB",
+      "country": "ae",
+      "channel": "retail",
+      "currency": "AED",
+      "enabled": true,
+      "url": "https://www.jumbo.ae/samsung-galaxy-a17-4gb-4g-smartphone-black-128-gb.html",
+      "parser": "jsonld",
+      "model": "A17",
+      "series": "Galaxy A",
+      "variant": "128GB"
+    },
+    {
+      "id": "jumbo-ae-a27-5g-128",
+      "name": "Jumbo UAE · Galaxy A27 5G 128GB",
+      "country": "ae",
+      "channel": "retail",
+      "currency": "AED",
+      "enabled": true,
+      "url": "https://www.jumbo.ae/samsung-galaxy-a27-8gb-ram-5g-smartphone-black-128-gb.html",
+      "parser": "jsonld",
+      "model": "A27",
+      "modelOverride": "A27 5G",
+      "series": "Galaxy A",
+      "variant": "128GB"
+    },
+    {
+      "id": "jumbo-ae-a27-5g-256",
+      "name": "Jumbo UAE · Galaxy A27 5G 256GB",
+      "country": "ae",
+      "channel": "retail",
+      "currency": "AED",
+      "enabled": true,
+      "url": "https://www.jumbo.ae/samsung-galaxy-a27-8gb-ram-5g-smartphone-black-256-gb.html",
+      "parser": "jsonld",
+      "model": "A27",
+      "modelOverride": "A27 5G",
+      "series": "Galaxy A",
+      "variant": "256GB"
+    },
+    {
+      "id": "jumbo-ae-a37-5g-128",
+      "name": "Jumbo UAE · Galaxy A37 5G 128GB",
+      "country": "ae",
+      "channel": "retail",
+      "currency": "AED",
+      "enabled": true,
+      "url": "https://www.jumbo.ae/samsung-galaxy-a37-8gb-ram-5g-smartphone-awesome-graygreen-128-gb.html",
+      "parser": "jsonld",
+      "model": "A37",
+      "modelOverride": "A37 5G",
+      "series": "Galaxy A",
+      "variant": "128GB"
+    },
+    {
+      "id": "jumbo-ae-a37-5g-256",
+      "name": "Jumbo UAE · Galaxy A37 5G 256GB",
+      "country": "ae",
+      "channel": "retail",
+      "currency": "AED",
+      "enabled": true,
+      "url": "https://www.jumbo.ae/samsung-galaxy-a37-8gb-ram-5g-smartphone-awesome-graygreen-256-gb.html",
+      "parser": "jsonld",
+      "model": "A37",
+      "modelOverride": "A37 5G",
+      "series": "Galaxy A",
+      "variant": "256GB"
+    },
+    {
+      "id": "jumbo-ae-a57-5g-128",
+      "name": "Jumbo UAE · Galaxy A57 5G 128GB",
+      "country": "ae",
+      "channel": "retail",
+      "currency": "AED",
+      "enabled": true,
+      "url": "https://www.jumbo.ae/samsung-galaxy-a57-8gb-ram-5g-smartphone-awesome-gray-128-gb.html",
+      "parser": "jsonld",
+      "model": "A57",
+      "modelOverride": "A57 5G",
+      "series": "Galaxy A",
+      "variant": "128GB"
+    },
+    {
+      "id": "jumbo-ae-a57-5g-256",
+      "name": "Jumbo UAE · Galaxy A57 5G 256GB",
+      "country": "ae",
+      "channel": "retail",
+      "currency": "AED",
+      "enabled": true,
+      "url": "https://www.jumbo.ae/samsung-galaxy-a57-8gb-ram-5g-smartphone-awesome-gray-256-gb.html",
+      "parser": "jsonld",
+      "model": "A57",
+      "modelOverride": "A57 5G",
+      "series": "Galaxy A",
+      "variant": "256GB"
     }
   ]
 }
