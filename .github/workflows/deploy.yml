@@ -3,6 +3,13 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  workflow_run:
+    # A data commit pushed by the collector with the default GITHUB_TOKEN does
+    # NOT trigger `push` workflows (GitHub suppresses recursive runs). Without
+    # this, the scheduled collection updated the data in the repo but the
+    # published site never rebuilt — it stayed frozen on the last human push.
+    workflows: ["Collect Market Prices"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -16,6 +23,8 @@ concurrency:
 
 jobs:
   build:
+    # Never publish data from a failed collection run.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

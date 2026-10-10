@@ -64,6 +64,12 @@ Playwright，随后还要提交静态 JSON 并等待 GitHub Pages 重建，因�
 - 单次采集通常需要约 2–4 分钟（包含 Playwright），提交约 1 分钟，Pages 重建约 1–3 分钟。
 - GitHub Actions cron 是 best-effort，在 GitHub 负载高时可能延迟。因此“每小时”应理解为
   **最多约 1 小时等待 + 几分钟处理时间**，不是实时。
+- **发布链路（重要）**：采集任务用默认 `GITHUB_TOKEN` 提交数据，而 GitHub 会抑制这类提交
+  触发的 `push` 工作流，所以 `deploy.yml` 同时监听 `workflow_run`（采集任务完成）——否则数据
+  会更新但站点永远不重新发布。只有采集成功后才会发布。
+- **机房 IP 差异**：Amazon 对 GitHub runner 的 IP 返回验证页，因此云端一次运行通常拿到的
+  Amazon 报价少于本地运行（本地 120 条 vs 云端 99 条，被拦截的几乎都是 Amazon）。这些源会
+  进入 `failedSources`，页面按“缺价 · 沿用/未在售”如实显示，不会伪造价格。
 - CI 会在提交前检查新写入的 `latest.json`：必须是 `mode: "live"`、至少有一个已验证产品，
   `collectedAt` 不得超过 6 小时，FX 的 `asOf` 不得超过 7 天。失败会让工作流失败并通知维护者。
 - 单个市场被拦截或没有可达零售商不会使工作流失败；它会进入 `failedSources`，页面显示该市场
@@ -90,5 +96,12 @@ and acceptance criteria.
 
 ## Deployment
 
-The site ships through GitHub Pages (`.github/workflows/deploy.yml`). There is **no
-Vercel project for this repository**, so no Vercel deployment is configured or performed.
+The site ships through GitHub Pages (`.github/workflows/deploy.yml`), triggered by:
+
+1. `push` to `main` (a human/code push), and
+2. `workflow_run` of `Collect Market Prices` **on success** — needed because a data commit pushed by
+   the collector with the default `GITHUB_TOKEN` does not trigger `push` workflows, which previously
+   meant hourly collection updated the repo without ever republishing the site.
+
+There is **no Vercel project for this repository**, so no Vercel deployment is configured or
+performed. Live URL: `https://alvinsun071228-del.github.io/market-lens-matrix/`.
