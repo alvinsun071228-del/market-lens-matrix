@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T05:59:48.164Z",
+  "generatedAt": "2026-10-10T06:18:34.583Z",
   "contractVersion": "1.1",
   "brandId": "samsung",
   "totalModels": 22,
@@ -163,8 +163,7 @@
         "sa": {
           "available": true,
           "channels": [
-            "official",
-            "retail"
+            "official"
           ],
           "lastSeen": "2026-10-05",
           "currency": "SAR",
@@ -185,8 +184,7 @@
         "ae": {
           "available": true,
           "channels": [
-            "official",
-            "retail"
+            "official"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
@@ -261,7 +259,8 @@
         "sa": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "SAR",
@@ -291,7 +290,8 @@
         "ae": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
@@ -389,8 +389,7 @@
         "ae": {
           "available": true,
           "channels": [
-            "official",
-            "retail"
+            "official"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
@@ -426,8 +425,7 @@
         "sa": {
           "available": true,
           "channels": [
-            "official",
-            "retail"
+            "official"
           ],
           "lastSeen": "2026-10-05",
           "currency": "SAR",
@@ -488,8 +486,7 @@
         "ae": {
           "available": true,
           "channels": [
-            "official",
-            "retail"
+            "official"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",

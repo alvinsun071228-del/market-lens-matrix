@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T05:59:48.164Z",
+  "generatedAt": "2026-10-10T06:18:34.583Z",
   "brands": [
     {
       "id": "samsung",
@@ -223,8 +223,8 @@
   },
   "failedSources": [
     {
-      "id": "amazon-sa-a57-256",
-      "name": "Amazon.sa · Galaxy A57 256GB",
+      "id": "amazon-sa-a16-128",
+      "name": "Amazon.sa · Galaxy A16 128GB",
       "country": "sa",
       "error": "no matching product price found"
     },
@@ -295,20 +295,14 @@
       "error": "no matching product price found"
     },
     {
-      "id": "amazon-sa-a17-5g-128",
-      "name": "Amazon.sa · Galaxy A17 5G 128GB",
-      "country": "sa",
-      "error": "no matching product price found"
-    },
-    {
-      "id": "amazon-sa-a27-128",
-      "name": "Amazon.sa · Galaxy A27 5G 128GB",
-      "country": "sa",
-      "error": "no matching product price found"
-    },
-    {
       "id": "amazon-sa-a36-256",
       "name": "Amazon.sa · Galaxy A36 5G 256GB",
+      "country": "sa",
+      "error": "no matching product price found"
+    },
+    {
+      "id": "amazon-sa-a37-256",
+      "name": "Amazon.sa · Galaxy A37 5G 256GB",
       "country": "sa",
       "error": "no matching product price found"
     },
@@ -319,20 +313,14 @@
       "error": "no matching product price found"
     },
     {
+      "id": "amazon-ae-a17-128",
+      "name": "Amazon.ae · Galaxy A17 128GB",
+      "country": "ae",
+      "error": "no matching product price found"
+    },
+    {
       "id": "amazon-ae-a17-5g-256",
       "name": "Amazon.ae · Galaxy A17 5G 256GB",
-      "country": "ae",
-      "error": "no matching product price found"
-    },
-    {
-      "id": "amazon-ae-a27-128",
-      "name": "Amazon.ae · Galaxy A27 5G 128GB",
-      "country": "ae",
-      "error": "no matching product price found"
-    },
-    {
-      "id": "amazon-ae-a27-256",
-      "name": "Amazon.ae · Galaxy A27 5G 256GB",
       "country": "ae",
       "error": "no matching product price found"
     },
@@ -343,8 +331,20 @@
       "error": "no matching product price found"
     },
     {
+      "id": "amazon-ae-a37-256",
+      "name": "Amazon.ae · Galaxy A37 5G 256GB",
+      "country": "ae",
+      "error": "no matching product price found"
+    },
+    {
       "id": "amazon-ae-a57-128",
       "name": "Amazon.ae · Galaxy A57 5G 128GB",
+      "country": "ae",
+      "error": "no matching product price found"
+    },
+    {
+      "id": "amazon-ae-a57-256",
+      "name": "Amazon.ae · Galaxy A57 5G 256GB",
       "country": "ae",
       "error": "no matching product price found"
     }
