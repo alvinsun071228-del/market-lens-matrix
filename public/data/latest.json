@@ -1,30 +1,29 @@
 {
   "apiVersion": "1.1",
   "mode": "live",
-  "collectedAt": "2026-10-10T09:25:44.970Z",
+  "collectedAt": "2026-10-10T09:44:02.027Z",
   "week": "2026-10-05",
   "brand": "samsung",
   "sourceCount": 86,
   "verifiedProductCount": 127,
   "fx": {
     "base": "USD",
-    "asOf": "2026-10-09",
+    "asOf": "2026-10-10",
     "source": "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json",
     "stale": false,
     "rates": {
-      "TRY": 0.0202774207,
+      "TRY": 0.0202306885,
       "SAR": 0.2666666667,
       "AED": 0.2722940776,
       "QAR": 0.2747252747,
-      "OMR": 2.5981639607,
+      "OMR": 2.5986154421,
       "JOD": 1.4104372355,
-      "KWD": 3.2170398106
+      "KWD": 3.2173613969
     }
   },
-  "failedSources": [
+  "failedSources": [],
+  "records": [
     {
-      "id": "amazon-ae-a16-128",
-      "name": "Amazon.ae · Galaxy A16 128GB",
       "country": "ae",
       "brand": "samsung",
       "series": "Galaxy A",
@@ -44,7 +43,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -55,110 +54,6 @@
         "title": "Samsung Galaxy A07 LTE (International Version) Smartphone, 128GB Storage, 4GB RAM, 6nm Processor, Large Display, 6x OS Upgrades, Green"
       }
     },
-    {
-      "id": "amazon-tr-a16-128",
-      "name": "Amazon.com.tr · Galaxy A16 128GB",
-      "country": "tr",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
-    },
-    {
-      "id": "amazon-tr-a07-5g-128",
-      "name": "Amazon.com.tr · Galaxy A07 5G 128GB",
-      "country": "tr",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
-    },
-    {
-      "id": "amazon-tr-a17-5g-128",
-      "name": "Amazon.com.tr · Galaxy A17 5G 128GB",
-      "country": "tr",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
-    },
-    {
-      "id": "amazon-tr-a17-5g-256",
-      "name": "Amazon.com.tr · Galaxy A17 5G 256GB",
-      "country": "tr",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
-    },
-    {
-      "id": "amazon-tr-a37-128",
-      "name": "Amazon.com.tr · Galaxy A37 5G 128GB",
-      "country": "tr",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
-    },
-    {
-      "id": "amazon-tr-a37-256",
-      "name": "Amazon.com.tr · Galaxy A37 5G 256GB",
-      "country": "tr",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
-    },
-    {
-      "id": "amazon-tr-a57-128",
-      "name": "Amazon.com.tr · Galaxy A57 5G 128GB",
-      "country": "tr",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
-    },
-    {
-      "id": "amazon-tr-a57-256",
-      "name": "Amazon.com.tr · Galaxy A57 5G 256GB",
-      "country": "tr",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
-    },
-    {
-      "id": "amazon-sa-a17-5g-128",
-      "name": "Amazon.sa · Galaxy A17 5G 128GB",
-      "country": "sa",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"نعتذر\")"
-    },
-    {
-      "id": "amazon-sa-a36-256",
-      "name": "Amazon.sa · Galaxy A36 5G 256GB",
-      "country": "sa",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"نعتذر\")"
-    },
-    {
-      "id": "amazon-ae-a07-128",
-      "name": "Amazon.ae · Galaxy A07 128GB",
-      "country": "ae",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
-    },
-    {
-      "id": "amazon-ae-a17-128",
-      "name": "Amazon.ae · Galaxy A17 128GB",
-      "country": "ae",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
-    },
-    {
-      "id": "amazon-ae-a27-128",
-      "name": "Amazon.ae · Galaxy A27 5G 128GB",
-      "country": "ae",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"عذرًا!\")"
-    },
-    {
-      "id": "amazon-ae-a27-256",
-      "name": "Amazon.ae · Galaxy A27 5G 256GB",
-      "country": "ae",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"عذرًا!\")"
-    },
-    {
-      "id": "amazon-ae-a37-128",
-      "name": "Amazon.ae · Galaxy A37 5G 128GB",
-      "country": "ae",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
-    },
-    {
-      "id": "amazon-ae-a57-128",
-      "name": "Amazon.ae · Galaxy A57 5G 128GB",
-      "country": "ae",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
-    },
-    {
-      "id": "amazon-ae-a57-256",
-      "name": "Amazon.ae · Galaxy A57 5G 256GB",
-      "country": "ae",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
-    }
-  ],
-  "records": [
     {
       "country": "ae",
       "brand": "samsung",
@@ -179,7 +74,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -208,7 +103,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -239,7 +134,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -270,7 +165,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -301,7 +196,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -332,7 +227,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -363,7 +258,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -392,7 +287,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -423,7 +318,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -454,7 +349,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -485,7 +380,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -516,7 +411,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -545,7 +440,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -576,7 +471,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -605,7 +500,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -621,30 +516,30 @@
       "brand": "samsung",
       "series": "Galaxy A",
       "model": "A37 5G",
-      "modelName": "Samsung Galaxy A37 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Charcoal, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
-      "variant": "256GB",
+      "modelName": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 6GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
+      "variant": "128GB",
       "channel": "retail",
       "retailer": "amazon-ae",
-      "sourceId": "amazon-ae-a37-256",
-      "sourceUrl": "https://www.amazon.ae/dp/B0GSVV759C",
-      "productId": "B0GSVV759C",
-      "title": "Samsung Galaxy A37 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Charcoal, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
-      "price": 1213,
+      "sourceId": "amazon-ae-a37-128",
+      "sourceUrl": "https://www.amazon.ae/dp/B0GSVR373J",
+      "productId": "B0GSVR373J",
+      "title": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 6GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
+      "price": 1037.67,
       "currency": "AED",
-      "priceUsd": 330.29,
+      "priceUsd": 282.55,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
-        "sourceId": "amazon-ae-a37-256",
-        "sourceName": "Amazon.ae · Galaxy A37 5G 256GB",
-        "productId": "B0GSVV759C",
-        "priceText": "AED1,213.00",
-        "title": "Samsung Galaxy A37 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Charcoal, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)"
+        "sourceId": "amazon-ae-a37-128",
+        "sourceName": "Amazon.ae · Galaxy A37 5G 128GB",
+        "productId": "B0GSVR373J",
+        "priceText": "AED1,037.67",
+        "title": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 6GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)"
       }
     },
     {
@@ -667,7 +562,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -696,7 +591,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -727,7 +622,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -756,7 +651,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -787,7 +682,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -818,7 +713,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -847,7 +742,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -878,7 +773,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -907,7 +802,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -938,7 +833,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -969,7 +864,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -1000,7 +895,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -1031,7 +926,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -1062,7 +957,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -1093,7 +988,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "algolia+jsonld",
@@ -1127,7 +1022,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "algolia+jsonld",
@@ -1161,7 +1056,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -1192,7 +1087,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -1223,7 +1118,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1254,7 +1149,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1262,7 +1157,7 @@
         "sourceName": "SmartBuy Jordan · Galaxy A27 5G 256GB",
         "query": "Samsung Galaxy A27 8GB 256GB",
         "matched": "Sale price | 315.000 JOD | Samsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Black",
-        "text": "Skip to content\nSmartBuy\nاللغه\nEnglish \nLogin / Signup\nMy account\n0\n Cart\nGift List\nAll Departments\nShop by Category\nShop by Brand\nFind Our Stores\nPromotions\nMy Account\nDeal of the Day\nHome\nSearch results for \"Samsung Galaxy A27 8GB 256GB\"\n\nFilters\n\nPrice\nProduct Category\nBrand\nProducts for \"Samsung Galaxy A27 8GB 256GB\"\nShowing 1 - 17 of 17 results\nDisplay:\n24 per page\nSort by: Relevance\nView\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Light Pink\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Blue\nAdd to cart\nQuick view\nSale price\n239.000 JOD\nSamsung Galaxy A27 5G, 6GB & 128GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n239.000 JOD\nSamsung Galaxy A27 5G, 6GB & 128GB, 6.7Inch, 5000Mah, Blue\nAdd to cart\nQuick view\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Green\nAdd to cart\nQuick view\nSale price\n409.000 JOD\nSamsung A57 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Violet\nAdd to cart\nQuick view\nSale price\n365.000 JOD\nSamsung A37 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n365.000 JOD\nSamsung A37 5G, 8GB & 256GB, 6.7Inch, 5000Mah, White\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12"
+        "text": "Skip to content\nSmartBuy\nاللغه\nEnglish \nLogin / Signup\nMy account\n0\n Cart\nGift List\nAll Departments\nShop by Category\nShop by Brand\nFind Our Stores\nPromotions\nMy Account\nDeal of the Day\nHome\nSearch results for \"Samsung Galaxy A27 8GB 256GB\"\n\nFilters\n\nPrice\nProduct Category\nBrand\nProducts for \"Samsung Galaxy A27 8GB 256GB\"\nShowing 1 - 17 of 17 results\nDisplay:\n24 per page\nSort by: Relevance\nView\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Blue\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Light Pink\nAdd to cart\nQuick view\nSale price\n239.000 JOD\nSamsung Galaxy A27 5G, 6GB & 128GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n239.000 JOD\nSamsung Galaxy A27 5G, 6GB & 128GB, 6.7Inch, 5000Mah, Blue\nAdd to cart\nQuick view\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Green\nAdd to cart\nQuick view\nSale price\n409.000 JOD\nSamsung A57 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Violet\nAdd to cart\nQuick view\nSale price\n365.000 JOD\nSamsung A37 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n365.000 JOD\nSamsung A37 5G, 8GB & 256GB, 6.7Inch, 5000Mah, White\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12"
       }
     },
     {
@@ -1285,7 +1180,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1293,7 +1188,7 @@
         "sourceName": "SmartBuy Jordan · Galaxy A37 5G 128GB",
         "query": "Samsung A37 8GB 128GB",
         "matched": "Sale price | 315.000 JOD | Samsung A37 5G, 8GB & 128GB, 6.7Inch, 5000Mah, Grey",
-        "text": "Skip to content\nSmartBuy\nاللغه\nEnglish \nLogin / Signup\nMy account\n0\n Cart\nGift List\nAll Departments\nShop by Category\nShop by Brand\nFind Our Stores\nPromotions\nMy Account\nDeal of the Day\nHome\nSearch results for \"Samsung A37 8GB 128GB\"\n\nFilters\n\nPrice\nProduct Category\nBrand\nProducts for \"Samsung A37 8GB 128GB\"\nShowing 1 - 14 of 14 results\nDisplay:\n24 per page\nSort by: Relevance\nView\nSale price\n315.000 JOD\nSamsung A37 5G, 8GB & 128GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung A37 5G, 8GB & 128GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n365.000 JOD\nSamsung A37 5G, 8GB & 256GB, 6.7Inch, 5000Mah, White\nAdd to cart\nQuick view\nSale price\n365.000 JOD\nSamsung A37 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, White\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Dark Green\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n239.000 JOD\nSamsung Galaxy A27 5G, 6GB & 128GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n239.000 JOD\nSamsung Galaxy A27 5G, 6GB & 128GB, 6.7Inch, 5000Mah, Blue\nAdd"
+        "text": "Skip to content\nSmartBuy\nاللغه\nEnglish \nLogin / Signup\nMy account\n0\n Cart\nGift List\nAll Departments\nShop by Category\nShop by Brand\nFind Our Stores\nPromotions\nMy Account\nDeal of the Day\nHome\nSearch results for \"Samsung A37 8GB 128GB\"\n\nFilters\n\nPrice\nProduct Category\nBrand\nProducts for \"Samsung A37 8GB 128GB\"\nShowing 1 - 14 of 14 results\nDisplay:\n24 per page\nSort by: Relevance\nView\nSale price\n315.000 JOD\nSamsung A37 5G, 8GB & 128GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung A37 5G, 8GB & 128GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n365.000 JOD\nSamsung A37 5G, 8GB & 256GB, 6.7Inch, 5000Mah, White\nAdd to cart\nQuick view\nSale price\n365.000 JOD\nSamsung A37 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, White\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Dark Green\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n239.000 JOD\nSamsung Galaxy A27 5G, 6GB & 128GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n239.000 JOD\nSamsung Galaxy A27 5G, 6GB & 128GB, 6.7Inch, 5000Mah, Blue\nAdd"
       }
     },
     {
@@ -1316,7 +1211,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1324,7 +1219,7 @@
         "sourceName": "SmartBuy Jordan · Galaxy A37 5G 256GB",
         "query": "Samsung A37 8GB 256GB",
         "matched": "Sale price | 365.000 JOD | Samsung A37 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Dark Green",
-        "text": "Skip to content\nSmartBuy\nاللغه\nEnglish \nLogin / Signup\nMy account\n0\n Cart\nGift List\nAll Departments\nShop by Category\nShop by Brand\nFind Our Stores\nPromotions\nMy Account\nDeal of the Day\nHome\nSearch results for \"Samsung A37 8GB 256GB\"\n\nFilters\n\nPrice\nProduct Category\nBrand\nProducts for \"Samsung A37 8GB 256GB\"\nShowing 1 - 16 of 16 results\nDisplay:\n24 per page\nSort by: Relevance\nView\nSale price\n365.000 JOD\nSamsung A37 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n365.000 JOD\nSamsung A37 5G, 8GB & 256GB, 6.7Inch, 5000Mah, White\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, White\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung A37 5G, 8GB & 128GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Dark Green\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung A37 5G, 8GB & 128GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Blue\nAdd "
+        "text": "Skip to content\nSmartBuy\nاللغه\nEnglish \nLogin / Signup\nMy account\n0\n Cart\nAll Departments\nShop by Category\nShop by Brand\nFind Our Stores\nPromotions\nMy Account\nDeal of the Day\nHome\nSearch results for \"Samsung A37 8GB 256GB\"\n\nFilters\n\nPrice\nProduct Category\nBrand\nProducts for \"Samsung A37 8GB 256GB\"\nShowing 1 - 16 of 16 results\nDisplay:\n24 per page\nSort by: Relevance\nView\nSale price\n365.000 JOD\nSamsung A37 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n365.000 JOD\nSamsung A37 5G, 8GB & 256GB, 6.7Inch, 5000Mah, White\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, White\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Dark Green\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung A37 5G, 8GB & 128GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung A37 5G, 8GB & 128GB, 6.7Inch, 5000Mah, Light Violet\nAdd to cart\nQuick view\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Blue\nAdd to cart\nQu"
       }
     },
     {
@@ -1347,7 +1242,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1355,7 +1250,7 @@
         "sourceName": "SmartBuy Jordan · Galaxy A56 5G 256GB",
         "query": "Samsung Galaxy A56 256GB",
         "matched": "Sale price | 300.000 JOD | Samsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Green",
-        "text": "Skip to content\nSmartBuy\nاللغه\nEnglish \nLogin / Signup\nMy account\n0\n Cart\nGift List\nAll Departments\nShop by Category\nShop by Brand\nFind Our Stores\nPromotions\nMy Account\nDeal of the Day\nHome\nSearch results for \"Samsung Galaxy A56 256GB\"\n\nFilters\n\nPrice\nProduct Category\nColor\nBrand\nProducts for \"Samsung Galaxy A56 256GB\"\nShowing 1 - 15 of 15 results\nDisplay:\n24 per page\nSort by: Relevance\nView\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Green\nAdd to cart\nQuick view\nSale price\n409.000 JOD\nSamsung A57 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Violet\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, White\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Blue\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Light Pink\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12GB & 256GB, 6.9Inch, Cobal Violet\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12GB & 256GB, 6.9Inch, Black\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12GB & 256GB, 6.9Inch, Sky Blue\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G"
+        "text": "Skip to content\nSmartBuy\nاللغه\nEnglish \nLogin / Signup\nMy account\n0\n Cart\nGift List\nAll Departments\nShop by Category\nShop by Brand\nFind Our Stores\nPromotions\nMy Account\nDeal of the Day\nHome\nSearch results for \"Samsung Galaxy A56 256GB\"\n\nFilters\n\nPrice\nProduct Category\nColor\nBrand\nProducts for \"Samsung Galaxy A56 256GB\"\nShowing 1 - 14 of 14 results\nDisplay:\n24 per page\nSort by: Relevance\nView\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Green\nAdd to cart\nQuick view\nSale price\n409.000 JOD\nSamsung A57 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Violet\nAdd to cart\nQuick view\nSale price\n415.000 JOD\nSamsung A37 5G, 12GB & 256GB, 6.7Inch, 5000Mah, White\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Blue\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Light Pink\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12GB & 256GB, 6.9Inch, Cobal Violet\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12GB & 256GB, 6.9Inch, Black\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12GB & 256GB, 6.9Inch, Sky Blue\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G"
       }
     },
     {
@@ -1378,7 +1273,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1386,7 +1281,7 @@
         "sourceName": "SmartBuy Jordan · Galaxy A57 5G 256GB",
         "query": "Samsung Galaxy A57 256GB",
         "matched": "Sale price | 409.000 JOD | Samsung A57 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Violet",
-        "text": "Skip to content\nSmartBuy\nاللغه\nEnglish \nLogin / Signup\nMy account\n0\n Cart\nGift List\nAll Departments\nShop by Category\nShop by Brand\nFind Our Stores\nPromotions\nMy Account\nDeal of the Day\nHome\nSearch results for \"Samsung Galaxy A57 256GB\"\n\nFilters\n\nPrice\nProduct Category\nColor\nBrand\nProducts for \"Samsung Galaxy A57 256GB\"\nShowing 1 - 15 of 15 results\nDisplay:\n24 per page\nSort by: Relevance\nView\nSale price\n409.000 JOD\nSamsung A57 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Violet\nAdd to cart\nQuick view\nSale price\n560.000 JOD\nSamsung A57 5G, 12GB & 512GB, 6.7Inch, 5000Mah, Light Blue\nAdd to cart\nQuick view\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Green\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Light Pink\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Blue\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12GB & 256GB, 6.9Inch, Black\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12GB & 256GB, 6.9Inch, Cobal Violet\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12GB & 256GB, 6.9Inch, 5000Mah, Silver Shadow\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung "
+        "text": "Skip to content\nSmartBuy\nاللغه\nEnglish \nLogin / Signup\nMy account\n0\n Cart\nGift List\nAll Departments\nShop by Category\nShop by Brand\nFind Our Stores\nPromotions\nMy Account\nDeal of the Day\nHome\nSearch results for \"Samsung Galaxy A57 256GB\"\n\nFilters\n\nPrice\nProduct Category\nColor\nBrand\nProducts for \"Samsung Galaxy A57 256GB\"\nShowing 1 - 14 of 14 results\nDisplay:\n24 per page\nSort by: Relevance\nView\nSale price\n409.000 JOD\nSamsung A57 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Violet\nAdd to cart\nQuick view\nSale price\n560.000 JOD\nSamsung A57 5G, 12GB & 512GB, 6.7Inch, 5000Mah, Light Blue\nAdd to cart\nQuick view\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Grey\nAdd to cart\nQuick view\nSale price\n300.000 JOD\nSamsung Galaxy A56 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Green\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Black\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Light Pink\nAdd to cart\nQuick view\nSale price\n315.000 JOD\nSamsung Galaxy A27 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Blue\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12GB & 256GB, 6.9Inch, Cobal Violet\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12GB & 256GB, 6.9Inch, Black\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung Galaxy S26 Ultra 5G, 12GB & 256GB, 6.9Inch, 5000Mah, Silver Shadow\nAdd to cart\nQuick view\nSale price\n999.000 JOD\nSamsung "
       }
     },
     {
@@ -1409,7 +1304,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1417,7 +1312,7 @@
         "sourceName": "SmartBuy Jordan · Galaxy A57 5G 512GB",
         "query": "Samsung Galaxy A57 512GB",
         "matched": "Sale price | 560.000 JOD | Samsung A57 5G, 12GB & 512GB, 6.7Inch, 5000Mah, Light Blue",
-        "text": "Skip to content\nSmartBuy\nاللغه\nEnglish \nLogin / Signup\nMy account\n0\n Cart\nGift List\nAll Departments\nShop by Category\nShop by Brand\nFind Our Stores\nPromotions\nMy Account\nDeal of the Day\nHome\nSearch results for \"Samsung Galaxy A57 512GB\"\n\nFilters\n\nPrice\nProduct Category\nColor\nBrand\nProducts for \"Samsung Galaxy A57 512GB\"\nShowing 1 - 4 of 4 results\nDisplay:\n24 per page\nSort by: Relevance\nView\nSale price\n560.000 JOD\nSamsung A57 5G, 12GB & 512GB, 6.7Inch, 5000Mah, Light Blue\nAdd to cart\nQuick view\nSale price\n409.000 JOD\nSamsung A57 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Violet\nAdd to cart\nQuick view\nSale price\n340.000 JOD\nSamsung Galaxy A56 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Grey\nSold out\nQuick view\nSale price\nFrom 1,299.000 JOD\nApple iPhone 18 Pro Max\nSold out\nQuick view\nBe The First to Get Our Discounts\nYour email\nSubscribe\nSMARTBUY\nSearch\nAbout Us\nFind Store\nFAQs\nComplaint\nCareers\nCONTACT US\n\nCall Us: +962 (06) 5809999\n\nEmail: info@smartbuy.jo\n\nFollow Us"
+        "text": "Skip to content\nSmartBuy\nاللغه\nEnglish \nLogin / Signup\nMy account\n0\n Cart\nGift List\nAll Departments\nShop by Category\nShop by Brand\nFind Our Stores\nPromotions\nMy Account\nDeal of the Day\nHome\nSearch results for \"Samsung Galaxy A57 512GB\"\n\nFilters\n\nPrice\nProduct Category\nColor\nBrand\nProducts for \"Samsung Galaxy A57 512GB\"\nShowing 1 - 5 of 5 results\nDisplay:\n24 per page\nSort by: Relevance\nView\nSale price\n560.000 JOD\nSamsung A57 5G, 12GB & 512GB, 6.7Inch, 5000Mah, Light Blue\nAdd to cart\nQuick view\nSale price\n409.000 JOD\nSamsung A57 5G, 8GB & 256GB, 6.7Inch, 5000Mah, Violet\nAdd to cart\nQuick view\nSale price\n445.000 JOD\nXiaomi Redmi Note 17Pro Max 5G, 8GB & 512GB, 6.8Inch, 10000Mah, Black\nAdd to cart\nQuick view\nSale price\n340.000 JOD\nSamsung Galaxy A56 5G, 12GB & 256GB, 6.7Inch, 5000Mah, Grey\nSold out\nQuick view\nSale price\nFrom 1,299.000 JOD\nApple iPhone 18 Pro Max\nSold out\nQuick view\nBe The First to Get Our Discounts\nYour email\nSubscribe\nSMARTBUY\nSearch\nAbout Us\nFind Store\nFAQs\nComplaint\nCareers\nCONTACT US\n\nCall Us: +962 (06) 5809999\n\nEmail: info@smartbuy.jo\n\nFollow Us"
       }
     },
     {
@@ -1435,12 +1330,12 @@
       "title": "Samsung Galaxy A07S Phone, Octa Core, 4GB RAM, 64GB, 6.7-Inch Display, SM-A077FZKDMEA - Black",
       "price": 42.9,
       "currency": "KWD",
-      "priceUsd": 138.01,
+      "priceUsd": 138.02,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1470,12 +1365,12 @@
       "title": "Samsung A17 Phone, 6GB, 128GB, 6.7” - Black",
       "price": 53.9,
       "currency": "KWD",
-      "priceUsd": 173.4,
+      "priceUsd": 173.42,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1505,12 +1400,12 @@
       "title": "Samsung A17 Phone, 8GB, 256GB, 6.7” - Black",
       "price": 66.9,
       "currency": "KWD",
-      "priceUsd": 215.22,
+      "priceUsd": 215.24,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1540,12 +1435,12 @@
       "title": "Samsung A27 5G Phone, 6.7, 8GB RAM, 256GB, SM-A276BLIJMEA - Pink",
       "price": 97.9,
       "currency": "KWD",
-      "priceUsd": 314.95,
+      "priceUsd": 314.98,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1575,12 +1470,12 @@
       "title": "Samsung A37 5G Phone, 6.7”, 128GB, 6GB - Charcoal",
       "price": 84.9,
       "currency": "KWD",
-      "priceUsd": 273.13,
+      "priceUsd": 273.15,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1610,12 +1505,12 @@
       "title": "Samsung A37 5G Phone, 6.7”, 256GB, 8GB – Charcoal",
       "price": 102.9,
       "currency": "KWD",
-      "priceUsd": 331.03,
+      "priceUsd": 331.07,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1645,12 +1540,12 @@
       "title": "Samsung A57 5G Phone, 6.7” 128GB, 8GB – Grey.",
       "price": 104.9,
       "currency": "KWD",
-      "priceUsd": 337.47,
+      "priceUsd": 337.5,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1680,12 +1575,12 @@
       "title": "Samsung A57 5G Phone, 6.7” 256GB, 8GB – Grey",
       "price": 121.9,
       "currency": "KWD",
-      "priceUsd": 392.16,
+      "priceUsd": 392.2,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1715,12 +1610,12 @@
       "title": "Samsung A57 5G Phone, 6.7” 512GB, 12GB – Grey",
       "price": 169.9,
       "currency": "KWD",
-      "priceUsd": 546.58,
+      "priceUsd": 546.63,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1750,12 +1645,12 @@
       "title": "Samsung, Galaxy A07s, 4G, 4 ،64GB, Light Violet",
       "price": 57.9,
       "currency": "OMR",
-      "priceUsd": 150.43,
+      "priceUsd": 150.46,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1783,12 +1678,12 @@
       "title": "Samsung, Galaxy A08, 4G, 4 ،64GB, Dark Blue",
       "price": 65.9,
       "currency": "OMR",
-      "priceUsd": 171.22,
+      "priceUsd": 171.25,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1816,12 +1711,12 @@
       "title": "Samsung Galaxy A16, 4G, 128 GB, Light Green",
       "price": 57,
       "currency": "OMR",
-      "priceUsd": 148.1,
+      "priceUsd": 148.12,
       "collectorVersion": "1.1",
       "availability": "out_of_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1849,12 +1744,12 @@
       "title": "Samsung Galaxy A17, 4G, 256GB, 8GB RAM, Gray",
       "price": 87.5,
       "currency": "OMR",
-      "priceUsd": 227.34,
+      "priceUsd": 227.38,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1882,12 +1777,12 @@
       "title": "SAMSUNG Galaxy A27, 5G, 6 + 128 GB, Blue",
       "price": 101.6,
       "currency": "OMR",
-      "priceUsd": 263.97,
+      "priceUsd": 264.02,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1915,12 +1810,12 @@
       "title": "SAMSUNG Galaxy A27, 5G, 256 GB, Blue",
       "price": 137.4,
       "currency": "OMR",
-      "priceUsd": 356.99,
+      "priceUsd": 357.05,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1948,12 +1843,12 @@
       "title": "SAMSUNG Galaxy A36, 5G, 128 GB, 6GB RAM, Awesome Lime",
       "price": 99.9,
       "currency": "OMR",
-      "priceUsd": 259.56,
+      "priceUsd": 259.6,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1981,12 +1876,12 @@
       "title": "SAMSUNG Galaxy A36, 5G, 256 GB, Awesome White",
       "price": 119.9,
       "currency": "OMR",
-      "priceUsd": 311.52,
+      "priceUsd": 311.57,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2014,12 +1909,12 @@
       "title": "Samsung Galaxy A37, 5G, 128GB, 6GB RAM, Awesome Lavender",
       "price": 118.9,
       "currency": "OMR",
-      "priceUsd": 308.92,
+      "priceUsd": 308.98,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2047,12 +1942,12 @@
       "title": "SAMSUNG Galaxy A37, 5G, 256 GB, Awesome Graygreen",
       "price": 148.2,
       "currency": "OMR",
-      "priceUsd": 385.05,
+      "priceUsd": 385.11,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2080,12 +1975,12 @@
       "title": "SAMSUNG Galaxy A56, 5G, 8+256 GB, Awesome Graphite",
       "price": 149.9,
       "currency": "OMR",
-      "priceUsd": 389.46,
+      "priceUsd": 389.53,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2113,12 +2008,12 @@
       "title": "SAMSUNG Galaxy A57, 5G, 128 GB, Awesome Navy",
       "price": 139.9,
       "currency": "OMR",
-      "priceUsd": 363.48,
+      "priceUsd": 363.55,
       "collectorVersion": "1.1",
       "availability": "out_of_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2146,12 +2041,12 @@
       "title": "SAMSUNG Galaxy A57, 5G, 8+256 GB, Awesome Navy",
       "price": 159.9,
       "currency": "OMR",
-      "priceUsd": 415.45,
+      "priceUsd": 415.52,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2179,12 +2074,12 @@
       "title": "SAMSUNG Galaxy A57, 5G, 512 GB, Awesome Navy",
       "price": 274,
       "currency": "OMR",
-      "priceUsd": 711.9,
+      "priceUsd": 712.02,
       "collectorVersion": "1.1",
       "availability": "out_of_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2212,12 +2107,12 @@
       "title": "Samsung Galaxy S25 FE, 5G, 256 GB, Navy",
       "price": 219.9,
       "currency": "OMR",
-      "priceUsd": 571.34,
+      "priceUsd": 571.44,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2245,12 +2140,12 @@
       "title": "SAMSUNG Galaxy S25 Ultra, 5G, 256GB, Titanium Silverblue - Middle East Version",
       "price": 319,
       "currency": "OMR",
-      "priceUsd": 828.81,
+      "priceUsd": 828.96,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2278,12 +2173,12 @@
       "title": "SAMSUNG Galaxy S26, 5G, 256 GB, Sky Blue",
       "price": 325.9,
       "currency": "OMR",
-      "priceUsd": 846.74,
+      "priceUsd": 846.89,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2311,12 +2206,12 @@
       "title": "SAMSUNG Galaxy S26 Ultra, 5G, 256 GB, Sky Blue",
       "price": 389,
       "currency": "OMR",
-      "priceUsd": 1010.69,
+      "priceUsd": 1010.86,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2344,12 +2239,12 @@
       "title": "SAMSUNG Galaxy S26 Ultra, 5G, 512 GB, Black",
       "price": 469.9,
       "currency": "OMR",
-      "priceUsd": 1220.88,
+      "priceUsd": 1221.09,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2377,12 +2272,12 @@
       "title": "SAMSUNG, Galaxy S26 Plus, 5G, 256 GB, Cobalt Violet",
       "price": 366.8,
       "currency": "OMR",
-      "priceUsd": 953.01,
+      "priceUsd": 953.17,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2410,12 +2305,12 @@
       "title": "SAMSUNG Galaxy S26 Plus, 5G, 512 GB, Black",
       "price": 418.6,
       "currency": "OMR",
-      "priceUsd": 1087.59,
+      "priceUsd": 1087.78,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2448,7 +2343,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -2477,7 +2372,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2508,7 +2403,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2539,7 +2434,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2570,7 +2465,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2601,7 +2496,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2632,7 +2527,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2663,7 +2558,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2694,7 +2589,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -2725,7 +2620,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2756,7 +2651,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -2787,7 +2682,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2818,7 +2713,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -2849,7 +2744,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2880,7 +2775,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -2911,7 +2806,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2942,7 +2837,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -2973,7 +2868,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -3004,7 +2899,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3035,7 +2930,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3066,7 +2961,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3097,7 +2992,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3128,7 +3023,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3159,7 +3054,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -3190,7 +3085,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -3221,7 +3116,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -3250,7 +3145,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3281,7 +3176,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3312,7 +3207,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3343,7 +3238,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3374,7 +3269,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3405,7 +3300,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3436,7 +3331,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3467,7 +3362,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3498,7 +3393,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3524,12 +3419,12 @@
       "title": "Galaxy A07 5G",
       "price": 15499,
       "currency": "TRY",
-      "priceUsd": 314.28,
+      "priceUsd": 313.56,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3560,7 +3455,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3586,12 +3481,12 @@
       "title": "Galaxy A08",
       "price": 12999,
       "currency": "TRY",
-      "priceUsd": 263.59,
+      "priceUsd": 262.98,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3617,12 +3512,12 @@
       "title": "Samsung Galaxy A16 4/128GB Akıllı Telefon Gri (Samsung Türkiye Garantili)",
       "price": 13300,
       "currency": "TRY",
-      "priceUsd": 269.69,
+      "priceUsd": 269.07,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3648,12 +3543,12 @@
       "title": "Galaxy A17",
       "price": 16999,
       "currency": "TRY",
-      "priceUsd": 344.7,
+      "priceUsd": 343.9,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3679,12 +3574,12 @@
       "title": "Galaxy A17 5G",
       "price": 20499,
       "currency": "TRY",
-      "priceUsd": 415.67,
+      "priceUsd": 414.71,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3710,12 +3605,12 @@
       "title": "Samsung Galaxy A17 5G (6 GB RAM, 128 GB Depolama) | 50 MP Titreşimsiz Kamera | Süper AMOLED | Corning Gorilla Glass Victus | 7,5 mm Şık | Ai (Yapay Zeka) (Mavi)",
       "price": 15199,
       "currency": "TRY",
-      "priceUsd": 308.2,
+      "priceUsd": 307.49,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3746,7 +3641,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3772,12 +3667,12 @@
       "title": "Galaxy A27 5G",
       "price": 20499,
       "currency": "TRY",
-      "priceUsd": 415.67,
+      "priceUsd": 414.71,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3803,12 +3698,12 @@
       "title": "Galaxy A37 5G",
       "price": 30499,
       "currency": "TRY",
-      "priceUsd": 618.44,
+      "priceUsd": 617.02,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3839,7 +3734,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3870,7 +3765,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3896,12 +3791,12 @@
       "title": "Samsung Galaxy A57 5G Android Akıllı Telefon, 128GB Hafıza, 8GB RAM, 6 Nesil OS Güncellemesi, Geniş Ekran, Üçlü Kamera (Samsung Türkiye Garantili) (Buz Mavisi)",
       "price": 27644,
       "currency": "TRY",
-      "priceUsd": 560.55,
+      "priceUsd": 559.26,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3932,7 +3827,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -3958,12 +3853,12 @@
       "title": "Galaxy S25 FE",
       "price": 46999,
       "currency": "TRY",
-      "priceUsd": 953.02,
+      "priceUsd": 950.82,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3989,12 +3884,12 @@
       "title": "Galaxy S25 Ultra",
       "price": 111499,
       "currency": "TRY",
-      "priceUsd": 2260.91,
+      "priceUsd": 2255.7,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -4020,12 +3915,12 @@
       "title": "Galaxy S25+",
       "price": 73499,
       "currency": "TRY",
-      "priceUsd": 1490.37,
+      "priceUsd": 1486.94,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -4051,12 +3946,12 @@
       "title": "Galaxy S26 FE",
       "price": 54999,
       "currency": "TRY",
-      "priceUsd": 1115.24,
+      "priceUsd": 1112.67,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -4082,12 +3977,12 @@
       "title": "Galaxy S26 Ultra",
       "price": 183999,
       "currency": "TRY",
-      "priceUsd": 3731.03,
+      "priceUsd": 3722.43,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -4113,12 +4008,12 @@
       "title": "Galaxy S26+",
       "price": 103999,
       "currency": "TRY",
-      "priceUsd": 2108.83,
+      "priceUsd": 2103.97,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:25:44.970Z",
+      "collectedAt": "2026-10-10T09:44:02.027Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
