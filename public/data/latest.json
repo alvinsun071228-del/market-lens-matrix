@@ -1,11 +1,11 @@
 {
   "apiVersion": "1.1",
   "mode": "live",
-  "collectedAt": "2026-10-10T09:08:36.401Z",
+  "collectedAt": "2026-10-10T09:34:53.868Z",
   "week": "2026-10-05",
   "brand": "samsung",
   "sourceCount": 79,
-  "verifiedProductCount": 107,
+  "verifiedProductCount": 102,
   "fx": {
     "base": "USD",
     "asOf": "2026-10-09",
@@ -23,20 +23,26 @@
   },
   "failedSources": [
     {
-      "id": "amazon-ae-a16-128",
-      "name": "Amazon.ae · Galaxy A16 128GB",
-      "country": "ae",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
+      "id": "amazon-sa-a57-256",
+      "name": "Amazon.sa · Galaxy A57 256GB",
+      "country": "sa",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"نعتذر\")"
     },
     {
-      "id": "amazon-tr-a07-128",
-      "name": "Amazon.com.tr · Galaxy A07 128GB",
+      "id": "amazon-tr-a16-128",
+      "name": "Amazon.com.tr · Galaxy A16 128GB",
       "country": "tr",
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
     },
     {
       "id": "amazon-tr-a07-5g-128",
       "name": "Amazon.com.tr · Galaxy A07 5G 128GB",
+      "country": "tr",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
+    },
+    {
+      "id": "amazon-tr-a17-5g-128",
+      "name": "Amazon.com.tr · Galaxy A17 5G 128GB",
       "country": "tr",
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
     },
@@ -59,16 +65,22 @@
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
     },
     {
+      "id": "amazon-tr-a57-128",
+      "name": "Amazon.com.tr · Galaxy A57 5G 128GB",
+      "country": "tr",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
+    },
+    {
       "id": "amazon-tr-a57-256",
       "name": "Amazon.com.tr · Galaxy A57 5G 256GB",
       "country": "tr",
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
     },
     {
-      "id": "amazon-sa-a17-128",
-      "name": "Amazon.sa · Galaxy A17 128GB",
+      "id": "amazon-sa-a17-5g-128",
+      "name": "Amazon.sa · Galaxy A17 5G 128GB",
       "country": "sa",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"نعتذر\")"
+      "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"نعتذر\")"
     },
     {
       "id": "amazon-sa-a36-256",
@@ -83,14 +95,32 @@
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
     },
     {
+      "id": "amazon-ae-a17-128",
+      "name": "Amazon.ae · Galaxy A17 128GB",
+      "country": "ae",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
+    },
+    {
       "id": "amazon-ae-a27-128",
       "name": "Amazon.ae · Galaxy A27 5G 128GB",
       "country": "ae",
       "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"عذرًا!\")"
     },
     {
-      "id": "amazon-ae-a37-256",
-      "name": "Amazon.ae · Galaxy A37 5G 256GB",
+      "id": "amazon-ae-a27-256",
+      "name": "Amazon.ae · Galaxy A27 5G 256GB",
+      "country": "ae",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"عذرًا!\")"
+    },
+    {
+      "id": "amazon-ae-a37-128",
+      "name": "Amazon.ae · Galaxy A37 5G 128GB",
+      "country": "ae",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
+    },
+    {
+      "id": "amazon-ae-a57-128",
+      "name": "Amazon.ae · Galaxy A57 5G 128GB",
       "country": "ae",
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
     },
@@ -122,7 +152,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -151,7 +181,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -182,7 +212,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -191,6 +221,37 @@
         "page": "https://www.samsung.com/ae/smartphones/galaxy-a/",
         "productUrl": "https://www.samsung.com/ae/smartphones/galaxy-a/galaxy-a08-dark-blue-64gb-sm-a085fdbdmea/",
         "listSize": 9
+      }
+    },
+    {
+      "country": "ae",
+      "brand": "samsung",
+      "series": "Galaxy A",
+      "model": "A16",
+      "modelName": "Samsung Galaxy A16 Smartphone 128 GB Midnight Blue",
+      "variant": "128GB",
+      "channel": "retail",
+      "retailer": "amazon-ae",
+      "sourceId": "amazon-ae-a16-128",
+      "sourceUrl": "https://www.amazon.ae/dp/B0DPHC4RQW",
+      "productId": "B0DPHC4RQW",
+      "title": "Samsung Galaxy A16 Smartphone 128 GB Midnight Blue",
+      "price": 561,
+      "currency": "AED",
+      "priceUsd": 152.76,
+      "collectorVersion": "1.1",
+      "availability": "in_stock",
+      "state": "live",
+      "week": "2026-10-05",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
+      "effectiveDate": "2026-10-05",
+      "rawEvidence": {
+        "method": "amazon-detail",
+        "sourceId": "amazon-ae-a16-128",
+        "sourceName": "Amazon.ae · Galaxy A16 128GB",
+        "productId": "B0DPHC4RQW",
+        "priceText": "AED561.00",
+        "title": "Samsung Galaxy A16 Smartphone 128 GB Midnight Blue"
       }
     },
     {
@@ -213,7 +274,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -222,37 +283,6 @@
         "page": "https://www.samsung.com/ae/smartphones/galaxy-a/",
         "productUrl": "https://www.samsung.com/ae/smartphones/galaxy-a/galaxy-a17-black-256gb-sm-a175fzkomea/",
         "listSize": 9
-      }
-    },
-    {
-      "country": "ae",
-      "brand": "samsung",
-      "series": "Galaxy A",
-      "model": "A17",
-      "modelName": "Samsung Galaxy A17 LTE, Android Smartphone, 128GB Storage, 4GB RAM, Black, 6x OS Upgrades, Large Display, 50MP OIS Camera (UAE Version)",
-      "variant": "128GB",
-      "channel": "retail",
-      "retailer": "amazon-ae",
-      "sourceId": "amazon-ae-a17-128",
-      "sourceUrl": "https://www.amazon.ae/dp/B0FNCYB5N1",
-      "productId": "B0FNCYB5N1",
-      "title": "Samsung Galaxy A17 LTE, Android Smartphone, 128GB Storage, 4GB RAM, Black, 6x OS Upgrades, Large Display, 50MP OIS Camera (UAE Version)",
-      "price": 589,
-      "currency": "AED",
-      "priceUsd": 160.38,
-      "collectorVersion": "1.1",
-      "availability": "in_stock",
-      "state": "live",
-      "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
-      "effectiveDate": "2026-10-05",
-      "rawEvidence": {
-        "method": "amazon-detail",
-        "sourceId": "amazon-ae-a17-128",
-        "sourceName": "Amazon.ae · Galaxy A17 128GB",
-        "productId": "B0FNCYB5N1",
-        "priceText": "AED589.00",
-        "title": "Samsung Galaxy A17 LTE, Android Smartphone, 128GB Storage, 4GB RAM, Black, 6x OS Upgrades, Large Display, 50MP OIS Camera (UAE Version)"
       }
     },
     {
@@ -275,7 +305,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -306,7 +336,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -337,7 +367,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -346,37 +376,6 @@
         "page": "https://www.samsung.com/ae/smartphones/galaxy-a/",
         "productUrl": "https://www.samsung.com/ae/smartphones/galaxy-a/galaxy-a27-5g-blue-256gb-sm-a276bzbjmea/",
         "listSize": 9
-      }
-    },
-    {
-      "country": "ae",
-      "brand": "samsung",
-      "series": "Galaxy A",
-      "model": "A27 5G",
-      "modelName": "Samsung Galaxy A27 5G, Light Pink, 256GB Storage, 8GB RAM, Slim phone, Circle to Search, Object Eraser, Three lenses, IP64 - International Version",
-      "variant": "256GB",
-      "channel": "retail",
-      "retailer": "amazon-ae",
-      "sourceId": "amazon-ae-a27-256",
-      "sourceUrl": "https://www.amazon.ae/dp/B0HCWVFS7B",
-      "productId": "B0HCWVFS7B",
-      "title": "Samsung Galaxy A27 5G, Light Pink, 256GB Storage, 8GB RAM, Slim phone, Circle to Search, Object Eraser, Three lenses, IP64 - International Version",
-      "price": 1065,
-      "currency": "AED",
-      "priceUsd": 289.99,
-      "collectorVersion": "1.1",
-      "availability": "in_stock",
-      "state": "live",
-      "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
-      "effectiveDate": "2026-10-05",
-      "rawEvidence": {
-        "method": "amazon-detail-pinned",
-        "sourceId": "amazon-ae-a27-256",
-        "sourceName": "Amazon.ae · Galaxy A27 5G 256GB",
-        "productId": "B0HCWVFS7B",
-        "priceText": "AED1,065.00",
-        "title": "Samsung Galaxy A27 5G, Light Pink, 256GB Storage, 8GB RAM, Slim phone, Circle to Search, Object Eraser, Three lenses, IP64 - International Version"
       }
     },
     {
@@ -399,7 +398,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -415,30 +414,30 @@
       "brand": "samsung",
       "series": "Galaxy A",
       "model": "A37 5G",
-      "modelName": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 8GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
-      "variant": "128GB",
+      "modelName": "Samsung Galaxy A37 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Charcoal, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
+      "variant": "256GB",
       "channel": "retail",
       "retailer": "amazon-ae",
-      "sourceId": "amazon-ae-a37-128",
-      "sourceUrl": "https://www.amazon.ae/dp/B0GSVY584L",
-      "productId": "B0GSVY584L",
-      "title": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 8GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
-      "price": 1094.83,
+      "sourceId": "amazon-ae-a37-256",
+      "sourceUrl": "https://www.amazon.ae/dp/B0GSVV759C",
+      "productId": "B0GSVV759C",
+      "title": "Samsung Galaxy A37 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Charcoal, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
+      "price": 1213,
       "currency": "AED",
-      "priceUsd": 298.12,
+      "priceUsd": 330.29,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
-        "sourceId": "amazon-ae-a37-128",
-        "sourceName": "Amazon.ae · Galaxy A37 5G 128GB",
-        "productId": "B0GSVY584L",
-        "priceText": "AED1,094.83",
-        "title": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 8GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)"
+        "sourceId": "amazon-ae-a37-256",
+        "sourceName": "Amazon.ae · Galaxy A37 5G 256GB",
+        "productId": "B0GSVV759C",
+        "priceText": "AED1,213.00",
+        "title": "Samsung Galaxy A37 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Charcoal, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)"
       }
     },
     {
@@ -461,7 +460,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -470,37 +469,6 @@
         "page": "https://www.samsung.com/ae/smartphones/galaxy-a/",
         "productUrl": "https://www.samsung.com/ae/smartphones/galaxy-a/galaxy-a57-5g-awesome-lilac-512gb-sm-a576bzvwmea/",
         "listSize": 9
-      }
-    },
-    {
-      "country": "ae",
-      "brand": "samsung",
-      "series": "Galaxy A",
-      "model": "A57 5G",
-      "modelName": "Samsung Galaxy A57 5G Android Smartphone 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (Awesome Gray, 8GB + 128GB) - International Version",
-      "variant": "128GB",
-      "channel": "retail",
-      "retailer": "amazon-ae",
-      "sourceId": "amazon-ae-a57-128",
-      "sourceUrl": "https://www.amazon.ae/dp/B0GY66CN7F",
-      "productId": "B0GY66CN7F",
-      "title": "Samsung Galaxy A57 5G Android Smartphone 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (Awesome Gray, 8GB + 128GB) - International Version",
-      "price": 1199,
-      "currency": "AED",
-      "priceUsd": 326.48,
-      "collectorVersion": "1.1",
-      "availability": "in_stock",
-      "state": "live",
-      "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
-      "effectiveDate": "2026-10-05",
-      "rawEvidence": {
-        "method": "amazon-detail",
-        "sourceId": "amazon-ae-a57-128",
-        "sourceName": "Amazon.ae · Galaxy A57 5G 128GB",
-        "productId": "B0GY66CN7F",
-        "priceText": "AED1,199.00",
-        "title": "Samsung Galaxy A57 5G Android Smartphone 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (Awesome Gray, 8GB + 128GB) - International Version"
       }
     },
     {
@@ -523,7 +491,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -554,7 +522,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -585,7 +553,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -616,7 +584,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -647,7 +615,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -678,7 +646,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -709,7 +677,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "algolia+jsonld",
@@ -743,7 +711,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "algolia+jsonld",
@@ -777,7 +745,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -808,7 +776,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -839,7 +807,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -870,7 +838,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -901,7 +869,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -932,7 +900,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -963,7 +931,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -994,7 +962,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1025,7 +993,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "shopify-search",
@@ -1056,7 +1024,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1091,7 +1059,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1126,7 +1094,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1161,7 +1129,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1196,7 +1164,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1231,7 +1199,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1266,7 +1234,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1301,7 +1269,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1336,7 +1304,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "xcite-algolia+schema",
@@ -1371,7 +1339,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1404,7 +1372,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1437,7 +1405,7 @@
       "availability": "out_of_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1470,7 +1438,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1503,7 +1471,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1536,7 +1504,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1569,7 +1537,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1602,7 +1570,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1635,7 +1603,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1668,7 +1636,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1701,7 +1669,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1734,7 +1702,7 @@
       "availability": "out_of_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1767,7 +1735,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1800,7 +1768,7 @@
       "availability": "out_of_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1833,7 +1801,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1866,7 +1834,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1899,7 +1867,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1932,7 +1900,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1965,7 +1933,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -1998,7 +1966,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2031,7 +1999,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "extra-unbxd+jsonld",
@@ -2064,7 +2032,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -2093,7 +2061,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2124,7 +2092,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2155,7 +2123,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2186,7 +2154,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2217,7 +2185,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2248,7 +2216,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2279,7 +2247,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2310,7 +2278,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -2341,7 +2309,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2372,7 +2340,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -2403,7 +2371,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2412,6 +2380,37 @@
         "page": "https://www.samsung.com/sa_en/smartphones/galaxy-a/",
         "productUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a17-black-128gb-sm-a175fzknmea/",
         "listSize": 8
+      }
+    },
+    {
+      "country": "sa",
+      "brand": "samsung",
+      "series": "Galaxy A",
+      "model": "A17",
+      "modelName": "Samsung Galaxy A17 LTE, Dual SIM, 128GB Expandable to 2TB, Smartphone, Android 14, 4GB RAM, Exynos, 6.7-inch AMOLED, 1080x2220, 90Hz (Light blue)",
+      "variant": "128GB",
+      "channel": "retail",
+      "retailer": "amazon-sa",
+      "sourceId": "amazon-sa-a17-128",
+      "sourceUrl": "https://www.amazon.sa/dp/B0FND1K6SM",
+      "productId": "B0FND1K6SM",
+      "title": "Samsung Galaxy A17 LTE, Dual SIM, 128GB Expandable to 2TB, Smartphone, Android 14, 4GB RAM, Exynos, 6.7-inch AMOLED, 1080x2220, 90Hz (Light blue)",
+      "price": 618.9,
+      "currency": "SAR",
+      "priceUsd": 165.04,
+      "collectorVersion": "1.1",
+      "availability": "in_stock",
+      "state": "live",
+      "week": "2026-10-05",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
+      "effectiveDate": "2026-10-05",
+      "rawEvidence": {
+        "method": "amazon-detail",
+        "sourceId": "amazon-sa-a17-128",
+        "sourceName": "Amazon.sa · Galaxy A17 128GB",
+        "productId": "B0FND1K6SM",
+        "priceText": "SAR618.90",
+        "title": "Samsung Galaxy A17 LTE, Dual SIM, 128GB Expandable to 2TB, Smartphone, Android 14, 4GB RAM, Exynos, 6.7-inch AMOLED, 1080x2220, 90Hz (Light blue)"
       }
     },
     {
@@ -2434,7 +2433,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2443,37 +2442,6 @@
         "page": "https://www.samsung.com/sa_en/smartphones/galaxy-a/",
         "productUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-a/galaxy-a17-5g-gray-128gb-sm-a176bzaemea/",
         "listSize": 8
-      }
-    },
-    {
-      "country": "sa",
-      "brand": "samsung",
-      "series": "Galaxy A",
-      "model": "A17 5G",
-      "modelName": "Samsung Galaxy A17 5G, Android Smartphone, 128GB Storage, 4GB RAM, Blue, 6x OS Upgrades, Large Display, 50MP OIS Camera (KSA Version)",
-      "variant": "128GB",
-      "channel": "retail",
-      "retailer": "amazon-sa",
-      "sourceId": "amazon-sa-a17-5g-128",
-      "sourceUrl": "https://www.amazon.sa/dp/B0FLDGV2LK",
-      "productId": "B0FLDGV2LK",
-      "title": "Samsung Galaxy A17 5G, Android Smartphone, 128GB Storage, 4GB RAM, Blue, 6x OS Upgrades, Large Display, 50MP OIS Camera (KSA Version)",
-      "price": 775,
-      "currency": "SAR",
-      "priceUsd": 206.67,
-      "collectorVersion": "1.1",
-      "availability": "in_stock",
-      "state": "live",
-      "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
-      "effectiveDate": "2026-10-05",
-      "rawEvidence": {
-        "method": "amazon-detail-pinned",
-        "sourceId": "amazon-sa-a17-5g-128",
-        "sourceName": "Amazon.sa · Galaxy A17 5G 128GB",
-        "productId": "B0FLDGV2LK",
-        "priceText": "SAR775.00",
-        "title": "Samsung Galaxy A17 5G, Android Smartphone, 128GB Storage, 4GB RAM, Blue, 6x OS Upgrades, Large Display, 50MP OIS Camera (KSA Version)"
       }
     },
     {
@@ -2496,7 +2464,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2527,7 +2495,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -2558,7 +2526,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -2589,7 +2557,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2620,7 +2588,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2651,7 +2619,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
@@ -2682,7 +2650,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2713,7 +2681,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail-pinned",
@@ -2722,37 +2690,6 @@
         "productId": "B0GSVSN4QC",
         "priceText": "SAR1,266.89",
         "title": "Samsung Galaxy A57 5G Android Smartphone, 128GB Storage, 8GB RAM, Awesome Navy, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (KSA Version)"
-      }
-    },
-    {
-      "country": "sa",
-      "brand": "samsung",
-      "series": "Galaxy A",
-      "model": "A57 5G",
-      "modelName": "Samsung Galaxy A57 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Gray, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (KSA Version)",
-      "variant": "256GB",
-      "channel": "retail",
-      "retailer": "amazon-sa",
-      "sourceId": "amazon-sa-a57-256",
-      "sourceUrl": "https://www.amazon.sa/dp/B0GSVQMB9P",
-      "productId": "B0GSVQMB9P",
-      "title": "Samsung Galaxy A57 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Gray, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (KSA Version)",
-      "price": 1428.98,
-      "currency": "SAR",
-      "priceUsd": 381.06,
-      "collectorVersion": "1.1",
-      "availability": "in_stock",
-      "state": "live",
-      "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
-      "effectiveDate": "2026-10-05",
-      "rawEvidence": {
-        "method": "amazon-detail-pinned",
-        "sourceId": "amazon-sa-a57-256",
-        "sourceName": "Amazon.sa · Galaxy A57 256GB",
-        "productId": "B0GSVQMB9P",
-        "priceText": "SAR1,428.98",
-        "title": "Samsung Galaxy A57 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Gray, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (KSA Version)"
       }
     },
     {
@@ -2775,7 +2712,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld",
@@ -2804,7 +2741,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2835,7 +2772,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2866,7 +2803,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2897,7 +2834,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2928,7 +2865,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2959,7 +2896,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -2990,7 +2927,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3021,7 +2958,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3030,6 +2967,37 @@
         "page": "https://www.samsung.com/sa_en/smartphones/galaxy-s/",
         "productUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-s26/buy/?modelCode=SM-S947BZDOMEA",
         "listSize": 11
+      }
+    },
+    {
+      "country": "tr",
+      "brand": "samsung",
+      "series": "Galaxy A",
+      "model": "A07",
+      "modelName": "Samsung Galaxy A07 LTE, Android Akıllı Telefon, 4GB RAM, 128GB Hafıza, Siyah, Büyük Ekran, 6 nm işlemcisiyle (Samsung Türkiye Garantili)",
+      "variant": "128GB",
+      "channel": "retail",
+      "retailer": "amazon-tr",
+      "sourceId": "amazon-tr-a07-128",
+      "sourceUrl": "https://www.amazon.com.tr/dp/B0FNR86H2Q",
+      "productId": "B0FNR86H2Q",
+      "title": "Samsung Galaxy A07 LTE, Android Akıllı Telefon, 4GB RAM, 128GB Hafıza, Siyah, Büyük Ekran, 6 nm işlemcisiyle (Samsung Türkiye Garantili)",
+      "price": 12219.06,
+      "currency": "TRY",
+      "priceUsd": 247.77,
+      "collectorVersion": "1.1",
+      "availability": "in_stock",
+      "state": "live",
+      "week": "2026-10-05",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
+      "effectiveDate": "2026-10-05",
+      "rawEvidence": {
+        "method": "amazon-detail",
+        "sourceId": "amazon-tr-a07-128",
+        "sourceName": "Amazon.com.tr · Galaxy A07 128GB",
+        "productId": "B0FNR86H2Q",
+        "priceText": "12.219,06 TL",
+        "title": "Samsung Galaxy A07 LTE, Android Akıllı Telefon, 4GB RAM, 128GB Hafıza, Siyah, Büyük Ekran, 6 nm işlemcisiyle (Samsung Türkiye Garantili)"
       }
     },
     {
@@ -3052,7 +3020,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3083,7 +3051,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3092,37 +3060,6 @@
         "page": "https://www.samsung.com/tr/smartphones/galaxy-a/",
         "productUrl": "https://www.samsung.com/tr/smartphones/galaxy-a/galaxy-a08-silver-128gb-sm-a085fzsgtur/",
         "listSize": 6
-      }
-    },
-    {
-      "country": "tr",
-      "brand": "samsung",
-      "series": "Galaxy A",
-      "model": "A16",
-      "modelName": "Samsung Galaxy A16 4/128GB Akıllı Telefon Gri (Samsung Türkiye Garantili)",
-      "variant": "128GB",
-      "channel": "retail",
-      "retailer": "amazon-tr",
-      "sourceId": "amazon-tr-a16-128",
-      "sourceUrl": "https://www.amazon.com.tr/dp/B0DRCMZJPG",
-      "productId": "B0DRCMZJPG",
-      "title": "Samsung Galaxy A16 4/128GB Akıllı Telefon Gri (Samsung Türkiye Garantili)",
-      "price": 13300,
-      "currency": "TRY",
-      "priceUsd": 269.69,
-      "collectorVersion": "1.1",
-      "availability": "in_stock",
-      "state": "live",
-      "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
-      "effectiveDate": "2026-10-05",
-      "rawEvidence": {
-        "method": "amazon-detail",
-        "sourceId": "amazon-tr-a16-128",
-        "sourceName": "Amazon.com.tr · Galaxy A16 128GB",
-        "productId": "B0DRCMZJPG",
-        "priceText": "13.300,00TL",
-        "title": "Samsung Galaxy A16 4/128GB Akıllı Telefon Gri (Samsung Türkiye Garantili)"
       }
     },
     {
@@ -3145,7 +3082,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3176,7 +3113,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3185,37 +3122,6 @@
         "page": "https://www.samsung.com/tr/smartphones/galaxy-a/",
         "productUrl": "https://www.samsung.com/tr/smartphones/galaxy-a/galaxy-a17-5g-black-256gb-sm-a176bzkdtur/",
         "listSize": 6
-      }
-    },
-    {
-      "country": "tr",
-      "brand": "samsung",
-      "series": "Galaxy A",
-      "model": "A17 5G",
-      "modelName": "Samsung Galaxy A17 5G (6 GB RAM, 128 GB Depolama) | 50 MP Titreşimsiz Kamera | Süper AMOLED | Corning Gorilla Glass Victus | 7,5 mm Şık | Ai (Yapay Zeka) (Mavi)",
-      "variant": "128GB",
-      "channel": "retail",
-      "retailer": "amazon-tr",
-      "sourceId": "amazon-tr-a17-5g-128",
-      "sourceUrl": "https://www.amazon.com.tr/dp/B0FPTFJNNH",
-      "productId": "B0FPTFJNNH",
-      "title": "Samsung Galaxy A17 5G (6 GB RAM, 128 GB Depolama) | 50 MP Titreşimsiz Kamera | Süper AMOLED | Corning Gorilla Glass Victus | 7,5 mm Şık | Ai (Yapay Zeka) (Mavi)",
-      "price": 15199,
-      "currency": "TRY",
-      "priceUsd": 308.2,
-      "collectorVersion": "1.1",
-      "availability": "in_stock",
-      "state": "live",
-      "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
-      "effectiveDate": "2026-10-05",
-      "rawEvidence": {
-        "method": "amazon-detail",
-        "sourceId": "amazon-tr-a17-5g-128",
-        "sourceName": "Amazon.com.tr · Galaxy A17 5G 128GB",
-        "productId": "B0FPTFJNNH",
-        "priceText": "15.199,00 TL",
-        "title": "Samsung Galaxy A17 5G (6 GB RAM, 128 GB Depolama) | 50 MP Titreşimsiz Kamera | Süper AMOLED | Corning Gorilla Glass Victus | 7,5 mm Şık | Ai (Yapay Zeka) (Mavi)"
       }
     },
     {
@@ -3238,7 +3144,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3269,7 +3175,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3278,37 +3184,6 @@
         "page": "https://www.samsung.com/tr/smartphones/galaxy-a/",
         "productUrl": "https://www.samsung.com/tr/smartphones/galaxy-a/galaxy-a37-5g-awesome-graygreen-256gb-sm-a376bdggtur/",
         "listSize": 6
-      }
-    },
-    {
-      "country": "tr",
-      "brand": "samsung",
-      "series": "Galaxy A",
-      "model": "A57 5G",
-      "modelName": "Samsung Galaxy A57 5G Android Akıllı Telefon, 128GB Hafıza, 8GB RAM, 6 Nesil OS Güncellemesi, Geniş Ekran, Üçlü Kamera (Samsung Türkiye Garantili) (Buz Mavisi)",
-      "variant": "128GB",
-      "channel": "retail",
-      "retailer": "amazon-tr",
-      "sourceId": "amazon-tr-a57-128",
-      "sourceUrl": "https://www.amazon.com.tr/dp/B0GY9L6LBL",
-      "productId": "B0GY9L6LBL",
-      "title": "Samsung Galaxy A57 5G Android Akıllı Telefon, 128GB Hafıza, 8GB RAM, 6 Nesil OS Güncellemesi, Geniş Ekran, Üçlü Kamera (Samsung Türkiye Garantili) (Buz Mavisi)",
-      "price": 27644,
-      "currency": "TRY",
-      "priceUsd": 560.55,
-      "collectorVersion": "1.1",
-      "availability": "in_stock",
-      "state": "live",
-      "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
-      "effectiveDate": "2026-10-05",
-      "rawEvidence": {
-        "method": "amazon-detail",
-        "sourceId": "amazon-tr-a57-128",
-        "sourceName": "Amazon.com.tr · Galaxy A57 5G 128GB",
-        "productId": "B0GY9L6LBL",
-        "priceText": "27.644,00 TL",
-        "title": "Samsung Galaxy A57 5G Android Akıllı Telefon, 128GB Hafıza, 8GB RAM, 6 Nesil OS Güncellemesi, Geniş Ekran, Üçlü Kamera (Samsung Türkiye Garantili) (Buz Mavisi)"
       }
     },
     {
@@ -3331,7 +3206,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3362,7 +3237,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3393,7 +3268,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3424,7 +3299,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3455,7 +3330,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
@@ -3486,7 +3361,7 @@
       "availability": "in_stock",
       "state": "live",
       "week": "2026-10-05",
-      "collectedAt": "2026-10-10T09:08:36.401Z",
+      "collectedAt": "2026-10-10T09:34:53.868Z",
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "jsonld-itemlist",
