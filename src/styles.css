@@ -1048,3 +1048,49 @@ dialog::backdrop {
 .usd-note { margin-left: 0.45rem; font-size: 0.75rem; color: #69707b; }
 .chart-toggles { display: flex; align-items: center; gap: 0.9rem; }
 .flag-emoji { font-size: 1rem; line-height: 1; }
+
+/* --- v1.1: dense matrices (all channels + all variants, 20+ model columns)
+   must never let a price bleed into the neighbouring cell --- */
+.matrix td,
+.matrix thead th {
+  min-width: 104px;
+}
+.cell-button {
+  padding: 13px 12px 8px;
+  overflow: hidden;
+}
+.cell-button .price {
+  font-size: 17px;
+  line-height: 24px;
+  gap: 4px;
+}
+.cell-button .price span {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cell-arrow {
+  flex: none;
+}
+
+/* Dense-matrix column width: auto table layout ignores min-width on <td>, so
+   force the column open from the cell content and let .matrix-scroll scroll. */
+.cell-button,
+.empty-cell {
+  min-width: 112px;
+}
+.cell-button .price {
+  font-size: 16px;
+}
+
+/* Let the dense matrix size to its content and scroll horizontally instead of
+   squeezing columns until prices overflow their cell. */
+.matrix {
+  width: max-content;
+  min-width: 100%;
+}
+.matrix td {
+  overflow: hidden;
+}
