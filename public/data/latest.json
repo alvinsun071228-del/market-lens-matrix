@@ -56,14 +56,20 @@
       }
     },
     {
-      "id": "amazon-tr-a07-128",
-      "name": "Amazon.com.tr · Galaxy A07 128GB",
+      "id": "amazon-tr-a16-128",
+      "name": "Amazon.com.tr · Galaxy A16 128GB",
       "country": "tr",
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
     },
     {
       "id": "amazon-tr-a07-5g-128",
       "name": "Amazon.com.tr · Galaxy A07 5G 128GB",
+      "country": "tr",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
+    },
+    {
+      "id": "amazon-tr-a17-5g-128",
+      "name": "Amazon.com.tr · Galaxy A17 5G 128GB",
       "country": "tr",
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
     },
@@ -86,16 +92,22 @@
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
     },
     {
+      "id": "amazon-tr-a57-128",
+      "name": "Amazon.com.tr · Galaxy A57 5G 128GB",
+      "country": "tr",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
+    },
+    {
       "id": "amazon-tr-a57-256",
       "name": "Amazon.com.tr · Galaxy A57 5G 256GB",
       "country": "tr",
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"Üzgünüz\")"
     },
     {
-      "id": "amazon-sa-a17-128",
-      "name": "Amazon.sa · Galaxy A17 128GB",
+      "id": "amazon-sa-a17-5g-128",
+      "name": "Amazon.sa · Galaxy A17 5G 128GB",
       "country": "sa",
-      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"نعتذر\")"
+      "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"نعتذر\")"
     },
     {
       "id": "amazon-sa-a36-256",
@@ -110,14 +122,32 @@
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
     },
     {
+      "id": "amazon-ae-a17-128",
+      "name": "Amazon.ae · Galaxy A17 128GB",
+      "country": "ae",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
+    },
+    {
       "id": "amazon-ae-a27-128",
       "name": "Amazon.ae · Galaxy A27 5G 128GB",
       "country": "ae",
       "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"عذرًا!\")"
     },
     {
-      "id": "amazon-ae-a37-256",
-      "name": "Amazon.ae · Galaxy A37 5G 256GB",
+      "id": "amazon-ae-a27-256",
+      "name": "Amazon.ae · Galaxy A27 5G 256GB",
+      "country": "ae",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=1, captcha=false, title=\"عذرًا!\")"
+    },
+    {
+      "id": "amazon-ae-a37-128",
+      "name": "Amazon.ae · Galaxy A37 5G 128GB",
+      "country": "ae",
+      "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
+    },
+    {
+      "id": "amazon-ae-a57-128",
+      "name": "Amazon.ae · Galaxy A57 5G 128GB",
       "country": "ae",
       "error": "amazon: no usable product (searchCards=0, verifyTried=0, captcha=false, title=\"عذرًا!\")"
     },
@@ -591,17 +621,17 @@
       "brand": "samsung",
       "series": "Galaxy A",
       "model": "A37 5G",
-      "modelName": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 8GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
-      "variant": "128GB",
+      "modelName": "Samsung Galaxy A37 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Charcoal, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
+      "variant": "256GB",
       "channel": "retail",
       "retailer": "amazon-ae",
-      "sourceId": "amazon-ae-a37-128",
-      "sourceUrl": "https://www.amazon.ae/dp/B0GSVY584L",
-      "productId": "B0GSVY584L",
-      "title": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 8GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
-      "price": 1094.83,
+      "sourceId": "amazon-ae-a37-256",
+      "sourceUrl": "https://www.amazon.ae/dp/B0GSVV759C",
+      "productId": "B0GSVV759C",
+      "title": "Samsung Galaxy A37 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Charcoal, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)",
+      "price": 1213,
       "currency": "AED",
-      "priceUsd": 298.12,
+      "priceUsd": 330.29,
       "collectorVersion": "1.1",
       "availability": "in_stock",
       "state": "live",
@@ -610,11 +640,11 @@
       "effectiveDate": "2026-10-05",
       "rawEvidence": {
         "method": "amazon-detail",
-        "sourceId": "amazon-ae-a37-128",
-        "sourceName": "Amazon.ae · Galaxy A37 5G 128GB",
-        "productId": "B0GSVY584L",
-        "priceText": "AED1,094.83",
-        "title": "Samsung Galaxy A37 5G Android Smartphone, 128GB Storage, 8GB RAM, Awesome White, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)"
+        "sourceId": "amazon-ae-a37-256",
+        "sourceName": "Amazon.ae · Galaxy A37 5G 256GB",
+        "productId": "B0GSVV759C",
+        "priceText": "AED1,213.00",
+        "title": "Samsung Galaxy A37 5G Android Smartphone, 256GB Storage, 8GB RAM, Awesome Charcoal, 6x OS Upgrades, Large Display, 50MP Camera, Long Battery Life (UAE Version)"
       }
     },
     {

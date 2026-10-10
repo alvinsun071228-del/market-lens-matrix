@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T09:14:14.617Z",
+  "generatedAt": "2026-10-10T09:43:13.468Z",
   "contractVersion": "1.1",
   "brandId": "samsung",
   "totalModels": 22,
@@ -42,6 +42,15 @@
           "lastSeen": "2026-10-05",
           "currency": "SAR",
           "priceUsd": 159.73
+        },
+        "tr": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "TRY",
+          "priceUsd": 247.77
         }
       }
     },
@@ -151,6 +160,15 @@
         "128GB"
       ],
       "countries": {
+        "ae": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-05",
+          "currency": "AED",
+          "priceUsd": 152.76
+        },
         "om": {
           "available": true,
           "channels": [
@@ -169,15 +187,6 @@
           "lastSeen": "2026-10-05",
           "currency": "SAR",
           "priceUsd": 165.07
-        },
-        "tr": {
-          "available": true,
-          "channels": [
-            "retail"
-          ],
-          "lastSeen": "2026-10-05",
-          "currency": "TRY",
-          "priceUsd": 269.69
         }
       }
     },
@@ -194,8 +203,7 @@
         "ae": {
           "available": true,
           "channels": [
-            "official",
-            "retail"
+            "official"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
@@ -231,7 +239,8 @@
         "sa": {
           "available": true,
           "channels": [
-            "official"
+            "official",
+            "retail"
           ],
           "lastSeen": "2026-10-05",
           "currency": "SAR",
@@ -271,8 +280,7 @@
         "sa": {
           "available": true,
           "channels": [
-            "official",
-            "retail"
+            "official"
           ],
           "lastSeen": "2026-10-05",
           "currency": "SAR",
@@ -281,8 +289,7 @@
         "tr": {
           "available": true,
           "channels": [
-            "official",
-            "retail"
+            "official"
           ],
           "lastSeen": "2026-10-05",
           "currency": "TRY",
@@ -303,8 +310,7 @@
         "ae": {
           "available": true,
           "channels": [
-            "official",
-            "retail"
+            "official"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
@@ -501,8 +507,7 @@
         "ae": {
           "available": true,
           "channels": [
-            "official",
-            "retail"
+            "official"
           ],
           "lastSeen": "2026-10-05",
           "currency": "AED",
@@ -553,15 +558,6 @@
           "lastSeen": "2026-10-05",
           "currency": "SAR",
           "priceUsd": 479.73
-        },
-        "tr": {
-          "available": true,
-          "channels": [
-            "retail"
-          ],
-          "lastSeen": "2026-10-05",
-          "currency": "TRY",
-          "priceUsd": 560.55
         }
       }
     },
@@ -947,14 +943,13 @@
   "byCountry": {
     "tr": {
       "modelIds": [
+        "A07",
         "A07 5G",
         "A08",
-        "A16",
         "A17",
         "A17 5G",
         "A27 5G",
         "A37 5G",
-        "A57 5G",
         "S25 FE",
         "S25 ULTRA",
         "S25+",
@@ -1020,6 +1015,7 @@
         "A07",
         "A07S",
         "A08",
+        "A16",
         "A17",
         "A17 5G",
         "A27 5G",
