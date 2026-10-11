@@ -389,6 +389,16 @@ const AMAZON_ATTEMPTS = 3;
 const AMAZON_RETRY_MS = 3000;
 /** Amazon requests are bounded tighter than the default: a blocked request can hang. */
 const AMAZON_NAV_TIMEOUT_MS = 25000;
+/**
+ * Total wall-clock budget for Amazon in one run. Retrying a blocked source is worth it
+ * (the interstitial is intermittent, and retries recovered 12 of 29 sources), but 18
+ * blocked sources x 3 attempts x a 25s navigation stretched a run past 35 minutes. Once
+ * this budget is spent the remaining sources still get one attempt, just no retries.
+ */
+const AMAZON_TOTAL_BUDGET_MS = 8 * 60 * 1000;
+let amazonSpentMs = 0;
+/** Storefront cookies from the first warm-up, reused by every later Amazon context. */
+let amazonStorageState = null;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const AMAZON_MARKETS = {
   "amazon.sa": { locale: "en-SA", lang: "en-SA,en;q=0.9,ar;q=0.8", timezoneId: "Asia/Riyadh", geo: { latitude: 24.7136, longitude: 46.6753 } },
@@ -399,6 +409,7 @@ const AMAZON_MARKETS = {
 async function newAmazonContext(browser, source) {
   const market = AMAZON_MARKETS[amazonHost(source)] ?? { locale: "en-US", lang: "en-US,en;q=0.9", timezoneId: "UTC", geo: null };
   const context = await browser.newContext({
+    ...(amazonStorageState ? { storageState: amazonStorageState } : {}),
     locale: market.locale,
     timezoneId: market.timezoneId,
     geolocation: market.geo ?? undefined,
@@ -422,12 +433,14 @@ async function newAmazonContext(browser, source) {
   return context;
 }
 
-/** Visit the storefront once so the context carries real cookies. */
+/** Visit the storefront once per run so later Amazon contexts carry real cookies. */
 async function warmUpAmazon(context, source) {
+  if (amazonStorageState) return;
   const page = await context.newPage();
   try {
     await page.goto("https://www." + amazonHost(source) + "/", { waitUntil: "domcontentloaded", timeout: AMAZON_NAV_TIMEOUT_MS });
     await page.waitForTimeout(1200 + Math.floor(Math.random() * 900));
+    amazonStorageState = await context.storageState();
   } catch {}
   finally {
     await page.close();
@@ -501,12 +514,12 @@ function matchAmazonCard(card, source) {
  * Verify one `/dp/<asin>` page, retrying Amazon's interstitial. Returns
  * `{ ok: true, record }` or `{ ok: false, reason | blocked | captcha }`.
  */
-async function readVerifiedAmazonDetail(context, source, asin, fromPin) {
+async function readVerifiedAmazonDetail(context, source, asin, fromPin, pinAttempts = AMAZON_ATTEMPTS) {
   const dpUrl = amazonDpUrl(source, asin);
   let read = null;
   let captcha = false;
   let blocked = false;
-  const maxAttempts = fromPin ? AMAZON_ATTEMPTS : 1;
+  const maxAttempts = fromPin ? pinAttempts : 1;
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     const detail = await context.newPage();
     try {
@@ -551,8 +564,11 @@ async function readVerifiedAmazonDetail(context, source, asin, fromPin) {
 }
 
 async function parseAmazonSearch(source, browser) {
+  const startedAt = Date.now();
   const context = await newAmazonContext(browser, source);
   try {
+    const withinBudget = amazonSpentMs < AMAZON_TOTAL_BUDGET_MS;
+    const pinAttempts = withinBudget ? AMAZON_ATTEMPTS : 1;
     let cards = [];
     let pageTitle = "";
     let searchAttempts = 0;
@@ -570,7 +586,7 @@ async function parseAmazonSearch(source, browser) {
     //    search grid, and it is the only Amazon path a datacenter IP usually serves.
     if (source.asin) {
       verifyTried += 1;
-      const pinnedRead = await readVerifiedAmazonDetail(context, source, source.asin, true);
+      const pinnedRead = await readVerifiedAmazonDetail(context, source, source.asin, true, pinAttempts);
       if (pinnedRead.ok) return [pinnedRead.record];
       if (pinnedRead.captcha) sawCaptcha = true;
       if (pinnedRead.blocked) {
@@ -580,7 +596,7 @@ async function parseAmazonSearch(source, browser) {
           "amazon: pinned product page blocked (asin=" +
             source.asin +
             ", attempts=" +
-            AMAZON_ATTEMPTS +
+            pinAttempts +
             ", captcha=" +
             sawCaptcha +
             ", page=" +
@@ -679,6 +695,7 @@ async function parseAmazonSearch(source, browser) {
         ")",
     );
   } finally {
+    amazonSpentMs += Date.now() - startedAt;
     await context.close();
   }
 }
