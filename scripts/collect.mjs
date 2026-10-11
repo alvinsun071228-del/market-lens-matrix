@@ -385,8 +385,10 @@ const SOFT_BLOCK_RE = /api-services-support@amazon|To discuss automated access t
  * because search hits the same block from the same IP, and the job has to stay inside
  * its ~10 minute budget (an unbounded retry policy ran the collector for 25+ minutes).
  */
-const AMAZON_ATTEMPTS = 2;
+const AMAZON_ATTEMPTS = 3;
 const AMAZON_RETRY_MS = 3000;
+/** Amazon requests are bounded tighter than the default: a blocked request can hang. */
+const AMAZON_NAV_TIMEOUT_MS = 25000;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const AMAZON_MARKETS = {
   "amazon.sa": { locale: "en-SA", lang: "en-SA,en;q=0.9,ar;q=0.8", timezoneId: "Asia/Riyadh", geo: { latitude: 24.7136, longitude: 46.6753 } },
@@ -424,7 +426,7 @@ async function newAmazonContext(browser, source) {
 async function warmUpAmazon(context, source) {
   const page = await context.newPage();
   try {
-    await page.goto("https://www." + amazonHost(source) + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
+    await page.goto("https://www." + amazonHost(source) + "/", { waitUntil: "domcontentloaded", timeout: AMAZON_NAV_TIMEOUT_MS });
     await page.waitForTimeout(1200 + Math.floor(Math.random() * 900));
   } catch {}
   finally {
@@ -434,7 +436,7 @@ async function warmUpAmazon(context, source) {
 
 /** Read one Amazon product page. Returns { captcha }/{ blocked } when challenged. */
 async function readAmazonDetailPage(page, source, url) {
-  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 });
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: AMAZON_NAV_TIMEOUT_MS });
   await page.waitForTimeout(1500);
   const pageTitle = await page.title();
   const body = (await page.locator("body").innerText().catch(() => "")).slice(0, 4000);
@@ -452,7 +454,14 @@ async function readAmazonDetailPage(page, source, url) {
   const price = Number.isFinite(parseLocalizedNumber(offscreen, source.currency))
     ? parseLocalizedNumber(offscreen, source.currency)
     : (tokenPrice?.price ?? null);
-  return { captcha: false, title, priceText: offscreen, price };
+  // From a datacenter IP Amazon answers /dp/ with an interstitial or a redirect rather
+  // than the product page. Such a page has neither a product title nor a price, so it is
+  // a retryable block: classifying it as a product page produced a misleading
+  // "variant mismatch" against an unrelated title AND skipped the retry entirely, which
+  // is what left 18 pinned sources failing after ASINs were captured.
+  const hasProductTitle = (await page.locator("#productTitle").count().catch(() => 0)) > 0;
+  if (!hasProductTitle && !Number.isFinite(price)) return { blocked: true, title: pageTitle, pageTitle };
+  return { captcha: false, blocked: false, title, priceText: offscreen, price, pageTitle };
 }
 
 function amazonVariantOk(title, dpUrl, source) {
@@ -512,7 +521,9 @@ async function readVerifiedAmazonDetail(context, source, asin, fromPin) {
     blocked = true;
     if (attempt < maxAttempts) await sleep(AMAZON_RETRY_MS * attempt);
   }
-  if (!read || read.captcha || read.blocked) return { ok: false, captcha, blocked };
+  if (!read || read.captcha || read.blocked) {
+    return { ok: false, captcha, blocked, title: read?.pageTitle ?? read?.title ?? null };
+  }
   const model = deriveModel(read.title) ?? (fromPin ? source.model : null);
   if (!model || !sourceModelMatches(model, source.model, source.exactModel)) {
     return { ok: false, reason: `model=${model ?? "unknown"} vs ${source.model ?? "?"}` };
@@ -572,6 +583,8 @@ async function parseAmazonSearch(source, browser) {
             AMAZON_ATTEMPTS +
             ", captcha=" +
             sawCaptcha +
+            ", page=" +
+            JSON.stringify(String(pinnedRead.title ?? "").slice(0, 60)) +
             ")",
         );
       }
@@ -585,7 +598,7 @@ async function parseAmazonSearch(source, browser) {
       const page = await context.newPage();
       let blocked = false;
       try {
-        await page.goto(source.url, { waitUntil: "domcontentloaded", timeout: 45000 });
+        await page.goto(source.url, { waitUntil: "domcontentloaded", timeout: AMAZON_NAV_TIMEOUT_MS });
         await page.waitForTimeout(2500);
         pageTitle = await page.title();
         const body = (await page.locator("body").innerText().catch(() => "")).slice(0, 4000);
