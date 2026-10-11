@@ -30,6 +30,8 @@ for (const arg of args) {
 }
 const onlyIds = typeof flags.only === "string" ? new Set(flags.only.split(",").map((s) => s.trim()).filter(Boolean)) : null;
 const dryRun = flags["dry-run"] === true;
+/** `--verbose` prints one line per accepted product, so a pinned `asin` can be captured. */
+const verbose = flags.verbose === true;
 
 const root = resolve(new URL("..", import.meta.url).pathname);
 const config = JSON.parse(await readFile(resolve(root, "config/sources.json"), "utf8"));
@@ -369,6 +371,18 @@ const AMAZON_LAUNCH_ARGS = [
   "--disable-dev-shm-usage",
 ];
 const CAPTCHA_RE = /validateCaptcha|api-services-support@amazon|Enter the characters you see|Type the characters you see|Sorry, we just need to make sure|Robot Check|not a robot/i;
+/**
+ * Amazon answers a datacenter IP with a localized "sorry" interstitial rather than a
+ * captcha: the page loads normally, it just has no product on it (observed titles:
+ * "Üzgünüz", "نعتذر", "عذرًا!"). Treating that as "a page with no price" made the block
+ * invisible in `failedSources` and silently turned 25 sources into 缺价 · 沿用 in CI.
+ * It is decided per request, so it is detected explicitly and retried.
+ */
+const SOFT_BLOCK_RE = /api-services-support@amazon|To discuss automated access to Amazon data|Enter the characters you see|Type the characters you see|we just need to make sure|Robot Check|not a robot|Üzgünüz|نعتذر|عذرًا/i;
+/** Attempts per Amazon request and the linear backoff between them. */
+const AMAZON_ATTEMPTS = 3;
+const AMAZON_RETRY_MS = 4000;
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const AMAZON_MARKETS = {
   "amazon.sa": { locale: "en-SA", lang: "en-SA,en;q=0.9,ar;q=0.8", timezoneId: "Asia/Riyadh", geo: { latitude: 24.7136, longitude: 46.6753 } },
   "amazon.ae": { locale: "en-AE", lang: "en-AE,en;q=0.9,ar;q=0.8", timezoneId: "Asia/Dubai", geo: { latitude: 25.2048, longitude: 55.2708 } },
@@ -413,13 +427,14 @@ async function warmUpAmazon(context, source) {
   }
 }
 
-/** Read one Amazon product page. Returns { captcha: true } when challenged. */
+/** Read one Amazon product page. Returns { captcha }/{ blocked } when challenged. */
 async function readAmazonDetailPage(page, source, url) {
   await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 });
   await page.waitForTimeout(1500);
   const pageTitle = await page.title();
   const body = (await page.locator("body").innerText().catch(() => "")).slice(0, 4000);
   if (CAPTCHA_RE.test(body) || CAPTCHA_RE.test(pageTitle)) return { captcha: true, title: pageTitle };
+  if (SOFT_BLOCK_RE.test(body) || SOFT_BLOCK_RE.test(pageTitle)) return { blocked: true, title: pageTitle };
   const title = ((await page.locator("#productTitle").first().textContent().catch(() => null)) || pageTitle || "")
     .replace(/\s+/g, " ")
     .trim();
@@ -468,85 +483,137 @@ function matchAmazonCard(card, source) {
   };
 }
 
+/**
+ * Verify one `/dp/<asin>` page, retrying Amazon's interstitial. Returns
+ * `{ ok: true, record }` or `{ ok: false, reason | blocked | captcha }`.
+ */
+async function readVerifiedAmazonDetail(context, source, asin, fromPin) {
+  const dpUrl = amazonDpUrl(source, asin);
+  let read = null;
+  let captcha = false;
+  let blocked = false;
+  for (let attempt = 1; attempt <= AMAZON_ATTEMPTS; attempt += 1) {
+    const detail = await context.newPage();
+    try {
+      read = await readAmazonDetailPage(detail, source, dpUrl);
+    } catch {
+      read = { blocked: true };
+    } finally {
+      await detail.close();
+    }
+    if (read.captcha) captcha = true;
+    if (!read.captcha && !read.blocked) break;
+    blocked = true;
+    if (attempt < AMAZON_ATTEMPTS) await sleep(AMAZON_RETRY_MS * attempt);
+  }
+  if (!read || read.captcha || read.blocked) return { ok: false, captcha, blocked };
+  const model = deriveModel(read.title) ?? (fromPin ? source.model : null);
+  if (!model || !sourceModelMatches(model, source.model, source.exactModel)) {
+    return { ok: false, reason: `model=${model ?? "unknown"} vs ${source.model ?? "?"}` };
+  }
+  if (!amazonVariantOk(read.title, dpUrl, source)) return { ok: false, reason: "variant mismatch" };
+  if (!isPlausiblePhonePrice(read.price, source.currency, fx?.rates)) return { ok: false, reason: "implausible price" };
+  return {
+    ok: true,
+    record: {
+      price: read.price,
+      currency: source.currency,
+      title: read.title,
+      sourceUrl: dpUrl,
+      productId: asin,
+      model,
+      rawEvidence: {
+        ...verifiedRef(source),
+        method: fromPin ? "amazon-detail-pinned" : "amazon-detail",
+        productId: asin,
+        priceText: read.priceText,
+        title: read.title,
+      },
+    },
+  };
+}
+
 async function parseAmazonSearch(source, browser) {
   const context = await newAmazonContext(browser, source);
   try {
-    await warmUpAmazon(context, source);
-    const page = await context.newPage();
     let cards = [];
     let pageTitle = "";
-    try {
-      await page.goto(source.url, { waitUntil: "domcontentloaded", timeout: 45000 });
-      await page.waitForTimeout(2500);
-      pageTitle = await page.title();
-      const body = (await page.locator("body").innerText().catch(() => "")).slice(0, 4000);
-      if (CAPTCHA_RE.test(body) || CAPTCHA_RE.test(pageTitle)) {
-        throw new Error("amazon captcha challenge (title=" + JSON.stringify(pageTitle.slice(0, 80)) + ")");
-      }
-      cards = await page.locator('[data-component-type="s-search-result"]').evaluateAll((elements) =>
-        elements.map((element) => ({
-          asin: element.getAttribute("data-asin"),
-          title: element.querySelector('[data-cy="title-recipe"]')?.innerText ?? element.querySelector("h2")?.innerText ?? "",
-          offscreen: element.querySelector("span.a-price span.a-offscreen")?.textContent ?? "",
-          text: element.innerText,
-        })),
-      );
-    } finally {
-      await page.close();
+    let searchAttempts = 0;
+    let sawCaptcha = false;
+    let sawSoftBlock = false;
+    let verifyTried = 0;
+    const notes = [];
+
+    // 1. A pinned ASIN is tried first: `/dp/<asin>` is far less protected than the
+    //    search grid, and it is the only Amazon path a datacenter IP usually serves.
+    if (source.asin) {
+      verifyTried += 1;
+      const pinnedRead = await readVerifiedAmazonDetail(context, source, source.asin, true);
+      if (pinnedRead.ok) return [pinnedRead.record];
+      if (pinnedRead.captcha) sawCaptcha = true;
+      if (pinnedRead.blocked) sawSoftBlock = true;
+      notes.push(`pinned ${source.asin} ${pinnedRead.blocked ? "blocked" : pinnedRead.reason ?? "failed"}`);
     }
 
+    // 2. Otherwise — or when the pin went stale — fall back to the search grid, so a
+    //    delisted ASIN can still be replaced instead of failing forever.
+    await warmUpAmazon(context, source);
+    for (searchAttempts = 1; searchAttempts <= AMAZON_ATTEMPTS; searchAttempts += 1) {
+      const page = await context.newPage();
+      let blocked = false;
+      try {
+        await page.goto(source.url, { waitUntil: "domcontentloaded", timeout: 45000 });
+        await page.waitForTimeout(2500);
+        pageTitle = await page.title();
+        const body = (await page.locator("body").innerText().catch(() => "")).slice(0, 4000);
+        if (
+          CAPTCHA_RE.test(body) ||
+          CAPTCHA_RE.test(pageTitle) ||
+          SOFT_BLOCK_RE.test(body) ||
+          SOFT_BLOCK_RE.test(pageTitle)
+        ) {
+          blocked = true;
+        } else {
+          cards = await page.locator('[data-component-type="s-search-result"]').evaluateAll((elements) =>
+            elements.map((element) => ({
+              asin: element.getAttribute("data-asin"),
+              title: element.querySelector('[data-cy="title-recipe"]')?.innerText ?? element.querySelector("h2")?.innerText ?? "",
+              offscreen: element.querySelector("span.a-price span.a-offscreen")?.textContent ?? "",
+              text: element.innerText,
+            })),
+          );
+        }
+      } catch {
+        blocked = true;
+      } finally {
+        await page.close();
+      }
+      if (!blocked) break;
+      sawSoftBlock = true;
+      if (searchAttempts < AMAZON_ATTEMPTS) await sleep(AMAZON_RETRY_MS * searchAttempts);
+    }
+
+    // Prefer an exact sub-model match: a search for "Galaxy A16" also returns "A16 5G",
+    // and the record carries the card's own model, so a prefix match would price the 5G
+    // handset on (or emit a phantom row for) the 4G model.
+    const rank = (candidate) =>
+      String(candidate.model ?? "").toUpperCase().trim() === String(source.model ?? "").toUpperCase().trim() ? 0 : 1;
     const candidates = cards
       .map((card) => matchAmazonCard(card, source))
       .filter(Boolean)
-      .sort((a, b) => a.price - b.price || String(a.productId).localeCompare(String(b.productId)));
+      .sort((a, b) => rank(a) - rank(b) || a.price - b.price || String(a.productId).localeCompare(String(b.productId)));
 
-    // A pinned ASIN goes straight to the product page: far less protected than
-    // search, and the page lists the price itself.
-    const pinned = source.asin ? [source.asin] : [];
-    const toVerify = [...pinned, ...candidates.map((c) => c.productId)].slice(0, pinned.length + 2);
-    let sawCaptcha = false;
-
-    for (const asin of toVerify) {
-      const dpUrl = amazonDpUrl(source, asin);
-      const detail = await context.newPage();
-      try {
-        const read = await readAmazonDetailPage(detail, source, dpUrl);
-        if (read.captcha) {
-          sawCaptcha = true;
-          continue;
-        }
-        const model = deriveModel(read.title) ?? (pinned.includes(asin) ? source.model : null);
-        if (
-          model &&
-          sourceModelMatches(model, source.model, source.exactModel) &&
-          amazonVariantOk(read.title, dpUrl, source) &&
-          isPlausiblePhonePrice(read.price, source.currency, fx?.rates)
-        ) {
-          return [
-            {
-              price: read.price,
-              currency: source.currency,
-              title: read.title,
-              sourceUrl: dpUrl,
-              productId: asin,
-              model,
-              rawEvidence: {
-                ...verifiedRef(source),
-                method: pinned.includes(asin) ? "amazon-detail-pinned" : "amazon-detail",
-                productId: asin,
-                priceText: read.priceText,
-                title: read.title,
-              },
-            },
-          ];
-        }
-      } catch {}
-      finally {
-        await detail.close();
-      }
+    for (const candidate of candidates.slice(0, 2)) {
+      verifyTried += 1;
+      const read = await readVerifiedAmazonDetail(context, source, candidate.productId, false);
+      if (read.ok) return [read.record];
+      if (read.captcha) sawCaptcha = true;
+      if (read.blocked) sawSoftBlock = true;
     }
 
-    if (candidates.length) {
+    // A blocked product page is the normal case from CI, so the search card price is
+    // used as a fallback — but only for an exact model match, never a sibling.
+    if (candidates.length && rank(candidates[0]) === 0) {
       const best = candidates[0];
       const dpUrl = amazonDpUrl(source, best.productId);
       return [
@@ -557,13 +624,22 @@ async function parseAmazonSearch(source, browser) {
         },
       ];
     }
+    if (candidates.length) notes.push(`no exact-model candidate (best=${candidates[0].model ?? "?"})`);
+
     throw new Error(
       "amazon: no usable product (searchCards=" +
         cards.length +
         ", verifyTried=" +
-        toVerify.length +
+        verifyTried +
+        ", pinned=" +
+        (source.asin ? 1 : 0) +
         ", captcha=" +
         sawCaptcha +
+        ", softBlock=" +
+        sawSoftBlock +
+        ", searchAttempts=" +
+        searchAttempts +
+        (notes.length ? ", notes=" + JSON.stringify(notes.join("; ")) : "") +
         ", title=" +
         JSON.stringify(String(pageTitle).slice(0, 60)) +
         ")",
@@ -892,6 +968,14 @@ for (const source of activeSources) {
 
     if (!built.length) throw new Error("no matching product price found");
     upsertMany(built);
+    if (verbose) {
+      for (const record of built) {
+        console.log(
+          `  ok ${source.id} -> ${record.model ?? "?"} ${record.variant ?? "?"} ${record.price} ${record.currency}` +
+            ` asin=${record.productId ?? "-"} method=${record.rawEvidence?.method ?? source.parser}`,
+        );
+      }
+    }
   } catch (error) {
     const message = String(error.message || error);
     failedSources.push({

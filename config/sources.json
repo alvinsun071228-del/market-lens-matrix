@@ -150,7 +150,8 @@
       "parser": "amazon-search",
       "model": "A16",
       "series": "Galaxy A",
-      "variant": "128GB"
+      "variant": "128GB",
+      "asin": "B0DM1R9X2P"
     },
     {
       "id": "amazon-sa-a57-256",
@@ -177,7 +178,8 @@
       "parser": "amazon-search",
       "model": "A16",
       "series": "Galaxy A",
-      "variant": "128GB"
+      "variant": "128GB",
+      "asin": "B0DRCMZJPG"
     },
     {
       "id": "amazon-ae-a16-128",
@@ -190,7 +192,8 @@
       "parser": "amazon-search",
       "model": "A16",
       "series": "Galaxy A",
-      "variant": "128GB"
+      "variant": "128GB",
+      "asin": "B0DPHC4RQW"
     },
     {
       "id": "extra-om-a16-128",
@@ -246,7 +249,8 @@
       "model": "A07",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0FNR86H2Q"
     },
     {
       "id": "amazon-tr-a07-5g-128",
@@ -260,7 +264,8 @@
       "model": "A07 5G",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0H31J9RCG"
     },
     {
       "id": "amazon-tr-a17-5g-128",
@@ -274,7 +279,8 @@
       "model": "A17 5G",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0FPTTJBRK"
     },
     {
       "id": "amazon-tr-a17-5g-256",
@@ -288,7 +294,8 @@
       "model": "A17 5G",
       "series": "Galaxy A",
       "variant": "256GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0FNRB74NH"
     },
     {
       "id": "amazon-tr-a37-128",
@@ -302,7 +309,8 @@
       "model": "A37 5G",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0HF11G8JF"
     },
     {
       "id": "amazon-tr-a37-256",
@@ -316,7 +324,8 @@
       "model": "A37 5G",
       "series": "Galaxy A",
       "variant": "256GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0GWDGKJ47"
     },
     {
       "id": "amazon-tr-a57-128",
@@ -330,7 +339,8 @@
       "model": "A57 5G",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0GY9G513M"
     },
     {
       "id": "amazon-tr-a57-256",
@@ -344,7 +354,8 @@
       "model": "A57 5G",
       "series": "Galaxy A",
       "variant": "256GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0GWDBFJTW"
     },
     {
       "id": "amazon-sa-a07-128",
@@ -373,7 +384,8 @@
       "model": "A17",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0FND1K6SM"
     },
     {
       "id": "amazon-sa-a17-5g-128",
@@ -432,7 +444,8 @@
       "model": "A36 5G",
       "series": "Galaxy A",
       "variant": "256GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0DZHMWTP7"
     },
     {
       "id": "amazon-sa-a37-256",
@@ -446,7 +459,8 @@
       "model": "A37 5G",
       "series": "Galaxy A",
       "variant": "256GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0GSVV759C"
     },
     {
       "id": "amazon-sa-a57-128",
@@ -475,7 +489,8 @@
       "model": "A07",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0FPBPZ5XF"
     },
     {
       "id": "amazon-ae-a17-128",
@@ -489,7 +504,8 @@
       "model": "A17",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0FNCYB5N1"
     },
     {
       "id": "amazon-ae-a17-5g-256",
@@ -503,7 +519,8 @@
       "model": "A17 5G",
       "series": "Galaxy A",
       "variant": "256GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0FQQYY9FQ"
     },
     {
       "id": "amazon-ae-a27-128",
@@ -547,7 +564,8 @@
       "model": "A37 5G",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0GSVY584L"
     },
     {
       "id": "amazon-ae-a37-256",
@@ -561,7 +579,8 @@
       "model": "A37 5G",
       "series": "Galaxy A",
       "variant": "256GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0GSVV759C"
     },
     {
       "id": "amazon-ae-a57-128",
@@ -575,7 +594,8 @@
       "model": "A57 5G",
       "series": "Galaxy A",
       "variant": "128GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0GY66CN7F"
     },
     {
       "id": "amazon-ae-a57-256",
@@ -589,7 +609,8 @@
       "model": "A57 5G",
       "series": "Galaxy A",
       "variant": "256GB",
-      "exactModel": true
+      "exactModel": true,
+      "asin": "B0GY5S9D3J"
     },
     {
       "id": "orange-jo-a07-64",
