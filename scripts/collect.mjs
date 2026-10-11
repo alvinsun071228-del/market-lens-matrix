@@ -385,7 +385,7 @@ const SOFT_BLOCK_RE = /api-services-support@amazon|To discuss automated access t
  * because search hits the same block from the same IP, and the job has to stay inside
  * its ~10 minute budget (an unbounded retry policy ran the collector for 25+ minutes).
  */
-const AMAZON_ATTEMPTS = 3;
+const AMAZON_ATTEMPTS = 4;
 const AMAZON_RETRY_MS = 3000;
 /** Amazon requests are bounded tighter than the default: a blocked request can hang. */
 const AMAZON_NAV_TIMEOUT_MS = 12000;
