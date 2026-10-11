@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T05:54:37.267Z",
+  "generatedAt": "2026-10-11T06:04:41.608Z",
   "brands": [
     {
       "id": "samsung",
@@ -234,38 +234,6 @@
   },
   "failedSources": [
     {
-      "id": "amazon-tr-a16-128",
-      "name": "Amazon.com.tr · Galaxy A16 128GB",
-      "country": "tr",
-      "model": "A16",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0DRCMZJPG, attempts=3, captcha=false, page=\"Amazon.com.tr\")"
-    },
-    {
-      "id": "amazon-ae-a16-128",
-      "name": "Amazon.ae · Galaxy A16 128GB",
-      "country": "ae",
-      "model": "A16",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0DPHC4RQW, attempts=3, captcha=false, page=\"Amazon.ae\")"
-    },
-    {
-      "id": "amazon-tr-a07-5g-128",
-      "name": "Amazon.com.tr · Galaxy A07 5G 128GB",
-      "country": "tr",
-      "model": "A07 5G",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0H31J9RCG, attempts=3, captcha=false, page=\"Amazon.com.tr\")"
-    },
-    {
-      "id": "amazon-tr-a17-5g-128",
-      "name": "Amazon.com.tr · Galaxy A17 5G 128GB",
-      "country": "tr",
-      "model": "A17 5G",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0FPTTJBRK, attempts=3, captcha=false, page=\"Amazon.com.tr\")"
-    },
-    {
       "id": "amazon-tr-a17-5g-256",
       "name": "Amazon.com.tr · Galaxy A17 5G 256GB",
       "country": "tr",
@@ -274,124 +242,12 @@
       "error": "amazon: pinned product page blocked (asin=B0FNRB74NH, attempts=3, captcha=false, page=\"Amazon.com.tr\")"
     },
     {
-      "id": "amazon-tr-a37-128",
-      "name": "Amazon.com.tr · Galaxy A37 5G 128GB",
-      "country": "tr",
-      "model": "A37 5G",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0HF11G8JF, attempts=3, captcha=false, page=\"Amazon.com.tr\")"
-    },
-    {
       "id": "amazon-tr-a37-256",
       "name": "Amazon.com.tr · Galaxy A37 5G 256GB",
       "country": "tr",
       "model": "A37 5G",
       "variant": "256GB",
       "error": "amazon: pinned product page blocked (asin=B0GWDGKJ47, attempts=3, captcha=false, page=\"Amazon.com.tr\")"
-    },
-    {
-      "id": "amazon-tr-a57-128",
-      "name": "Amazon.com.tr · Galaxy A57 5G 128GB",
-      "country": "tr",
-      "model": "A57 5G",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0GY9G513M, attempts=3, captcha=false, page=\"Amazon.com.tr\")"
-    },
-    {
-      "id": "amazon-tr-a57-256",
-      "name": "Amazon.com.tr · Galaxy A57 5G 256GB",
-      "country": "tr",
-      "model": "A57 5G",
-      "variant": "256GB",
-      "error": "amazon: pinned product page blocked (asin=B0GWDBFJTW, attempts=3, captcha=false, page=\"Amazon.com.tr\")"
-    },
-    {
-      "id": "amazon-sa-a07-128",
-      "name": "Amazon.sa · Galaxy A07 128GB",
-      "country": "sa",
-      "model": "A07",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0FLDK4MMS, attempts=3, captcha=false, page=\"Amazon.sa\")"
-    },
-    {
-      "id": "amazon-sa-a37-256",
-      "name": "Amazon.sa · Galaxy A37 5G 256GB",
-      "country": "sa",
-      "model": "A37 5G",
-      "variant": "256GB",
-      "error": "amazon: pinned product page blocked (asin=B0GSVV759C, attempts=3, captcha=false, page=\"Amazon.sa\")"
-    },
-    {
-      "id": "amazon-sa-a57-128",
-      "name": "Amazon.sa · Galaxy A57 5G 128GB",
-      "country": "sa",
-      "model": "A57 5G",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0GSVSN4QC, attempts=3, captcha=false, page=\"Amazon.sa\")"
-    },
-    {
-      "id": "amazon-ae-a07-128",
-      "name": "Amazon.ae · Galaxy A07 128GB",
-      "country": "ae",
-      "model": "A07",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0FPBPZ5XF, attempts=3, captcha=false, page=\"Amazon.ae\")"
-    },
-    {
-      "id": "amazon-ae-a17-128",
-      "name": "Amazon.ae · Galaxy A17 128GB",
-      "country": "ae",
-      "model": "A17",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0FNCYB5N1, attempts=3, captcha=false, page=\"Amazon.ae\")"
-    },
-    {
-      "id": "amazon-ae-a17-5g-256",
-      "name": "Amazon.ae · Galaxy A17 5G 256GB",
-      "country": "ae",
-      "model": "A17 5G",
-      "variant": "256GB",
-      "error": "amazon: pinned product page blocked (asin=B0FQQYY9FQ, attempts=3, captcha=false, page=\"Amazon.ae\")"
-    },
-    {
-      "id": "amazon-ae-a27-128",
-      "name": "Amazon.ae · Galaxy A27 5G 128GB",
-      "country": "ae",
-      "model": "A27 5G",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0HCWFH8S8, attempts=3, captcha=false, page=\"Amazon.ae\")"
-    },
-    {
-      "id": "amazon-ae-a27-256",
-      "name": "Amazon.ae · Galaxy A27 5G 256GB",
-      "country": "ae",
-      "model": "A27 5G",
-      "variant": "256GB",
-      "error": "amazon: pinned product page blocked (asin=B0HCWVFS7B, attempts=3, captcha=false, page=\"Amazon.ae\")"
-    },
-    {
-      "id": "amazon-ae-a37-128",
-      "name": "Amazon.ae · Galaxy A37 5G 128GB",
-      "country": "ae",
-      "model": "A37 5G",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0GSVY584L, attempts=3, captcha=false, page=\"Amazon.ae\")"
-    },
-    {
-      "id": "amazon-ae-a37-256",
-      "name": "Amazon.ae · Galaxy A37 5G 256GB",
-      "country": "ae",
-      "model": "A37 5G",
-      "variant": "256GB",
-      "error": "amazon: pinned product page blocked (asin=B0GSVV759C, attempts=3, captcha=false, page=\"Amazon.ae\")"
-    },
-    {
-      "id": "amazon-ae-a57-256",
-      "name": "Amazon.ae · Galaxy A57 5G 256GB",
-      "country": "ae",
-      "model": "A57 5G",
-      "variant": "256GB",
-      "error": "amazon: pinned product page blocked (asin=B0GY5S9D3J, attempts=3, captcha=false, page=\"Amazon.ae\")"
     }
   ],
   "models": [
