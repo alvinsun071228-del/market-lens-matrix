@@ -1,6 +1,6 @@
 {
   "apiVersion": "1.1",
-  "generatedAt": "2026-10-11T06:05:25.206Z",
+  "generatedAt": "2026-10-11T06:14:52.725Z",
   "weeks": [
     "2026-09-07",
     "2026-09-14",
@@ -23,7 +23,7 @@
       "state": "live",
       "sourceId": "amazon-ae-a07-128",
       "sourceUrl": "https://www.amazon.ae/gp/aw/d/B0FPBPZ5XF",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -40,7 +40,7 @@
       "state": "live",
       "sourceId": "samsung-ae-a-official",
       "sourceUrl": "https://www.samsung.com/ae/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -57,7 +57,7 @@
       "state": "live",
       "sourceId": "samsung-ae-a-official",
       "sourceUrl": "https://www.samsung.com/ae/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -74,7 +74,7 @@
       "state": "live",
       "sourceId": "amazon-ae-a16-128",
       "sourceUrl": "https://www.amazon.ae/gp/aw/d/B0DPHC4RQW",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -91,7 +91,7 @@
       "state": "live",
       "sourceId": "samsung-ae-a-official",
       "sourceUrl": "https://www.samsung.com/ae/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -108,7 +108,7 @@
       "state": "live",
       "sourceId": "amazon-ae-a17-128",
       "sourceUrl": "https://www.amazon.ae/gp/aw/d/B0FNCYB5N1",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -125,7 +125,7 @@
       "state": "live",
       "sourceId": "samsung-ae-a-official",
       "sourceUrl": "https://www.samsung.com/ae/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -142,7 +142,7 @@
       "state": "live",
       "sourceId": "amazon-ae-a17-5g-256",
       "sourceUrl": "https://www.amazon.ae/gp/aw/d/B0FQQYY9FQ",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -159,7 +159,7 @@
       "state": "live",
       "sourceId": "samsung-ae-a-official",
       "sourceUrl": "https://www.samsung.com/ae/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -176,7 +176,7 @@
       "state": "live",
       "sourceId": "amazon-ae-a27-128",
       "sourceUrl": "https://www.amazon.ae/gp/aw/d/B0HCWFH8S8",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -193,7 +193,7 @@
       "state": "live",
       "sourceId": "amazon-ae-a27-256",
       "sourceUrl": "https://www.amazon.ae/gp/aw/d/B0HCWVFS7B",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -227,7 +227,7 @@
       "state": "live",
       "sourceId": "samsung-ae-a-official",
       "sourceUrl": "https://www.samsung.com/ae/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -244,7 +244,7 @@
       "state": "live",
       "sourceId": "amazon-ae-a37-128",
       "sourceUrl": "https://www.amazon.ae/gp/aw/d/B0GSVY584L",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -261,7 +261,7 @@
       "state": "live",
       "sourceId": "amazon-ae-a37-256",
       "sourceUrl": "https://www.amazon.ae/gp/aw/d/B0GSVV759C",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -278,7 +278,7 @@
       "state": "live",
       "sourceId": "samsung-ae-a-official",
       "sourceUrl": "https://www.samsung.com/ae/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -294,8 +294,8 @@
       "priceUsd": 326.48,
       "state": "live",
       "sourceId": "amazon-ae-a57-128",
-      "sourceUrl": "https://www.amazon.ae/gp/aw/d/B0GY66CN7F",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "sourceUrl": "https://www.amazon.ae/dp/B0GY66CN7F",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -312,7 +312,7 @@
       "state": "live",
       "sourceId": "amazon-ae-a57-256",
       "sourceUrl": "https://www.amazon.ae/gp/aw/d/B0GY5S9D3J",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -329,7 +329,7 @@
       "state": "live",
       "sourceId": "samsung-ae-s-official",
       "sourceUrl": "https://www.samsung.com/ae/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -346,7 +346,7 @@
       "state": "live",
       "sourceId": "samsung-ae-s-official",
       "sourceUrl": "https://www.samsung.com/ae/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -363,7 +363,7 @@
       "state": "live",
       "sourceId": "samsung-ae-s-official",
       "sourceUrl": "https://www.samsung.com/ae/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -380,7 +380,7 @@
       "state": "live",
       "sourceId": "samsung-ae-s-official",
       "sourceUrl": "https://www.samsung.com/ae/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -397,7 +397,7 @@
       "state": "live",
       "sourceId": "samsung-ae-s-official",
       "sourceUrl": "https://www.samsung.com/ae/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -414,7 +414,7 @@
       "state": "live",
       "sourceId": "samsung-levant-a-official",
       "sourceUrl": "https://www.samsung.com/levant/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -431,7 +431,7 @@
       "state": "live",
       "sourceId": "orange-jo-a07-128",
       "sourceUrl": "https://eshop.orange.jo/en/devices-accessories/samsung-galaxy-a07-128gb-4gb",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -448,7 +448,7 @@
       "state": "live",
       "sourceId": "orange-jo-a07-64",
       "sourceUrl": "https://eshop.orange.jo/en/devices-accessories/samsung-galaxy-a07-64gb",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -465,7 +465,7 @@
       "state": "live",
       "sourceId": "samsung-levant-a-official",
       "sourceUrl": "https://www.samsung.com/levant/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -482,7 +482,7 @@
       "state": "live",
       "sourceId": "samsung-levant-a-official",
       "sourceUrl": "https://www.samsung.com/levant/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -499,7 +499,7 @@
       "state": "live",
       "sourceId": "smartbuy-jo-a27-128",
       "sourceUrl": "https://smartbuy-me.com/search?q=Samsung+Galaxy+A27+6GB+128GB",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -516,7 +516,7 @@
       "state": "live",
       "sourceId": "smartbuy-jo-a27-256",
       "sourceUrl": "https://smartbuy-me.com/search?q=Samsung+Galaxy+A27+8GB+256GB",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -533,7 +533,7 @@
       "state": "live",
       "sourceId": "smartbuy-jo-a37-128",
       "sourceUrl": "https://smartbuy-me.com/search?q=Samsung+A37+8GB+128GB",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -550,7 +550,7 @@
       "state": "live",
       "sourceId": "smartbuy-jo-a37-256",
       "sourceUrl": "https://smartbuy-me.com/search?q=Samsung+A37+8GB+256GB",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -567,7 +567,7 @@
       "state": "live",
       "sourceId": "smartbuy-jo-a56-256",
       "sourceUrl": "https://smartbuy-me.com/search?q=Samsung+Galaxy+A56+256GB",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -584,7 +584,7 @@
       "state": "live",
       "sourceId": "smartbuy-jo-a57-256",
       "sourceUrl": "https://smartbuy-me.com/search?q=Samsung+Galaxy+A57+256GB",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -601,7 +601,7 @@
       "state": "live",
       "sourceId": "smartbuy-jo-a57-512",
       "sourceUrl": "https://smartbuy-me.com/search?q=Samsung+Galaxy+A57+512GB",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -618,7 +618,7 @@
       "state": "live",
       "sourceId": "xcite-kw-a07s-64",
       "sourceUrl": "https://www.xcite.com/samsung-galaxy-a07s-phone-octa-core-4gb-ram-64gb-6-7-inch-display-sm-a077fzkdmea-black/p",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -635,7 +635,7 @@
       "state": "live",
       "sourceId": "xcite-kw-a17-128",
       "sourceUrl": "https://www.xcite.com/samsung-a17-phone-6gb-128gb-6-7-black/p",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -652,7 +652,7 @@
       "state": "live",
       "sourceId": "xcite-kw-a17-256",
       "sourceUrl": "https://www.xcite.com/samsung-a17-phone-8gb-256gb-6-7-black/p",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -669,7 +669,7 @@
       "state": "live",
       "sourceId": "xcite-kw-a27-256",
       "sourceUrl": "https://www.xcite.com/samsung-a27-5g-phone-6-7-8gb-ram-256gb-sm-a276blijmea-pink/p",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -686,7 +686,7 @@
       "state": "live",
       "sourceId": "xcite-kw-a37-128",
       "sourceUrl": "https://www.xcite.com/samsung-a37-5g-phone-6-7-128gb-6gb-charcoal/p",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -703,7 +703,7 @@
       "state": "live",
       "sourceId": "xcite-kw-a37-256",
       "sourceUrl": "https://www.xcite.com/samsung-a37-5g-phone-6-7-256gb-8gb-charcoal/p",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -720,7 +720,7 @@
       "state": "live",
       "sourceId": "xcite-kw-a57-128",
       "sourceUrl": "https://www.xcite.com/samsung-a57-5g-phone-6-7-128gb-8gb-grey/p",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -737,7 +737,7 @@
       "state": "live",
       "sourceId": "xcite-kw-a57-256",
       "sourceUrl": "https://www.xcite.com/samsung-a57-5g-phone-6-7-256gb-8gb-grey/p",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -754,7 +754,7 @@
       "state": "live",
       "sourceId": "xcite-kw-a57-512",
       "sourceUrl": "https://www.xcite.com/samsung-a57-5g-phone-6-7-512gb-12gb-grey/p",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -771,7 +771,7 @@
       "state": "live",
       "sourceId": "extra-om-a07s-64",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a07s-4g-4-64gb-light-violet/p/100540445",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -788,7 +788,7 @@
       "state": "live",
       "sourceId": "extra-om-a08-64",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a08-4g-4-64gb-dark-blue/p/100540448",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -805,7 +805,7 @@
       "state": "live",
       "sourceId": "extra-om-a16-128",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a16-4g-128-gb-light-green/p/100389559",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -822,7 +822,7 @@
       "state": "live",
       "sourceId": "extra-om-a17-256",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a17-4g-256gb-8gb-ram-gray/p/100473921",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -839,7 +839,7 @@
       "state": "live",
       "sourceId": "extra-om-a27-128",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a27-5g-6-128-gb-blue/p/100523079",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -856,7 +856,7 @@
       "state": "live",
       "sourceId": "extra-om-a27-256",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a27-5g-256-gb-blue/p/100523085",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -873,7 +873,7 @@
       "state": "live",
       "sourceId": "extra-om-a36-128",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a36-5g-128-gb-6gb-ram-awesome-lime/p/100396754",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -890,7 +890,7 @@
       "state": "live",
       "sourceId": "extra-om-a36-256",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a36-5g-256-gb-awesome-white/p/100478449",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -907,7 +907,7 @@
       "state": "live",
       "sourceId": "extra-om-a37-128",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a37-5g-128gb-6gb-ram-awesome-lavender/p/100521987",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -924,7 +924,7 @@
       "state": "live",
       "sourceId": "extra-om-a37-256",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a37-5g-256-gb-awesome-graygreen/p/100511481",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -941,7 +941,7 @@
       "state": "live",
       "sourceId": "extra-om-a56-256",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a56-5g-8-256-gb-awesome-graphite/p/100526345",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -958,7 +958,7 @@
       "state": "live",
       "sourceId": "extra-om-a57-128",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a57-5g-128-gb-awesome-navy/p/100511477",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -975,7 +975,7 @@
       "state": "live",
       "sourceId": "extra-om-a57-256",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a57-5g-8-256-gb-awesome-navy/p/100511503",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -992,7 +992,7 @@
       "state": "live",
       "sourceId": "extra-om-a57-512",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-a57-5g-512-gb-awesome-navy/p/100511509",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1009,7 +1009,7 @@
       "state": "live",
       "sourceId": "extra-om-s25-fe-256",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-s25-fe-5g-256-gb-navy/p/100474886",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1026,7 +1026,7 @@
       "state": "live",
       "sourceId": "extra-om-s25-ultra-256",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-s25-ultra-5g-256gb-titanium-silverblue-middle-east-version/p/100475500",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1043,7 +1043,7 @@
       "state": "live",
       "sourceId": "extra-om-s26-256",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-s26-5g-256-gb-sky-blue/p/100501233",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1060,7 +1060,7 @@
       "state": "live",
       "sourceId": "extra-om-s26-ultra-256",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-s26-ultra-5g-256-gb-sky-blue/p/100501273",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1077,7 +1077,7 @@
       "state": "live",
       "sourceId": "extra-om-s26-ultra-512",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-s26-ultra-5g-512-gb-black/p/100501266",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1094,7 +1094,7 @@
       "state": "live",
       "sourceId": "extra-om-s26-plus-256",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-s26-plus-5g-256-gb-cobalt-violet/p/100534035",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1111,7 +1111,7 @@
       "state": "live",
       "sourceId": "extra-om-s26-plus-512",
       "sourceUrl": "https://www.extra.com/en-om/mobiles-tablets/mobiles/smartphone/samsung-galaxy-s26-plus-5g-512-gb-black/p/100501239",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1128,7 +1128,7 @@
       "state": "live",
       "sourceId": "jarir-qa-a57-128",
       "sourceUrl": "https://www.jarir.com/qa-en/samsung-galaxy-a57-5g-smartphones-jpm1850.html",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1145,7 +1145,7 @@
       "state": "live",
       "sourceId": "jarir-qa-catalog",
       "sourceUrl": "https://www.jarir.com/qa-en/smartphones-x.html",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1162,7 +1162,7 @@
       "state": "live",
       "sourceId": "jarir-qa-catalog",
       "sourceUrl": "https://www.jarir.com/qa-en/smartphones-x.html",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1179,7 +1179,7 @@
       "state": "live",
       "sourceId": "jarir-qa-catalog",
       "sourceUrl": "https://www.jarir.com/qa-en/smartphones-x.html",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1196,7 +1196,7 @@
       "state": "live",
       "sourceId": "jarir-qa-catalog",
       "sourceUrl": "https://www.jarir.com/qa-en/smartphones-x.html",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1213,7 +1213,7 @@
       "state": "live",
       "sourceId": "jarir-qa-catalog",
       "sourceUrl": "https://www.jarir.com/qa-en/smartphones-x.html",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1230,7 +1230,7 @@
       "state": "live",
       "sourceId": "jarir-qa-catalog",
       "sourceUrl": "https://www.jarir.com/qa-en/smartphones-x.html",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1332,7 +1332,7 @@
       "state": "live",
       "sourceId": "samsung-sa-a-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1349,7 +1349,7 @@
       "state": "live",
       "sourceId": "amazon-sa-a07-128",
       "sourceUrl": "https://www.amazon.sa/gp/aw/d/B0FLDK4MMS",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1366,7 +1366,7 @@
       "state": "live",
       "sourceId": "samsung-sa-a-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1450,8 +1450,8 @@
       "priceUsd": 154.35,
       "state": "live",
       "sourceId": "amazon-sa-a16-128",
-      "sourceUrl": "https://www.amazon.sa/gp/aw/d/B0DM1R9X2P",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "sourceUrl": "https://www.amazon.sa/dp/B0DM1R9X2P",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1468,7 +1468,7 @@
       "state": "live",
       "sourceId": "samsung-sa-a-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1485,7 +1485,7 @@
       "state": "live",
       "sourceId": "amazon-sa-a17-128",
       "sourceUrl": "https://www.amazon.sa/gp/aw/d/B0FND1K6SM",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1502,7 +1502,7 @@
       "state": "live",
       "sourceId": "samsung-sa-a-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1518,8 +1518,8 @@
       "priceUsd": 206.67,
       "state": "live",
       "sourceId": "amazon-sa-a17-5g-128",
-      "sourceUrl": "https://www.amazon.sa/gp/aw/d/B0FLDGV2LK",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "sourceUrl": "https://www.amazon.sa/dp/B0FLDGV2LK",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1536,7 +1536,7 @@
       "state": "live",
       "sourceId": "samsung-sa-a-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1553,7 +1553,7 @@
       "state": "live",
       "sourceId": "amazon-sa-a27-128",
       "sourceUrl": "https://www.amazon.sa/dp/B0H4LDK36W",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1570,7 +1570,7 @@
       "state": "live",
       "sourceId": "amazon-sa-a27-256",
       "sourceUrl": "https://www.amazon.sa/gp/aw/d/B0H4LJBMJ8",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1587,7 +1587,7 @@
       "state": "live",
       "sourceId": "samsung-sa-a-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1604,7 +1604,7 @@
       "state": "live",
       "sourceId": "amazon-sa-a36-256",
       "sourceUrl": "https://www.amazon.sa/dp/B0DZHMWTP7",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1621,7 +1621,7 @@
       "state": "live",
       "sourceId": "samsung-sa-a-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1637,8 +1637,8 @@
       "priceUsd": 339.24,
       "state": "live",
       "sourceId": "amazon-sa-a37-256",
-      "sourceUrl": "https://www.amazon.sa/dp/B0GSVV759C",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "sourceUrl": "https://www.amazon.sa/gp/aw/d/B0GSVV759C",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1740,7 +1740,7 @@
       "state": "live",
       "sourceId": "samsung-sa-a-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1756,8 +1756,8 @@
       "priceUsd": 337.6,
       "state": "live",
       "sourceId": "amazon-sa-a57-128",
-      "sourceUrl": "https://www.amazon.sa/gp/aw/d/B0GSVSN4QC",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "sourceUrl": "https://www.amazon.sa/dp/B0GSVSN4QC",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1841,8 +1841,8 @@
       "priceUsd": 381.32,
       "state": "live",
       "sourceId": "amazon-sa-a57-256",
-      "sourceUrl": "https://www.amazon.sa/gp/aw/d/B0GSVQMB9P",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "sourceUrl": "https://www.amazon.sa/dp/B0GSVQMB9P",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1859,7 +1859,7 @@
       "state": "live",
       "sourceId": "samsung-sa-s-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1876,7 +1876,7 @@
       "state": "live",
       "sourceId": "samsung-sa-s-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1893,7 +1893,7 @@
       "state": "live",
       "sourceId": "samsung-sa-s-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1910,7 +1910,7 @@
       "state": "live",
       "sourceId": "samsung-sa-s-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1927,7 +1927,7 @@
       "state": "live",
       "sourceId": "samsung-sa-s-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1944,7 +1944,7 @@
       "state": "live",
       "sourceId": "samsung-sa-s-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1961,7 +1961,7 @@
       "state": "live",
       "sourceId": "samsung-sa-s-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -1978,24 +1978,7 @@
       "state": "live",
       "sourceId": "samsung-sa-s-official",
       "sourceUrl": "https://www.samsung.com/sa_en/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
-      "effectiveDate": "2026-10-05"
-    },
-    {
-      "country": "tr",
-      "brand": "samsung",
-      "series": "Galaxy A",
-      "model": "A07",
-      "channel": "retail",
-      "variant": "128GB",
-      "week": "2026-10-05",
-      "price": 12219.06,
-      "currency": "TRY",
-      "priceUsd": 247.2,
-      "state": "live",
-      "sourceId": "amazon-tr-a07-128",
-      "sourceUrl": "https://www.amazon.com.tr/gp/aw/d/B0FNR86H2Q",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2012,7 +1995,7 @@
       "state": "live",
       "sourceId": "samsung-tr-a-official",
       "sourceUrl": "https://www.samsung.com/tr/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2029,7 +2012,7 @@
       "state": "live",
       "sourceId": "amazon-tr-a07-5g-128",
       "sourceUrl": "https://www.amazon.com.tr/gp/aw/d/B0H31J9RCG",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2046,7 +2029,7 @@
       "state": "live",
       "sourceId": "samsung-tr-a-official",
       "sourceUrl": "https://www.samsung.com/tr/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2063,7 +2046,7 @@
       "state": "live",
       "sourceId": "amazon-tr-a16-128",
       "sourceUrl": "https://www.amazon.com.tr/gp/aw/d/B0DRCMZJPG",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2080,7 +2063,7 @@
       "state": "live",
       "sourceId": "samsung-tr-a-official",
       "sourceUrl": "https://www.samsung.com/tr/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2097,7 +2080,7 @@
       "state": "live",
       "sourceId": "samsung-tr-a-official",
       "sourceUrl": "https://www.samsung.com/tr/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2114,7 +2097,24 @@
       "state": "live",
       "sourceId": "amazon-tr-a17-5g-128",
       "sourceUrl": "https://www.amazon.com.tr/gp/aw/d/B0FPTTJBRK",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
+      "effectiveDate": "2026-10-05"
+    },
+    {
+      "country": "tr",
+      "brand": "samsung",
+      "series": "Galaxy A",
+      "model": "A17 5G",
+      "channel": "retail",
+      "variant": "256GB",
+      "week": "2026-10-05",
+      "price": 16659,
+      "currency": "TRY",
+      "priceUsd": 337.02,
+      "state": "live",
+      "sourceId": "amazon-tr-a17-5g-256",
+      "sourceUrl": "https://www.amazon.com.tr/gp/aw/d/B0FNRB74NH",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2131,7 +2131,7 @@
       "state": "live",
       "sourceId": "samsung-tr-a-official",
       "sourceUrl": "https://www.samsung.com/tr/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2148,7 +2148,7 @@
       "state": "live",
       "sourceId": "samsung-tr-a-official",
       "sourceUrl": "https://www.samsung.com/tr/smartphones/galaxy-a/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2165,7 +2165,24 @@
       "state": "live",
       "sourceId": "amazon-tr-a37-128",
       "sourceUrl": "https://www.amazon.com.tr/gp/aw/d/B0HF11G8JF",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
+      "effectiveDate": "2026-10-05"
+    },
+    {
+      "country": "tr",
+      "brand": "samsung",
+      "series": "Galaxy A",
+      "model": "A37 5G",
+      "channel": "retail",
+      "variant": "256GB",
+      "week": "2026-10-05",
+      "price": 24649,
+      "currency": "TRY",
+      "priceUsd": 498.67,
+      "state": "live",
+      "sourceId": "amazon-tr-a37-256",
+      "sourceUrl": "https://www.amazon.com.tr/gp/aw/d/B0GWDGKJ47",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2198,8 +2215,8 @@
       "priceUsd": 574.81,
       "state": "live",
       "sourceId": "amazon-tr-a57-128",
-      "sourceUrl": "https://www.amazon.com.tr/gp/aw/d/B0GY9G513M",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "sourceUrl": "https://www.amazon.com.tr/dp/B0GY9G513M",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2216,7 +2233,7 @@
       "state": "live",
       "sourceId": "amazon-tr-a57-256",
       "sourceUrl": "https://www.amazon.com.tr/gp/aw/d/B0GWDBFJTW",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2233,7 +2250,7 @@
       "state": "live",
       "sourceId": "samsung-tr-s-official",
       "sourceUrl": "https://www.samsung.com/tr/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2250,7 +2267,7 @@
       "state": "live",
       "sourceId": "samsung-tr-s-official",
       "sourceUrl": "https://www.samsung.com/tr/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2267,7 +2284,7 @@
       "state": "live",
       "sourceId": "samsung-tr-s-official",
       "sourceUrl": "https://www.samsung.com/tr/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2284,7 +2301,7 @@
       "state": "live",
       "sourceId": "samsung-tr-s-official",
       "sourceUrl": "https://www.samsung.com/tr/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2301,7 +2318,7 @@
       "state": "live",
       "sourceId": "samsung-tr-s-official",
       "sourceUrl": "https://www.samsung.com/tr/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     },
     {
@@ -2318,7 +2335,7 @@
       "state": "live",
       "sourceId": "samsung-tr-s-official",
       "sourceUrl": "https://www.samsung.com/tr/smartphones/galaxy-s/",
-      "collectedAt": "2026-10-11T05:57:29.207Z",
+      "collectedAt": "2026-10-11T06:06:42.998Z",
       "effectiveDate": "2026-10-05"
     }
   ]

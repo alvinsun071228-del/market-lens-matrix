@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T06:04:41.608Z",
+  "generatedAt": "2026-10-11T06:14:52.575Z",
   "brands": [
     {
       "id": "samsung",
@@ -234,20 +234,12 @@
   },
   "failedSources": [
     {
-      "id": "amazon-tr-a17-5g-256",
-      "name": "Amazon.com.tr · Galaxy A17 5G 256GB",
+      "id": "amazon-tr-a07-128",
+      "name": "Amazon.com.tr · Galaxy A07 128GB",
       "country": "tr",
-      "model": "A17 5G",
-      "variant": "256GB",
-      "error": "amazon: pinned product page blocked (asin=B0FNRB74NH, attempts=3, captcha=false, page=\"Amazon.com.tr\")"
-    },
-    {
-      "id": "amazon-tr-a37-256",
-      "name": "Amazon.com.tr · Galaxy A37 5G 256GB",
-      "country": "tr",
-      "model": "A37 5G",
-      "variant": "256GB",
-      "error": "amazon: pinned product page blocked (asin=B0GWDGKJ47, attempts=3, captcha=false, page=\"Amazon.com.tr\")"
+      "model": "A07",
+      "variant": "128GB",
+      "error": "amazon: pinned product page blocked (asin=B0FNR86H2Q, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
     }
   ],
   "models": [
