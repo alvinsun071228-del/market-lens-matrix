@@ -379,9 +379,14 @@ const CAPTCHA_RE = /validateCaptcha|api-services-support@amazon|Enter the charac
  * It is decided per request, so it is detected explicitly and retried.
  */
 const SOFT_BLOCK_RE = /api-services-support@amazon|To discuss automated access to Amazon data|Enter the characters you see|Type the characters you see|we just need to make sure|Robot Check|not a robot|Üzgünüz|نعتذر|عذرًا/i;
-/** Attempts per Amazon request and the linear backoff between them. */
-const AMAZON_ATTEMPTS = 3;
-const AMAZON_RETRY_MS = 4000;
+/**
+ * Retry budget. Only the pinned product page is retried — it is the one Amazon path a
+ * datacenter IP serves; the search grid is attempted once. A blocked pin fails fast,
+ * because search hits the same block from the same IP, and the job has to stay inside
+ * its ~10 minute budget (an unbounded retry policy ran the collector for 25+ minutes).
+ */
+const AMAZON_ATTEMPTS = 2;
+const AMAZON_RETRY_MS = 3000;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const AMAZON_MARKETS = {
   "amazon.sa": { locale: "en-SA", lang: "en-SA,en;q=0.9,ar;q=0.8", timezoneId: "Asia/Riyadh", geo: { latitude: 24.7136, longitude: 46.6753 } },
@@ -492,7 +497,8 @@ async function readVerifiedAmazonDetail(context, source, asin, fromPin) {
   let read = null;
   let captcha = false;
   let blocked = false;
-  for (let attempt = 1; attempt <= AMAZON_ATTEMPTS; attempt += 1) {
+  const maxAttempts = fromPin ? AMAZON_ATTEMPTS : 1;
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     const detail = await context.newPage();
     try {
       read = await readAmazonDetailPage(detail, source, dpUrl);
@@ -504,7 +510,7 @@ async function readVerifiedAmazonDetail(context, source, asin, fromPin) {
     if (read.captcha) captcha = true;
     if (!read.captcha && !read.blocked) break;
     blocked = true;
-    if (attempt < AMAZON_ATTEMPTS) await sleep(AMAZON_RETRY_MS * attempt);
+    if (attempt < maxAttempts) await sleep(AMAZON_RETRY_MS * attempt);
   }
   if (!read || read.captcha || read.blocked) return { ok: false, captcha, blocked };
   const model = deriveModel(read.title) ?? (fromPin ? source.model : null);
@@ -544,6 +550,11 @@ async function parseAmazonSearch(source, browser) {
     let verifyTried = 0;
     const notes = [];
 
+    // Establish storefront session cookies before any product page: every pinned fetch
+    // CI has completed went through this warm-up, and it costs one cheap request next to
+    // a blocked retry. Failures are already swallowed by warmUpAmazon.
+    await warmUpAmazon(context, source);
+
     // 1. A pinned ASIN is tried first: `/dp/<asin>` is far less protected than the
     //    search grid, and it is the only Amazon path a datacenter IP usually serves.
     if (source.asin) {
@@ -551,14 +562,26 @@ async function parseAmazonSearch(source, browser) {
       const pinnedRead = await readVerifiedAmazonDetail(context, source, source.asin, true);
       if (pinnedRead.ok) return [pinnedRead.record];
       if (pinnedRead.captcha) sawCaptcha = true;
-      if (pinnedRead.blocked) sawSoftBlock = true;
-      notes.push(`pinned ${source.asin} ${pinnedRead.blocked ? "blocked" : pinnedRead.reason ?? "failed"}`);
+      if (pinnedRead.blocked) {
+        // Search is the same origin and the same block, so a blocked pin is final for
+        // this run: fail fast instead of burning the job's budget on a doomed request.
+        throw new Error(
+          "amazon: pinned product page blocked (asin=" +
+            source.asin +
+            ", attempts=" +
+            AMAZON_ATTEMPTS +
+            ", captcha=" +
+            sawCaptcha +
+            ")",
+        );
+      }
+      notes.push(`pinned ${source.asin} ${pinnedRead.reason ?? "failed"}`);
     }
 
-    // 2. Otherwise — or when the pin went stale — fall back to the search grid, so a
-    //    delisted ASIN can still be replaced instead of failing forever.
-    await warmUpAmazon(context, source);
-    for (searchAttempts = 1; searchAttempts <= AMAZON_ATTEMPTS; searchAttempts += 1) {
+    // 2. Otherwise — or when the pin resolved to a different product — fall back to the
+    //    search grid once, so a delisted or mismatched ASIN can still be replaced.
+    searchAttempts = 1;
+    {
       const page = await context.newPage();
       let blocked = false;
       try {
@@ -588,9 +611,7 @@ async function parseAmazonSearch(source, browser) {
       } finally {
         await page.close();
       }
-      if (!blocked) break;
-      sawSoftBlock = true;
-      if (searchAttempts < AMAZON_ATTEMPTS) await sleep(AMAZON_RETRY_MS * searchAttempts);
+      if (blocked) sawSoftBlock = true;
     }
 
     // Prefer an exact sub-model match: a search for "Galaxy A16" also returns "A16 5G",
