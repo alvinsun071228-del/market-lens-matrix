@@ -399,6 +399,20 @@ const AMAZON_PRODUCT_WAIT_MS = 6000;
  */
 const AMAZON_TOTAL_BUDGET_MS = 20 * 60 * 1000;
 let amazonSpentMs = 0;
+let lastAmazonAt = 0;
+/**
+ * Pace Amazon requests. Within one run some sources are served and others are redirected
+ * to the storefront, which points at a rate/flag decision rather than a per-source one, so
+ * firing 29 sources back to back works against us. A short jittered gap keeps the run
+ * inside a browsing-like rhythm for a few minutes of extra wall clock.
+ */
+const AMAZON_PACE_MS = 6000;
+const AMAZON_PACE_JITTER_MS = 6000;
+async function amazonPace() {
+  const wait = Math.max(0, AMAZON_PACE_MS + Math.floor(Math.random() * AMAZON_PACE_JITTER_MS) - (Date.now() - lastAmazonAt));
+  if (wait) await sleep(wait);
+  lastAmazonAt = Date.now();
+}
 /** Storefront cookies from the first warm-up, reused by every later Amazon context. */
 let amazonStorageState = null;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -521,12 +535,17 @@ function matchAmazonCard(card, source) {
  * `{ ok: true, record }` or `{ ok: false, reason | blocked | captcha }`.
  */
 async function readVerifiedAmazonDetail(context, source, asin, fromPin, pinAttempts = AMAZON_ATTEMPTS) {
-  const dpUrl = amazonDpUrl(source, asin);
+  const host = amazonHost(source);
+  // Two shapes of the same product page. The desktop /dp/ page is the canonical evidence
+  // URL, but Amazon's mobile product endpoint is served by different infrastructure and
+  // sometimes answers when /dp/ redirects to the storefront, so attempts alternate.
+  const urls = [`https://www.${host}/dp/${asin}`, `https://www.${host}/gp/aw/d/${asin}`];
   let read = null;
   let captcha = false;
   let blocked = false;
   const maxAttempts = fromPin ? pinAttempts : 1;
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    const dpUrl = urls[(attempt - 1) % urls.length];
     const detail = await context.newPage();
     try {
       read = await readAmazonDetailPage(detail, source, dpUrl);
@@ -536,7 +555,10 @@ async function readVerifiedAmazonDetail(context, source, asin, fromPin, pinAttem
       await detail.close();
     }
     if (read.captcha) captcha = true;
-    if (!read.captcha && !read.blocked) break;
+    if (!read.captcha && !read.blocked) {
+      read.usedUrl = dpUrl;
+      break;
+    }
     blocked = true;
     if (attempt < maxAttempts) await sleep(AMAZON_RETRY_MS * attempt);
   }
@@ -547,7 +569,7 @@ async function readVerifiedAmazonDetail(context, source, asin, fromPin, pinAttem
   if (!model || !sourceModelMatches(model, source.model, source.exactModel)) {
     return { ok: false, reason: `model=${model ?? "unknown"} vs ${source.model ?? "?"}` };
   }
-  if (!amazonVariantOk(read.title, dpUrl, source)) return { ok: false, reason: "variant mismatch" };
+  if (!amazonVariantOk(read.title, read.usedUrl, source)) return { ok: false, reason: "variant mismatch" };
   if (!isPlausiblePhonePrice(read.price, source.currency, fx?.rates)) return { ok: false, reason: "implausible price" };
   return {
     ok: true,
@@ -555,7 +577,7 @@ async function readVerifiedAmazonDetail(context, source, asin, fromPin, pinAttem
       price: read.price,
       currency: source.currency,
       title: read.title,
-      sourceUrl: dpUrl,
+      sourceUrl: read.usedUrl,
       productId: asin,
       model,
       rawEvidence: {
@@ -592,6 +614,7 @@ async function parseAmazonSearch(source, browser) {
     //    search grid, and it is the only Amazon path a datacenter IP usually serves.
     if (source.asin) {
       verifyTried += 1;
+      await amazonPace();
       const pinnedRead = await readVerifiedAmazonDetail(context, source, source.asin, true, pinAttempts);
       if (pinnedRead.ok) return [pinnedRead.record];
       if (pinnedRead.captcha) sawCaptcha = true;
