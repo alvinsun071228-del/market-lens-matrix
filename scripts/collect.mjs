@@ -388,14 +388,16 @@ const SOFT_BLOCK_RE = /api-services-support@amazon|To discuss automated access t
 const AMAZON_ATTEMPTS = 3;
 const AMAZON_RETRY_MS = 3000;
 /** Amazon requests are bounded tighter than the default: a blocked request can hang. */
-const AMAZON_NAV_TIMEOUT_MS = 25000;
+const AMAZON_NAV_TIMEOUT_MS = 12000;
+/** How long a product page gets to render its #productTitle marker before it is a block. */
+const AMAZON_PRODUCT_WAIT_MS = 6000;
 /**
- * Total wall-clock budget for Amazon in one run. Retrying a blocked source is worth it
- * (the interstitial is intermittent, and retries recovered 12 of 29 sources), but 18
- * blocked sources x 3 attempts x a 25s navigation stretched a run past 35 minutes. Once
- * this budget is spent the remaining sources still get one attempt, just no retries.
+ * Safety net for the whole run. Retrying a blocked source is what recovers it (the
+ * redirect is per request: 13 of 29 pinned pages succeeded in one run and 12 in another),
+ * so the budget is deliberately generous — it only stops a pathological run, because the
+ * per-request cost is already bounded by the navigation and marker timeouts.
  */
-const AMAZON_TOTAL_BUDGET_MS = 8 * 60 * 1000;
+const AMAZON_TOTAL_BUDGET_MS = 20 * 60 * 1000;
 let amazonSpentMs = 0;
 /** Storefront cookies from the first warm-up, reused by every later Amazon context. */
 let amazonStorageState = null;
@@ -449,12 +451,23 @@ async function warmUpAmazon(context, source) {
 
 /** Read one Amazon product page. Returns { captcha }/{ blocked } when challenged. */
 async function readAmazonDetailPage(page, source, url) {
-  await page.goto(url, { waitUntil: "domcontentloaded", timeout: AMAZON_NAV_TIMEOUT_MS });
-  await page.waitForTimeout(1500);
-  const pageTitle = await page.title();
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: AMAZON_NAV_TIMEOUT_MS }).catch(() => {});
+  // Wait for the product marker instead of the full page load. A blocked request is
+  // answered with a redirect to the storefront homepage (observed title "Amazon.com.tr"),
+  // which never renders #productTitle — waiting on the navigation itself burns the whole
+  // timeout on every blocked attempt, which is what made a collect step take 31 minutes.
+  const hasProductTitle = await page
+    .waitForSelector("#productTitle", { timeout: AMAZON_PRODUCT_WAIT_MS })
+    .then(() => true)
+    .catch(() => false);
+  const pageTitle = await page.title().catch(() => "");
+  if (!hasProductTitle) {
+    if (CAPTCHA_RE.test(pageTitle)) return { captcha: true, title: pageTitle, pageTitle };
+    return { blocked: true, title: pageTitle, pageTitle };
+  }
   const body = (await page.locator("body").innerText().catch(() => "")).slice(0, 4000);
-  if (CAPTCHA_RE.test(body) || CAPTCHA_RE.test(pageTitle)) return { captcha: true, title: pageTitle };
-  if (SOFT_BLOCK_RE.test(body) || SOFT_BLOCK_RE.test(pageTitle)) return { blocked: true, title: pageTitle };
+  if (CAPTCHA_RE.test(body) || CAPTCHA_RE.test(pageTitle)) return { captcha: true, title: pageTitle, pageTitle };
+  if (SOFT_BLOCK_RE.test(body)) return { blocked: true, title: pageTitle, pageTitle };
   const title = ((await page.locator("#productTitle").first().textContent().catch(() => null)) || pageTitle || "")
     .replace(/\s+/g, " ")
     .trim();
@@ -467,13 +480,6 @@ async function readAmazonDetailPage(page, source, url) {
   const price = Number.isFinite(parseLocalizedNumber(offscreen, source.currency))
     ? parseLocalizedNumber(offscreen, source.currency)
     : (tokenPrice?.price ?? null);
-  // From a datacenter IP Amazon answers /dp/ with an interstitial or a redirect rather
-  // than the product page. Such a page has neither a product title nor a price, so it is
-  // a retryable block: classifying it as a product page produced a misleading
-  // "variant mismatch" against an unrelated title AND skipped the retry entirely, which
-  // is what left 18 pinned sources failing after ASINs were captured.
-  const hasProductTitle = (await page.locator("#productTitle").count().catch(() => 0)) > 0;
-  if (!hasProductTitle && !Number.isFinite(price)) return { blocked: true, title: pageTitle, pageTitle };
   return { captcha: false, blocked: false, title, priceText: offscreen, price, pageTitle };
 }
 
