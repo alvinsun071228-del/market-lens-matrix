@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T06:14:52.575Z",
+  "generatedAt": "2026-10-12T10:56:18.495Z",
   "brands": [
     {
       "id": "samsung",
@@ -128,6 +128,7 @@
     },
     "qa": {
       "modelIds": [
+        "A20",
         "A57 5G",
         "S25 EDGE",
         "S25 FE",
@@ -234,12 +235,28 @@
   },
   "failedSources": [
     {
+      "id": "amazon-tr-a16-128",
+      "name": "Amazon.com.tr · Galaxy A16 128GB",
+      "country": "tr",
+      "model": "A16",
+      "variant": "128GB",
+      "error": "amazon: pinned product page blocked (asin=B0DRCMZJPG, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
+    },
+    {
       "id": "amazon-tr-a07-128",
       "name": "Amazon.com.tr · Galaxy A07 128GB",
       "country": "tr",
       "model": "A07",
       "variant": "128GB",
       "error": "amazon: pinned product page blocked (asin=B0FNR86H2Q, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
+    },
+    {
+      "id": "smartbuy-jo-a56-256",
+      "name": "SmartBuy Jordan · Galaxy A56 5G 256GB",
+      "country": "jo",
+      "model": "A56 5G",
+      "variant": "256GB",
+      "error": "no matching product price found"
     }
   ],
   "models": [
@@ -332,6 +349,16 @@
         "ae",
         "sa",
         "tr"
+      ]
+    },
+    {
+      "id": "A20",
+      "series": "Galaxy A",
+      "variants": [
+        "256GB"
+      ],
+      "countries": [
+        "qa"
       ]
     },
     {
