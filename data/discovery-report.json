@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T10:56:18.495Z",
+  "generatedAt": "2026-10-19T08:58:50.905Z",
   "brands": [
     {
       "id": "samsung",
@@ -27,6 +27,7 @@
         "S25 FE",
         "S25 ULTRA",
         "S25+",
+        "S26",
         "S26 FE",
         "S26 ULTRA",
         "S26+"
@@ -50,6 +51,7 @@
     "sa": {
       "modelIds": [
         "A07",
+        "A08",
         "A16",
         "A17",
         "A17 5G",
@@ -235,20 +237,12 @@
   },
   "failedSources": [
     {
-      "id": "amazon-tr-a16-128",
-      "name": "Amazon.com.tr · Galaxy A16 128GB",
+      "id": "amazon-tr-a37-256",
+      "name": "Amazon.com.tr · Galaxy A37 5G 256GB",
       "country": "tr",
-      "model": "A16",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0DRCMZJPG, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
-    },
-    {
-      "id": "amazon-tr-a07-128",
-      "name": "Amazon.com.tr · Galaxy A07 128GB",
-      "country": "tr",
-      "model": "A07",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0FNR86H2Q, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
+      "model": "A37 5G",
+      "variant": "256GB",
+      "error": "amazon: pinned product page blocked (asin=B0GWDGKJ47, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
     },
     {
       "id": "smartbuy-jo-a56-256",
@@ -257,6 +251,14 @@
       "model": "A56 5G",
       "variant": "256GB",
       "error": "no matching product price found"
+    },
+    {
+      "id": "jumbo-ae-a27-5g-128",
+      "name": "Jumbo UAE · Galaxy A27 5G 128GB",
+      "country": "ae",
+      "model": "A27",
+      "variant": "128GB",
+      "error": "HTTP 502"
     }
   ],
   "models": [
@@ -306,6 +308,7 @@
       "countries": [
         "ae",
         "om",
+        "sa",
         "tr"
       ]
     },
@@ -355,7 +358,9 @@
       "id": "A20",
       "series": "Galaxy A",
       "variants": [
-        "256GB"
+        "256GB",
+        "512GB",
+        "N/A"
       ],
       "countries": [
         "qa"
@@ -465,9 +470,9 @@
       ],
       "countries": [
         "om",
-        "qa",
         "sa",
-        "tr"
+        "tr",
+        "qa"
       ]
     },
     {
@@ -503,7 +508,8 @@
       ],
       "countries": [
         "ae",
-        "sa"
+        "sa",
+        "tr"
       ]
     },
     {
@@ -556,9 +562,9 @@
       "countries": [
         "ae",
         "om",
-        "qa",
         "sa",
-        "tr"
+        "tr",
+        "qa"
       ]
     }
   ]
