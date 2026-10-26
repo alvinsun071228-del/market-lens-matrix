@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T08:58:50.905Z",
+  "generatedAt": "2026-10-26T09:03:42.433Z",
   "brands": [
     {
       "id": "samsung",
@@ -21,6 +21,7 @@
         "A16",
         "A17",
         "A17 5G",
+        "A18",
         "A27 5G",
         "A37 5G",
         "A57 5G",
@@ -51,6 +52,7 @@
     "sa": {
       "modelIds": [
         "A07",
+        "A07S",
         "A08",
         "A16",
         "A17",
@@ -132,9 +134,11 @@
       "modelIds": [
         "A20",
         "A57 5G",
+        "S25",
         "S25 EDGE",
         "S25 FE",
         "S25 ULTRA",
+        "S26",
         "S26 ULTRA",
         "S26+"
       ],
@@ -237,12 +241,44 @@
   },
   "failedSources": [
     {
+      "id": "amazon-tr-a16-128",
+      "name": "Amazon.com.tr · Galaxy A16 128GB",
+      "country": "tr",
+      "model": "A16",
+      "variant": "128GB",
+      "error": "amazon: pinned product page blocked (asin=B0DRCMZJPG, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
+    },
+    {
+      "id": "amazon-tr-a07-5g-128",
+      "name": "Amazon.com.tr · Galaxy A07 5G 128GB",
+      "country": "tr",
+      "model": "A07 5G",
+      "variant": "128GB",
+      "error": "amazon: pinned product page blocked (asin=B0H31J9RCG, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
+    },
+    {
+      "id": "amazon-tr-a37-128",
+      "name": "Amazon.com.tr · Galaxy A37 5G 128GB",
+      "country": "tr",
+      "model": "A37 5G",
+      "variant": "128GB",
+      "error": "amazon: pinned product page blocked (asin=B0HF11G8JF, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
+    },
+    {
       "id": "amazon-tr-a37-256",
       "name": "Amazon.com.tr · Galaxy A37 5G 256GB",
       "country": "tr",
       "model": "A37 5G",
       "variant": "256GB",
       "error": "amazon: pinned product page blocked (asin=B0GWDGKJ47, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
+    },
+    {
+      "id": "smartbuy-jo-a27-128",
+      "name": "SmartBuy Jordan · Galaxy A27 5G 128GB",
+      "country": "jo",
+      "model": "A27 5G",
+      "variant": "128GB",
+      "error": "no matching product price found"
     },
     {
       "id": "smartbuy-jo-a56-256",
@@ -253,12 +289,12 @@
       "error": "no matching product price found"
     },
     {
-      "id": "jumbo-ae-a27-5g-128",
-      "name": "Jumbo UAE · Galaxy A27 5G 128GB",
-      "country": "ae",
-      "model": "A27",
-      "variant": "128GB",
-      "error": "HTTP 502"
+      "id": "smartbuy-jo-a57-512",
+      "name": "SmartBuy Jordan · Galaxy A57 5G 512GB",
+      "country": "jo",
+      "model": "A57 5G",
+      "variant": "512GB",
+      "error": "no matching product price found"
     }
   ],
   "models": [
@@ -295,7 +331,8 @@
       "countries": [
         "ae",
         "kw",
-        "om"
+        "om",
+        "sa"
       ]
     },
     {
@@ -351,6 +388,16 @@
       "countries": [
         "ae",
         "sa",
+        "tr"
+      ]
+    },
+    {
+      "id": "A18",
+      "series": "Galaxy A",
+      "variants": [
+        "128GB"
+      ],
+      "countries": [
         "tr"
       ]
     },
@@ -447,6 +494,7 @@
         "N/A"
       ],
       "countries": [
+        "qa",
         "sa"
       ]
     },
@@ -470,9 +518,9 @@
       ],
       "countries": [
         "om",
+        "qa",
         "sa",
-        "tr",
-        "qa"
+        "tr"
       ]
     },
     {
@@ -508,6 +556,7 @@
       ],
       "countries": [
         "ae",
+        "qa",
         "sa",
         "tr"
       ]
@@ -562,9 +611,9 @@
       "countries": [
         "ae",
         "om",
+        "qa",
         "sa",
-        "tr",
-        "qa"
+        "tr"
       ]
     }
   ]

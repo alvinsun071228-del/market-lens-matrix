@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-19T08:58:50.905Z",
+  "generatedAt": "2026-10-26T09:03:42.433Z",
   "contractVersion": "1.1",
   "brandId": "samsung",
-  "totalModels": 23,
+  "totalModels": 24,
   "models": [
     {
       "id": "A07",
@@ -19,9 +19,9 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
-          "priceUsd": 134.24
+          "priceUsd": 134.79
         },
         "jo": {
           "available": true,
@@ -29,7 +29,7 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "JOD",
           "priceUsd": 210.16
         },
@@ -39,7 +39,7 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 159.73
         },
@@ -48,9 +48,9 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "TRY",
-          "priceUsd": 254.26
+          "priceUsd": 253.45
         }
       }
     },
@@ -69,9 +69,9 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "TRY",
-          "priceUsd": 312.83
+          "priceUsd": 311.83
         }
       }
     },
@@ -89,7 +89,7 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
           "priceUsd": 160.38
         },
@@ -98,18 +98,27 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "KWD",
-          "priceUsd": 138.15
+          "priceUsd": 134.94
         },
         "om": {
           "available": true,
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 164.01
+          "priceUsd": 164.14
+        },
+        "sa": {
+          "available": true,
+          "channels": [
+            "official"
+          ],
+          "lastSeen": "2026-10-26",
+          "currency": "SAR",
+          "priceUsd": 159.73
         }
       }
     },
@@ -128,7 +137,7 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
           "priceUsd": 179.44
         },
@@ -137,16 +146,16 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 184.8
+          "priceUsd": 175.59
         },
         "sa": {
           "available": true,
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 173.07
         },
@@ -157,7 +166,7 @@
           ],
           "lastSeen": "2026-10-19",
           "currency": "TRY",
-          "priceUsd": 262.37
+          "priceUsd": 261.53
         }
       }
     },
@@ -175,18 +184,18 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
-          "priceUsd": 157.66
+          "priceUsd": 126.34
         },
         "om": {
           "available": true,
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 148.15
+          "priceUsd": 148.27
         },
         "sa": {
           "available": true,
@@ -194,7 +203,7 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 165.07
         },
@@ -203,9 +212,9 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "TRY",
-          "priceUsd": 254.26
+          "priceUsd": 253.45
         }
       }
     },
@@ -225,7 +234,7 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
           "priceUsd": 410.89
         },
@@ -234,7 +243,7 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "JOD",
           "priceUsd": 267.98
         },
@@ -243,18 +252,18 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "KWD",
-          "priceUsd": 173.57
+          "priceUsd": 173.59
         },
         "om": {
           "available": true,
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 227.43
+          "priceUsd": 227.61
         },
         "sa": {
           "available": true,
@@ -262,7 +271,7 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 210.4
         },
@@ -273,7 +282,7 @@
           ],
           "lastSeen": "2026-10-12",
           "currency": "TRY",
-          "priceUsd": 343.11
+          "priceUsd": 342.01
         }
       }
     },
@@ -293,7 +302,7 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
           "priceUsd": 451.74
         },
@@ -303,9 +312,9 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
-          "priceUsd": 253.07
+          "priceUsd": 397.07
         },
         "tr": {
           "available": true,
@@ -313,9 +322,29 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "TRY",
-          "priceUsd": 413.75
+          "priceUsd": 362.13
+        }
+      }
+    },
+    {
+      "id": "A18",
+      "name": "Galaxy A18",
+      "series": "Galaxy A",
+      "brandId": "samsung",
+      "variants": [
+        "128GB"
+      ],
+      "countries": {
+        "tr": {
+          "available": true,
+          "channels": [
+            "official"
+          ],
+          "lastSeen": "2026-10-26",
+          "currency": "TRY",
+          "priceUsd": 362.13
         }
       }
     },
@@ -357,7 +386,7 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
           "priceUsd": 514.36
         },
@@ -367,7 +396,7 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "JOD",
           "priceUsd": 337.09
         },
@@ -376,18 +405,18 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "KWD",
-          "priceUsd": 315.27
+          "priceUsd": 315.29
         },
         "om": {
           "available": true,
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 264.08
+          "priceUsd": 264.29
         },
         "sa": {
           "available": true,
@@ -395,18 +424,18 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
-          "priceUsd": 333.07
+          "priceUsd": 439.73
         },
         "tr": {
           "available": true,
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "TRY",
-          "priceUsd": 413.75
+          "priceUsd": 462.73
         }
       }
     },
@@ -425,9 +454,9 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 259.66
+          "priceUsd": 259.87
         },
         "sa": {
           "available": true,
@@ -435,7 +464,7 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 359.73
         }
@@ -457,7 +486,7 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
           "priceUsd": 566.1
         },
@@ -466,7 +495,7 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "JOD",
           "priceUsd": 444.29
         },
@@ -475,18 +504,18 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "KWD",
-          "priceUsd": 273.4
+          "priceUsd": 273.42
         },
         "om": {
           "available": true,
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 309.05
+          "priceUsd": 309.29
         },
         "sa": {
           "available": true,
@@ -494,7 +523,7 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 506.4
         },
@@ -504,9 +533,9 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "TRY",
-          "priceUsd": 464.21
+          "priceUsd": 462.73
         }
       }
     },
@@ -524,7 +553,7 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "JOD",
           "priceUsd": 423.13
         },
@@ -533,9 +562,9 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 389.62
+          "priceUsd": 376.93
         }
       }
     },
@@ -557,7 +586,7 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
           "priceUsd": 871.07
         },
@@ -566,7 +595,7 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "JOD",
           "priceUsd": 576.87
         },
@@ -575,25 +604,25 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "KWD",
-          "priceUsd": 337.81
+          "priceUsd": 337.84
         },
         "om": {
           "available": true,
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 363.63
+          "priceUsd": 363.92
         },
         "qa": {
           "available": true,
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "QAR",
           "priceUsd": 378.85
         },
@@ -603,7 +632,7 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 479.73
         },
@@ -613,9 +642,9 @@
             "official",
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "TRY",
-          "priceUsd": 676.14
+          "priceUsd": 575.7
         }
       }
     },
@@ -628,12 +657,21 @@
         "N/A"
       ],
       "countries": {
+        "qa": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-26",
+          "currency": "QAR",
+          "priceUsd": 812.09
+        },
         "sa": {
           "available": true,
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 1013.07
         }
@@ -653,7 +691,7 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "QAR",
           "priceUsd": 1098.63
         },
@@ -662,7 +700,7 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 1413.07
         }
@@ -683,16 +721,25 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 571.56
+          "priceUsd": 572.03
+        },
+        "qa": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-26",
+          "currency": "QAR",
+          "priceUsd": 620.88
         },
         "sa": {
           "available": true,
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 799.73
         },
@@ -703,16 +750,7 @@
           ],
           "lastSeen": "2026-10-19",
           "currency": "TRY",
-          "priceUsd": 948.63
-        },
-        "qa": {
-          "available": true,
-          "channels": [
-            "retail"
-          ],
-          "lastSeen": "2026-10-12",
-          "currency": "QAR",
-          "priceUsd": 620.88
+          "priceUsd": 945.6
         }
       }
     },
@@ -731,7 +769,7 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
           "priceUsd": 1497.35
         },
@@ -740,16 +778,16 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 857.48
+          "priceUsd": 858.17
         },
         "qa": {
           "available": true,
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "QAR",
           "priceUsd": 823.9
         },
@@ -758,7 +796,7 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 1786.4
         },
@@ -767,9 +805,9 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "TRY",
-          "priceUsd": 2512.89
+          "priceUsd": 2504.87
         }
       }
     },
@@ -789,7 +827,7 @@
           ],
           "lastSeen": "2026-10-12",
           "currency": "TRY",
-          "priceUsd": 1483.51
+          "priceUsd": 1478.77
         }
       }
     },
@@ -807,16 +845,25 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
           "priceUsd": 1306.74
+        },
+        "qa": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-26",
+          "currency": "QAR",
+          "priceUsd": 796.43
         },
         "sa": {
           "available": true,
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 1413.07
         },
@@ -825,9 +872,9 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "TRY",
-          "priceUsd": 1755.99
+          "priceUsd": 1750.38
         }
       }
     },
@@ -845,9 +892,9 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 847.08
+          "priceUsd": 847.76
         }
       }
     },
@@ -866,7 +913,7 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
           "priceUsd": 832.95
         },
@@ -875,7 +922,7 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 746.4
         },
@@ -884,9 +931,9 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "TRY",
-          "priceUsd": 1110.1
+          "priceUsd": 1106.56
         }
       }
     },
@@ -906,7 +953,7 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
           "priceUsd": 1715.18
         },
@@ -915,16 +962,16 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 1011.09
+          "priceUsd": 1011.91
         },
         "qa": {
           "available": true,
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "QAR",
           "priceUsd": 1043.68
         },
@@ -933,7 +980,7 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 1786.4
         },
@@ -942,9 +989,9 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "TRY",
-          "priceUsd": 3027.58
+          "priceUsd": 3017.92
         }
       }
     },
@@ -964,7 +1011,7 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "AED",
           "priceUsd": 1497.35
         },
@@ -973,16 +1020,25 @@
           "channels": [
             "retail"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "OMR",
-          "priceUsd": 1187.84
+          "priceUsd": 1188.79
+        },
+        "qa": {
+          "available": true,
+          "channels": [
+            "retail"
+          ],
+          "lastSeen": "2026-10-26",
+          "currency": "QAR",
+          "priceUsd": 933.79
         },
         "sa": {
           "available": true,
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "SAR",
           "priceUsd": 1559.73
         },
@@ -991,18 +1047,9 @@
           "channels": [
             "official"
           ],
-          "lastSeen": "2026-10-19",
+          "lastSeen": "2026-10-26",
           "currency": "TRY",
-          "priceUsd": 2099.12
-        },
-        "qa": {
-          "available": true,
-          "channels": [
-            "retail"
-          ],
-          "lastSeen": "2026-10-12",
-          "currency": "QAR",
-          "priceUsd": 933.79
+          "priceUsd": 2092.42
         }
       }
     }
@@ -1016,6 +1063,7 @@
         "A16",
         "A17",
         "A17 5G",
+        "A18",
         "A27 5G",
         "A37 5G",
         "A57 5G",
@@ -1046,6 +1094,7 @@
     "sa": {
       "modelIds": [
         "A07",
+        "A07S",
         "A08",
         "A16",
         "A17",
@@ -1127,9 +1176,11 @@
       "modelIds": [
         "A20",
         "A57 5G",
+        "S25",
         "S25 EDGE",
         "S25 FE",
         "S25 ULTRA",
+        "S26",
         "S26 ULTRA",
         "S26+"
       ],
