@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T09:03:42.433Z",
+  "generatedAt": "2026-11-02T11:10:35.273Z",
   "brands": [
     {
       "id": "samsung",
@@ -241,14 +241,6 @@
   },
   "failedSources": [
     {
-      "id": "amazon-tr-a16-128",
-      "name": "Amazon.com.tr · Galaxy A16 128GB",
-      "country": "tr",
-      "model": "A16",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0DRCMZJPG, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
-    },
-    {
       "id": "amazon-tr-a07-5g-128",
       "name": "Amazon.com.tr · Galaxy A07 5G 128GB",
       "country": "tr",
@@ -257,27 +249,19 @@
       "error": "amazon: pinned product page blocked (asin=B0H31J9RCG, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
     },
     {
-      "id": "amazon-tr-a37-128",
-      "name": "Amazon.com.tr · Galaxy A37 5G 128GB",
-      "country": "tr",
-      "model": "A37 5G",
-      "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0HF11G8JF, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
-    },
-    {
-      "id": "amazon-tr-a37-256",
-      "name": "Amazon.com.tr · Galaxy A37 5G 256GB",
-      "country": "tr",
-      "model": "A37 5G",
-      "variant": "256GB",
-      "error": "amazon: pinned product page blocked (asin=B0GWDGKJ47, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
-    },
-    {
       "id": "smartbuy-jo-a27-128",
       "name": "SmartBuy Jordan · Galaxy A27 5G 128GB",
       "country": "jo",
       "model": "A27 5G",
       "variant": "128GB",
+      "error": "no matching product price found"
+    },
+    {
+      "id": "smartbuy-jo-a27-256",
+      "name": "SmartBuy Jordan · Galaxy A27 5G 256GB",
+      "country": "jo",
+      "model": "A27 5G",
+      "variant": "256GB",
       "error": "no matching product price found"
     },
     {
@@ -294,6 +278,14 @@
       "country": "jo",
       "model": "A57 5G",
       "variant": "512GB",
+      "error": "no matching product price found"
+    },
+    {
+      "id": "xcite-kw-a17-128",
+      "name": "Xcite Kuwait · Galaxy A17 128GB",
+      "country": "kw",
+      "model": "A17",
+      "variant": "128GB",
       "error": "no matching product price found"
     }
   ],
@@ -494,8 +486,8 @@
         "N/A"
       ],
       "countries": [
-        "qa",
-        "sa"
+        "sa",
+        "qa"
       ]
     },
     {
@@ -514,12 +506,13 @@
       "series": "Galaxy S",
       "variants": [
         "256GB",
+        "512GB",
         "N/A"
       ],
       "countries": [
         "om",
-        "qa",
         "sa",
+        "qa",
         "tr"
       ]
     },
@@ -556,9 +549,9 @@
       ],
       "countries": [
         "ae",
-        "qa",
         "sa",
-        "tr"
+        "tr",
+        "qa"
       ]
     },
     {
@@ -611,9 +604,9 @@
       "countries": [
         "ae",
         "om",
-        "qa",
         "sa",
-        "tr"
+        "tr",
+        "qa"
       ]
     }
   ]
