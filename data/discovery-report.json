@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T11:10:35.273Z",
+  "generatedAt": "2026-11-09T11:35:24.996Z",
   "brands": [
     {
       "id": "samsung",
@@ -57,6 +57,7 @@
         "A16",
         "A17",
         "A17 5G",
+        "A18",
         "A27 5G",
         "A36 5G",
         "A37 5G",
@@ -241,12 +242,20 @@
   },
   "failedSources": [
     {
-      "id": "amazon-tr-a07-5g-128",
-      "name": "Amazon.com.tr · Galaxy A07 5G 128GB",
-      "country": "tr",
-      "model": "A07 5G",
+      "id": "orange-jo-a07-64",
+      "name": "Orange Jordan · Galaxy A07 64GB",
+      "country": "jo",
+      "model": "A07",
+      "variant": "64GB",
+      "error": "no matching product price found"
+    },
+    {
+      "id": "orange-jo-a07-128",
+      "name": "Orange Jordan · Galaxy A07 128GB",
+      "country": "jo",
+      "model": "A07",
       "variant": "128GB",
-      "error": "amazon: pinned product page blocked (asin=B0H31J9RCG, attempts=4, captcha=false, page=\"Amazon.com.tr\")"
+      "error": "no matching product price found"
     },
     {
       "id": "smartbuy-jo-a27-128",
@@ -335,9 +344,9 @@
         "64GB"
       ],
       "countries": [
-        "ae",
         "om",
         "sa",
+        "ae",
         "tr"
       ]
     },
@@ -390,6 +399,7 @@
         "128GB"
       ],
       "countries": [
+        "sa",
         "tr"
       ]
     },
@@ -512,8 +522,8 @@
       "countries": [
         "om",
         "sa",
-        "qa",
-        "tr"
+        "tr",
+        "qa"
       ]
     },
     {
